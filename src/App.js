@@ -1,7 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { adminRoutes, clientRoutes } from "./routes";
-import AdminLayout from "./layouts/AdminLayout";
+import { adminRoutes, clientRoutes } from "routes";
+import AdminLayout from "layouts/AdminLayout";
+import ClientLayout from "layouts/ClientLayout";
 import PageNotFound from "containers/shared/page-not-found/PageNotFound";
 
 function App() {
@@ -24,8 +25,8 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
+          {renderLayout(clientRoutes, ClientLayout)}
           {renderLayout(adminRoutes, AdminLayout)}
-
           {/* những component k dùng chung layout */}
           <Route path="*" component={PageNotFound} />
         </Switch>
