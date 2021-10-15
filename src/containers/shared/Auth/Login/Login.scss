@@ -84,9 +84,20 @@
       display: inline-block;
       margin-right: 2px;
       font-weight: 500;
+      cursor: pointer;
       span.anticon {
         font-weight: 500;
         font-size: 13px;
+        transform: scale(1);
+        transition: transform .3s;
+      }
+    }
+    .rememberNote{
+      cursor: default;
+    }
+    .checkBoxForm.noShow{
+      span.anticon {
+        transform: scale(0);
       }
     }
   }
@@ -109,6 +120,7 @@
     .indentify-btn {
       color: #1dbf73;
       margin-left: 5px;
+      cursor: pointer;
     }
   }
 }

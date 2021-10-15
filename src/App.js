@@ -4,8 +4,15 @@ import { adminRoutes, clientRoutes } from "routes";
 import AdminLayout from "layouts/AdminLayout";
 import ClientLayout from "layouts/ClientLayout";
 import PageNotFound from "containers/shared/page-not-found/PageNotFound";
+import { useDispatch } from "react-redux";
+import { actUploadUserLogin } from "containers/shared/Auth/module/actions";
 
 function App() {
+  const userLogin = JSON.parse(localStorage.getItem("fiverrUser"));
+  const dispatch = useDispatch();
+  if(!!userLogin){
+    dispatch(actUploadUserLogin(userLogin));
+  }
   const renderLayout = (routes, Layout) => {
     return routes.map((route, idx) => {
       const { path, component, exact, isPrivate } = route;

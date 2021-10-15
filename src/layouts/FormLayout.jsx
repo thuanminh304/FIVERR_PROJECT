@@ -1,13 +1,14 @@
 import Withform from "hocs/withForm";
 import React from "react";
 import { Form, Input, Select, DatePicker } from "antd";
+import {formValidConfig} from "setting/formValidationConfig";
 // import "containers/shared/Auth/Login/Login.scss";
 const { Option } = Select;
 const Formlayout = (props) => {
   const { name, placeHolderText, type } = props.formData;
   if (name === "password" || name === "re-password") {
     return (
-      <Form.Item name={name}>
+      <Form.Item name={name} rules={formValidConfig(name)}>
         <Input.Password type={type} placeholder={placeHolderText} />
       </Form.Item>
     );
@@ -32,7 +33,7 @@ const Formlayout = (props) => {
   }
   return (
     <>
-      <Form.Item name={name}>
+      <Form.Item name={name} rules={formValidConfig(name)}>
         <Input type={type} placeholder={placeHolderText} />
       </Form.Item>
     </>
