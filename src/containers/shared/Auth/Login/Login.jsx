@@ -1,11 +1,11 @@
-import { useHistory, Redirect, useLocation, Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { useHistory, Redirect, useLocation } from "react-router-dom";
+import React, { useState, useEffect} from "react";
+import {useDispatch, useSelector} from 'react-redux';
 import "./Login.scss";
 import FormLayout from "layouts/FormLayout";
-import { useDispatch } from "react-redux";
 import { Form } from "antd";
-import { CheckOutlined } from "@ant-design/icons";
-import { actLoginUser } from "../module/actions";
+import {CheckOutlined, LoadingOutlined} from '@ant-design/icons';
+import { actChangeRememberUserLoginStatus, actLoginUser } from "../module/actions";
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -74,50 +74,85 @@ const Login = () => {
     },
   ];
   const [formStructure, setFormStructure] = useState([]);
+  const  [isLogin, setIsLogin] = useState(true);
   const location = useLocation();
+
+  
+  const {loading, note, currentUser, isRemem} = useSelector(state => state.AuthReducer);
+  
   useEffect(() => {
     const pathName = location.pathname;
     if (pathName === "/login") {
       setFormStructure(signInForm);
+      setIsLogin(true);
     } else if (pathName === "/join") {
       setFormStructure(JoinForm);
+      setIsLogin(false);
     }
-  }, []);
+  }, [location.pathname]);
+  
   const renderForm = (Layout, formInfo) => {
     return formInfo.map((input, idx) => {
       return <Layout key={idx} formData={input} />;
     });
   };
   const onFinish = (values) => {
-    dispatch(actLoginUser(values, history));
+    if(!!isLogin){
+      dispatch(actLoginUser(values));
+    }
+    // console.log("Received values of form: ", values);
   };
-  if (!formStructure) return "";
+  const onValuesChange = (value,allValues) => {
+    console.log();
+  };
+  const onFieldChange = (changeField) => {
+    // console.log(changeField[0].name[0]);
+  };
+  const changeForm = () => {
+    if(!!isLogin){
+      setFormStructure(JoinForm);
+      setIsLogin(false);
+    }
+    else{
+      setFormStructure(signInForm);
+      setIsLogin(true);
+    };
+  };
+  const changeRememberUserLogin = (e) => {
+    const checkBlock = e.target.closest('.checkBoxForm');
+    const rememberText = e.target.closest('.rememberNote');
+    if(!!checkBlock || !!rememberText) {
+      dispatch(actChangeRememberUserLoginStatus());
+    }
+  }
+  // if (!formStructure) return "";
+  if(!!currentUser?._id) return (<Redirect to="/"/>);
   return (
     <div id="signInt">
       <div className="signIn__content">
         <div className="sign-in__form">
           <section className="form__header">
-            <h4>Sign In to Fiverr</h4>
+            <h4>{isLogin?"Sign In to Fiverr": "Join Fiverr"}</h4>
           </section>
-          <Form onFinish={onFinish} scrollToFirstError>
+          <Form onFinish={onFinish} scrollToFirstError onValuesChange={onValuesChange} onFieldsChange={onFieldChange}>
             {renderForm(FormLayout, formStructure)}
             <button className="form__submit-button" type="primary">
-              <p>Continue</p>
+              <p>{loading?<LoadingOutlined/>:"Continue"}</p>
             </button>
           </Form>
-          <div className="remember-checkBox">
-            <div className="checkBoxForm">
-              <CheckOutlined />
+            {!isLogin?"":
+            <div className="remember-checkBox" onClick={changeRememberUserLogin}>
+              <div className={"checkBoxForm " + (isRemem?"":"noShow")}>
+                <CheckOutlined />
+              </div>
+              <span className="rememberNote">Remember Me</span>
             </div>
-            <span className="rememberNote">Remember Me</span>
-          </div>
+            }
         </div>
         <div className="formIndentify-Account">
-          <span>Already a member?</span>
-          <Link to="/join">
-            <span className="indentify-btn">Sign Up</span>
-          </Link>
-        </div>
+        <span>{!isLogin?"Already a member?":"Not a member yet?"}</span>
+        <span className="indentify-btn" onClick = {changeForm}>{!isLogin?"Sign In":"Join now"}</span>
+      </div>
       </div>
     </div>
   );

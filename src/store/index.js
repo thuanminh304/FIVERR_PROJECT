@@ -4,18 +4,18 @@ import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 import { composeWithDevTools } from "redux-devtools-extension";
 import quanLyNguoiDungReducer from "containers/admin/nguoi-dung/module/reducer";
-import xacThucNguoiDungReducer from "containers/shared/Auth/module/reducers";
+import AuthReducer from "containers/shared/Auth/module/reducers";
 //
 
 const rootReducer = combineReducers({
   quanLyNguoiDungReducer,
-  xacThucNguoiDungReducer
+  AuthReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ['xacThucNguoiDungReducer'],
+  whitelist: ['AuthReducer'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
