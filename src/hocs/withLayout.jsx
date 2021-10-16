@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-
 const withLayout = (WrappedComponent) => {
   return ({ component: Component, isPrivate, ...rest }) => {
     const content = (
@@ -15,10 +14,13 @@ const withLayout = (WrappedComponent) => {
     );
 
     //protect routePrivate
-    if (isPrivate) {
-      return content;
-    }
-    return <Redirect to="/" />;
+    
+      if (isPrivate) {
+        return content;
+      }
+      return <Redirect to="/" />;
+    
+    
   };
 };
 

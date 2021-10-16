@@ -1,0 +1,50 @@
+.header__content {
+  background-color: pink;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .header__icon {
+    position: relative;
+    span {
+      font-size: 70px;
+      color: green;
+      position: absolute;
+      top: -39px;
+      right: 20px;
+    }
+    img {
+      width: 100px;
+    }
+  }
+
+  .header__nav {
+    display: flex;
+    align-items: center;
+    a {
+        color: white;
+        font-weight: bold;
+        padding: 0 10px;
+        font-size: 16px;
+    }
+    .btn-navbar-join {
+      button {
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 5px 20px;
+        font-weight: bold;
+        transition: all 0.5s;
+        &:hover{
+            background-color: green;
+        }
+      }
+    }
+
+    .dropdown-menu-lastchild{
+        a{
+            color: black;
+            font-weight: bolder;
+        }
+    }
+  }
+}

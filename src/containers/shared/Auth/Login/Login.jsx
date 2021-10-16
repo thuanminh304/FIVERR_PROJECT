@@ -8,6 +8,7 @@ import {CheckOutlined, LoadingOutlined} from '@ant-design/icons';
 import { actChangeRememberUserLoginStatus, actLoginUser } from "../module/actions";
 const Login = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const signInForm = [
     {
       name: "email",
@@ -76,7 +77,6 @@ const Login = () => {
   const  [isLogin, setIsLogin] = useState(true);
   const location = useLocation();
 
-  const dispatch = useDispatch();
   
   const {loading, note, currentUser, isRemem} = useSelector(state => state.AuthReducer);
   

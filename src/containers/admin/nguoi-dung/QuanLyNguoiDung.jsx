@@ -1,7 +1,7 @@
 import Loader from "components/Loader/Loader";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actGetAllUser, actLoginUser } from "./module/action";
+import { actGetAllUser } from "./module/action";
 import { Table, Tag, Space } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
@@ -11,13 +11,10 @@ export default function QuanLyNguoiDung() {
   const { loading, listAllUser } = useSelector(
     (state) => state.quanLyNguoiDungReducer
   );
-  let user = {
-    email: "thuanvm.ssi@gmail.com",
-    password: "111111",
-  };
-  useEffect(() => {
-    dispatch(actLoginUser(user));
-  }, []);
+ const handleDeleteUser=(id)=>{
+      console.log(id);
+ }
+  
   useEffect(() => {
     dispatch(actGetAllUser());
   }, []);
@@ -118,7 +115,9 @@ export default function QuanLyNguoiDung() {
           <Link to="/admin">
             <EditOutlined />
           </Link>
-          <Link to="/admin">
+          <Link to="/admin" onClick={()=>{
+            handleDeleteUser(record._id)
+          }}>
             <DeleteOutlined />
           </Link>
         </Space>
@@ -135,6 +134,9 @@ export default function QuanLyNguoiDung() {
       {" "}
       <div>
         <h1>QUẢN LÝ NGƯỜI DÙNG</h1>
+      </div>
+      <div className="text-left">
+        <Link to='/admin/quan-ly-nguoi-dung/them-moi'>+ Thêm mới</Link>
       </div>
       <Table columns={columns} dataSource={data} />
     </div>
