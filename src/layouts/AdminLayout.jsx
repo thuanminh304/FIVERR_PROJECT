@@ -10,9 +10,9 @@ const { Header, Content, Sider } = Layout;
 
 //
 function AdminLayout(props) {
-  const { currentUser } = useSelector((state) => state.xacThucNguoiDungReducer);
+  const { currentUser } = useSelector((state) => state.AuthReducer);
   return currentUser ? (
-    currentUser.user.role === "ADMIN" ? (
+    currentUser.role === "ADMIN" ? (
       <Layout>
         <Header className="header">
           <div className="logo" />
