@@ -194,7 +194,7 @@ export default function ThemNguoiDung() {
           <Input name="skill" onChange={formik.handleChange} />
         </Form.Item>
         <Form.Item>
-          <label htmlFor="">Bằng cấp</label>
+          <label htmlFor="">Bằng cấp đại học</label>
           <Input name="certification" onChange={formik.handleChange} />
         </Form.Item>
 
