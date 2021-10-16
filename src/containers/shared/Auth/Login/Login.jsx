@@ -1,11 +1,14 @@
-import { useHistory, Redirect, useLocation } from "react-router-dom";
+import { useHistory, Redirect, useLocation, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "./Login.scss";
 import FormLayout from "layouts/FormLayout";
+import { useDispatch } from "react-redux";
 import { Form } from "antd";
-import {CheckOutlined} from '@ant-design/icons';
+import { CheckOutlined } from "@ant-design/icons";
+import { actLoginUser } from "containers/admin/nguoi-dung/module/action";
 const Login = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const signInForm = [
     {
       name: "email",
@@ -86,7 +89,7 @@ const Login = () => {
     });
   };
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    dispatch(actLoginUser(values, history));
   };
   if (!formStructure) return "";
   return (
@@ -102,17 +105,19 @@ const Login = () => {
               <p>Continue</p>
             </button>
           </Form>
-            <div className="remember-checkBox">
-              <div className="checkBoxForm">
+          <div className="remember-checkBox">
+            <div className="checkBoxForm">
               <CheckOutlined />
-              </div>
-              <span className="rememberNote">Remember Me</span>
             </div>
+            <span className="rememberNote">Remember Me</span>
+          </div>
         </div>
         <div className="formIndentify-Account">
-        <span>Already a member?</span>
-        <span className="indentify-btn">Sign In</span>
-      </div>
+          <span>Already a member?</span>
+          <Link to="/join">
+            <span className="indentify-btn">Sign Up</span>
+          </Link>
+        </div>
       </div>
     </div>
   );
