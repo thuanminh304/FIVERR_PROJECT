@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL, tokenClass } from "setting/apiConfig";
+import { BASE_URL, tokenByClass  } from "setting/apiConfig";
 
 const callApi = (endpoint, method = "GET", data = null, token = null) => {
   return axios({
@@ -13,7 +13,7 @@ const callApi = (endpoint, method = "GET", data = null, token = null) => {
             tokenByClass: tokenClass,
           }
         :{
-          tokenByClass: tokenClass,
+          tokenByClass: tokenByClass ,
         },
   });
 };
