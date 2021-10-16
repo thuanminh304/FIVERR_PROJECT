@@ -26,7 +26,7 @@ export const actLoginUser = (user) => {
             dispatch(actLoginUserSuccess(res.data));
         })
         .catch(error=>{
-            dispatch(actLoginUserFail(error.response.data.message));
+            dispatch(actLoginUserFail(error?.response.data));
         });
     };
 };

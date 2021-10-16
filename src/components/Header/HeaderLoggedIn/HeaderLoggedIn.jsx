@@ -1,5 +1,5 @@
+import { actLogout } from "containers/shared/Auth/module/actions";
 import React from "react";
-import { actLogoutUser } from "containers/shared/Auth/module/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory ,Link} from "react-router-dom";
 import "./headerLoggedIn.scss";
@@ -7,11 +7,16 @@ import "./headerLoggedIn.scss";
 export default function HeaderLoggedIn() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state) => state.xacThucNguoiDungReducer);
-  const handleLogoutUser = () => {
-    dispatch(actLogoutUser());
-    localStorage.removeItem('token')
+  const { currentUser } = useSelector((state) => state.AuthReducer);
+  // const handleLogoutUser = () => {
+  //   dispatch(actLogoutUser());
+  //   localStorage.removeItem('token')
+  //   history.push("/");
+  // };
+  const logOut = () => {
+    dispatch(actLogout());
     history.push("/");
+
   };
   return (
     <div>
@@ -56,7 +61,7 @@ export default function HeaderLoggedIn() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                {currentUser.user.name}
+                {currentUser.name}
               </button>
               <div
                 class="dropdown-menu dropmenu-user"
@@ -68,7 +73,7 @@ export default function HeaderLoggedIn() {
                 <a class="dropdown-item" href="#">
                   Another action
                 </a>
-                {currentUser.user.role === "ADMIN" ? (
+                {currentUser.role === "ADMIN" ? (
                   <Link class="dropdown-item" to="/admin">
                     Trang Admin
                   </Link>
@@ -77,7 +82,7 @@ export default function HeaderLoggedIn() {
                   href=""
                   class="dropdown-item"
                   style={{ color: "green" }}
-                  onClick={handleLogoutUser}
+                  onClick={logOut}
                 >
                   Logout
                 </a>

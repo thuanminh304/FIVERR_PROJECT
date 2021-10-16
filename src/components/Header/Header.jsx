@@ -1,25 +1,13 @@
-import { actLogout } from 'containers/shared/Auth/module/actions';
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-
+import { actLogout } from "containers/shared/Auth/module/actions";
+import React from "react";
+import {  useSelector } from "react-redux";
+import HeaderNotLogin from "components/Header/HeaderNotLogin/HeaderNotLogin";
+import HeaderLoggedIn from "./HeaderLoggedIn/HeaderLoggedIn";
 const Header = () => {
-    const dispatch = useDispatch();
-    const {currentUser} = useSelector(state=> state.AuthReducer);
-    const logOut = () => {
-        dispatch(actLogout());
-    }
-    return (
-        <div>
-            {!currentUser?._id?
-                (<>
-                    <NavLink to='/login'>Sign in</NavLink>
-                    <NavLink to='/join'>Join with Us</NavLink>
-                </>)
-                : (<button onClick={logOut}>Logout</button>)
-            }
-        </div>
-    );
-}
+  const { currentUser } = useSelector((state) => state.AuthReducer);
+  
+
+  return !currentUser?._id ? <HeaderNotLogin /> : <HeaderLoggedIn />;
+};
 
 export default Header;
