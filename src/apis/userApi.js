@@ -10,8 +10,8 @@ const userApi = {
     return callApi("api/auth/signin","POST", user);
   },
 
-  getAllUser(token){
-    return callApi('api/users',token)
+  getAllUser(){
+    return callApi('api/users')
   }
 ,
   deleteUser(id){

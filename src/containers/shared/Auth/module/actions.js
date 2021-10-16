@@ -22,7 +22,9 @@ export const actLoginUser = (user) => {
         .then(res=> {
             if(!!isRemember) {
                 localStorage.setItem('fiverrUser', JSON.stringify(res.data));
+                
             }
+            localStorage.setItem('fiverrToken', JSON.stringify(res.data.token));
             dispatch(actLoginUserSuccess(res.data));
         })
         .catch(error=>{
@@ -53,6 +55,8 @@ export const actUploadUserLogin = (data) => {
 export const actLogout = () => {
     return dispatch => {
         localStorage.removeItem('fiverrUser');
+    localStorage.removeItem('fiverrToken')
+
         dispatch({
             type: LOGOUT,
         })
