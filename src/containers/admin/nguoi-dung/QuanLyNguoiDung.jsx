@@ -5,16 +5,25 @@ import { actGetAllUser } from "./module/action";
 import { Table, Tag, Space } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import userApi from "apis/userApi";
 //
 export default function QuanLyNguoiDung() {
   const dispatch = useDispatch();
   const { loading, listAllUser } = useSelector(
     (state) => state.quanLyNguoiDungReducer
   );
- const handleDeleteUser=(id)=>{
-      console.log(id);
- }
-  
+  const handleDeleteUser = (id) => {
+    if (window.confirm("Bạn có chắc muốn xóa người dùng này chứ ?")) {
+      userApi
+        .deleteUser(id)
+        .then((res) => {
+          alert("Xóa thành công !");
+          dispatch(actGetAllUser());
+        })
+        .catch((err) => console.log(err?.response.data));
+    }
+  };
+
   useEffect(() => {
     dispatch(actGetAllUser());
   }, []);
@@ -115,11 +124,14 @@ export default function QuanLyNguoiDung() {
           <Link to="/admin">
             <EditOutlined />
           </Link>
-          <Link to="/admin" onClick={()=>{
-            handleDeleteUser(record._id)
-          }}>
+          <span
+            style={{ color: "blue", cursor: "pointer" }}
+            onClick={() => {
+              handleDeleteUser(record._id);
+            }}
+          >
             <DeleteOutlined />
-          </Link>
+          </span>
         </Space>
       ),
     },
@@ -136,7 +148,7 @@ export default function QuanLyNguoiDung() {
         <h1>QUẢN LÝ NGƯỜI DÙNG</h1>
       </div>
       <div className="text-left">
-        <Link to='/admin/quan-ly-nguoi-dung/them-moi'>+ Thêm mới</Link>
+        <Link to="/admin/quan-ly-nguoi-dung/them-moi">+ Thêm mới</Link>
       </div>
       <Table columns={columns} dataSource={data} />
     </div>
