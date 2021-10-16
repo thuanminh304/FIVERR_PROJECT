@@ -11,7 +11,9 @@ export default function QuanLyNguoiDung() {
   const { loading, listAllUser } = useSelector(
     (state) => state.quanLyNguoiDungReducer
   );
- 
+ const handleDeleteUser=(id)=>{
+      console.log(id);
+ }
   
   useEffect(() => {
     dispatch(actGetAllUser());
@@ -113,7 +115,9 @@ export default function QuanLyNguoiDung() {
           <Link to="/admin">
             <EditOutlined />
           </Link>
-          <Link to="/admin">
+          <Link to="/admin" onClick={()=>{
+            handleDeleteUser(record._id)
+          }}>
             <DeleteOutlined />
           </Link>
         </Space>

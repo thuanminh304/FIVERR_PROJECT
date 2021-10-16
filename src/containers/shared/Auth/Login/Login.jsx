@@ -5,7 +5,7 @@ import FormLayout from "layouts/FormLayout";
 import { useDispatch } from "react-redux";
 import { Form } from "antd";
 import { CheckOutlined } from "@ant-design/icons";
-import { actLoginUser } from "containers/admin/nguoi-dung/module/action";
+import { actLoginUser } from "../module/actions";
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();

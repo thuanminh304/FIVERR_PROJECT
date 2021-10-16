@@ -13,6 +13,10 @@ const userApi = {
   getAllUser(token){
     return callApi('api/users',token)
   }
+,
+  deleteUser(id){
+    return callApi(`api/users/${id}`,"DELETE")
+  }
 };
 
 export default userApi;

@@ -3,7 +3,7 @@ import HeaderNotLogin from "./HeaderNotLogin/HeaderNotLogin";
 import {useSelector} from 'react-redux'
 import HeaderLoggedIn from "./HeaderLoggedIn/HeaderLoggedIn";
 const Header = () => {
-  const { currentUser } = useSelector((state) => state.quanLyNguoiDungReducer);
+  const { currentUser } = useSelector((state) => state.xacThucNguoiDungReducer);
 
   return !currentUser ? (
     <HeaderNotLogin />

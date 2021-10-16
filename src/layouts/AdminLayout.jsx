@@ -10,7 +10,7 @@ const { Header, Content, Sider } = Layout;
 
 //
 function AdminLayout(props) {
-  const { currentUser } = useSelector((state) => state.quanLyNguoiDungReducer);
+  const { currentUser } = useSelector((state) => state.xacThucNguoiDungReducer);
   return currentUser ? (
     currentUser.user.role === "ADMIN" ? (
       <Layout>
