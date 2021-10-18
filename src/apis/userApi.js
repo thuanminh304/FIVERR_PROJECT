@@ -5,12 +5,14 @@ const userApi = {
     return callApi("api/auth/signin","POST", user);
   },
 
-  getAllUser(token){
-    return callApi('api/users',token)
-  }
-,
+  getAllUser(){
+    return callApi('api/users');
+  },
   deleteUser(id){
-    return callApi(`api/users/${id}`,"DELETE")
+    return callApi(`api/users/${id}`,"DELETE");
+  },
+  registerUser(newUser) {
+    return callApi(`api/auth/signup`,"POST",newUser);
   }
 };
 

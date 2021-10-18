@@ -1,9 +1,9 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAIL, MEMORY_USER_LOGIN_FLAG, LOGOUT }  from "./types";
+import { AUTH_REQUEST, LOGIN_SUCCESS, LOGIN_FAIL, MEMORY_USER_LOGIN_FLAG, LOGOUT, REGISTER_SUCCESS, REGISTER_FAIL }  from "./types";
 import userApi from "apis/userApi";
 
 // loginUser
-const actLoginUserRequest = () => ({
-    type: LOGIN_REQUEST,
+const actUserRequest = () => ({
+    type: AUTH_REQUEST,
 });
 const actLoginUserSuccess = (data) => ({
     type: LOGIN_SUCCESS,
@@ -16,17 +16,19 @@ const actLoginUserFail = (error) => ({
 
 export const actLoginUser = (user) => {
     return (dispatch, getState) => {
-        dispatch(actLoginUserRequest());
+        dispatch(actUserRequest());
         const isRemember = getState().AuthReducer.isRemem;
         userApi.loginUser(user)
         .then(res=> {
             if(!!isRemember) {
                 localStorage.setItem('fiverrUser', JSON.stringify(res.data));
+                
             }
+            localStorage.setItem('fiverrToken', JSON.stringify(res.data.token));
             dispatch(actLoginUserSuccess(res.data));
         })
         .catch(error=>{
-            dispatch(actLoginUserFail(error?.response.data));
+            dispatch(actLoginUserFail(error?.response.data.message));
         });
     };
 };
@@ -53,8 +55,36 @@ export const actUploadUserLogin = (data) => {
 export const actLogout = () => {
     return dispatch => {
         localStorage.removeItem('fiverrUser');
+        localStorage.removeItem('fiverrToken')
         dispatch({
             type: LOGOUT,
+        })
+    }
+}
+
+
+// register new user
+
+const actRegisterSuccess = (isSuccess) => ({
+    type: REGISTER_SUCCESS,
+    payload: isSuccess,
+});
+
+const actRegisterFail = (error) => ({
+    type: REGISTER_FAIL,
+    payload: error,
+});
+
+export const actRegister = (newUser) => {
+    return dispatch => {
+        dispatch(actUserRequest());
+        userApi.registerUser(newUser).then(res=> {
+            const isSuccess = true;
+            dispatch(actRegisterSuccess(isSuccess));
+        })
+        .catch(error=> {
+            const isSuccess = false;
+            dispatch(actRegisterFail(isSuccess));
         })
     }
 }

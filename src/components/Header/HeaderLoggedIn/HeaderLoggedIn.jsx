@@ -8,14 +8,10 @@ export default function HeaderLoggedIn() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.AuthReducer);
-  // const handleLogoutUser = () => {
-  //   dispatch(actLogoutUser());
-  //   localStorage.removeItem('token')
-  //   history.push("/");
-  // };
+  
   const logOut = () => {
     dispatch(actLogout());
-    history.push("/");
+    window.location.replace("/");
 
   };
   return (

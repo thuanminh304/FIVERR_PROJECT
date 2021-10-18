@@ -1,11 +1,21 @@
 import { useHistory, Redirect, useLocation } from "react-router-dom";
-import React, { useState, useEffect} from "react";
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./Login.scss";
 import FormLayout from "layouts/FormLayout";
+import moment from "moment";
+import Popup from "../Popup/Popup";
 import { Form } from "antd";
-import {CheckOutlined, LoadingOutlined} from '@ant-design/icons';
-import { actChangeRememberUserLoginStatus, actLoginUser } from "../module/actions";
+import {
+  CheckOutlined,
+  LoadingOutlined,
+  CloseOutlined,
+} from "@ant-design/icons";
+import {
+  actChangeRememberUserLoginStatus,
+  actLoginUser,
+  actRegister,
+} from "../module/actions";
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -14,11 +24,13 @@ const Login = () => {
       name: "email",
       placeHolderText: "Email",
       type: "text",
+      isLogin: true,
     },
     {
       name: "password",
       placeHolderText: "Password",
       type: "password",
+      isLogin: true,
     },
   ];
   const JoinForm = [
@@ -26,62 +38,78 @@ const Login = () => {
       name: "first_name",
       placeHolderText: "First Name",
       type: "text",
+      isLogin: false,
     },
     {
       name: "last_name",
       placeHolderText: "Last Name",
       type: "text",
+      isLogin: false,
     },
     {
       name: "email",
       placeHolderText: "Email",
       type: "text",
+      isLogin: false,
     },
     {
       name: "password",
       placeHolderText: "Password",
       type: "password",
+      isLogin: false,
     },
     {
       name: "re-password",
       placeHolderText: "Re-Password",
       type: "password",
+      isLogin: false,
     },
     {
       name: "phone",
       placeHolderText: "Phone Number",
       type: "text",
+      isLogin: false,
     },
     {
       name: "birthday",
       placeHolderText: "BirthDay",
       type: "text",
+      isLogin: false,
     },
     {
       name: "gender",
       placeHolderText: "Gender",
       type: "text",
+      isLogin: false,
     },
     {
       name: "certification",
-      placeHolderText: "Certification",
+      placeHolderText: "Certification (Ex: DIB, PYNOW, ...)",
       type: "text",
+      isLogin: false,
     },
     {
       name: "skill",
-      placeHolderText: "Skill",
+      placeHolderText: "Skill (Ex: PHP, Java, Javascript, Web design, ...)",
       type: "text",
+      isLogin: false,
     },
   ];
   const [formStructure, setFormStructure] = useState([]);
-  const  [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(true);
+  const [isShowPopup, setShowPopup] = useState(false);
+  const [isShowPopupContent, setPopupContent] = useState(false);
   const location = useLocation();
-
-  
-  const {loading, note, currentUser, isRemem} = useSelector(state => state.AuthReducer);
-  
+  const { loading, note, currentUser, isRegisterSuccess, isError, isRemem } =
+    useSelector((state) => state.AuthReducer);
+  const formRef = React.createRef();
+  const certification = [];
+  const skill = [];
   useEffect(() => {
     const pathName = location.pathname;
+    if (!!currentUser?._id) {
+      history.push("/");
+    }
     if (pathName === "/login") {
       setFormStructure(signInForm);
       setIsLogin(true);
@@ -90,70 +118,204 @@ const Login = () => {
       setIsLogin(false);
     }
   }, [location.pathname]);
-  
   const renderForm = (Layout, formInfo) => {
     return formInfo.map((input, idx) => {
       return <Layout key={idx} formData={input} />;
     });
   };
   const onFinish = (values) => {
-    if(!!isLogin){
+    if (!!isLogin) {
       dispatch(actLoginUser(values));
+    } else {
+      const data = {
+        first_name: "",
+        last_name: "",
+        email: "",
+        password: "",
+        phone: "",
+        skill: [],
+        certification: [],
+        birthday: "",
+        gender: true,
+      };
+      for(let key in data){
+        if(key === "skill"){
+          data[key] = skill;
+          continue;
+        }
+        if(key === "certification"){
+          data[key] = certification;
+          continue;
+        }
+        if(key === "birthday"){
+          data[key] = moment(values[key]).format("YYYY-MM-DD");
+          continue;
+        }
+        if(key === "gender"){
+          if(values == "male"){
+            data[key] = true;
+          }
+          else{
+            data[key] = false;
+          }
+          continue;
+        }
+        data[key] = values[key];
+
+      }
+      console.log(data);
+      dispatch(actRegister(data));
     }
-    // console.log("Received values of form: ", values);
-  };
-  const onValuesChange = (value,allValues) => {
-    console.log();
-  };
-  const onFieldChange = (changeField) => {
-    // console.log(changeField[0].name[0]);
   };
   const changeForm = () => {
-    if(!!isLogin){
+    if(!isRegisterSuccess){
+      formRef.current.resetFields();
+    }
+    if (!!isLogin) {
       setFormStructure(JoinForm);
       setIsLogin(false);
-    }
-    else{
+    } else {
       setFormStructure(signInForm);
       setIsLogin(true);
-    };
+    }
   };
+  const onFielsChange = (fielsChange) => {
+    const field = fielsChange[0].name;
+    if (field == "certification") {
+      const value = fielsChange[0].value;
+      const findIndex = value.search(",");
+      if (findIndex !== -1) {
+        certification.push(value.replace(",", ""));
+        let result = renderItem(certification);
+        document.querySelector(".certificationResult").innerHTML = result.toString().replaceAll(',','');
+        formRef.current.setFieldsValue({ certification: "" });
+      }
+    }
+    if (field == "skill") {
+      const value = fielsChange[0].value;
+      const findIndex = value.search(",");
+      if (findIndex !== -1) {
+        skill.push(value.replace(",", ""));
+        let result = renderItem(skill);
+        document.querySelector(".skillResult").innerHTML = result.toString().replaceAll(',','');
+        formRef.current.setFieldsValue({ skill: "" });
+      }
+    }
+  };
+  const resultConfig = (value, init = 0) => {
+    return `<span data-init=${init} class="${"field" + randomClass()}">${value}<i class="fa fa-times"></i></span>`;
+  };
+  const renderItem = (lists) => {
+    const result = lists.map((item, idx) => {
+      return resultConfig(item, idx);
+    });
+    return result;
+  };
+  const randomClass = () => {
+    const number = Math.floor(Math.random() * 3) + 1;
+    return number;
+  };
+  const onValuesChange = (changedValues) => {};
   const changeRememberUserLogin = (e) => {
-    const checkBlock = e.target.closest('.checkBoxForm');
-    const rememberText = e.target.closest('.rememberNote');
-    if(!!checkBlock || !!rememberText) {
+    const checkBlock = e.target.closest(".checkBoxForm");
+    const rememberText = e.target.closest(".rememberNote");
+    if (!!checkBlock || !!rememberText) {
       dispatch(actChangeRememberUserLoginStatus());
     }
-  }
-  // if (!formStructure) return "";
-  if(!!currentUser?._id) return (<Redirect to="/"/>);
+  };
+  const handleClickTab = (event) => {
+    const certificationField = event.target.closest(".certificationResult span");
+    const skillField = event.target.closest(".skillResult span");
+    if (!!certificationField) {
+      const init = certificationField.dataset.init;
+      certification.splice(init, 1);
+      let result = renderItem(certification);
+      document.querySelector(".certificationResult").innerHTML = result.toString().replaceAll(',','');
+    }
+    if (!!skillField) {
+      const init = skillField.dataset.init;
+      skill.splice(init, 1);
+      let result = renderItem(skill);
+      document.querySelector(".skillResult").innerHTML = result.toString().replaceAll(',','');
+    }
+  };
+  useEffect(() => {
+    if (note !== "") {
+        setShowPopup(true);
+      setTimeout(() => {
+        setPopupContent(true);
+      }, 20);
+      showPopup();
+    }
+  }, [note]);
+  const showPopup = () => {
+    setTimeout(() => {
+      setPopupContent(false);
+    }, 1500);
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 2000);
+    if (!isError) {
+      if (!!isLogin) {
+        setTimeout(() => {
+          history.push("/");
+        }, 2000);
+        return;
+      } else {
+        setTimeout(() => {
+          history.push('/login');
+        }, 2000);
+      }
+    }
+  };
   return (
     <div id="signInt">
       <div className="signIn__content">
         <div className="sign-in__form">
           <section className="form__header">
-            <h4>{isLogin?"Sign In to Fiverr": "Join Fiverr"}</h4>
+            <h4>{isLogin ? "Sign In to Fiverr" : "Join Fiverr"}</h4>
           </section>
-          <Form onFinish={onFinish} scrollToFirstError onValuesChange={onValuesChange} onFieldsChange={onFieldChange}>
+          <Form
+            onFinish={onFinish}
+            scrollToFirstError
+            ref={formRef}
+            onFieldsChange={onFielsChange}
+            onValuesChange={onValuesChange}
+            onClick={handleClickTab}
+          >
             {renderForm(FormLayout, formStructure)}
             <button className="form__submit-button" type="primary">
-              <p>{loading?<LoadingOutlined/>:"Continue"}</p>
+              <p>{loading ? <LoadingOutlined /> : "Continue"}</p>
             </button>
           </Form>
-            {!isLogin?"":
-            <div className="remember-checkBox" onClick={changeRememberUserLogin}>
-              <div className={"checkBoxForm " + (isRemem?"":"noShow")}>
+          {!isLogin ? (
+            ""
+          ) : (
+            <div
+              className="remember-checkBox"
+              onClick={changeRememberUserLogin}
+            >
+              <div className={"checkBoxForm " + (isRemem ? "" : "noShow")}>
                 <CheckOutlined />
               </div>
               <span className="rememberNote">Remember Me</span>
             </div>
-            }
+          )}
         </div>
+        {isRegisterSuccess?"":(
         <div className="formIndentify-Account">
-        <span>{!isLogin?"Already a member?":"Not a member yet?"}</span>
-        <span className="indentify-btn" onClick = {changeForm}>{!isLogin?"Sign In":"Join now"}</span>
+          <span>{!isLogin ? "Already a member?" : "Not a member yet?"}</span>
+          <span className="indentify-btn" onClick={changeForm}>
+            {!isLogin ? "Sign In" : "Join now"}
+          </span>
+        </div>)
+        }
       </div>
-      </div>
+      {isShowPopup ? (
+        <Popup note={note} isShowPopupContent={isShowPopupContent} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
