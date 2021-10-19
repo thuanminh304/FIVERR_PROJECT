@@ -2,7 +2,7 @@ import { LOGIN_FAIL, AUTH_REQUEST, LOGIN_SUCCESS, MEMORY_USER_LOGIN_FLAG,LOGOUT,
 
 const initialState = {
     loading: false,
-    isRemem: false,
+    isRemem: true,
     currentUser: null,
     token: '',
     note: '',
