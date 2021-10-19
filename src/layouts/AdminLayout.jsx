@@ -40,7 +40,7 @@ function AdminLayout(props) {
                   <Link to="/admin/quan-ly-nguoi-dung">User Management</Link>
                 </Menu.Item>
                 <Menu.Item key="3" icon={<ProfileOutlined />}>
-                  <NavLink to="/admin/job-management">Job Management</NavLink>
+                  <NavLink to="/admin/job-management">Menu Management</NavLink>
                 </Menu.Item>
               </Menu>
             </Menu>
