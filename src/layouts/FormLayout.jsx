@@ -22,21 +22,21 @@ const Formlayout = (props) => {
       );
     }
     return (
-      <Form.Item name={name} rules={formValidConfig(name)}>
+      <Form.Item name={name} rules={formValidConfig(name)} hasFeedback>
         <Input.Password type={type} placeholder={placeHolderText} />
       </Form.Item>
     );
   }
   if (name === "birthday") {
     return (
-      <Form.Item name={name}>
+      <Form.Item name={name} rules={formValidConfig(name)}>
         <DatePicker format="YYYY-MM-DD"/>
       </Form.Item>
     );
   }
   if (name === "gender") {
     return (
-      <Form.Item name={name}>
+      <Form.Item name={name} rules={formValidConfig(name)} hasFeedback>
         <Select placeholder="select your gender">
           <Option value="male">Male</Option>
           <Option value="female">Female</Option>
@@ -80,7 +80,7 @@ const Formlayout = (props) => {
     );
   }
   return (
-    <Form.Item name={name} rules={formValidConfig(name)}>
+    <Form.Item name={name} rules={formValidConfig(name)} hasFeedback>
       <Input type={type} placeholder={placeHolderText} />
     </Form.Item>
   );
