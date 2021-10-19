@@ -5,6 +5,7 @@ import ThemNguoiDung from "containers/admin/nguoi-dung/ThemNguoiDung";
 import Home from "containers/home/homePage/Home";
 import Login from "containers/shared/Auth/Login/Login";
 import ThayDoiThongTinNguoiDung from "containers/admin/nguoi-dung/ThayDoiThongTinNguoiDung";
+import Jobmanagement from "containers/admin/JobManagement/JobManagement";
 
 export const clientRoutes = [
   {
@@ -55,6 +56,18 @@ export const adminRoutes = [
     path: "/admin/quan-ly-binh-luan",
     component: QuanLyBinhLuan,
     exact: true,
+    isPrivate: true,
+  },
+  {
+    path: "/admin/quan-ly-binh-luan",
+    component: QuanLyBinhLuan,
+    exact: true,
+    isPrivate: true,
+  },
+  {
+    path: "/admin/job-management",
+    component: Jobmanagement,
+    exact: false,
     isPrivate: true,
   },
 ];

@@ -1,9 +1,9 @@
 import React from "react";
 import withLayout from "../hocs/withLayout";
 import { Layout, Menu } from "antd";
-import { UserOutlined, LaptopOutlined } from "@ant-design/icons";
+import { UserOutlined, LaptopOutlined, ProfileOutlined } from "@ant-design/icons";
 import "../containers/admin/admin.css";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, NavLink } from "react-router-dom";
 import "containers/admin/admin.css";
 import { useSelector } from "react-redux";
 const { Header, Content, Sider } = Layout;
@@ -28,7 +28,7 @@ function AdminLayout(props) {
           </Menu>
         </Header>
         <Layout>
-          <Sider width={200} className="site-layout-background">
+          <Sider width={220} className="site-layout-background">
             <Menu
               mode="inline"
               defaultSelectedKeys={["1"]}
@@ -37,10 +37,10 @@ function AdminLayout(props) {
             >
               <Menu key="sub1">
                 <Menu.Item key="1" icon={<UserOutlined />}>
-                  <Link to="/admin/quan-ly-nguoi-dung">Quản lý người dùng</Link>
+                  <Link to="/admin/quan-ly-nguoi-dung">User Management</Link>
                 </Menu.Item>
-                <Menu.Item key="2" icon={<LaptopOutlined />}>
-                  <Link to="/admin/quan-ly-binh-luan">Quản lý bình luận</Link>
+                <Menu.Item key="3" icon={<ProfileOutlined />}>
+                  <NavLink to="/admin/job-management">Job Management</NavLink>
                 </Menu.Item>
               </Menu>
             </Menu>
