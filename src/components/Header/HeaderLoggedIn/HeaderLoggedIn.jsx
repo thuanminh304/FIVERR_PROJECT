@@ -11,7 +11,7 @@ export default function HeaderLoggedIn() {
   
   const logOut = () => {
     dispatch(actLogout());
-    history.push("/");
+    window.location.replace("/");
 
   };
   return (
