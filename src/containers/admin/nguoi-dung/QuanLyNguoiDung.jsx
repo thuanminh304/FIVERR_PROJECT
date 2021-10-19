@@ -70,7 +70,7 @@ export default function QuanLyNguoiDung() {
       width: "20%",
 
       render: (skill) => {
-        let hienthi = skill.length >= 2 ? skill.slice(1) : skill.slice(2);
+        let hienthi = skill.length > 3 ? skill.slice(2) : skill.slice(1);
         return (
           <>
             {hienthi.map((skill) => {
@@ -121,7 +121,7 @@ export default function QuanLyNguoiDung() {
 
       render: (text, record) => (
         <Space size="middle">
-          <Link to="/admin">
+          <Link to={`/admin/doi-thong-tin/${record._id}`}>
             <EditOutlined />
           </Link>
           <span

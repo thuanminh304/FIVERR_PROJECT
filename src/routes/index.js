@@ -4,6 +4,7 @@ import QuanLyNguoiDung from "containers/admin/nguoi-dung/QuanLyNguoiDung";
 import ThemNguoiDung from "containers/admin/nguoi-dung/ThemNguoiDung";
 import Home from "containers/home/homePage/Home";
 import Login from "containers/shared/Auth/Login/Login";
+import ThayDoiThongTinNguoiDung from "containers/admin/nguoi-dung/ThayDoiThongTinNguoiDung";
 
 export const clientRoutes = [
   {
@@ -37,9 +38,16 @@ export const adminRoutes = [
     component: QuanLyNguoiDung,
     exact: true,
     isPrivate: true,
-  }, {
+  },
+  {
     path: "/admin/quan-ly-nguoi-dung/them-moi",
     component: ThemNguoiDung,
+    exact: true,
+    isPrivate: true,
+  },
+  {
+    path: "/admin/doi-thong-tin/:idUser",
+    component: ThayDoiThongTinNguoiDung,
     exact: true,
     isPrivate: true,
   },
