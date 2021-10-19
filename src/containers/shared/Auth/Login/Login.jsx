@@ -95,8 +95,6 @@ const Login = () => {
       isLogin: false,
     },
   ];
-  const loadingCheck = <span class="ant-form-item-children-icon"><span role="img" aria-label="loading" class="anticon anticon-loading anticon-spin"><svg viewBox="0 0 1024 1024" focusable="false" data-icon="loading" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"></path></svg></span></span>;
-  
   const [formStructure, setFormStructure] = useState([]);
   const [isLogin, setIsLogin] = useState(true);
   const [isShowPopup, setShowPopup] = useState(false);
@@ -140,83 +138,37 @@ const Login = () => {
         birthday: "",
         gender: true,
       };
-      for (let key in data) {
-        if (key === "skill") {
+      for(let key in data){
+        if(key === "skill"){
           data[key] = skill;
           continue;
         }
-        if (key === "certification") {
+        if(key === "certification"){
           data[key] = certification;
           continue;
         }
-        if (key === "birthday") {
+        if(key === "birthday"){
           data[key] = moment(values[key]).format("YYYY-MM-DD");
           continue;
         }
-        if (key === "gender") {
-          if (values == "male") {
+        if(key === "gender"){
+          if(values == "male"){
             data[key] = true;
-          } else {
+          }
+          else{
             data[key] = false;
           }
           continue;
         }
         data[key] = values[key];
+
       }
       console.log(data);
-      let setErrorForm = false;
-      if(skill.length === 0) {
-        setErrorForm = true;
-        checkError('skill');
-      }
-      else{
-        setErrorForm = false;
-      }
-      if(!setErrorForm){
-        dispatch(actRegister(data));
-      }
+      dispatch(actRegister(data));
     }
   };
-  const checkError = (key) => {
-    const skillField = document.querySelector('.ant-form-item:nth-of-type(11)');
-    const skillFieldControl = skillField.querySelector('.ant-form-item-control');
-    const skillFieldChild = skillField.querySelector('.ant-form-item-control-input');
-    const noteIcon = document.createElement('span');
-    noteIcon.classList.add('ant-form-item-children-icon');
-    const error = '<span role="img" aria-label="close-circle" class="anticon anticon-close-circle"><svg viewBox="64 64 896 896" focusable="false" data-icon="close-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z" /></svg></span>';
-    noteIcon.innerHTML = error;
-    const errorNote = '<div class="ant-form-item-explain ant-form-item-explain-error"><div role="alert">Please input your skill!</div></div>';
-    const noteMessage = document.createElement('span');
-    noteMessage.innerHTML = errorNote;
-    if(key === "skill"){
-      if(skill.length === 0){
-        if(!skillField.classList.contains('ant-form-item-has-error')){
-          skillField.classList.remove('ant-form-item-has-success');
-          skillField.classList.add('ant-form-item-has-feedback');
-          skillField.classList.add('ant-form-item-has-error');
-          if(skillFieldChild.children.length < 2){
-            skillFieldChild.appendChild(noteIcon);
-          }    
-          if(skillFieldControl.children.length <2){
-            skillFieldControl.appendChild(noteMessage);
-          }
-        }
-      }
-      else{
-        skillField.classList.remove('ant-form-item-has-feedback');
-        skillField.classList.remove('ant-form-item-has-error');
-        if(skillFieldChild.children.length > 1){
-          skillFieldChild.removeChild(skillFieldChild.lastChild);
-        }
-        if(skillFieldControl.children.length > 1){
-          skillFieldControl.removeChild(skillFieldControl.lastChild);
-        }
-        
-      }
-    }
-  }
   const changeForm = () => {
-    if (!isRegisterSuccess) {
+    if(!isRegisterSuccess){
       formRef.current.resetFields();
     }
     if (!!isLogin) {
@@ -235,9 +187,7 @@ const Login = () => {
       if (findIndex !== -1) {
         certification.push(value.replace(",", ""));
         let result = renderItem(certification);
-        document.querySelector(".certificationResult").innerHTML = result
-          .toString()
-          .replaceAll(",", "");
+        document.querySelector(".certificationResult").innerHTML = result.toString().replaceAll(',','');
         formRef.current.setFieldsValue({ certification: "" });
       }
     }
@@ -247,18 +197,13 @@ const Login = () => {
       if (findIndex !== -1) {
         skill.push(value.replace(",", ""));
         let result = renderItem(skill);
-        checkError('skill');
-        document.querySelector(".skillResult").innerHTML = result
-          .toString()
-          .replaceAll(",", "");
+        document.querySelector(".skillResult").innerHTML = result.toString().replaceAll(',','');
         formRef.current.setFieldsValue({ skill: "" });
       }
     }
   };
   const resultConfig = (value, init = 0) => {
-    return `<span data-init=${init} class="${
-      "field" + randomClass()
-    }">${value}<i class="fa fa-times"></i></span>`;
+    return `<span data-init=${init} class="${"field" + randomClass()}">${value}<i class="fa fa-times"></i></span>`;
   };
   const renderItem = (lists) => {
     const result = lists.map((item, idx) => {
@@ -266,29 +211,6 @@ const Login = () => {
     });
     return result;
   };
-  const handleFocusOut = (event) => {
-    const name = event.target.id;
-    const value = event.target.value;
-    if(value !== ''){
-      if(name === 'certification'){
-        certification.push(value);
-        let result = renderItem(certification);
-          document.querySelector(".certificationResult").innerHTML = result
-            .toString()
-            .replaceAll(",", "");
-          formRef.current.setFieldsValue({ certification: "" });
-      }
-      if(name === 'skill'){
-        skill.push(value);
-        let result = renderItem(skill);
-          document.querySelector(".skillResult").innerHTML = result
-            .toString()
-            .replaceAll(",", "");
-          formRef.current.setFieldsValue({ skill: "" });
-          checkError('skill');
-      }
-    }
-  }
   const randomClass = () => {
     const number = Math.floor(Math.random() * 3) + 1;
     return number;
@@ -302,30 +224,24 @@ const Login = () => {
     }
   };
   const handleClickTab = (event) => {
-    const certificationField = event.target.closest(
-      ".certificationResult span"
-    );
+    const certificationField = event.target.closest(".certificationResult span");
     const skillField = event.target.closest(".skillResult span");
     if (!!certificationField) {
       const init = certificationField.dataset.init;
       certification.splice(init, 1);
       let result = renderItem(certification);
-      document.querySelector(".certificationResult").innerHTML = result
-        .toString()
-        .replaceAll(",", "");
+      document.querySelector(".certificationResult").innerHTML = result.toString().replaceAll(',','');
     }
     if (!!skillField) {
       const init = skillField.dataset.init;
       skill.splice(init, 1);
       let result = renderItem(skill);
-      document.querySelector(".skillResult").innerHTML = result
-        .toString()
-        .replaceAll(",", "");
+      document.querySelector(".skillResult").innerHTML = result.toString().replaceAll(',','');
     }
   };
   useEffect(() => {
     if (note !== "") {
-      setShowPopup(true);
+        setShowPopup(true);
       setTimeout(() => {
         setPopupContent(true);
       }, 20);
@@ -347,7 +263,7 @@ const Login = () => {
         return;
       } else {
         setTimeout(() => {
-          history.push("/login");
+          history.push('/login');
         }, 2000);
       }
     }
@@ -366,7 +282,6 @@ const Login = () => {
             onFieldsChange={onFielsChange}
             onValuesChange={onValuesChange}
             onClick={handleClickTab}
-            onBlur = {handleFocusOut}
           >
             {renderForm(FormLayout, formStructure)}
             <button className="form__submit-button" type="primary">
@@ -387,16 +302,14 @@ const Login = () => {
             </div>
           )}
         </div>
-        {isRegisterSuccess ? (
-          ""
-        ) : (
-          <div className="formIndentify-Account">
-            <span>{!isLogin ? "Already a member?" : "Not a member yet?"}</span>
-            <span className="indentify-btn" onClick={changeForm}>
-              {!isLogin ? "Sign In" : "Join now"}
-            </span>
-          </div>
-        )}
+        {isRegisterSuccess?"":(
+        <div className="formIndentify-Account">
+          <span>{!isLogin ? "Already a member?" : "Not a member yet?"}</span>
+          <span className="indentify-btn" onClick={changeForm}>
+            {!isLogin ? "Sign In" : "Join now"}
+          </span>
+        </div>)
+        }
       </div>
       {isShowPopup ? (
         <Popup note={note} isShowPopupContent={isShowPopupContent} />
