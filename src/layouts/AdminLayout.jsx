@@ -42,9 +42,6 @@ function AdminLayout(props) {
                 <Menu.Item key="3" icon={<ProfileOutlined />}>
                   <NavLink to="/admin/job-management">Job Management</NavLink>
                 </Menu.Item>
-                <Menu.Item key="2" icon={<LaptopOutlined />}>
-                  <Link to="/admin/quan-ly-binh-luan">Comment Management</Link>
-                </Menu.Item>
               </Menu>
             </Menu>
           </Sider>
