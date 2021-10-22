@@ -1,10 +1,10 @@
 import Dashboard from "containers/admin/dashboard/Dashboard";
-import QuanLyBinhLuan from "containers/admin/binh-luan/QuanLyBinhLuan";
-import QuanLyNguoiDung from "containers/admin/nguoi-dung/QuanLyNguoiDung";
-import ThemNguoiDung from "containers/admin/nguoi-dung/ThemNguoiDung";
+import QuanLyBinhLuan from "containers/admin/comment/QuanLyBinhLuan";
+import ManagementUser from "containers/admin/user/ManagementUser";
+import AddNewUser from "containers/admin/user/AddNewUser";
 import Home from "containers/home/homePage/Home";
 import Login from "containers/shared/Auth/Login/Login";
-import ThayDoiThongTinNguoiDung from "containers/admin/nguoi-dung/ThayDoiThongTinNguoiDung";
+import UpdateUser from "containers/admin/user/UpdateUser";
 
 export const clientRoutes = [
   {
@@ -34,25 +34,25 @@ export const adminRoutes = [
     isPrivate: true,
   },
   {
-    path: "/admin/quan-ly-nguoi-dung",
-    component: QuanLyNguoiDung,
+    path: "/admin/management-user",
+    component: ManagementUser,
     exact: true,
     isPrivate: true,
   },
   {
-    path: "/admin/quan-ly-nguoi-dung/them-moi",
-    component: ThemNguoiDung,
+    path: "/admin/management-user/add-new",
+    component: AddNewUser,
     exact: true,
     isPrivate: true,
   },
   {
-    path: "/admin/doi-thong-tin/:idUser",
-    component: ThayDoiThongTinNguoiDung,
+    path: "/admin/management-user/update/:idUser",
+    component: UpdateUser,
     exact: true,
     isPrivate: true,
   },
   {
-    path: "/admin/quan-ly-binh-luan",
+    path: "/admin/management-comment",
     component: QuanLyBinhLuan,
     exact: true,
     isPrivate: true,

@@ -5,7 +5,7 @@ const initialState = {
   listAllUser: null,
 };
 
-const quanLyNguoiDungReducer = (state = initialState, { type, payload }) => {
+const managementUserReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_ALL_USER:
       return { ...state, listAllUser: payload, loading: false };
@@ -15,4 +15,4 @@ const quanLyNguoiDungReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default quanLyNguoiDungReducer;
+export default managementUserReducer;

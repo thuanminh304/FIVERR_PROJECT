@@ -4,7 +4,8 @@ import "./headerNotLogin.scss";
 
 export default function HeaderNotLogin() {
   return (
-    <header className="header__content">
+    <header className="container" >
+      <div className="header__content">
       <div className="header__icon navbar navbar-expand-md navbar-dark">
         <a className="navbar-brand" href="/">
           <img
@@ -83,6 +84,7 @@ export default function HeaderNotLogin() {
           <button>Join</button>{" "}
         </Link>
       </nav>
+      </div>
     </header>
   );
 }

@@ -3,19 +3,19 @@ import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 import { composeWithDevTools } from "redux-devtools-extension";
-import quanLyNguoiDungReducer from "containers/admin/nguoi-dung/module/reducer";
+import managementUserReducer from "containers/admin/user/module/reducer";
 import AuthReducer from "containers/shared/Auth/module/reducers";
 //
 
 const rootReducer = combineReducers({
-  quanLyNguoiDungReducer,
+  managementUserReducer,
   AuthReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: [''],
+  whitelist: [],
   blacklist: ['AuthReducer']
 };
 

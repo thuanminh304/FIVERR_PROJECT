@@ -37,10 +37,10 @@ function AdminLayout(props) {
             >
               <Menu key="sub1">
                 <Menu.Item key="1" icon={<UserOutlined />}>
-                  <Link to="/admin/quan-ly-nguoi-dung">Quản lý người dùng</Link>
+                  <Link to="/admin/management-user">Quản lý người dùng</Link>
                 </Menu.Item>
                 <Menu.Item key="2" icon={<LaptopOutlined />}>
-                  <Link to="/admin/quan-ly-binh-luan">Quản lý bình luận</Link>
+                  <Link to="/admin/management-comment">Quản lý bình luận</Link>
                 </Menu.Item>
               </Menu>
             </Menu>
