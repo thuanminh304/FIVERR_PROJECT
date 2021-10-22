@@ -4,7 +4,7 @@ import "./headerNotLogin.scss";
 
 export default function HeaderNotLogin() {
   return (
-    <header className="container" >
+    <header className="container-fluid" >
       <div className="header__content">
       <div className="header__icon navbar navbar-expand-md navbar-dark">
         <a className="navbar-brand" href="/">
