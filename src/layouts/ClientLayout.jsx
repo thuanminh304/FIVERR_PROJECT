@@ -7,7 +7,7 @@ const Clientlayout = (props) => {
     <>
       <Header />
         {props.children}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

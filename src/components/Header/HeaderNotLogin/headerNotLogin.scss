@@ -1,7 +1,6 @@
 header {
-  position: absolute;
-  z-index: 2;
-  right:0
+  position: relative;
+  
 }
 
 .header__content {
@@ -9,9 +8,12 @@ header {
   justify-content: space-between;
   align-items: center;
   margin: 10px;
+  position: absolute;
+  z-index: 2;
+  right:0;
   .header__icon {
     position: relative;
-    left: -210px;
+    left: -56%;
     span {
       font-size: 70px;
       color: green;
