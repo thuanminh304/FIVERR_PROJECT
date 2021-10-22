@@ -18,8 +18,10 @@ const userApi = {
   },
   deleteUser(id) {
     return callApi(`api/users/${id}`, "DELETE");
+  },  
+  searchUserByName(name){
+    return callApi(`api/users/pagination-search?name=${name}&skip=0&limit=0`)
   },
-
   registerUser(newUser) {
     return callApi(`api/auth/signup`,"POST",newUser);
   }

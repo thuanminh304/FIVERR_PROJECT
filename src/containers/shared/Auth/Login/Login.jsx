@@ -226,7 +226,7 @@ const Login = () => {
   };
   const onFielsChange = (fielsChange) => {
     const field = fielsChange[0].name;
-    if (field == "certification") {
+    if (field === "certification") {
       const value = fielsChange[0].value;
       const findIndex = value.search(",");
       if (findIndex !== -1) {
@@ -238,7 +238,7 @@ const Login = () => {
         formRef.current.setFieldsValue({ certification: "" });
       }
     }
-    if (field == "skill") {
+    if (field === "skill") {
       const value = fielsChange[0].value;
       const findIndex = value.search(",");
       if (findIndex !== -1) {
