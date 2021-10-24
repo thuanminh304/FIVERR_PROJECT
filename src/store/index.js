@@ -5,11 +5,13 @@ import storage from "redux-persist/lib/storage";
 import { composeWithDevTools } from "redux-devtools-extension";
 import managementUserReducer from "containers/admin/user/module/reducer";
 import AuthReducer from "containers/shared/Auth/module/reducers";
+import AdminDashBoardSettingReducer from 'containers/admin/Header/modules/reducers';
 //
 
 const rootReducer = combineReducers({
   managementUserReducer,
   AuthReducer,
+  AdminDashBoardSettingReducer,
 });
 
 const persistConfig = {

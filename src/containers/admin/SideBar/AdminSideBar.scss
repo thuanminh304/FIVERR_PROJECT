@@ -1,0 +1,144 @@
+.adminSideBar {
+  .adminSideBar-menu {
+    display: flex;
+    flex-direction: column;
+    p{
+      margin-bottom: 0;
+    }
+    .menu-item {
+      padding: 17px 15px 17px 25px;
+      font-size: 16px;
+      color: #444;
+      font-weight: 600;
+      .menu-itemTitle {
+        display: flex;
+        align-items: center;
+        span {
+          margin-right: 5px;
+          &:nth-of-type(2) {
+            font-size: 10px;
+            margin-left: auto;
+          }
+        }
+      }
+    }
+    .menu-item.active {
+      background-color: #f1f1f1;
+    }
+    .menu-item.show {
+      .menu-itemTitle {
+        span {
+          &:nth-of-type(2) {
+            transform: rotate(90deg);
+          }
+        }
+      }
+    }
+  }
+  .adminSideBar-subMenu {
+    display: none;
+    background-color: #e3e6e8;
+    .subMenu-item {
+      display: block;
+      color: #444;
+      font-weight: 400;
+      font-size: 14px;
+      padding: 8px 15px 8px 46px;
+    }
+    .subMenu-item.active {
+      color: #777;
+      font-weight: 700;
+    }
+  }
+  .projectList.show,
+  .staffUserList.show {
+    display: block;
+  }
+}
+.adminSideBar.inFix {
+  p{
+    display: none;
+  }
+  .Menucollapse{
+    span{
+      &:nth-of-type(2){
+        display: none;
+      }
+    }
+  }
+}
+// theme setting
+@import "helpers/variables.scss";
+.adminSideBar.lightTheme{
+    .menu-item {
+        color: $font-color-1!important;
+    }
+    .menu-item.active {
+        background-color: $color-sideBar-1!important;
+    }
+    .adminSideBar-subMenu {
+        background-color: $color-subSideBar-1!important;
+    }
+}
+.adminSideBar.darkTheme{
+    .menu-item {
+        color: $font-color-2!important;
+    }
+    .menu-item.active {
+        background-color: $color-sideBar-2!important;
+    }
+    .adminSideBar-subMenu {
+        background-color: $color-subSideBar-2!important;
+        .subMenu-item {
+            color: $font-color-2!important;
+          }
+          .subMenu-item.active {
+            color: $font-color-2!important;
+          }
+    }
+}
+.adminSideBar.custom{
+    .menu-item {
+        color: $font-color-2!important;
+    }
+    .adminSideBar-subMenu {
+        .subMenu-item {
+            color: $font-color-2!important;
+          }
+          .subMenu-item.active {
+            color: $font-color-2!important;
+          }
+    }
+}
+.adminSideBar.custom1{
+    .menu-item.active {
+        background-color: $color-sideBar-3!important;
+    }
+    .adminSideBar-subMenu {
+        background-color: $color-subSideBar-3!important;
+    }
+}
+.adminSideBar.custom2{
+    .menu-item.active {
+        background-color: $color-sideBar-4!important;
+    }
+    .adminSideBar-subMenu {
+        background-color: $color-subSideBar-4!important;
+    }
+}
+.adminSideBar.custom3{
+    .menu-item.active {
+        background-color: $color-sideBar-5!important;
+    }
+    .adminSideBar-subMenu {
+        background-color: $color-subSideBar-5!important;
+    }
+}
+.adminSideBar.custom4{
+    .menu-item.active {
+        background-color: $color-sideBar-6!important;
+    }
+    .adminSideBar-subMenu {
+        background-color: $color-subSideBar-6!important;
+    }
+}

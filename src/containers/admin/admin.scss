@@ -1,0 +1,63 @@
+.adminContainer{
+  background-color: #EAEEF3;
+  min-height: calc(100vh - 50px);
+}
+.adminContainer-content{
+  display: flex;
+  .adminContent__sidebar{
+    width: 270px;
+    display: block;
+    min-height: calc(100vh - 50px);
+    padding-top: 30px;
+  }
+  .adminContent__sidebar.inFix{
+    width: 70px;
+    transition: width .1s;
+    &:hover{
+      width: 270px;
+      .adminSideBar.inFix {
+          p{
+            display: block;
+            transition-delay: .2s;
+          }
+          .Menucollapse{
+            span{
+              &:nth-of-type(2){
+                display: block;
+                transition-delay: .2s;
+              }
+            }
+          }
+        }
+    }
+  }
+  .adminContent__main{
+    width: 100%;
+    padding-left: 29px;
+    padding-top: 30px;
+    padding-right: 25px;
+  }
+}
+
+// theme setting
+@import "helpers/variables.scss";
+.adminContainer-content{
+.adminContent__sidebar.lightTheme {
+  background-color: transparent!important;
+}
+.adminContent__sidebar.darkTheme {
+  background-color: $color-main-2 !important;
+}
+.adminContent__sidebar.custom1{
+  background-color: $color-main-3 !important;
+}
+.adminContent__sidebar.custom2{
+  background-color: $color-main-4 !important;
+}
+.adminContent__sidebar.custom3{
+  background-color: $color-main-5 !important;
+}
+.adminContent__sidebar.custom4{
+  background-color: $color-main-6 !important;
+}
+}
