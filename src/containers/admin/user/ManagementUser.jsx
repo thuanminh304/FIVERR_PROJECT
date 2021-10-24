@@ -104,7 +104,10 @@ export default function QuanLyNguoiDung() {
       width: 100,
 
       render: (certification) => {
-        let hienthi = certification.length > 3 ? certification.slice(2) : certification.slice(1);
+        let hienthi =
+          certification.length > 3
+            ? certification.slice(2)
+            : certification.slice(1);
         return (
           <>
             {hienthi.map((certification, idx) => {

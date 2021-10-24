@@ -5,9 +5,12 @@
 }
 html,
 body {
-  font-family: Helvetica, arial, sans-serif;
+  background-color: #fff;
+  font: 400 16px/24px Macan, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #62646a;
+  position: relative;
+  width: 100%;
   overflow-x: hidden;
-
 }
 a {
   text-decoration: none !important;

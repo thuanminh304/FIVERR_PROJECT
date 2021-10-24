@@ -1,4 +1,3 @@
-import { actLogout } from "containers/shared/Auth/module/actions";
 import React from "react";
 import {  useSelector } from "react-redux";
 import HeaderNotLogin from "components/Header/HeaderNotLogin/HeaderNotLogin";
@@ -7,7 +6,7 @@ const Header = () => {
   const { currentUser } = useSelector((state) => state.AuthReducer);
   
 
-  return !currentUser?._id ? <HeaderNotLogin /> : <HeaderLoggedIn />;
+  return !currentUser? <HeaderNotLogin /> : <HeaderLoggedIn />;
 };
 
 export default Header;

@@ -8,9 +8,11 @@ import "popper.js/dist/umd/popper";
 import "bootstrap/dist/js/bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
+import "react-responsive-modal/styles.css";
 import "font-awesome/css/font-awesome.min.css";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+
 //
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
