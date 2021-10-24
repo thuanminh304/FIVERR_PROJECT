@@ -1,0 +1,33 @@
+footer {
+  padding-top: 3rem;
+  .footer__container {
+    width: 95%;
+    margin: auto;
+  }
+}
+.footer__box a {
+  text-decoration: none;
+}
+.footer__box a:hover {
+  text-decoration: underline;
+  color: #95979d;
+}
+footer ul {
+  list-style: none;
+}
+.footer__box p {
+  margin: 0;
+  margin-top: -15px;
+  font-size: 14px;
+  line-height: normal;
+  word-spacing: normal;
+  color: #b5b6ba;
+  padding-bottom: 16px;
+}
+.footer__box li {
+  color: #7a7d85;
+  font-size: 16px;
+  line-height: normal;
+  word-spacing: normal;
+  padding-bottom: 16px;
+}

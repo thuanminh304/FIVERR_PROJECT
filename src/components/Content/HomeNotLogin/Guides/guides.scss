@@ -1,0 +1,39 @@
+@import "helpers/variables.scss";
+.fiverrGuides__content {
+  position: relative;
+  width: 95%;
+  margin: auto;
+  h2{
+    font-size:$fs-4;
+    color:$color-sm-title
+  }
+}
+.fiverrGuides__box {
+  display: flex;
+  justify-content: space-between;
+}
+.fiverrGuides__text {
+  padding-top: 16px;
+}
+.fiverrGuides__text h6 {
+  margin-bottom: 0;
+  font-size: $fs-2;
+}
+.fiverrGuides__text p {
+  color: #7a7d85;
+  font-size: $fs-3;
+}
+.fiverrGuides__img img {
+  border-radius: 4px;
+  width: 100%;
+  object-position: center;
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+}
+.fiverrGuides__item {
+  display: flex;
+  flex-direction: column;
+  width: 32%;
+  background-color: #fff;
+}

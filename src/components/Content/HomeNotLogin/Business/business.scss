@@ -1,0 +1,58 @@
+@import "helpers/variables.scss";
+
+.solution {
+  background-color: #0d084d;
+}
+.solution__content {
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+  padding: 50px 0;
+  color: $color-main-3;
+  font-weight: bold;
+  h2 {
+    padding: 20px 145px 20px 0;
+    font-weight: $fw-4;
+    color: $color-main-3;
+  }
+}
+.solution__right img {
+  width: 100%;
+}
+.solution__left {
+  padding-right: 50px;
+  p {
+    font-size: 18px;
+  }
+  ul {
+    li {
+      padding-bottom: 10px;
+      display: flex;
+      align-items: baseline;
+      span {
+        padding-left: 5px;
+        &:last-child {
+          font-size: $fs-2;
+          padding-left:10px
+        }
+      }
+    }
+  }
+  .btn-checkcircle {
+    font-size: 25px;
+    padding-left: 0px;
+    & > svg {
+      color: $color-nav-title;
+    }
+  }
+  button {
+    background-color: #1dbf73;
+    font-weight: bold;
+    color: $color-main-3;
+    border: none;
+    font-size: $fs-2;
+    padding: 12px 24px;
+    border-radius: 5px;
+    margin-top: 30px;
+  }
+}

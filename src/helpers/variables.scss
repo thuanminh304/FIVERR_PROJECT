@@ -1,13 +1,21 @@
 //color
 $color-main-1: #181818;
 $color-main-2: #b61984;
-$color-main-3: #FFFFFF;
-$color-main-4: #DCD1F0;
+$color-main-3: #ffffff;
+$color-main-4: #dcd1f0;
 $color-main-5: #032055;
-
+$color-black: black;
+$color-sm-title: #404145;
+$color-nav-title: #62646a;
+$color-cato-title: #7a7d85;
+$color-cato-sub: #b5b6ba;
+$color-green-all: #1dbf73;
+$color-green-review: #003912;
 //font size
 $fs-1: 15px;
-
+$fs-2: 18px;
+$fs-3: 16px;
+$fs-4: 32px;
 //font weight
 $fw-1: 300;
 $fw-2: 400;
@@ -16,12 +24,9 @@ $fw-4: 700;
 
 //letter spacing
 
-
 //Padding
 
-
 //Margin
-
 
 // width
 $wid-1: 100%;
@@ -31,15 +36,15 @@ $wid-4: 88%;
 
 //break points
 $breakpoints: (
-    "extra-large": 1200px,
-    "mid-large": 1024px,
-    "large": 992px,
-    "medium": 768px,
-    "small": 576px,
-    "mid-large-down": 1023.99px,
-    "extra-large-down": 1199.98px,
-    "large-down": 991.98px,
-    "medium-down": 767.98px,
-    "small-down": 575.98px,
-    "smallest" : 320px,
+  "extra-large": 1200px,
+  "mid-large": 1024px,
+  "large": 992px,
+  "medium": 768px,
+  "small": 576px,
+  "mid-large-down": 1023.99px,
+  "extra-large-down": 1199.98px,
+  "large-down": 991.98px,
+  "medium-down": 767.98px,
+  "small-down": 575.98px,
+  "smallest": 320px,
 );

@@ -1,0 +1,54 @@
+@import "helpers/variables.scss";
+
+.explore__content {
+  width: 95%;
+  margin: 70px auto 50px;
+}
+.explore__content h2 {
+  font-weight: bold;
+  font-size: $fs-4;
+  color:$color-sm-title
+}
+.explore__row {
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px 0;
+  padding: 50px 0;
+}
+.border-explore {
+  background-color: #c4c4c4;
+  height: 2px;
+  width: 30%;
+  margin: 3px auto;
+  transform: scaleX(1);
+  transition: all 0.3s;
+}
+.explore__item {
+  width: 62%;
+  height: 70px;
+  margin: 0 auto;
+  cursor: pointer;
+  a {
+    color: black;
+  }
+  img {
+    width: 59px;
+    height: 48px;
+  }
+  p{
+    font-size:$fs-3;
+    font-weight: 600;
+    color: #222325;
+  }
+  &:hover {
+    .border-explore {
+      transform: scaleX(2);
+      background-image: radial-gradient($color-green-all, $color-green-all);
+    }
+    a{
+      color:black;
+    }
+  }
+}

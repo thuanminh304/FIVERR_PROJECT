@@ -1,0 +1,59 @@
+@import "helpers/variables.scss";
+
+.video {
+  background-color: #f1fdf7;
+  padding: 100px 0;
+}
+.video__content {
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+}
+.video__text {
+  padding-right: 120px;
+  .btn-checkcircle {
+    font-size: 25px;
+    padding-left: 0px;
+    & > svg {
+      margin-top: -5px; 
+      color:$color-nav-title
+    }
+  }
+}
+.video__text li {
+  padding: 5px 35px 0 0;
+}
+.video__text span {
+  font-weight: 700;
+  padding-left: 10px;
+  word-spacing: 3px;
+  font-size: $fs-2;
+  color:$color-sm-title
+}
+
+.video__text p {
+  color: $color-nav-title;
+  font-weight: $fw-3;
+  font-size:$fs-2;
+}
+.video__text h2 {
+  font-weight: bold;
+  line-height: 1;
+}
+.video__vd {
+  position: relative;
+}
+.video__vd img {
+  width: 100%;
+}
+.video__vd img:last-child {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 10%;
+}
+.react-responsive-modal-root {
+  .react-responsive-modal-modal {
+    padding: 0;
+  }
+}
