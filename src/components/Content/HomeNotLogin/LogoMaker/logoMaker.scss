@@ -1,0 +1,48 @@
+@import "helpers/variables.scss";
+
+.fiverrLogomk__container {
+  background-color: #4a73e8;
+  width: 100%;
+  max-width: 1290px;
+  margin:auto;
+h2{
+  color:white;
+  font-weight:bold;
+  font-size: calc($fs-4 + 2px);
+
+}
+}
+.fiverrLogomk__img {
+  width: 100%;
+  background-image: url("../../../../assets/images/logo-maker-banner-wide-desktop-1352-2x.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: flex-start;
+}
+.fiverrLogomk__text {
+  width: 50%;
+  color: white;
+  padding-left: 3rem;
+}
+.fiverrLogomk__text span {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 0 10px;
+}
+.fiverrLogomk__text button {
+  color: #4a73e8;
+  background-color: white;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  transition: all 0.5s;
+}
+.fiverrLogomk__text button:hover {
+  background-color: #d4defb;
+}
+.fiverrLogomk__text svg {
+  width: 188px;
+  height: 26px;
+}

@@ -1,0 +1,35 @@
+@import "helpers/variables.scss";
+
+.fiverrJoin__content {
+  background-image: url("../../../../assets/images/bg-signup-1400-x2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 4px;
+  width: 95%;
+  margin: auto;
+}
+.fiverrJoin__text {
+  padding: 120px 96px;
+}
+.fiverrJoin__text h2 {
+  max-width: 650px;
+  color: #fff;
+  padding-bottom: 40px;
+  font-size: 48px;
+  line-height: 56px;
+}
+.fiverrJoin__btn {
+  font-weight: 700;
+  background-color: $color-green-all;
+  color:white;
+  border:none;
+  transition: all 0.5;
+  border-radius:4px;
+  padding:12px 24px;
+  font-size:$fs-3
+
+}
+.fiverrJoin__btn:hover {
+  background: #19a463;
+}

@@ -1,11 +1,10 @@
-import Carousel from "components/Content/Carousel/Carousel";
-import PopularServices from "components/Content/PopularServices/PopularServices";
 import React from "react";
+import { useSelector } from "react-redux";
+import HomeLoggedIn from "./homeLoggedIn/HomeLoggedIn";
+import HomeNotLogin from "./homeNotLogin/HomeNotLogin";
+
 export default function Home() {
-  return (
-    <div className="home-container">
-      <Carousel />
-<PopularServices/>
-    </div>
-  );
+  const { currentUser } = useSelector((state) => state.AuthReducer);
+
+  return !currentUser ? <HomeNotLogin /> : <HomeLoggedIn />;
 }

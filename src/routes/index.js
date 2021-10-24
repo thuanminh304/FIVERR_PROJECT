@@ -58,12 +58,7 @@ export const adminRoutes = [
     exact: true,
     isPrivate: true,
   },
-  {
-    path: "/admin/quan-ly-binh-luan",
-    component: QuanLyBinhLuan,
-    exact: true,
-    isPrivate: true,
-  },
+
   {
     path: "/admin/job-management",
     component: Jobmanagement,
