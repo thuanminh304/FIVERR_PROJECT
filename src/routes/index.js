@@ -37,7 +37,7 @@ export const adminRoutes = [
   {
     path: "/admin/management-user",
     component: ManagementUser,
-    exact: false,
+    exact: true,
     isPrivate: true,
   },
   {
