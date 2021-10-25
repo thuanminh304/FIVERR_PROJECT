@@ -17,22 +17,22 @@ const Adminsidebar = () => {
     <div className={"adminSideBar " + themeColor + (!isFixSideBar?" inFix":"")}>
       <div className="adminSideBar-container">
         <ul className="adminSideBar-menu">
-          <NavLink to="/admin" exact='true' className="menu-item">
+          <NavLink to="/admin" exact={true} className="menu-item">
             <li className="menu-itemTitle"><AppstoreOutlined /><p>Dashboard</p></li>
           </NavLink>
           <NavLink to="/admin/job-management" className={"menu-item Menucollapse " + (isCollapse[0]?"show":"")} data-target = "0" onClick={showSubMenu}>
             <li className="menu-itemTitle"><GoldOutlined /><p>Projects</p><RightOutlined /></li>
           </NavLink>
           <ul className={"adminSideBar-subMenu projectList " + (isCollapse[0]?"show":"")}>
-              <NavLink to="/admin/job-management" exact="true" className="subMenu-item">
+              <NavLink to="/admin/job-management" exact={true} className="subMenu-item">
                 <li className="subMenu-itemTitle"><p>Statistics</p></li>
               </NavLink>
               <NavLink
-                to="/admin/job-management/:type-main-job-id1" className="subMenu-item">
+                to="/admin/job-management/123456" className="subMenu-item">
                 <li className="subMenu-itemTitle"><p>Main Job 1</p></li>
               </NavLink>
               <NavLink
-                to="/admin/job-management/:type-main-job-id2" className="subMenu-item">
+                to="/admin/job-management/123457" className="subMenu-item">
                 <li className="subMenu-itemTitle"><p>Main Job 2</p></li>
               </NavLink>
             </ul>
