@@ -57,12 +57,14 @@
 }
 .adminSideBar.inFix {
   p{
-    display: none;
+    visibility: hidden;
+    opacity: 0;
   }
   .Menucollapse{
     span{
       &:nth-of-type(2){
-        display: none;
+        visibility: hidden;
+        opacity: 0;
       }
     }
   }
