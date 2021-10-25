@@ -12,7 +12,7 @@ export default function UpdateUser() {
   const params = useParams();
   const history = useHistory();
   const [detailUser, setDetailUser] = useState(null);
-  const { loading,listAllUser } = useSelector((state) => state.managementUserReducer);
+  const { loading } = useSelector((state) => state.managementUserReducer);
   useEffect(() => {
     userApi
       .getDetailUser(params.idUser)

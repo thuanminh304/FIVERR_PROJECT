@@ -29,7 +29,7 @@ export default function HeaderLoggedIn() {
           <div className="header__icon-fixed">
             <a href="/">
               <img
-                src="assets/images/Fiverr_Logo_09.2020-fixed.svg"
+                src="images/Fiverr_Logo_09.2020-fixed.svg"
                 alt="Fiverr"
               />
             </a>
