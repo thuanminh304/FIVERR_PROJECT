@@ -1,4 +1,3 @@
-import Loader from "components/Loader/Loader";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actGetAllUser } from "./module/action";
@@ -6,22 +5,32 @@ import { Table, Tag, Space, Popconfirm, message, Input } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import userApi from "apis/userApi";
+import Loader from "components/Loader/Loader";
+
 //
-export default function QuanLyNguoiDung() {
+export default function AdminUser() {
   const dispatch = useDispatch();
-  const [searchUser, setSearchUser] = useState([]);
-  const { loading, listAllUser } = useSelector(
+  const [searchUser, setSearchUser] = useState(null);
+  let { loading, listAllUser } = useSelector(
     (state) => state.managementUserReducer
+  );
+
+  
+
+  const listStaffUser = (searchUser ? searchUser : listAllUser)?.filter(
+    (item) => {
+      return item.role === "ADMIN";
+    }
   );
 
   const handleDeleteUser = (id) => {
     userApi
       .deleteUser(id)
       .then((res) => {
-        message.loading({ content: "Đang tải...!", key: "updatable" });
+        message.loading({ content: "Loading...!", key: "updatable" });
         setTimeout(() => {
           message.success({
-            content: "Thành công !",
+            content: "Success !",
             key: "updatable",
             duration: 2,
           });
@@ -39,20 +48,20 @@ export default function QuanLyNguoiDung() {
   //
   const columns = [
     {
-      title: "Họ tên",
+      title: "Name",
       dataIndex: "name",
       key: "name",
       width: 100,
       fixed: "left",
     },
     {
-      title: "Giới tính",
+      title: "Gender",
       dataIndex: "gender",
       key: "gender",
       width: 50,
 
       render: (text) => {
-        let params = text === true ? "NAM" : "NỮ";
+        let params = text === true ? "MALE" : "FEMALE";
         return <p>{params}</p>;
       },
     },
@@ -68,14 +77,14 @@ export default function QuanLyNguoiDung() {
       },
     },
     {
-      title: "Số điện thoại",
+      title: "Phone",
       dataIndex: "phone",
       key: "phone",
       width: 100,
     },
 
     {
-      title: "Kỹ năng",
+      title: "Skill",
       dataIndex: "skill",
       key: "skill",
       width: 100,
@@ -98,7 +107,7 @@ export default function QuanLyNguoiDung() {
       },
     },
     {
-      title: "Băng cấp",
+      title: "Certification",
       dataIndex: "certification",
       key: "certification",
       width: 100,
@@ -124,7 +133,7 @@ export default function QuanLyNguoiDung() {
       },
     },
     {
-      title: "Phân loại",
+      title: "Role",
       key: "role",
       dataIndex: "role",
       width: 60,
@@ -157,16 +166,16 @@ export default function QuanLyNguoiDung() {
       fixed: "right",
       render: (text, record) => (
         <Space size="middle">
-          <Link to={`/admin/management-user/update/${record._id}`}>
+          <Link to={`/admin/update-user/${record._id}`}>
             <EditOutlined />
           </Link>
           <Popconfirm
-            title="Bạn có chắc muốn xóa người dùng này ?"
+            title="Are you sure delete this user ?"
             onConfirm={() => {
               handleDeleteUser(record._id);
             }}
-            okText="Có"
-            cancelText="Không"
+            okText="Yes"
+            cancelText="No"
           >
             <span className="btn-delete-user" key={record._id}>
               <DeleteOutlined />
@@ -176,8 +185,8 @@ export default function QuanLyNguoiDung() {
       ),
     },
   ];
-  // nếu gọi thành công api tìm kiếm user( length>0) thì sẽ render mảng tìm kiếm , không thì render mảng all user
-  let data = searchUser?.length > 0 ? searchUser : listAllUser;
+  
+  let data = listStaffUser;
   const { Search } = Input;
   const onSearch = (value) => {
     console.log(value);
@@ -192,18 +201,16 @@ export default function QuanLyNguoiDung() {
   };
 
   if (loading) return <Loader />;
-  return listAllUser ? (
+  return listStaffUser!==null ? (
     <div className="main-manage-user">
       {" "}
-      <div>
-        <h1 className="form-title-manage-user">QUẢN LÝ NGƯỜI DÙNG</h1>
-      </div>
+      
       <div className="text-left search-button-add-new">
-        <Link to="/admin/management-user/add-new">+ Thêm mới</Link>
+        <Link style={{fontWeight:"bolder"}} to="/admin/staff/add-staff">+ ADD NEW</Link>
         <Search
-          placeholder="Nhập họ tên ..."
+          placeholder="Enter name ..."
           allowClear
-          enterButton="Tìm"
+          enterButton="Search"
           size="medium"
           onSearch={onSearch}
         />
@@ -211,10 +218,11 @@ export default function QuanLyNguoiDung() {
       <Table
         pagination={{
           size: "small",
-          total: listAllUser?.length,
+          total: listStaffUser?.length,
           showSizeChanger: false,
           showQuickJumper: true,
-          showTotal: (total) => `Tổng cộng  ${total} người dùng`,
+          howTotal: (total) =>
+            `Total  ${total} user${listStaffUser?.length > 1 ? "s" : ""}`,
         }}
         columns={columns}
         dataSource={data}

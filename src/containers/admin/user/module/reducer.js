@@ -2,7 +2,7 @@ import { GET_ALL_USER } from "./type";
 
 const initialState = {
   loading: false,
-  listAllUser: null,
+  listAllUser: [],
 };
 
 const managementUserReducer = (state = initialState, { type, payload }) => {

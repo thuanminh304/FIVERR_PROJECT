@@ -5,6 +5,6 @@ import HomeNotLogin from "./homeNotLogin/HomeNotLogin";
 
 export default function Home() {
   const { currentUser } = useSelector((state) => state.AuthReducer);
-
+  
   return !currentUser ? <HomeNotLogin /> : <HomeLoggedIn />;
 }

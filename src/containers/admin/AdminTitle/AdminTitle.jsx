@@ -22,7 +22,7 @@ const Admintitle = (props) => {
         if(!!isParrams){
             titleIntital.name = isParrams;
             const component = adminRoutes.find(route => {
-                return route.path == path;
+                return route.path === path;
             });
             titleIntital.href = [...component.href];
             titleIntital.href.push(titleIntital.name);
@@ -31,7 +31,7 @@ const Admintitle = (props) => {
         }
         else{
             const component = adminRoutes.find(route => {
-                return route.path == path;
+                return route.path === path;
             });
             titleIntital.name = component.name;
             titleIntital.href = [...component.href];
