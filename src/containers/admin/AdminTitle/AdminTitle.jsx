@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Fragment} from 'react';
 import { useHistory, useLocation, useParams } from 'react-router';
 import {Link} from 'react-router-dom';
 import {adminRoutes} from 'routes/index';
@@ -45,12 +45,12 @@ const Admintitle = (props) => {
                 <h4>{title?.name}</h4>
                 <div className="tabLink">
                     <HomeOutlined /><Link to='/admin'>Home</Link>
-                    {title?.href?.map(href=> {
+                    {title?.href?.map((href,idx)=> {
                         return (
-                            <>
+                            <Fragment key={idx}>
                             <RightOutlined />
                             <p>{href}</p> 
-                            </>  
+                            </Fragment>  
                         )
                     })}
                 </div>
