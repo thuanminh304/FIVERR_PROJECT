@@ -3,6 +3,8 @@ import AddNewStaff from "containers/admin/user/AddNewStaff";
 import Home from "containers/home/homePage/Home";
 import Login from "containers/shared/Auth/Login/Login";
 import UpdateUser from "containers/admin/user/UpdateUser";
+import Statistics from "containers/admin/JobManagement/Statistics/Statistics";
+import Mainjobtype from "containers/admin/JobManagement/MainJobType/MainJobType";
 import Jobmanagement from "containers/admin/JobManagement/JobManagement";
 import ClientUser from "containers/admin/user/ClientUser";
 import StaffUser from "containers/admin/user/StaffUser";
@@ -70,7 +72,7 @@ export const adminRoutes = [
   },
   {
     path: "/admin/job-management",
-    component: Jobmanagement,
+    component: Statistics,
     exact: true,
     isPrivate: true,
     name: 'Statistics',
@@ -78,7 +80,7 @@ export const adminRoutes = [
   },
   {
     path: "/admin/job-management/:mainJobId",
-    component: Jobmanagement,
+    component: Mainjobtype,
     exact: false,
     isPrivate: true,
     name: '',

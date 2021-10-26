@@ -6,19 +6,20 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import managementUserReducer from "containers/admin/user/module/reducer";
 import AuthReducer from "containers/shared/Auth/module/reducers";
 import AdminDashBoardSettingReducer from 'containers/admin/Header/modules/reducers';
-//
+import JobManagementReducer from 'Modules/JobManagement/reducers';
 
 const rootReducer = combineReducers({
   managementUserReducer,
   AuthReducer,
   AdminDashBoardSettingReducer,
+  JobManagementReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
   whitelist: ['AdminDashBoardSettingReducer'],
-  blacklist: ['AuthReducer']
+  blacklist: ['AuthReducer','JobManagementReducer']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
