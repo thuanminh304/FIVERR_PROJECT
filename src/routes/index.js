@@ -1,12 +1,13 @@
 import Dashboard from "containers/admin/dashboard/Dashboard";
-import QuanLyBinhLuan from "containers/admin/comment/QuanLyBinhLuan";
-import ManagementUser from "containers/admin/user/ManagementUser";
-import AddNewUser from "containers/admin/user/AddNewUser";
+import AddNewStaff from "containers/admin/user/AddNewStaff";
 import Home from "containers/home/homePage/Home";
 import Login from "containers/shared/Auth/Login/Login";
 import UpdateUser from "containers/admin/user/UpdateUser";
 import Statistics from "containers/admin/JobManagement/Statistics/Statistics";
 import Mainjobtype from "containers/admin/JobManagement/MainJobType/MainJobType";
+import Jobmanagement from "containers/admin/JobManagement/JobManagement";
+import ClientUser from "containers/admin/user/ClientUser";
+import StaffUser from "containers/admin/user/StaffUser";
 
 export const clientRoutes = [
   {
@@ -38,23 +39,31 @@ export const adminRoutes = [
     href: ['Dashbord'],
   },
   {
-    path: "/admin/management-user",
-    component: ManagementUser,
+    path: "/admin/client-user",
+    component: ClientUser,
     exact: true,
     isPrivate: true,
     name: 'Client Users',
     href: ['Client Users'],
   },
+   {
+    path: "/admin/staff/staff-user",
+    component: StaffUser,
+    exact: true,
+    isPrivate: true,
+    name: 'Staff Users',
+    href: ['Staff Users'],
+  },
   {
-    path: "/admin/management-user/add-new",
-    component: AddNewUser,
+    path: "/admin/staff/add-staff",
+    component: AddNewStaff,
     exact: false,
     isPrivate: true,
     name: 'Add New Staff',
     href: ['Add New Staff'],
   },
   {
-    path: "/admin/management-user/update/:idUser",
+    path: "/admin/update-user/:idUser",
     component: UpdateUser,
     exact: false,
     isPrivate: true,

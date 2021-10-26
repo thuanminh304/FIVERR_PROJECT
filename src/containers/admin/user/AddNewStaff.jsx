@@ -1,15 +1,13 @@
 import React from "react";
-import { Form, Input, Button, Select, DatePicker ,message} from "antd";
+import { Form, Input, Button, Select, DatePicker, message } from "antd";
 import { useFormik } from "formik";
 import userApi from "apis/userApi";
-import { useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import moment from "moment";
 import "./user.scss";
 //CONTENT
 export default function ThemNguoiDung() {
-  const dispatch = useDispatch();
   const history = useHistory();
   //tạo form để lưu trừ thông tin nhập từ input
   const formik = useFormik({
@@ -20,7 +18,7 @@ export default function ThemNguoiDung() {
       phone: "",
       birthday: "",
       gender: "",
-      role: "",
+      role: "ADMIN",
       skill: [],
       certification: [],
     },
@@ -29,44 +27,49 @@ export default function ThemNguoiDung() {
         .string()
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,10}$/)
         .required(),
-      email: yup.string().email().min(6).required("- Email không đúng định dạng"),
+      email: yup
+        .string()
+        .email()
+        .min(6)
+        .required("- Email is the incorrect format !"),
       phone: yup
         .string()
+        .trim()
         .matches(/^[0-9]*$/)
         .max(10)
-        .required("Số điện thoại chưa đúng định dạng !"),
-      gender: yup.string().required("- Vui lòng chọn !"),
-      role: yup.string().required("- Vui lòng chọn !"),
+        .required("- Must be 10 number characters!"),
+      gender: yup.string().required("- Not selected yet !"),
+      
       name: yup
         .string()
         .matches(
           /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ ]+$/
         )
         .required(),
-      birthday: yup.string().required("- Vui lòng chọn !"),
+      birthday: yup.string().required("- Not selected yet !"),
     }),
     onSubmit: (values) => {
       console.log(values);
       userApi
         .addNewUser(values)
         .then((res) => {
-          message.loading({ content: "Đang tải...", key: "updatable" });
+          message.loading({ content: "Loading...", key: "updatable" });
           setTimeout(() => {
             message.success({
-              content: "Thành công !",
+              content: "Success !",
               key: "updatable",
               duration: 2,
             });
           }, 1000);
           setTimeout(() => {
-            history.goBack();
+            history.push("/admin/staff/staff-user");
           }, 2000);
         })
         .catch((err) => {
-          message.loading({ content: "Đang tải...", key: "updatable" });
+          message.loading({ content: "Loading...", key: "updatable" });
           setTimeout(() => {
             message.error({
-              content: "Lỗi! Email đã tồn tại",
+              content: "Error !Email already exists",
               key: "updatable",
               duration: 2,
             });
@@ -77,9 +80,7 @@ export default function ThemNguoiDung() {
   const handleChangeGender = (value) => {
     formik.setFieldValue("gender", value);
   };
-  const handleChangeRole = (value) => {
-    formik.setFieldValue("role", value);
-  };
+  
   const handleChangeSkill = (value) => {
     formik.setFieldValue("skill", value.target.value.split(","));
   };
@@ -95,7 +96,7 @@ export default function ThemNguoiDung() {
   const values = formik.values;
   return (
     <>
-      <h1 className="form-title-them-moi">THÊM NGƯỜI DÙNG </h1>
+      
       <Form
         className="text-left"
         onSubmitCapture={formik.handleSubmit}
@@ -110,43 +111,44 @@ export default function ThemNguoiDung() {
         <div className="row form-them-moi">
           <div className="col-6">
             <Form.Item>
-              <label>Họ tên</label>
+              <label>Name</label>
               <Input
                 name="name"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                placeholder="Nhập họ tên"
+                placeholder="Enter name"
               />
               {errors.name &&
                 touched.name &&
                 (values.name === "" ? (
                   <div className="styleErrors">
-                    <p>- Không được để trống</p>
+                    <p>- Not yet entered</p>
                   </div>
                 ) : (
                   <div className="styleErrors">
-                    <p>- Không dùng dấu câu, ký tự số và ký tự đặc biệt</p>
+                    <p>- Do not use punctuation, numberic and special characters</p>
                   </div>
                 ))}
             </Form.Item>
             <Form.Item>
-              <label htmlFor="">Mật khẩu</label>
+              <label htmlFor="">Password</label>
               <Input
                 name="password"
                 onChange={formik.handleChange}
-                placeholder="Nhập mật khẩu"
+                placeholder="Enter password"
               />
               {errors.password &&
                 touched.password &&
                 (values.password.length < 6 || values.password.length > 10 ? (
                   <div className="styleErrors">
-                    <p>- Độ dài ký tự từ 6 đến 10</p>
+                    <p>- Character length from 6 to 10</p>
                   </div>
                 ) : (
                   <div className="styleErrors">
                     <p>
-                      - Ít nhất 1 kí tự thường , hoa và ký tự số. Không dùng ký
-                      tự đặc biệt và dấu câu
+                      - At least 1 lowercase, uppercase and numeric character. 
+                      Do not use
+                       special characters and punctuation
                     </p>
                   </div>
                 ))}
@@ -162,40 +164,40 @@ export default function ThemNguoiDung() {
                 touched.email &&
                 (values.email === "" ? (
                   <div className="styleErrors">
-                    <p>- Không được để trống</p>
+                    <p>- Not yet entered</p>
                   </div>
                 ) : (
                   <div className="styleErrors">
-                    <p>- Email không đúng định dạng</p>
-                    <p>- Email phải trên 6 ký tự và không có ký tự đặc biệt</p>
+                    <p>- Email is the incorrect format !</p>
+                    
                   </div>
                 ))}
             </Form.Item>
             <Form.Item>
-              <label htmlFor="">Số điện thoại</label>
+              <label htmlFor="">Phone</label>
               <Input
                 name="phone"
-                placeholder="Nhập số điện thoại"
+                placeholder="Enter phone"
                 onChange={formik.handleChange}
               />
               {errors.phone &&
                 touched.phone &&
                 (values.phone === "" ? (
                   <div className="styleErrors">
-                    <p>- Không được để trống</p>
+                    <p>- Not yet entered !</p>
                   </div>
                 ) : (
                   <div className="styleErrors">
-                    <p>- Số điện thoại không đúng định dạng</p>
+                    <p>- Must be 10 number characters!</p>
                   </div>
                 ))}
             </Form.Item>
             <Form.Item>
-              <label htmlFor="">Ngày sinh</label> <br />
+              <label htmlFor="">Birthday</label> <br />
               <DatePicker
                 name="birthday"
                 format="YYYY-MM-DD"
-                placeholder="Chọn ngày"
+                placeholder="Pick date"
                 onChange={handleChangeDate}
               />
               {errors.birthday && touched.birthday && (
@@ -207,13 +209,13 @@ export default function ThemNguoiDung() {
           </div>
           <div className="col-6">
             <Form.Item>
-              <label htmlFor="">Giới tính</label>
+              <label htmlFor="">Gender</label>
               <Select
                 name="gender"
-                placeholder="Vui lòng chọn"
+                placeholder="--Option--"
                 options={[
-                  { label: "Nam", value: true },
-                  { label: "Nữ", value: false },
+                  { label: "Male", value: true },
+                  { label: "Female", value: false },
                 ]}
                 onChange={handleChangeGender}
               />
@@ -224,24 +226,17 @@ export default function ThemNguoiDung() {
               )}
             </Form.Item>
             <Form.Item>
-              <label htmlFor="">Phân loại</label>
-              <Select
-                name="role"
-                placeholder="Vui lòng chọn"
-                options={[
-                  { label: "ADMIN", value: "ADMIN" },
-                  { label: "CLIENT", value: "CLIENT" },
-                ]}
-                onChange={handleChangeRole}
+              <label htmlFor="">Role</label>
+              <Input
+              name="role"
+              value="ADMIN"
+              onChange={formik.handleChange}
+disabled              
               />
-              {errors.role && touched.role && (
-                <div className="styleErrors">
-                  <p>{errors.role}</p>
-                </div>
-              )}
+              
             </Form.Item>
             <Form.Item>
-              <label htmlFor="">Kỹ năng</label>
+              <label htmlFor="">Skill</label>
               <Input
                 name="skill"
                 onChange={handleChangeSkill}
@@ -249,7 +244,7 @@ export default function ThemNguoiDung() {
               />
             </Form.Item>
             <Form.Item>
-              <label htmlFor="">Bằng cấp</label>
+              <label htmlFor="">Certification</label>
               <Input
                 name="certification"
                 onChange={handleChangeCert}
@@ -264,13 +259,17 @@ export default function ThemNguoiDung() {
             htmlType="submit"
             className="login-form-button "
           >
-            Thêm
+            Add
           </Button>
-          <NavLink to="/admin/management-user">
-            <Button type="primary" className="login-form-button  ml-5">
-              Quay lại
-            </Button>
-          </NavLink>
+          <Button
+            onClick={() => {
+              history.goBack();
+            }}
+            type="primary"
+            className="login-form-button  ml-5"
+          >
+            Back
+          </Button>
         </Form.Item>
       </Form>
     </>

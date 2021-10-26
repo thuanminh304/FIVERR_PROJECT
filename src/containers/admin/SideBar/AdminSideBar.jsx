@@ -44,11 +44,11 @@ const Adminsidebar = () => {
                 <li className="subMenu-itemTitle"><p>Add New Staff Users</p></li>
               </NavLink>
               <NavLink
-                to="/admin/staff/staff-list" className="subMenu-item">
+                to="/admin/staff/staff-user" className="subMenu-item">
                 <li className="subMenu-itemTitle"><p>Staff User Lists</p></li>
               </NavLink>
             </ul>
-          <NavLink to="/admin/management-user" className="menu-item">
+          <NavLink to="/admin/client-user" className="menu-item">
             <li className="menu-itemTitle"><TeamOutlined /><p>Client Users</p></li>
           </NavLink>
           <NavLink to="/admin/todo-list" className="menu-item">

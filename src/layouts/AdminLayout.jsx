@@ -9,7 +9,6 @@ import Admintitle from "containers/admin/AdminTitle/AdminTitle";
 
 //
 function AdminLayout(props) {
-  const { currentUser } = useSelector((state) => state.AuthReducer);
   const {isFixSideBar, themeColor} = useSelector(state=>state.AdminDashBoardSettingReducer);
   const {path} = props.children.props.match;
   return (

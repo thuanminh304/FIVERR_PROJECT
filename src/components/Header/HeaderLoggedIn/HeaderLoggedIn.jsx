@@ -16,8 +16,9 @@ export default function HeaderLoggedIn() {
   };
   return (
     <div>
-      <div id="header-fixed">
-        <div id="header__content-fixed">
+      <div id="header-fixed-loggedin">
+
+        <div id="header__content-loggedin">
           <button
             type="button"
             className="mainbutton mainbutton-fixed"
@@ -29,7 +30,7 @@ export default function HeaderLoggedIn() {
           <div className="header__icon-fixed">
             <a href="/">
               <img
-                src="assets/images/Fiverr_Logo_09.2020-fixed.svg"
+                src="images/Fiverr_Logo_09.2020-fixed.svg"
                 alt="Fiverr"
               />
             </a>
@@ -92,7 +93,7 @@ export default function HeaderLoggedIn() {
           <button>Search</button>
         </div>
       </div>
-      <div id="category__content">
+      <div id="category__content-loggedin">
         <ul>
           <li className="li-cate ">
             <a href="/">Graphics &amp; Design</a>

@@ -12,7 +12,7 @@ export default function UpdateUser() {
   const params = useParams();
   const history = useHistory();
   const [detailUser, setDetailUser] = useState(null);
-  const { loading,listAllUser } = useSelector((state) => state.managementUserReducer);
+  const { loading } = useSelector((state) => state.managementUserReducer);
   useEffect(() => {
     userApi
       .getDetailUser(params.idUser)
@@ -21,7 +21,7 @@ export default function UpdateUser() {
       })
       .catch((err) => console.log(err?.response.data));
   }, []);
-  
+
   //tạo form để lưu trừ thông tin nhập từ input
   const formik = useFormik({
     enableReinitialize: true,
@@ -36,22 +36,22 @@ export default function UpdateUser() {
       certification: detailUser?.certification,
     },
     validationSchema: yup.object({
-      email: yup.string().email().required("- Email không đúng định dạng"),
+      email: yup.string().email().required("- Email is the incorrect format !"),
       phone: yup
         .string()
         .trim()
         .matches(/^[0-9]*$/)
         .max(10)
-        .required("Số điện thoại chưa đúng định dạng !"),
-      gender: yup.string().required("- Vui lòng chọn !"),
-      role: yup.string().required("- Vui lòng chọn !"),
+        .required("- Must be 10 number characters!"),
+      gender: yup.string().required("- Not selected yet !"),
+      
       name: yup
         .string()
         .matches(
           /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ ]+$/
         )
         .required(),
-      birthday: yup.string().required("- Vui lòng chọn !"),
+      birthday: yup.string().required("- Not selected yet !"),
     }),
     onSubmit: (values) => {
       //   console.log(values);
@@ -59,19 +59,22 @@ export default function UpdateUser() {
       userApi
         .editUser(params.idUser, values)
         .then((res) => {
-
-          message.loading({ content: "Đang tải...", key:'updatable' });
+          message.loading({ content: "Loading...", key: "updatable" });
           setTimeout(() => {
-            message.success({ content: "Thành công !", key:'updatable', duration: 2 });
+            message.success({
+              content: "Success !",
+              key: "updatable",
+              duration: 2,
+            });
           }, 1000);
-          setTimeout(()=>{
+          setTimeout(() => {
             history.push("/admin/management-user");
-          },2000)
+          }, 2000);
         })
         .catch((err) => {
-          message.loading({ content: "Đang tải...", key:'updatable' });
+          message.loading({ content: "Loading...", key: "updatable" });
           setTimeout(() => {
-            message.error({ content: "Lỗi !", key:'updatable', duration: 2 });
+            message.error({ content: "Error !", key: "updatable", duration: 2 });
           }, 1000);
           console.log(err);
         });
@@ -80,9 +83,7 @@ export default function UpdateUser() {
   const handleChangeGender = (value) => {
     formik.setFieldValue("gender", value);
   };
-  const handleChangeRole = (value) => {
-    formik.setFieldValue("role", value);
-  };
+  
   const handleChangeSkill = (value) => {
     formik.setFieldValue("skill", value.target.value.split(","));
   };
@@ -96,11 +97,11 @@ export default function UpdateUser() {
   const errors = formik.errors;
   const touched = formik.touched;
   const values = formik.values;
-  
+
   if (loading) return <Loader />;
   return (
     <>
-      <h1 className="form-title-cap-nhat">THAY ĐỔI THÔNG TIN </h1>
+      
       <Form
         className="text-left"
         onSubmitCapture={formik.handleSubmit}
@@ -115,22 +116,22 @@ export default function UpdateUser() {
         <div className="row form-cap-nhat">
           <div className="col-6">
             <Form.Item>
-              <label>Họ tên</label>
+              <label>Name</label>
               <Input
                 name="name"
                 onChange={formik.handleChange}
-                placeholder="Nhập họ tên"
+                placeholder="Enter name"
                 value={values.name}
               />
               {errors.name &&
                 touched.name &&
                 (values.name === "" ? (
                   <div className="styleErrors">
-                    <p>- Không được để trống</p>
+                    <p>- Not yet entered</p>
                   </div>
                 ) : (
                   <div className="styleErrors">
-                    <p>- Không dùng dấu câu, ký tự số và ký tự đặc biệt</p>
+                    <p>- Do not use punctuation, numberic and special characters</p>
                   </div>
                 ))}
             </Form.Item>
@@ -148,23 +149,19 @@ export default function UpdateUser() {
                 touched.email &&
                 (values.email === "" ? (
                   <div className="styleErrors">
-                    <p>- Không được để trống</p>
+                    <p>- Not yet entered</p>
                   </div>
                 ) : (
-
-
                   <div className="styleErrors">
-                    <p>-  Email không đúng định dạng</p>
+                    <p>- Email không đúng định dạng</p>
                   </div>
-                
-                  
                 ))}
             </Form.Item>
             <Form.Item>
-              <label htmlFor="">Số điện thoại</label>
+              <label htmlFor="">Phone</label>
               <Input
                 name="phone"
-                placeholder="Nhập số điện thoại"
+                placeholder="Enter phone"
                 onChange={formik.handleChange}
                 value={values.phone}
               />
@@ -172,20 +169,20 @@ export default function UpdateUser() {
                 touched.phone &&
                 (values.phone === "" ? (
                   <div className="styleErrors">
-                    <p>- Không được để trống</p>
+                    <p>- Not yet entered !</p>
                   </div>
                 ) : (
                   <div className="styleErrors">
-                    <p>- Số điện thoại không đúng định dạng</p>
+                    <p>- - Must be 10 number characters!</p>
                   </div>
                 ))}
             </Form.Item>
             <Form.Item>
-              <label htmlFor="">Ngày sinh</label> <br />
+              <label htmlFor="">Birthday</label> <br />
               <DatePicker
                 name="birthday"
                 format="YYYY-MM-DD"
-                placeholder="Chọn ngày"
+                placeholder="Pick date"
                 onChange={handleChangeDate}
                 value={moment(values.birthday)}
               />
@@ -198,13 +195,13 @@ export default function UpdateUser() {
           </div>
           <div className="col-6">
             <Form.Item>
-              <label htmlFor="">Giới tính</label>
+              <label htmlFor="">Gender</label>
               <Select
                 name="gender"
-                placeholder="Vui lòng chọn"
+                placeholder="--Option--"
                 options={[
-                  { label: "Nam", value: true },
-                  { label: "Nữ", value: false },
+                  { label: "Male", value: true },
+                  { label: "Female", value: false },
                 ]}
                 onChange={handleChangeGender}
                 value={values.gender}
@@ -216,22 +213,15 @@ export default function UpdateUser() {
               )}
             </Form.Item>
             <Form.Item>
-              <label htmlFor="">Phân loại</label>
-              <Select
-                placeholder="Vui lòng chọn"
+              <label htmlFor="">Role</label>
+              <Input
                 name="role"
-                options={[
-                  { label: "ADMIN", value: "ADMIN" },
-                  { label: "CLIENT", value: "CLIENT" },
-                ]}
-                onChange={handleChangeRole}
+                
+                onChange={formik.handleChange}
                 value={values.role}
+                disabled
               />
-              {errors.role && touched.role && (
-                <div className="styleErrors">
-                  <p>{errors.role}</p>
-                </div>
-              )}
+             
             </Form.Item>
             <Form.Item>
               <label htmlFor="">Kỹ năng</label>
@@ -262,12 +252,16 @@ export default function UpdateUser() {
           >
             Cập nhật
           </Button>
-          
-          <NavLink to="/admin/management-user">
-            <Button type="primary" className="login-form-button  ml-5">
-              Quay lại
-            </Button>
-          </NavLink>
+
+          <Button
+            onClick={() => {
+              history.goBack();
+            }}
+            type="primary"
+            className="login-form-button  ml-5"
+          >
+            Quay lại
+          </Button>
         </Form.Item>
       </Form>
     </>
