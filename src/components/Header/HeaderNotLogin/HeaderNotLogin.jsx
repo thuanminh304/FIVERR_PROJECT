@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./headerNotLoginFixed.scss";
 import "./headerNotLogin.scss";
 
 export default function HeaderNotLogin() {
-  
+ 
 
   return (
-    <header className="container-fluid" >
+    <header className="container-fluid">
       <div className="header__content">
         <div className="header__icon navbar navbar-expand-md navbar-dark">
           <a className="navbar-brand" href="/">
@@ -34,10 +34,8 @@ export default function HeaderNotLogin() {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <a href="/">
                 <i className="fa fa-globe"></i>
                 <span>English</span>
-              </a>{" "}
             </a>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a href="/">English</a>
@@ -59,9 +57,7 @@ export default function HeaderNotLogin() {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <a href="#">
                 <span>$ USD</span>
-              </a>
             </a>
             <div
               className="dropdown-menu dropdown-menu-lastchild"
@@ -91,7 +87,7 @@ export default function HeaderNotLogin() {
       </div>
       {/*  */}
       <div>
-        <div classID="header-fixed">
+        <div id="header-fixed">
           <div id="header__content-fixed">
             <button
               type="button"
@@ -106,48 +102,75 @@ export default function HeaderNotLogin() {
                 <img src="images/Fiverr_Logo_09.2020-fixed.svg" alt="Fiverr" />
               </a>
             </div>
-            <div className="header__nav-fixed">
-              <a className="btn-dis-fixed btn-dis-fixed-pro" href="/">
-                Fiverr Pro
+            <nav className="header__nav">
+              <a className="btn-dis" href="/">
+                Fiverr Business
               </a>
-              <a className="btn-dis-fixed" href="/">
+              <a className="btn-dis" href="/">
                 Explore
               </a>
-
-              <a className="btn-dis-fixed" href="/">
-                Message
-              </a>
-              <a href="/">Lists</a>
-              <a href="/">Orders</a>
-
-              <div class="dropdown">
-                <button
-                  class="btn btn-secondary dropdown-toggle"
+              <div className="dropdown">
+                <a
+                  className="button-fixed"
                   type="button"
                   id="dropdownMenuButton"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  abc
-                </button>
+                    <i className="fa fa-globe"></i>
+                    <span>English</span>
+                </a>
                 <div
-                  class="dropdown-menu dropmenu-user"
+                  className="dropdown-menu"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <a class="dropdown-item" href="#">
-                    Action
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    Another action
-                  </a>
-
-                  <a href="" class="dropdown-item" style={{ color: "green" }}>
-                    Logout
-                  </a>
+                  <a href="/">English</a>
+                  <a href="/">Deutsch</a>
+                  <a href="/">Espanol</a>
+                  <a href="/">Francais</a>
+                  <a href="/">Portugues</a>
+                  <a href="/">Italiano</a>
+                  <a href="/">Nederlands</a>
                 </div>
               </div>
-            </div>
+              <div className="dropdown">
+                <a
+                  href=""
+                  className="button-fixed"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                    <span>$ USD</span>
+                </a>
+                <div
+                  className="dropdown-menu dropdown-menu-lastchild"
+                  aria-labelledby="dropdownMenuButton"
+                >
+                  <a href="/">United States Dollar(USD) - $</a>
+                  <a href="/">Euro(EUR) - €</a>
+                  <a href="/">British Pound (GBP) - £</a>
+                  <a href="/">Australian Dollar (AUD) - A$</a>
+                  <a href="/">Canadian Dollar (CAD) - C$</a>
+                  <a href="/">Israeli Shekel (ILS) - ₪</a>
+                  <a href="/">Brazilian Real (BRL) - R$</a>
+                  <a href="/">Hong Kong Dollar (HKD) - HK$</a>
+                  <a href="/">Swedish Krona (SEK) - kr</a>
+                  <a href="/">New Zealand Dollar (NZD) - NZ$</a>
+                </div>
+              </div>
+              <a className="btn-dis" href="#">
+                Become a Seller
+              </a>
+              <Link to="/login">Sign In</Link>
+              <Link to="/join" className="btn-navbar-join">
+                {" "}
+                <button>Join</button>{" "}
+              </Link>
+            </nav>
           </div>
           <div id="header-search">
             <input type="text" placeholder="Find Services" />

@@ -1,4 +1,4 @@
-import { useHistory, Redirect, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Login.scss";
@@ -8,8 +8,8 @@ import Popup from "../Popup/Popup";
 import { Form } from "antd";
 import {
   CheckOutlined,
-  LoadingOutlined,
-  CloseOutlined,
+  LoadingOutlined
+  
 } from "@ant-design/icons";
 import {
   actChangeRememberUserLoginStatus,
@@ -152,7 +152,7 @@ const Login = () => {
           continue;
         }
         if (key === "gender") {
-          if (values == "male") {
+          if (values === "male") {
             data[key] = true;
           } else {
             data[key] = false;
