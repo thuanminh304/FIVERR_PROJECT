@@ -50,8 +50,13 @@ const Mainjoblist = () => {
   };
   const dispatch = useDispatch();
   const [editing, setEditing] = useState(false);
+  const [isAdd, setAdd] = useState(false);
   const [editState, setEditState] = useState(null);
   const formRef = React.createRef();
+
+  const showFormAddFunc = () => {
+    setAdd(true);
+  }
   const onFinish = (values) => {
     const data = {...values, status:true};
     dispatch(actAddNewMainJob(data));
@@ -61,6 +66,7 @@ const Mainjoblist = () => {
   }
   const cancleAddJob = () => {
     formRef.current.resetFields();
+    setAdd(false);
   };
   const editMainType= (e) => {
     const key = e.target.closest('.tabMainJob').dataset.key;
@@ -148,8 +154,8 @@ const Mainjoblist = () => {
   return (
     <div className="mainjob-List__content">
       <div className="manjob-List__addNew">
-        <button className="typeJobAdd">Add new type job</button>
-        <div className="newJob__context">
+        <button className="typeJobAdd" onClick={showFormAddFunc}>Add new type job</button>
+        <div className={"newJob__context " + (isAdd?"show":"")}>
           <Form
             onFinish={onFinish}
             ref={formRef}
@@ -193,7 +199,7 @@ const Mainjoblist = () => {
       <Slider {...settings}>
         {mainJob.map((job, idx) => {
           return (
-            <div key={idx} className="tabMainJob" data-key={idx} data-idjob={job._id}>
+            <div key={idx} className={"tabMainJob " + (!editState||editState?.key == idx?"":"editAfter")} data-key={idx} data-idjob={job._id}>
               <div className="tabMainJob__title">
                 <p suppressContentEditableWarning={true}>{job.name}</p>
                 <div className="tabMainJob__overLay">
