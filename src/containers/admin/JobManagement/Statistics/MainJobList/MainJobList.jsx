@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import { Form, Input, Button, Space } from "antd";
 import "./MainJobList.scss";
 import {actAddNewMainJob, actUpdateMainJob, actDeleteMainJob} from 'Modules/JobManagement/actions';
-const Mainjoblist = () => {
+const Mainjoblist = (props) => {
   const settings = {
     dots: false,
     infinite: false,
@@ -48,8 +48,10 @@ const Mainjoblist = () => {
       },
     ],
   };
+  const {setCurrentMainJobTypeID} = props;
   const dispatch = useDispatch();
   const [editing, setEditing] = useState(false);
+  const [currentJobType, setCurrentJobType] = useState(0);
   const [isAdd, setAdd] = useState(false);
   const [editState, setEditState] = useState(null);
   const formRef = React.createRef();
@@ -93,7 +95,6 @@ const Mainjoblist = () => {
     const jobTab = tabMainJob[editState.key].querySelector('.tabMainJob__title');
     if(contentTab.innerHTML === '') {
       jobTab.classList.add('error');
-      contentTab.setAttribute('contentEditable',true);
       contentTab.focus();
     }
     else{
@@ -138,6 +139,7 @@ const Mainjoblist = () => {
     setEditState(edit)
   };
   const deleteMainJob = (e) => {
+    e.stopPropagation();
     const deleteBtn = e.target.closest('.prompNote.delete');
     if(!!deleteBtn){
       dispatch(actDeleteMainJob(editState.idJob));
@@ -147,10 +149,18 @@ const Mainjoblist = () => {
     jobTab.classList.remove('promptNote');
     setEditState(null);
   }
+  const choseSubJobType = (e) => {
+    const key = e.target.closest('.tabMainJob').dataset.key;
+    setCurrentJobType(key);
+    setCurrentMainJobTypeID(key);
+  }
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
   useEffect(() => {
     formRef.current.resetFields();
   }, [mainJob]);
+  useEffect(() => {
+    setCurrentMainJobTypeID(currentJobType);
+  }, []);
   return (
     <div className="mainjob-List__content">
       <div className="manjob-List__addNew">
@@ -200,7 +210,7 @@ const Mainjoblist = () => {
         {mainJob.map((job, idx) => {
           return (
             <div key={idx} className={"tabMainJob " + (!editState||editState?.key == idx?"":"editAfter")} data-key={idx} data-idjob={job._id}>
-              <div className="tabMainJob__title">
+              <div className={"tabMainJob__title " + (currentJobType == idx?"active":"")} onClick={choseSubJobType}>
                 <p suppressContentEditableWarning={true}>{job.name}</p>
                 <div className="tabMainJob__overLay">
                   <button className="prompNote delete" onClick={deleteMainJob}>Yes</button>
