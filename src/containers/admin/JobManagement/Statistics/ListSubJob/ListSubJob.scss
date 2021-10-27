@@ -1,0 +1,101 @@
+.subTypeJob-content{
+    position: relative;
+    margin-top: 20px;
+    .JobType-title{
+        position: absolute;
+        top: -17px;
+        left: 22px;
+        h4{
+            font-size: 20px;
+            font-weight: 500;
+            color: #000000d9;
+            display: inline-block;
+            background-color: #fff;
+            padding: 0 8px;
+        }
+        p{
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            min-width: 100px;
+            margin-left: -1px;
+        }
+    }
+    .JobType-list{
+        border: 3px solid #888;
+        border-radius: 20px;
+        padding: 20px;
+        .subJobType__content{
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 15px;
+            .subJobType__settingContent{
+                margin-right: 5px;
+                span{
+                    vertical-align: 2px;
+                    padding-left: 5px;
+                    cursor: pointer;
+                    &:nth-of-type(1){
+                        transform-origin: center center;
+                        &:hover{
+                            svg{animation: turnArround 2s linear infinite;}
+                        }
+                    }
+                    &:nth-of-type(2){
+                        transform-origin: bottom center;
+                        color: #FF7070;
+                        &:hover{
+                            animation: wave .6s ease-out infinite;
+                        }
+                    }
+                }
+            }
+        }
+        .subJobType-add{
+            cursor: pointer;
+            .subJobType__settingContent{
+                color: #73BFDD;
+                span{
+                    &:hover{
+                        animation: wave .6s ease-out infinite;
+                        svg{animation-play-state: paused;}
+                    }
+                    &:nth-of-type(1){
+                        &:hover{
+                            svg{animation-play-state: paused;}
+                        }
+                    }
+                } 
+            }
+            .subJobType__title{
+                font-weight: 400;
+                color: #73BFDD;
+            }
+        }
+        .subJobType-add.addnew{
+            .subJobType__settingContent{
+                span{
+                    &:nth-of-type(1){
+                        color: #91CC75;
+                    }
+                    &:nth-of-type(2){
+                        color: #FF7070;
+                    }
+                }
+            }
+            .subJobType__title{
+                font-weight: 400;
+                color: #73BFDD;
+            }
+        }
+    }
+}
+
+@keyframes turnArround {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}

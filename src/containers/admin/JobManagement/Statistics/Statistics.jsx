@@ -4,11 +4,17 @@ import ReactECharts from "echarts-for-react";
 import "./Statistics.scss";
 import {actGetMainJobList} from 'Modules/JobManagement/actions';
 import Mainjoblist from "./MainJobList/MainJobList";
+import Listsubjob from './ListSubJob/ListSubJob';
 const Statistics = () => {
+  const [currentMainJobType, setCurrentMainJobType] = useState('');
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actGetMainJobList());
-  },[])
+  },[]);
+  const setCurrentMainJobTypeID = (id) => {
+    setCurrentMainJobType(id);
+    console.log(id);
+  }
   const dataComponent = [
     "Graphic & Design",
     "Digital Marketing",
@@ -158,7 +164,8 @@ const Statistics = () => {
       </div>
       <div className="jobManage-content">
           <h4>Job Types</h4>
-          <Mainjoblist/>
+          <Mainjoblist setCurrentMainJobTypeID={setCurrentMainJobTypeID}/>
+          <Listsubjob jobId = {currentMainJobType}/>
       </div>
     </div>
   );
