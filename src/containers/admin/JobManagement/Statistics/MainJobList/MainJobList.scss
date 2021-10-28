@@ -74,6 +74,9 @@
   .tabMainJob {
     padding: 15px 10px;
     position: relative;
+    .slick-arrow{
+        top: 40%!important;
+    }
     //    background-color: rgba(220, 208, 208, 0.3);
     text-align: center;
     &:hover{
@@ -179,14 +182,13 @@
     }
   }
   .tabMainJob.editAfter{
-    &:hover{
-        .tabMainJob__editting{
-            opacity: 0;
-            }
-        }
-    }
-    .slick-arrow{
-        top: 40%!important;
+    // &:hover{
+    //     .tabMainJob__editting{
+    //         opacity: 0;
+    //         }
+    //     }
+        pointer-events:none;
+      opacity: 0.2;
     }
 }
 
