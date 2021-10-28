@@ -1,12 +1,13 @@
 import React from "react";
-import { Form, Input, Button, Select, DatePicker, message } from "antd";
+import { Form, Input, Button, Select, DatePicker } from "antd";
 import { useFormik } from "formik";
 import userApi from "apis/userApi";
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import moment from "moment";
 import "./user.scss";
-//CONTENT
+import messageConfig from "components/Message/message";
+import errorForm from "components/showErrors/showError";
 export default function ThemNguoiDung() {
   const history = useHistory();
   //tạo form để lưu trừ thông tin nhập từ input
@@ -39,7 +40,6 @@ export default function ThemNguoiDung() {
         .max(10)
         .required("- Must be 10 number characters!"),
       gender: yup.string().required("- Not selected yet !"),
-      
       name: yup
         .string()
         .matches(
@@ -49,30 +49,21 @@ export default function ThemNguoiDung() {
       birthday: yup.string().required("- Not selected yet !"),
     }),
     onSubmit: (values) => {
-      console.log(values);
       userApi
         .addNewUser(values)
-        .then((res) => {
-          message.loading({ content: "Loading...", key: "updatable" });
+        .then(() => {
+          messageConfig.loading();
           setTimeout(() => {
-            message.success({
-              content: "Success !",
-              key: "updatable",
-              duration: 2,
-            });
+            messageConfig.success();
           }, 1000);
           setTimeout(() => {
             history.push("/admin/staff/staff-user");
           }, 2000);
         })
-        .catch((err) => {
-          message.loading({ content: "Loading...", key: "updatable" });
+        .catch(() => {
+          messageConfig.loading();
           setTimeout(() => {
-            message.error({
-              content: "Error !Email already exists",
-              key: "updatable",
-              duration: 2,
-            });
+            messageConfig.error();
           }, 1000);
         });
     },
@@ -80,7 +71,7 @@ export default function ThemNguoiDung() {
   const handleChangeGender = (value) => {
     formik.setFieldValue("gender", value);
   };
-  
+
   const handleChangeSkill = (value) => {
     formik.setFieldValue("skill", value.target.value.split(","));
   };
@@ -96,7 +87,6 @@ export default function ThemNguoiDung() {
   const values = formik.values;
   return (
     <>
-      
       <Form
         className="text-left"
         onSubmitCapture={formik.handleSubmit}
@@ -108,7 +98,7 @@ export default function ThemNguoiDung() {
           span: 10,
         }}
       >
-        <div className="row form-them-moi">
+        <div className="row form-add-new">
           <div className="col-6">
             <Form.Item>
               <label>Name</label>
@@ -118,17 +108,14 @@ export default function ThemNguoiDung() {
                 onChange={formik.handleChange}
                 placeholder="Enter name"
               />
-              {errors.name &&
-                touched.name &&
-                (values.name === "" ? (
-                  <div className="styleErrors">
-                    <p>- Not yet entered</p>
-                  </div>
-                ) : (
-                  <div className="styleErrors">
-                    <p>- Do not use punctuation, numberic and special characters</p>
-                  </div>
-                ))}
+
+              {errorForm.showErrors(
+                errors.name,
+                touched.name,
+                values.name,
+                "- Not yet entered",
+                "- Do not use punctuation, numberic and special characters"
+              )}
             </Form.Item>
             <Form.Item>
               <label htmlFor="">Password</label>
@@ -137,21 +124,14 @@ export default function ThemNguoiDung() {
                 onChange={formik.handleChange}
                 placeholder="Enter password"
               />
-              {errors.password &&
-                touched.password &&
-                (values.password.length < 6 || values.password.length > 10 ? (
-                  <div className="styleErrors">
-                    <p>- Character length from 6 to 10</p>
-                  </div>
-                ) : (
-                  <div className="styleErrors">
-                    <p>
-                      - At least 1 lowercase, uppercase and numeric character. 
-                      Do not use
-                       special characters and punctuation
-                    </p>
-                  </div>
-                ))}
+
+              {errorForm.showErrors(
+                errors.password,
+                touched.password,
+                values.password.length < 6 || values.password.length > 10,
+                "- At least 1 lowercase, uppercase and numeric character. Do not use special characters and punctuation",
+                "- Character length from 6 to 10"
+              )}
             </Form.Item>
             <Form.Item>
               <label htmlFor="">Email</label>
@@ -160,18 +140,13 @@ export default function ThemNguoiDung() {
                 onChange={formik.handleChange}
                 placeholder="abc@example.com"
               />
-              {errors.email &&
-                touched.email &&
-                (values.email === "" ? (
-                  <div className="styleErrors">
-                    <p>- Not yet entered</p>
-                  </div>
-                ) : (
-                  <div className="styleErrors">
-                    <p>- Email is the incorrect format !</p>
-                    
-                  </div>
-                ))}
+              {errorForm.showErrors(
+                errors.email,
+                touched.email,
+                values.email,
+                "- Not yet entered",
+                "- Email is the incorrect format !"
+              )}
             </Form.Item>
             <Form.Item>
               <label htmlFor="">Phone</label>
@@ -180,17 +155,14 @@ export default function ThemNguoiDung() {
                 placeholder="Enter phone"
                 onChange={formik.handleChange}
               />
-              {errors.phone &&
-                touched.phone &&
-                (values.phone === "" ? (
-                  <div className="styleErrors">
-                    <p>- Not yet entered !</p>
-                  </div>
-                ) : (
-                  <div className="styleErrors">
-                    <p>- Must be 10 number characters!</p>
-                  </div>
-                ))}
+
+              {errorForm.showErrors(
+                errors.phone,
+                touched.phone,
+                values.phone,
+                "- Not yet entered",
+                "- Must be 10 number characters!"
+              )}
             </Form.Item>
             <Form.Item>
               <label htmlFor="">Birthday</label> <br />
@@ -200,11 +172,7 @@ export default function ThemNguoiDung() {
                 placeholder="Pick date"
                 onChange={handleChangeDate}
               />
-              {errors.birthday && touched.birthday && (
-                <div className="styleErrors">
-                  <p>{errors.birthday}</p>
-                </div>
-              )}
+              {errorForm.showErrorsDefault(errors.birthday, touched.birthday)}
             </Form.Item>
           </div>
           <div className="col-6">
@@ -212,28 +180,23 @@ export default function ThemNguoiDung() {
               <label htmlFor="">Gender</label>
               <Select
                 name="gender"
-                placeholder="--Option--"
+                placeholder="-----------Option-----------"
                 options={[
                   { label: "Male", value: true },
                   { label: "Female", value: false },
                 ]}
                 onChange={handleChangeGender}
               />
-              {errors.gender && touched.gender && (
-                <div className="styleErrors">
-                  <p>{errors.gender}</p>
-                </div>
-              )}
+              {errorForm.showErrorsDefault(errors.gender, touched.gender)}
             </Form.Item>
             <Form.Item>
               <label htmlFor="">Role</label>
               <Input
-              name="role"
-              value="ADMIN"
-              onChange={formik.handleChange}
-disabled              
+                name="role"
+                value="ADMIN"
+                onChange={formik.handleChange}
+                disabled
               />
-              
             </Form.Item>
             <Form.Item>
               <label htmlFor="">Skill</label>
@@ -253,7 +216,7 @@ disabled
             </Form.Item>
           </div>
         </div>
-        <Form.Item className="btn-them-moi">
+        <Form.Item className="btn-add-new">
           <Button
             type="primary"
             htmlType="submit"
@@ -263,7 +226,7 @@ disabled
           </Button>
           <Button
             onClick={() => {
-              history.goBack();
+              history.push("/admin/staff/staff-user");
             }}
             type="primary"
             className="login-form-button  ml-5"
