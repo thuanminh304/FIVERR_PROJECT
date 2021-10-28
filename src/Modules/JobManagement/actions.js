@@ -1,4 +1,4 @@
-import {GET_MAIN_JOB_REQUEST, GET_MAIN_JOB_SUCCESS,GET_MAIN_JOB_FAIL, ADD_NEW_MAIN_JOB_REQUEST, ADD_NEW_MAIN_JOB_SUCCESS, ADD_NEW_MAIN_JOB_FAIL, UPDATE_MAIN_JOB_FAIL, UPDATE_MAIN_JOB_SUCCESS, UPDATE_MAIN_JOB_REQUEST, DELETE_MAIN_JOB_FAIL, DELETE_MAIN_JOB_SUCCESS, DELETE_MAIN_JOB_REQUEST} from './types';
+import {GET_MAIN_JOB_REQUEST, GET_MAIN_JOB_SUCCESS,GET_MAIN_JOB_FAIL, ADD_NEW_MAIN_JOB_REQUEST, ADD_NEW_MAIN_JOB_SUCCESS, ADD_NEW_MAIN_JOB_FAIL, UPDATE_MAIN_JOB_FAIL, UPDATE_MAIN_JOB_SUCCESS, UPDATE_MAIN_JOB_REQUEST, DELETE_MAIN_JOB_FAIL, DELETE_MAIN_JOB_SUCCESS, DELETE_MAIN_JOB_REQUEST, ADD_NEW_SUB_JOB_REQUEST, ADD_NEW_SUB_JOB_SUCCESS, ADD_NEW_SUB_JOB_FAIL, UPDATE_SUB_JOB_REQUEST, UPDATE_SUB_JOB_SUCCESS, UPDATE_SUB_JOB_FAIL, DELETE_SUB_JOB_REQUEST, DELETE_SUB_JOB_SUCCESS, DELETE_SUB_JOB_FAIL} from './types';
 import jobApi from 'apis/jobApi';
 // get type of main job lists
 const actGetMainJobListReq = () => ({
@@ -96,6 +96,91 @@ export const actDeleteMainJob = (id) => {
         })
         .catch(error=>{
             dispatch(actdeleteMainJobFail(error));
+        })
+    }
+};
+
+// add new sub job type
+
+const actAddNewSubJobTypeReq = () => ({
+    type: ADD_NEW_SUB_JOB_REQUEST,
+});
+
+const actAddNewSubJobTypeSuc = (data) => ({
+    type: ADD_NEW_SUB_JOB_SUCCESS,
+    payload: data,
+});
+
+const actAddNewSubJobTypeFail = (error) => ({
+    type: ADD_NEW_SUB_JOB_FAIL,
+    payload: error,
+});
+
+export const actAddNewSubJobType = (data) => {
+    return dispatch => {
+        dispatch(actAddNewSubJobTypeReq());
+        jobApi.addNewSubJobType(data).then(res=>{
+            dispatch(actAddNewSubJobTypeSuc(res.data));
+        })
+        .catch(error=>{
+            dispatch(actAddNewSubJobTypeFail(error));
+        });
+    };
+};
+
+// update sub job type
+
+const actUpdateSubJobTypeReq = () => ({
+    type: UPDATE_SUB_JOB_REQUEST,
+});
+
+const actUpdateSubJobTypeSuc = (data) => ({
+    type: UPDATE_SUB_JOB_SUCCESS,
+    payload: data,
+});
+
+const actUpdateSubJobTypeFail = (error) => ({
+    type: UPDATE_SUB_JOB_FAIL,
+    payload: error,
+});
+
+export const actUpdateSubJob = (id, data) => {
+    return dispatch => {
+        dispatch(actUpdateSubJobTypeReq());
+        jobApi.updateSubJobType(id,data).then(res=>{
+            const newData = {...res.data};
+            newData.name = data.name;
+            dispatch(actUpdateSubJobTypeSuc(newData));
+        })
+        .catch(error=>{
+            dispatch(actUpdateSubJobTypeFail(error));
+        });
+    };
+};
+
+// delete sub job type
+
+const actDeleteSubJobTypeReq = () => ({
+    type: DELETE_SUB_JOB_REQUEST,
+});
+const actDeleteSubJobTypeSuc = (data) => ({
+    type: DELETE_SUB_JOB_SUCCESS,
+    payload: data,
+});
+
+const actDeleteSubJobTypeFail = (error) => ({
+    type: DELETE_SUB_JOB_FAIL,
+    payload: error,
+});
+
+export const actDeleteSubJobType = (id) => {
+    return dispatch => {
+        dispatch(actDeleteSubJobTypeReq());
+        jobApi.deleteSubJobType(id).then(res=>{
+            dispatch(actDeleteSubJobTypeSuc(res.data));
+        })
+        .catch(error=> {
+            dispatch(actDeleteSubJobTypeFail(error));
         })
     }
 }

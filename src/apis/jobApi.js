@@ -13,6 +13,15 @@ const jobApi = {
     deleteMainJob(id){
         return callApi(`api/type-jobs/${id}`,"DELETE",null,'token');
     },
+    addNewSubJobType(data){
+        return callApi('api/sub-type-jobs','POST',data,'token');
+    },
+    updateSubJobType(id,data){
+        return callApi(`api/sub-type-jobs/${id}`, 'PUT',data,'token');
+    },
+    deleteSubJobType(id){
+        return callApi(`api/sub-type-jobs/${id}`,"DELETE",null,'token');
+    },
 }
 
 export default jobApi;

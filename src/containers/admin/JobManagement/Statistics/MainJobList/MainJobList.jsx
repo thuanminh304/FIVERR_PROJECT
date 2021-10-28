@@ -106,6 +106,7 @@ const Mainjoblist = (props) => {
       data.name = contentTab.innerText;
       delete data.__v;
       delete data._id;
+      delete data.deleteAt;
       if(data.name !== editState.prevContent){
         dispatch(actUpdateMainJob(editState.idJob,data));
       }
