@@ -13,6 +13,14 @@
         margin-top:30px;
         .gigs-item{
             width:90% !important;
+            &:hover{
+
+                .text-active{
+                    color:#1dbf73;
+            transition:color 0.5s;
+
+                }
+            }
             .card-body{
                 padding:1rem;
                 .card-avatar{
