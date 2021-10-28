@@ -2,10 +2,11 @@ import Loader from "components/Loader/Loader";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actGetAllUser } from "./module/action";
-import { Table, Tag, Space, Popconfirm, message, Input } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Table, Tag, Space, Popconfirm, message, Input,Avatar  } from "antd";
+import { EditOutlined, DeleteOutlined ,UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import userApi from "apis/userApi";
+import messageConfig from "components/Message/message";
 //
 export default function ClientUser() {
   const dispatch = useDispatch();
@@ -13,10 +14,7 @@ export default function ClientUser() {
   let { loading, listAllUser } = useSelector(
     (state) => state.managementUserReducer
   );
-
-  // let listClientUser = [...listAllUser];
-  // console.log(listClientUser);
-
+  //lọc user client đưa ra table
   const listClientUser = (searchUser ? searchUser : listAllUser)?.filter(
     (item) => {
       return item.role === "CLIENT";
@@ -27,13 +25,10 @@ export default function ClientUser() {
     userApi
       .deleteUser(id)
       .then((res) => {
-        message.loading({ content: "Loading...!", key: "updatable" });
+        messageConfig.loading()
         setTimeout(() => {
-          message.success({
-            content: "Success !",
-            key: "updatable",
-            duration: 2,
-          });
+          messageConfig.success()
+
         }, 1000);
         setTimeout(() => {
           dispatch(actGetAllUser());
@@ -48,11 +43,30 @@ export default function ClientUser() {
   //
   const columns = [
     {
+      title: "#",
+      key: "index",
+      width: 20,
+      fixed: "left",
+      render: (text, record, index) => {
+        return <span>{index+1}</span>;
+      },
+    },
+    {
       title: "Name",
       dataIndex: "name",
       key: "name",
       width: 100,
       fixed: "left",
+    },
+    {
+      title: "Avatar",
+      dataIndex: "name",
+      key: "avatar",
+      width: 50,
+      fixed: "left",
+      render: () => {
+        return <Avatar icon={<UserOutlined />} />;
+      },
     },
     {
       title: "Gender",
@@ -62,7 +76,7 @@ export default function ClientUser() {
 
       render: (text) => {
         let params = text === true ? "MALE" : "FEMALE";
-        return <p>{params}</p>;
+        return <span>{params}</span>;
       },
     },
     {
@@ -82,7 +96,6 @@ export default function ClientUser() {
       key: "phone",
       width: 100,
     },
-
     {
       title: "Skill",
       dataIndex: "skill",
@@ -138,26 +151,12 @@ export default function ClientUser() {
       dataIndex: "role",
       width: 60,
       render: (text, user) => {
-        let color = user.role === "ADMIN" ? "volcano" : "green";
-        let params = user.role === "ADMIN" ? "ADMIN" : "CLIENT";
         return (
-          <Tag color={color} key={user.role}>
-            {params}
+          <Tag color={"green"} key={user.role}>
+            {user.role}
           </Tag>
         );
       },
-      filters: [
-        {
-          text: "ADMIN",
-          value: "ADMIN",
-        },
-        {
-          text: "CLIENT",
-          value: "CLIENT",
-        },
-      ],
-      onFilter: (value, record) => record.role.startsWith(value),
-      filterSearch: true,
     },
     {
       title: "Action",
@@ -169,7 +168,7 @@ export default function ClientUser() {
           <Link to={`/admin/update-user/${record._id}`}>
             <EditOutlined />
           </Link>
-          <Popconfirm
+          <Popconfirm className="popup-confirm-delete"
             title="Are you sure delete this user ?"
             onConfirm={() => {
               handleDeleteUser(record._id);
@@ -189,12 +188,9 @@ export default function ClientUser() {
   let data = listClientUser;
   const { Search } = Input;
   const onSearch = (value) => {
-    console.log(value);
-
     userApi
       .searchUserByName(value)
       .then((res) => {
-        console.log(res.data);
         setSearchUser(res.data);
       })
       .catch((err) => console.log(err?.response.data));
@@ -204,7 +200,7 @@ export default function ClientUser() {
   return listClientUser !== null ? (
     <div className="main-manage-user">
       {" "}
-      <div className="text-left search-button-add-new">
+      <div className="text-left input-search">
         <Search
           placeholder="Enter name ..."
           allowClear

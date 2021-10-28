@@ -2,54 +2,61 @@
   color: red;
 }
 //quan ly nguoi dung
-.search-button-add-new {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  & > span {
-    width: 300px;
-  }
-}
+
 .main-manage-user {
-  .form-title-manage-user {
-    text-align: center;
+  .input-search {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    & > span {
+      width: 300px;
+    }
   }
-  .btn-delete-user{
-      color: red;
-      cursor: pointer;
-      
+  .search-button-add-new {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    & > span {
+      width: 300px;
+    }
+  }
+  .btn-delete-user {
+    color: red;
+    cursor: pointer;
   }
 }
 
 //them moi
-.form-them-moi {
-  .ant-form-item {
-    justify-content: center;
-  }
-}
 
-.ant-layout {
-  .btn-them-moi {
+.ant-form {
+  .form-add-new {
+    .ant-form-item {
+      justify-content: center;
+    }
+  }
+  .btn-add-new {
     margin-left: 400px;
   }
-}
-
-.form-title-them-moi {
-  text-align: center;
 }
 
 //cap nhat
-.form-cap-nhat {
-  .ant-form-item {
-    justify-content: center;
+
+.ant-form {
+  .form-update {
+    .ant-form-item {
+      justify-content: center;
+    }
+  }
+
+  .btn-update {
+    margin-left: 400px;
   }
 }
-.form-title-cap-nhat {
-  text-align: center;
-}
 
-.ant-layout {
-  .btn-cap-nhat {
-    margin-left: 400px;
+//popover
+.ant-popover {
+  .ant-popover-content {
+    width: 200px;
+    margin-right: 42px;
   }
 }

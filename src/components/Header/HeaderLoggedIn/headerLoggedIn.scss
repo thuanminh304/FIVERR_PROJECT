@@ -1,7 +1,7 @@
 #header__content-loggedin {
   background-color: rgba(255, 255, 255, 1);
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 25px;
   position: relative;
@@ -24,6 +24,7 @@
   }
   .header__icon-fixed {
     position: absolute;
+    left: 28px;
   }
 
   .header__icon-fixed img {
@@ -51,18 +52,19 @@
     color: #1dbf73;
   }
   .header__nav-fixed button {
-    background-color: rgba(255, 255, 255, 0);
-    border-radius: 4px;
+    background-color: #1dbf73;
+    border-radius: 50%;
     font-weight: bold;
-    font-size: 14px;
-    border: 1px solid #1dbf73;
-    color: #1dbf73;
-    padding: 4px 20px;
+    font-size: 18px;
+    border: none;
+    color: white;
     transition: all 0.5s;
+    width: 40px;
+    height: 40px;
   }
   .header__nav-fixed button:hover {
-    background-color: green;
-    color: white;
+    background-color: white;
+    color: #1dbf73;border: 1px solid #1dbf73;
   }
   .header__nav-fixed .dropdown-menu a {
     display: block;
@@ -117,7 +119,7 @@
   top: 0px;
   display: block;
   background-color: white;
-  padding: 5px 55px 0px 20px;
+  padding-top: 5px ;
   border-top: 1px solid #a3a1a1;
   border-bottom: 1px solid #a3a1a1;
   text-align: center;
@@ -129,7 +131,7 @@
   }
   li {
     display: inline;
-    margin: 0 10px;
+    margin: 0 15px;
   }
   a {
     color: #7a7d85;
@@ -203,7 +205,14 @@
   .cate-three {
     column-count: 3;
   }
-  
 }
 
-
+#components-dropdown-demo-arrow .ant-btn {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+.ant-row-rtl #components-dropdown-demo-arrow .ant-btn {
+  margin-right: 0;
+  margin-bottom: 8px;
+  margin-left: 8px;
+}

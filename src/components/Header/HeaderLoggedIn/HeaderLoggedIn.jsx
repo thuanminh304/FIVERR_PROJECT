@@ -1,39 +1,66 @@
 import { actLogout } from "containers/shared/Auth/module/actions";
 import React from "react";
+import { Menu, Dropdown, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory ,Link} from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "./headerLoggedIn.scss";
 
 export default function HeaderLoggedIn() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.AuthReducer);
-  
   const logOut = () => {
     dispatch(actLogout());
     window.location.replace("/");
-
   };
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <Link
+          rel="noopener noreferrer"
+          to={`/user/${currentUser.email}`}
+        >
+         Profile
+        </Link>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          rel="noopener noreferrer"
+          href="https://www.aliyun.com"
+        >
+          2nd menu item
+        </a>
+      </Menu.Item>
+
+      {currentUser.role === "ADMIN" ? (
+        <Menu.Item>
+          <Link class="dropdown-item" to="/admin">
+            Trang Admin
+          </Link>
+        </Menu.Item>
+      ) : null}
+
+      <Menu.Item>
+        <a
+          rel="noopener noreferrer"
+          style={{ color: "green" }}
+          onClick={logOut}
+        >
+          Logout
+        </a>
+      </Menu.Item>
+    </Menu>
+  );
+  const nameAvatar=currentUser.email.split('').splice(0,1).toString().toUpperCase()
   return (
     <div>
       <div id="header-fixed-loggedin">
-
         <div id="header__content-loggedin">
-          <button
-            type="button"
-            className="mainbutton mainbutton-fixed"
-            data-toggle="modal"
-            data-target="#responNav-fixed"
-          >
-            <i className="fa fa-bars" />
-          </button>
+          
           <div className="header__icon-fixed">
-            <a href="/">
-              <img
-                src="images/Fiverr_Logo_09.2020-fixed.svg"
-                alt="Fiverr"
-              />
-            </a>
+            <Link to="/">
+              <img src="/images/Fiverr_Logo_09.2020-fixed.svg" alt="Fiverr" />
+            </Link>
           </div>
           <div className="header__nav-fixed">
             <a className="btn-dis-fixed btn-dis-fixed-pro" href="/">
@@ -49,42 +76,15 @@ export default function HeaderLoggedIn() {
             <a href="/">Lists</a>
             <a href="/">Orders</a>
 
-            <div class="dropdown">
-              <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                {currentUser.name}
-              </button>
-              <div
-                class="dropdown-menu dropmenu-user"
-                aria-labelledby="dropdownMenuButton"
-              >
-                <a class="dropdown-item" href="#">
-                  Action
-                </a>
-                <a class="dropdown-item" href="#">
-                  Another action
-                </a>
-                {currentUser.role === "ADMIN" ? (
-                  <Link class="dropdown-item" to="/admin">
-                    Trang Admin
-                  </Link>
-                ) : null}
-                <a
-                  href=""
-                  class="dropdown-item"
-                  style={{ color: "green" }}
-                  onClick={logOut}
-                >
-                  Logout
-                </a>
-              </div>
-            </div>
+            
+            <Dropdown
+              overlay={menu}
+              trigger={["click"]}
+              placement="bottomRight"
+              arrow
+            >
+              <Button className="name-avatar">{nameAvatar} </Button>
+            </Dropdown>
           </div>
         </div>
         <div id="header-search">

@@ -8,11 +8,18 @@ import Mainjobtype from "containers/admin/JobManagement/MainJobType/MainJobType"
 import Jobmanagement from "containers/admin/JobManagement/JobManagement";
 import ClientUser from "containers/admin/user/ClientUser";
 import StaffUser from "containers/admin/user/StaffUser";
+import ProfileUser from "containers/home/homePage/profileUser/ProfileUser";
 
 export const clientRoutes = [
   {
     path: "/",
     component: Home,
+    exact: true,
+    isPrivate: true,
+  },
+  {
+    path: "/user/:email",
+    component: ProfileUser,
     exact: true,
     isPrivate: true,
   },
