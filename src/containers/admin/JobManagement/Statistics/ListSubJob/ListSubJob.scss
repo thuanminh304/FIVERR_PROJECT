@@ -28,11 +28,12 @@
   .JobType-list {
     border: 3px solid #888;
     border-radius: 20px;
-    padding: 20px;
+    padding: 20px 10px;
     .subJobType__content {
       padding-left: 20px;
       margin-bottom: 10px;
       font-size: 15px;
+      flex-wrap: nowrap;
       .subJobType__settingContent {
         margin-right: 5px;
         span {
@@ -87,6 +88,7 @@
       .subJobType__title{
         min-width: 30px;
         border-radius: 5px;
+        max-width: 185px;
         &:focus-visible{
           outline: none;
           color: #73bfdd;

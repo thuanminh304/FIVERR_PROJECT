@@ -1,4 +1,5 @@
 import React, {useEffect, useState, Fragment} from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router';
 import {Link} from 'react-router-dom';
 import {adminRoutes} from 'routes/index';
@@ -7,9 +8,8 @@ import './AdminTitle.scss';
 const Admintitle = (props) => {
     const history = useHistory();
     const location = useLocation();
-    console.log(useParams());
     const isParrams = useParams()?.mainJobId;
-    console.log(history,location);
+    const  {mainJob} = useSelector(state=>state.JobManagementReducer);
     const {path} = props;
     const pathname = location.pathname;
     const [title,setTitle] = useState(null);
@@ -17,16 +17,17 @@ const Admintitle = (props) => {
         name: '',
         href:[],
     }
-    console.log(isParrams);
     useEffect(() => {
         if(!!isParrams){
-            titleIntital.name = isParrams;
+            const titleName = mainJob?.find(job=>{
+                return job._id == isParrams;
+            });
+            titleIntital.name = titleName?.name;
             const component = adminRoutes.find(route => {
                 return route.path === path;
             });
             titleIntital.href = [...component.href];
             titleIntital.href.push(titleIntital.name);
-            console.log(titleIntital.href);
             setTitle(titleIntital);
         }
         else{
@@ -37,8 +38,7 @@ const Admintitle = (props) => {
             titleIntital.href = [...component.href];
             setTitle(titleIntital);
         }
-    },[pathname]);
-    console.log(title);
+    },[pathname,mainJob]);
     return (
         <div className ="admin-content__title" >
             <div className="admin-content__container">

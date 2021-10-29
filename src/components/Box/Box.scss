@@ -1,0 +1,12 @@
+.box-data{
+    margin-top: 30px;
+    .box-data__content{
+        border-radius: 3px;
+        background-color: #fff;
+        width: 100%;
+        transition: box-shadow 0.3s;
+        &:hover{
+            box-shadow: 0 5px 25px 0px rgb(0 0 0 / 20%);
+        }
+    }
+}

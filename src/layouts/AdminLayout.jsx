@@ -1,16 +1,27 @@
-import React from "react";
+import React, {useEffect} from "react";
 import withLayout from "../hocs/withLayout";
 import 'containers/admin/admin.scss';
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Adminheader from "containers/admin/Header/AdminHeader";
 import Adminsidebar from "containers/admin/SideBar/AdminSideBar";
 import Admintitle from "containers/admin/AdminTitle/AdminTitle";
+import { actGetMainJobList } from "Modules/JobManagement/actions";
+import { actGetAllUser } from "containers/admin/user/module/action";
 
 //
 function AdminLayout(props) {
+  const dispatch = useDispatch();
   const {isFixSideBar, themeColor} = useSelector(state=>state.AdminDashBoardSettingReducer);
+  const {mainJob} = useSelector(state=>state.JobManagementReducer)
+  const {listAllUser} = useSelector(state=>state.managementUserReducer);
   const {path} = props.children.props.match;
+  useEffect(()=>{
+    if(mainJob.length === 0 || listAllUser.length === 0){
+      dispatch(actGetMainJobList());
+      dispatch(actGetAllUser());
+    }
+  },[])
   return (
     <div className="adminContainer">
       <Adminheader />
