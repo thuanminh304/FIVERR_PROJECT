@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {AppstoreOutlined,GoldOutlined,SolutionOutlined,TeamOutlined,ReconciliationOutlined,RightOutlined} from '@ant-design/icons';
 import './AdminSideBar.scss';
 const Adminsidebar = () => {
     const [isCollapse, setCollapse] = useState([false,false]);
     const {isFixSideBar, themeColor} = useSelector(state=>state.AdminDashBoardSettingReducer);
+    const  {mainJob} = useSelector(state=>state.JobManagementReducer);
     const showSubMenu = (event) => {
         event.preventDefault();
         const typeMenu = event.target.closest('.Menucollapse').dataset.target;
@@ -13,6 +14,11 @@ const Adminsidebar = () => {
         isCollapseShow[typeMenu] = !isCollapseShow[typeMenu];
         setCollapse(isCollapseShow);
     }
+    useEffect(() => {
+      if(mainJob.length === 0){
+        
+      }
+    },[]);
   return (
     <div className={"adminSideBar " + themeColor + (!isFixSideBar?" inFix":"")}>
       <div className="adminSideBar-container">
@@ -27,14 +33,14 @@ const Adminsidebar = () => {
               <NavLink to="/admin/job-management" exact={true} className="subMenu-item">
                 <li className="subMenu-itemTitle"><p>Statistics</p></li>
               </NavLink>
-              <NavLink
-                to="/admin/job-management/123456" className="subMenu-item">
-                <li className="subMenu-itemTitle"><p>Main Job 1</p></li>
-              </NavLink>
-              <NavLink
-                to="/admin/job-management/123457" className="subMenu-item">
-                <li className="subMenu-itemTitle"><p>Main Job 2</p></li>
-              </NavLink>
+              {mainJob?.map((job,idx)=>{
+                return (
+                  <NavLink key={idx}
+                    to={`/admin/job-management/${job._id}`} className="subMenu-item">
+                    <li className="subMenu-itemTitle"><p>{job.name}</p></li>
+                  </NavLink>
+                )
+              })}
             </ul>
           <NavLink to="/admin/staff" className={"menu-item Menucollapse " + (isCollapse[1]?"show":"")}  data-target = "1" onClick={showSubMenu}>
             <li className="menu-itemTitle"><SolutionOutlined /><p>Staff Users</p><RightOutlined /></li>

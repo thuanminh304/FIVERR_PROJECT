@@ -1,0 +1,28 @@
+.boxTitle-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
+    h4{
+        margin-bottom: 0;
+    }
+    .boxTitle-icon{
+        font-size: 14px;
+        span{
+            vertical-align: 0px;
+            margin-left: 5px;
+            cursor: pointer;
+            svg{
+                transform-origin: center center;
+                transform: scale(0.8);
+                transition: transform .3s;
+            }
+            &:hover{
+                svg{
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+}

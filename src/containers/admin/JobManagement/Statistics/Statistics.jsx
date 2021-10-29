@@ -13,7 +13,6 @@ const Statistics = () => {
   },[]);
   const setCurrentMainJobTypeID = (id) => {
     setCurrentMainJobType(id);
-    console.log(id);
   }
   const dataComponent = [
     "Graphic & Design",
