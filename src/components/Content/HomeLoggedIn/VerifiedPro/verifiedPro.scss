@@ -1,17 +1,35 @@
-@import "helpers/variables";
-
-.popular-gigs {
+@import "helpers/variables.scss";
+.verified-pro {
   margin-top: 40px;
-  & > h3 {
-    color: $color-sm-title;
-    span {
-      color: #4a73e8;
+  background-color: #fafafa;
+  padding:24px;
+    .verified-pro-text{
+        .title {
+            color: $color-sm-title;
+            font-weight:600;
+            margin-bottom:0;
+            span {
+              color: #02c2a9;
+            }
+          }
+        .text{
+            color: #62646a;
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            font-weight: 600;
+
+            span{
+              color: #02c2a9;
+
+            }
+        }
     }
-  }
-  .popular-gigs-slider {
-    margin-top: 30px;
-    .gigs-item {
-      width: 90% !important;
+  .verified-pro-list {
+    margin-top: 10px;
+    display:flex;
+    gap:36px;
+    .list-pro-item {
       &:hover {
         .text-active {
           color: #1dbf73;
@@ -19,7 +37,7 @@
         }
       }
       .card-body {
-        padding: 1rem;
+        padding: 0.5rem;
         .card-avatar {
           span {
             font-weight: bolder;
@@ -39,8 +57,13 @@
 
           &:last-child {
             font-size: 13px;
-            color: #ffbe5b;
+            color: #02c2a9;
             font-weight: bolder;
+            display: flex;
+            justify-content: space-between;
+            
+            align-content: center;
+            align-items: baseline;
             .fa {
               margin-right: 4px;
             }
@@ -53,7 +76,7 @@
       .card-footer {
         background-color: white;
         display: flex;
-        padding: 0.25rem 1rem;
+        padding: 0.25rem 0.5rem;
         justify-content: space-between;
         align-items: flex-end;
         span {
@@ -75,22 +98,4 @@
       }
     }
   }
-  .slick-prev {
-    left: -13px;
-    padding: 25px;
-    background-color: white;
-  }
-  .slick-next {
-    right: -18px;
-    padding: 25px;
-    background-color: white;
-  }
-  .slick-prev:before,
-  .slick-next:before {
-    color: transparent;
-    position: absolute;
-    top: 31%;
-    right: 33%;
-  }
-  
 }
