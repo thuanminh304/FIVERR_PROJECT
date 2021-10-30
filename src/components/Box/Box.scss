@@ -1,5 +1,7 @@
 .box-data{
     margin-top: 30px;
+    margin-bottom: 30px;
+    transition: transform .3s, position .1s;
     .box-data__content{
         border-radius: 3px;
         background-color: #fff;
@@ -9,4 +11,22 @@
             box-shadow: 0 5px 25px 0px rgb(0 0 0 / 20%);
         }
     }
+    .box-data__data{
+        padding: 15px 25px;
+        overflow: hidden;
+        transition: padding 0.2s, height 0.2s;
+    }
+    .box-data__data.hiden{
+        padding: 0 25px;
+        height: 0;
+    }
+}
+.box-data.fullScreen{
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    z-index: 200000;
+    padding: 0 30px;
 }

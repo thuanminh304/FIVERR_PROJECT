@@ -3,17 +3,13 @@ import {useDispatch, useSelector} from 'react-redux';
 import ReactECharts from "echarts-for-react";
 import "./Statistics.scss";
 import {actGetMainJobList} from 'Modules/JobManagement/actions';
-import Mainjoblist from "./MainJobList/MainJobList";
-import Listsubjob from './ListSubJob/ListSubJob';
+import Mainjoblayout from "./MainJobLayout";
+import BoxLayout from "layouts/BoxLayout";
 const Statistics = () => {
-  const [currentMainJobType, setCurrentMainJobType] = useState('');
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actGetMainJobList());
   },[]);
-  const setCurrentMainJobTypeID = (id) => {
-    setCurrentMainJobType(id);
-  }
   const dataComponent = [
     "Graphic & Design",
     "Digital Marketing",
@@ -161,11 +157,7 @@ const Statistics = () => {
           </div>
         </div>
       </div>
-      <div className="jobManage-content">
-          <h4>Job Types</h4>
-          <Mainjoblist setCurrentMainJobTypeID={setCurrentMainJobTypeID}/>
-          <Listsubjob jobId = {currentMainJobType}/>
-      </div>
+          <BoxLayout component={Mainjoblayout} title = 'Job Types'/>
     </div>
   );
 };
