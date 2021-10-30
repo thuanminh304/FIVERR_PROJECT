@@ -162,6 +162,28 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        <div className="footer-mini-bottom">
+          <div className="mini-left">
+            <img src=" images/imagesHomeLoggedIn/1280px-Fiverr_logosvg.png" alt="" />
+            <span> © Fiverr International Ltd. 2021</span>
+          </div>
+          <div className="mini-right">
+            <ul className="mini-logo">
+              <li><i class="fa fa-twitter"></i></li>
+              <li><i class="fa fa-facebook"></i></li>
+              <li><i class="fa fa-linkedin"></i></li>
+              <li><i class="fa fa-pinterest"></i></li>
+              <li><i class="fa fa-instagram"></i></li>
+            </ul>
+            <ul className="mini-button">
+              <li><i class="fa fa-globe"></i>English</li>
+              <li>$ USD</li>
+              <li className="circle-human"><i class="fa fa-male"></i></li>
+
+            </ul>
+          </div>
+        </div>
+
       </div>
     </footer>
   );

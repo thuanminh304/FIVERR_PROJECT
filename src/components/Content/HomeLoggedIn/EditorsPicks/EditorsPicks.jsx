@@ -1,22 +1,12 @@
 import React from 'react'
-import "./popularGigs.scss"
-import Slider from 'react-slick'
-export default function GigsInWordPress() {
-    const settings = {
-        infinite: false,
-        dots: false,
-        slidesToScroll: 5,
-        slidesToShow: 5,
-        autoplay: false,
-
-
-
-    }
+import "./editorsPicks.scss"
+export default function EditorsPicks() {
     return (
-        <div className="popular-gigs">
-            <h3>Most popular Gigs in <span>WordPress</span> </h3>
-            <Slider className="popular-gigs-slider" {...settings}>
-                <div className="card gigs-item">
+        <div className="editors-picks">
+        <h3>Editors' picks</h3>
+            <div className="editors-row">
+            
+<div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/2b55950cde57148f1e61fecff484e6922849be82.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -41,7 +31,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$400</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/434b809c3f17331ed9af6716a9401bc0d6f92e4c.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -66,7 +56,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$650</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/5559b8479df15ef850d91ccfc2aecb9d2fbd2d86.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -91,7 +81,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$70</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/46c3248ba32da373326fdb32e4eec765d4e671cc.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -116,7 +106,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$340</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/eb5fecfcd6f4c60ae6ff302de772435270144b7e.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -141,7 +131,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$440</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/deba5a6e1b34e0ea2aafef152773910a9f095fc9.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -166,7 +156,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$400</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/b0bn5d5nxfs3sboyhn1h.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -191,7 +181,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$10</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/e80a84658928b579b89b7350f9c7cbcf8ebdf1fa.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -216,7 +206,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$10</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/f4tpjwcpidvbzro5pdny.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -241,7 +231,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$250</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/h93uyegy1l0ym2w8myvm.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -266,7 +256,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$195</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/fw1fbpdnhrxpxmngcncl (3).png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -291,7 +281,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$185</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/hznkcasyybomb7q3kmjd (3).png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -316,7 +306,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$60</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/mgx38etl7fyvdn8ox8ul.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -341,7 +331,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$30</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/mvt0xp3qyjhto9k1e7gq.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -366,7 +356,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$185</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/nbzlasud3ou76fgibqtg.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -391,7 +381,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$95</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/oqswuf6gvonpa0ckalbm.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -416,7 +406,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$400</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/qatwdnya335bga05aigf.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -441,7 +431,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$15</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/qyc8dv4smvcglzlwvf9c.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -466,7 +456,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$50</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/sy8jybqpofbbizsyhxms (3).png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -491,7 +481,7 @@ export default function GigsInWordPress() {
                         <p className="card-text">STARTING AT <span>$200</span> </p>
                     </div>
                 </div>
-                <div className="card gigs-item">
+                <div className="card  editor-item">
                     <img className="card-img-top" src="images/imagesHomeLoggedIn/x9k7kcqseglmkxvvaxu4.png" alt="" />
                     <div className="card-body">
                         <div className="card-avatar">
@@ -518,9 +508,7 @@ export default function GigsInWordPress() {
                 </div>
 
 
-
-
-            </Slider>
+        </div>
         </div>
     )
 }
