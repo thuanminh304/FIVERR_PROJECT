@@ -2,34 +2,28 @@ import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { Select, Switch, Form } from "antd";
 import "./Filter.scss";
+import { actLocalSeller, actOnlineSellers, actProService, actSelectSubType } from "../Modules/action";
 const { Option } = Select;
-
 const Filter = (props) => {
-    const [isProServices, setProServicesChecked] = useState(false);
-    const [isLocalSellers, setLocalSellersChecked] = useState(false);
-    const [isOnlineSellers, setOnlineSellersChecked] = useState(false);
-    const [defaultVal, setDefaultValue] = useState('All');
-    const {mainJob} = useSelector(state=>state.JobManagementReducer);
-    const {params} = props;
-    const selectRef = React.createRef();
-    const proSerRef = React.createRef();
-    const localRef = React.createRef();
-    const onlineRef = React.createRef();
+    const {subJob,proService,localSeller,onlineSeller} = useSelector(state=>state.FilterJobListReducer)
+    const {subType} = props;
+    const formRef = React.createRef();
+    const dispatch = useDispatch();
   const onChangeSelect = (value) => {
-    console.log(`selected ${value}`);
+    dispatch(actSelectSubType(value));
   }
   const onChangeSwitch = (checked, event) => {
     const proServicesBtn = event.target.closest("#proServices");
     const localSellerBtn = event.target.closest("#localSellers");
     const onlineSellerBtn = event.target.closest("#onlineSellers");
     if (!!proServicesBtn) {
-      setProServicesChecked(!isProServices);
+      dispatch(actProService(checked));
     }
     if(!!localSellerBtn){
-      setLocalSellersChecked(!isLocalSellers);   
+      dispatch(actLocalSeller(checked));  
     }
     if(!!onlineSellerBtn){
-      setOnlineSellersChecked(!isOnlineSellers);
+      dispatch(actOnlineSellers(checked))
     }
 
   };
@@ -44,16 +38,9 @@ const Filter = (props) => {
   const onSearch = (val) => {
     console.log("search:", val);
   };
-  const selectList = mainJob?.find(job=>{
-    return job._id == params;
-  })?.subTypeJobs;
-  useEffect(() => {
-    setDefaultValue('All');
-    selectRef.current.resetFields();
-    setProServicesChecked(false);
-    setLocalSellersChecked(false);
-    setOnlineSellersChecked(false);
-  },[params])
+  useEffect(()=>{
+    formRef.current.setFieldsValue({subJobs:subJob});
+  },[subJob]);
   return (
     <div className="mainJobList-filter">
       <div className="jobList-filter__content">
@@ -62,8 +49,8 @@ const Filter = (props) => {
             <p>Sub Job Lists:</p>
           </div>
           <div className="jobList-filter__itemFeature">
-            <Form ref={selectRef} initialValues={{subJobs: 'All',}}>
-              <Form.Item name="subJobs" >
+            <Form ref={formRef}>
+              <Form.Item name="subJobs" value={subJob}>
                 <Select
                   showSearch
                   style={{ width: 200 }}
@@ -76,10 +63,9 @@ const Filter = (props) => {
                   filterOption={(input, option) =>
                     option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                   }
-                  // defaultValue={defaultVal}
                 >
-                  <Option defaultValue value="All">All</Option>
-                  {selectList?.map((list,idx)=>{
+                  <Option value="All">All</Option>
+                  {subType?.map((list,idx)=>{
                     return <Option key={idx} value={list._id}>{list.name}</Option>
                   })}
                 </Select>
@@ -93,13 +79,12 @@ const Filter = (props) => {
               <p>proServices</p>
             </div>
             <div className="jobList-filter__itemFeature">
-              <Form ref={proSerRef}>
+              <Form>
                 <Form.Item name="proServices">
                 <Switch
                   size="small"
                   id="proServices"
-                  defaultChecked={isProServices}
-                  checked={isProServices}
+                  checked={proService}
                   onChange={onChangeSwitch}
                 />
                 </Form.Item>
@@ -111,13 +96,12 @@ const Filter = (props) => {
               <p>localSellers</p>
             </div>
             <div className="jobList-filter__itemFeature">
-              <Form ref={localRef}>
+              <Form>
                 <Form.Item name="localSellers">
                 <Switch
                   size="small"
                   id="localSellers"
-                  defaultChecked={isLocalSellers}
-                  checked={isLocalSellers}
+                  checked={localSeller}
                   onChange={onChangeSwitch}
                 />
                 </Form.Item>
@@ -129,13 +113,12 @@ const Filter = (props) => {
               <p>onlineSellers</p>
             </div>
             <div className="jobList-filter__itemFeature">
-            <Form ref={onlineRef}>
+            <Form>
                 <Form.Item name="onlineSellers">
               <Switch
                 size="small"
                 id="onlineSellers"
-                defaultChecked={isOnlineSellers}
-                checked={isOnlineSellers}
+                checked={onlineSeller}
                 onChange={onChangeSwitch}
               />
               </Form.Item>

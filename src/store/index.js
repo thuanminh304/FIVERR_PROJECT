@@ -7,19 +7,21 @@ import managementUserReducer from "containers/admin/user/module/reducer";
 import AuthReducer from "containers/shared/Auth/module/reducers";
 import AdminDashBoardSettingReducer from 'containers/admin/Header/modules/reducers';
 import JobManagementReducer from 'Modules/JobManagement/reducers';
+import FilterJobListReducer from 'containers/admin/JobManagement/MainJobType/Modules/reducers';
 
 const rootReducer = combineReducers({
   managementUserReducer,
   AuthReducer,
   AdminDashBoardSettingReducer,
   JobManagementReducer,
+  FilterJobListReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
   whitelist: ['AdminDashBoardSettingReducer'],
-  blacklist: ['AuthReducer','JobManagementReducer']
+  blacklist: ['AuthReducer','JobManagementReducer','FilterJobListReducer']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
