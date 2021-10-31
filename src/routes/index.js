@@ -5,10 +5,10 @@ import Login from "containers/shared/Auth/Login/Login";
 import UpdateUser from "containers/admin/user/UpdateUser";
 import Statistics from "containers/admin/JobManagement/Statistics/Statistics";
 import Mainjobtype from "containers/admin/JobManagement/MainJobType/MainJobType";
-import Jobmanagement from "containers/admin/JobManagement/JobManagement";
 import ClientUser from "containers/admin/user/ClientUser";
 import StaffUser from "containers/admin/user/StaffUser";
 import ProfileUser from "containers/home/homePage/profileUser/ProfileUser";
+import Editjob from "containers/admin/JobManagement/EditJob/EditJob";
 
 export const clientRoutes = [
   {
@@ -86,11 +86,19 @@ export const adminRoutes = [
     href: ['Products','Statistics'],
   },
   {
-    path: "/admin/job-management/:mainJobId",
+    path: "/admin/job-management/list/:mainJobId",
     component: Mainjobtype,
     exact: false,
     isPrivate: true,
     name: '',
     href: ['Products'],
+  },
+  {
+    path: "/admin/job-management/edit/:jobId",
+    component: Editjob,
+    exact: false,
+    isPrivate: true,
+    name: 'Job Edit',
+    href: ['Products','Job Edit'],
   },
 ];

@@ -1,56 +1,58 @@
-.tableJobList{
-    margin-top: 10px;
-    table{
-        th{
-            padding: 10px 5px!important;
-            text-align: center!important;
-        }
-        td{
-            font-size: 15px;
-            text-align: center!important;
-            padding-left: 5px!important;
-            padding-right: 5px!important;
-            .anticon{
-                vertical-align: 2px;
-            }
-            &:nth-of-type(4){
-                .anticon{
-                    color: #FFDC60;
-                    margin-left: 5px;
-                }
-            }
-            &:nth-of-type(5){
-                span{
-                    color: #849f80;
-                    font-weight: 600;
-                }
-                
-            }
-            &:nth-of-type(6), &:nth-of-type(7), &:nth-of-type(8){
-                .anticon{
-                    color: #5093EB;
-                }
-            }
-            &:last-of-type{
-                span{
-                    cursor: pointer;
-                    margin: 0 3px;
-                    &:nth-of-type(1) {
-                        transform-origin: center center;
-                        &:hover {
-                          svg {
-                            animation: turnArround 2s linear infinite;
-                          }
-                        }
-                      }
-                    &:last-of-type{
-                        color: #ff7070;
-                        &:hover {
-                            animation: wave 0.6s ease-out infinite;
-                          }
-                    }
-                }
-            }
-        }
+.tableJobList {
+  margin-top: 10px;
+  table {
+    th {
+      padding: 10px 5px !important;
+      text-align: center !important;
     }
+    td {
+      font-size: 15px;
+      text-align: center !important;
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+      .anticon {
+        vertical-align: 2px;
+      }
+      &:nth-of-type(4) {
+        .anticon {
+          color: #ffdc60;
+          margin-left: 5px;
+        }
+      }
+      &:nth-of-type(5) {
+        span {
+          color: #849f80;
+          font-weight: 600;
+        }
+      }
+      &:nth-of-type(6),
+      &:nth-of-type(7),
+      &:nth-of-type(8) {
+        .anticon {
+          color: #5093eb;
+        }
+      }
+      &:last-of-type {
+        span.anticon-delete {
+            color: #ff7070;
+            &:hover {
+              animation: wave 0.6s ease-out infinite;
+            }
+        }
+        a {
+          color: #888;
+          span {
+            cursor: pointer;
+            margin: 0 3px;
+            transform-origin: center center;
+            &:hover {
+              svg {
+                animation: turnArround 2s linear infinite;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

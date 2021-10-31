@@ -1,0 +1,5 @@
+export const SELECT_SUB_TYPE = 'SELECT_SUB_TYPE';
+export const PRO_SEVICCES = 'PRO_SEVICCES';
+export const LOCAL_SELLERS = 'LOCAL_SELLERS';
+export const ONLINE_SELLERS = 'ONLINE_SELLERS';
+export const SET_MAIN_TYPE_ID = 'SET_MAIN_TYPE_ID';

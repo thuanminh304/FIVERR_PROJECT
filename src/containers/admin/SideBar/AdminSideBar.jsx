@@ -36,7 +36,7 @@ const Adminsidebar = () => {
               {mainJob?.map((job,idx)=>{
                 return (
                   <NavLink key={idx}
-                    to={`/admin/job-management/${job._id}`} className="subMenu-item">
+                    to={`/admin/job-management/list/${job._id}`} className="subMenu-item">
                     <li className="subMenu-itemTitle"><p>{job.name}</p></li>
                   </NavLink>
                 )

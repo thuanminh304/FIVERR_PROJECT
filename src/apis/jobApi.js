@@ -22,6 +22,12 @@ const jobApi = {
     deleteSubJobType(id){
         return callApi(`api/sub-type-jobs/${id}`,"DELETE",null,'token');
     },
+    getMainJobList(id){
+        return callApi(`api/jobs/by-type?type=${id}`);
+    },
+    getSubJobList(id){
+        return callApi(`api/jobs/by-sub-type?subType=${id}`);
+    },
 }
 
 export default jobApi;

@@ -1,10 +1,11 @@
-import {GET_MAIN_JOB_REQUEST, GET_MAIN_JOB_SUCCESS,GET_MAIN_JOB_FAIL, ADD_NEW_MAIN_JOB_REQUEST, ADD_NEW_MAIN_JOB_SUCCESS, ADD_NEW_MAIN_JOB_FAIL, UPDATE_MAIN_JOB_REQUEST, UPDATE_MAIN_JOB_SUCCESS, UPDATE_MAIN_JOB_FAIL, DELETE_MAIN_JOB_FAIL, DELETE_MAIN_JOB_SUCCESS, DELETE_MAIN_JOB_REQUEST, ADD_NEW_SUB_JOB_REQUEST, ADD_NEW_SUB_JOB_SUCCESS, ADD_NEW_SUB_JOB_FAIL, UPDATE_SUB_JOB_SUCCESS, UPDATE_SUB_JOB_REQUEST, UPDATE_SUB_JOB_FAIL, DELETE_SUB_JOB_REQUEST, DELETE_SUB_JOB_SUCCESS, DELETE_SUB_JOB_FAIL} from './types';
+import {GET_MAIN_JOB_REQUEST, GET_MAIN_JOB_SUCCESS,GET_MAIN_JOB_FAIL, ADD_NEW_MAIN_JOB_REQUEST, ADD_NEW_MAIN_JOB_SUCCESS, ADD_NEW_MAIN_JOB_FAIL, UPDATE_MAIN_JOB_REQUEST, UPDATE_MAIN_JOB_SUCCESS, UPDATE_MAIN_JOB_FAIL, DELETE_MAIN_JOB_FAIL, DELETE_MAIN_JOB_SUCCESS, DELETE_MAIN_JOB_REQUEST, ADD_NEW_SUB_JOB_REQUEST, ADD_NEW_SUB_JOB_SUCCESS, ADD_NEW_SUB_JOB_FAIL, UPDATE_SUB_JOB_SUCCESS, UPDATE_SUB_JOB_REQUEST, UPDATE_SUB_JOB_FAIL, DELETE_SUB_JOB_REQUEST, DELETE_SUB_JOB_SUCCESS, DELETE_SUB_JOB_FAIL, GET_JOB_LIST_REQ, GET_MAIN_TYPE_JOB_LIST_SUCC, GET_MAIN_TYPE_JOB_LIST_FAIL, GET_SUB_TYPE_JOB_LIST_SUCC, GET_SUB_TYPE_JOB_LIST_FAIL} from './types';
 const initialState = {
     mainJob: [],
     loading: false,
     loadingAction: false,
     isError: false,
     note: '',
+    jobList: [],
     typeNote: '',
 }
 
@@ -120,8 +121,23 @@ const JobManagementReducer = (state = initialState, { type, payload }) => {
         case DELETE_SUB_JOB_FAIL: {
             return {...state, loadingAction: false, isError: true};
         };
+        case GET_JOB_LIST_REQ: {
+            return {...state, loadingAction: true, isError: false};
+        };
+        case GET_MAIN_TYPE_JOB_LIST_SUCC: {
+            return {...state, loadingAction: false, isError: false, jobList: payload};
+        };
+        case GET_MAIN_TYPE_JOB_LIST_FAIL: {
+            return {...state, loadingAction: false, isError: true};
+        };
+        case GET_SUB_TYPE_JOB_LIST_SUCC: {
+            return {...state, loadingAction: false, isError: false, jobList: payload};
+        };
+        case GET_SUB_TYPE_JOB_LIST_FAIL: {
+            return {...state, loadingAction: false, isError: true};
+        };
         default:
-            return state
+            return state;
     }
 }
 
