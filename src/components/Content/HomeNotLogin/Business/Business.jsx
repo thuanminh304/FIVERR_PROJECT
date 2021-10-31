@@ -7,7 +7,7 @@ export default function Business() {
     <section className="solution">
       <div className="solution__content">
         <div className="solution__left">
-          <img src="images/fiverbusiness.png" alt />
+          <img src="images/fiverbusiness.png" alt="" />
           <h2>
             A business solution designed for <i>teams</i>
           </h2>
@@ -43,7 +43,7 @@ export default function Business() {
           <img
             className="img-fuild"
             src="images/business-desktop-870-x1.png"
-            alt
+            alt=""
           />
         </div>
       </div>

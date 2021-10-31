@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import ReactECharts from "echarts-for-react";
 import "./Statistics.scss";
 import {actGetMainJobList} from 'Modules/JobManagement/actions';

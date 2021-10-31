@@ -40,30 +40,61 @@ footer {
     border-top: 1px solid #e4e5e7;
     .mini-left {
       img {
-        width: 60px;
+        width: 80px;
         margin-right: 15px;
       }
       span {
-        color: #e4e5e7;
+        color: #7a7d85;
         font-size: 16px;
       }
     }
     .mini-right {
       display: flex;
       color: #7a7d85;
+      align-items: center;
       li {
         display: inline;
+        cursor: pointer;
       }
       .mini-logo {
+        margin-right: 50px;
         li {
-          margin: 10px;
+          margin: 24px;
+          font-size: 24px;
         }
       }
       .mini-button {
         li {
           margin: 10px;
+          font-size: 16px;
         }
+        .circle-human {
+          border: 1px solid #7a7d85;
+          border-radius: 50%;
+          padding: 5px 12px;
+        }
+        
       }
     }
   }
+}
+
+
+.mini-modal{
+  .ant-modal-content{
+        
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+  .ant-modal-header{
+    border:none;
+    border-radius:7px 7px 0 0;
+
+    .ant-modal-title{
+      color:#404145;
+      font-size: 20px;
+  
+    }
+  }
+  
 }
