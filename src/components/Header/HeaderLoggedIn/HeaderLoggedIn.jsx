@@ -2,11 +2,10 @@ import { actLogout } from "containers/shared/Auth/module/actions";
 import React from "react";
 import { Menu, Dropdown, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import "./headerLoggedIn.scss";
 
 export default function HeaderLoggedIn() {
-  const history = useHistory();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.AuthReducer);
   const logOut = () => {
@@ -41,13 +40,13 @@ export default function HeaderLoggedIn() {
       ) : null}
 
       <Menu.Item>
-        <a
+        <p
           rel="noopener noreferrer"
           style={{ color: "green" }}
           onClick={logOut}
         >
           Logout
-        </a>
+        </p>
       </Menu.Item>
     </Menu>
   );

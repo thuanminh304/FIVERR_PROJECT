@@ -8,15 +8,15 @@ export default function Explore() {
         <div className="explore__grid">
           <div className="explore__row  ">
             <div className="explore__item">
-              <a href="#">
-                <img src="images/graphics-design.d32a2f8.svg" alt />
+              <a href="">
+                <img src="images/graphics-design.d32a2f8.svg" alt="" />
                 <div className="border-explore" />
                 <p>Graphics &amp; Design</p>
               </a>
             </div>
             <div className="explore__item">
-              <a href="#">
-                <img src="images/online-marketing.74e221b.svg" alt />
+              <a href="">
+                <img src="images/online-marketing.74e221b.svg" alt="" />
                 <div className="border-explore" />
                 <p>Digital Marketing</p>
               </a>

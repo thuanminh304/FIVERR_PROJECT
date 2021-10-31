@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {AppstoreOutlined,GoldOutlined,SolutionOutlined,TeamOutlined,ReconciliationOutlined,RightOutlined} from '@ant-design/icons';
 import './AdminSideBar.scss';
 const Adminsidebar = () => {

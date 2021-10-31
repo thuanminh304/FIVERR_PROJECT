@@ -145,11 +145,11 @@ export default function VerifiedPro() {
                         <p className="card-text text-active">I will setup your business social media</p>
                         <p className="card-text">
 
-                            <div>
+                            <>
 
                                 <i class="fa fa-star"></i>
                                 5.0                 <span>(11)</span>
-                            </div>
+                            </>
                             <img src="images/imagesHomeLoggedIn/pro-badge-outline-2.0.f84c499 (1).svg" alt="" />
                         </p>
 

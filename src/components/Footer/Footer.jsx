@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./footer.scss";
+import { Modal } from 'antd';
+
 const Footer = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
     <footer className=" mt-5 border-top">
       <div className="footer__container ">
@@ -176,7 +190,16 @@ const Footer = () => {
               <li><i class="fa fa-instagram"></i></li>
             </ul>
             <ul className="mini-button">
-              <li><i class="fa fa-globe"></i>English</li>
+              <li onClick={showModal}><i class="fa fa-globe"></i>English</li>
+              <Modal onOk={handleOk} onCancel={handleCancel} className="mini-modal" title="Choose a language" visible={isModalVisible} style={{ top: 20 ,maxWidth:600,width:400}} footer={null}>
+                  <p>English</p>
+                  <p>Deutsch</p>
+                  <p>Espanol</p>
+                  <p>Francais</p>
+                  <p>Portugues</p>
+                  <p>Italiano</p>
+                  <p>Nederlands</p>
+              </Modal>
               <li>$ USD</li>
               <li className="circle-human"><i class="fa fa-male"></i></li>
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import { Form, Input, Button, Space } from "antd";
+import { Form, Input, Button } from "antd";
 import {SettingOutlined, DeleteOutlined, AppstoreAddOutlined, CheckCircleOutlined, CloseCircleOutlined} from '@ant-design/icons';
 import './ListSubJob.scss';
 import { actAddNewSubJobType, actDeleteSubJobType, actUpdateSubJob } from 'Modules/JobManagement/actions';
@@ -160,7 +160,7 @@ const Listsubjob = (props) => {
                 <div className="subJobType-content row">
                     {mainJob[jobId]?.subTypeJobs.map((subJobType,idx)=>{
                         return (
-                            <div key={idx} data-key={idx} data-subjobid = {subJobType._id} className={"subJobType-item col-md-3 " + (!editState||editState?.key == idx?"":"disabled")}>
+                            <div key={idx} data-key={idx} data-subjobid = {subJobType._id} className={"subJobType-item col-md-3 " + (!editState||editState?.key === idx?"":"disabled")}>
                                 <div className="subJobType__content row">
                                     <div className="subJobType__settingContent">
                                         <SettingOutlined onClick={editFunc}/>

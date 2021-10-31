@@ -6,7 +6,6 @@ import {adminRoutes} from 'routes/index';
 import {HomeOutlined, RightOutlined} from '@ant-design/icons';
 import './AdminTitle.scss';
 const Admintitle = (props) => {
-    const history = useHistory();
     const location = useLocation();
     const isParrams = useParams()?.mainJobId;
     const  {mainJob} = useSelector(state=>state.JobManagementReducer);
@@ -20,7 +19,7 @@ const Admintitle = (props) => {
     useEffect(() => {
         if(!!isParrams){
             const titleName = mainJob?.find(job=>{
-                return job._id == isParrams;
+                return job._id === isParrams;
             });
             titleIntital.name = titleName?.name;
             const component = adminRoutes.find(route => {
