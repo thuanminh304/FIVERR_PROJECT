@@ -5,7 +5,8 @@ import Filter from './Filter/Filter';
 import Tablelist from './TableList/TableList';
 import {actGetMainJob, actGetSubJob} from 'Modules/JobManagement/actions';
 import { actSetMainType,actLocalSeller,actOnlineSellers,actProService,actSelectSubType,actSetPageSize, actCurrentPage} from './Modules/action';
-const Mainjoblist = () => {
+const Mainjoblist = (props) => {
+    console.log(props);
     const isParrams = useParams()?.mainJobId;
     const dispatch = useDispatch();
     const {jobList,mainJob} = useSelector(state=>state.JobManagementReducer);
