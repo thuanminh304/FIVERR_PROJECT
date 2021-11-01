@@ -1,4 +1,4 @@
-import { SELECT_SUB_TYPE, PRO_SEVICCES, ONLINE_SELLERS, LOCAL_SELLERS, SET_MAIN_TYPE_ID } from "./types";
+import { SELECT_SUB_TYPE, PRO_SEVICCES, ONLINE_SELLERS, LOCAL_SELLERS, SET_MAIN_TYPE_ID, SET_PAGESIZE, CURRENT_PAGE } from "./types";
 
 const initialState = {
     mainId: '',
@@ -6,6 +6,8 @@ const initialState = {
     proService: false,
     localSeller: false,
     onlineSeller: false,
+    currentPageSize: 10,
+    currentPage: 1,
 };
 
 const FilterJobListReducer = (state = initialState, { type, payload }) => {
@@ -24,7 +26,13 @@ const FilterJobListReducer = (state = initialState, { type, payload }) => {
         };
         case ONLINE_SELLERS: {
             return {...state, onlineSeller: payload};
-        }
+        };
+        case SET_PAGESIZE: {
+            return {...state, currentPageSize: payload};
+        };
+        case CURRENT_PAGE: {
+            return {...state, currentPage: payload};
+        };
         default:
             return state;
     }

@@ -1,6 +1,6 @@
 import BoxLayout from 'layouts/BoxLayout';
 import React from 'react';
-import Mainjoblist from './MainJobList';
+import Mainjoblist from './MainTypeJobList';
 
 const Mainjobtype = () => {
     return (

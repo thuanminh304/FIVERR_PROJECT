@@ -210,8 +210,8 @@ const Mainjoblist = (props) => {
       <Slider {...settings}>
         {mainJob.map((job, idx) => {
           return (
-            <div key={idx} className={"tabMainJob " + (!editState||editState?.key === idx?"":"editAfter")} data-key={idx} data-idjob={job._id}>
-              <div className={"tabMainJob__title " + (currentJobType === idx?"active":"")} onClick={choseSubJobType}>
+            <div key={idx} className={"tabMainJob " + (!editState||editState?.key == idx?"":"editAfter")} data-key={idx} data-idjob={job._id}>
+              <div className={"tabMainJob__title " + (currentJobType == idx?"active":"")} onClick={choseSubJobType}>
                 <p suppressContentEditableWarning={true}>{job.name}</p>
                 <div className="tabMainJob__overLay">
                   <button className="prompNote delete" onClick={deleteMainJob}>Yes</button>
