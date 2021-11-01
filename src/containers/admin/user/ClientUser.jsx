@@ -2,7 +2,7 @@ import Loader from "components/Loader/Loader";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actGetAllUser } from "./module/action";
-import { Table, Tag, Space, Popconfirm, message, Input,Avatar  } from "antd";
+import { Table, Tag, Space, Popconfirm, Input,Avatar  } from "antd";
 import { EditOutlined, DeleteOutlined ,UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import userApi from "apis/userApi";

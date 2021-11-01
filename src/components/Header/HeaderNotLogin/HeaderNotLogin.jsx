@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./headerNotLoginFixed.scss";
 import "./headerNotLogin.scss";
@@ -7,7 +7,7 @@ export default function HeaderNotLogin() {
  
 
   return (
-    <header className="container-fluid">
+    <header >
       <div className="header__content">
         <div className="header__icon navbar navbar-expand-md navbar-dark">
           <a className="navbar-brand" href="/">
@@ -26,7 +26,7 @@ export default function HeaderNotLogin() {
             Explore
           </a>
           <div className="dropdown">
-            <a
+            <a href="#"
               className="button-fixed"
               type="button"
               id="dropdownMenuButton"
@@ -49,7 +49,7 @@ export default function HeaderNotLogin() {
           </div>
           <div className="dropdown">
             <a
-              href=""
+              href="#"
               className="button-fixed"
               type="button"
               id="dropdownMenuButton"
