@@ -1,4 +1,4 @@
-import { LOCAL_SELLERS, ONLINE_SELLERS, PRO_SEVICCES, SELECT_SUB_TYPE, SET_MAIN_TYPE_ID } from "./types"
+import { CURRENT_PAGE, LOCAL_SELLERS, ONLINE_SELLERS, PRO_SEVICCES, SELECT_SUB_TYPE, SET_MAIN_TYPE_ID, SET_PAGESIZE } from "./types"
 export const actSetMainType = (mainId) => {
     return dispatch => {
         dispatch({
@@ -39,6 +39,24 @@ export const actOnlineSellers = (value) => {
         dispatch ({
             type: ONLINE_SELLERS,
             payload: value,
+        });
+    };
+};
+
+export const actSetPageSize = (pageSize) => {
+    return dispatch => {
+        dispatch ({
+            type: SET_PAGESIZE,
+            payload: pageSize,
+        });
+    };
+};
+
+export const actCurrentPage = (currentPage) => {
+    return dispatch => {
+        dispatch ({
+            type: CURRENT_PAGE,
+            payload: currentPage,
         });
     };
 };

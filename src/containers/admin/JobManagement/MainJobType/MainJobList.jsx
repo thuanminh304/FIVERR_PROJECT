@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import Filter from './Filter/Filter';
 import Tablelist from './TableList/TableList';
 import {actGetMainJob, actGetSubJob} from 'Modules/JobManagement/actions';
-import { actSetMainType,actLocalSeller,actOnlineSellers,actProService,actSelectSubType } from './Modules/action';
+import { actSetMainType,actLocalSeller,actOnlineSellers,actProService,actSelectSubType,actSetPageSize, actCurrentPage} from './Modules/action';
 const Mainjoblist = () => {
     const isParrams = useParams()?.mainJobId;
     const dispatch = useDispatch();
@@ -22,6 +22,7 @@ const Mainjoblist = () => {
             dispatch(actOnlineSellers(false))
             dispatch(actLocalSeller(false));
             dispatch(actProService(false));
+            dispatch(actCurrentPage(1));
         };
     },[isParrams]);
     useEffect(() => {
@@ -36,24 +37,24 @@ const Mainjoblist = () => {
         setData(jobList);
     },[jobList]);
     useEffect(() => {
-        let jobLists = [];
+        let jobLists = [...jobList];
         if(proService){
-            const jobs = jobList?.filter(job=>{
+            const jobs = jobLists?.filter(job=>{
                 return job.proServices === true;
             });
-            jobLists = jobLists.concat(jobs);
+            jobLists = jobs;
         };
         if(localSeller){
-            const jobs = jobList?.filter(job=>{
+            const jobs = jobLists?.filter(job=>{
                 return job.localSellers === true;
             });
-            jobLists = jobLists.concat(jobs);
+            jobLists = jobs;
         };
         if(onlineSeller){
-            const jobs = jobList?.filter(job=>{
+            const jobs = jobLists?.filter(job=>{
                 return job.onlineSellers === true;
             });
-            jobLists = jobLists.concat(jobs);
+            jobLists = jobs;
         }
         
         if(!proService && !localSeller && !onlineSeller){

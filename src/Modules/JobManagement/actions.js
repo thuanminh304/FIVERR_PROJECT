@@ -25,6 +25,9 @@ import {
   GET_MAIN_TYPE_JOB_LIST_FAIL,
   GET_SUB_TYPE_JOB_LIST_SUCC,
   GET_SUB_TYPE_JOB_LIST_FAIL,
+  DELETE_JOB_REQ,
+  DELETE_JOB_SUCC,
+  DELETE_JOB_FAIL,
 } from "./types";
 import jobApi from "apis/jobApi";
 // get type of main job lists
@@ -276,3 +279,33 @@ export const actGetSubJob = (id) => {
           });
     }
 }
+
+// delete job
+const actDeleteJobReq = () => ({
+  type: DELETE_JOB_REQ,
+});
+const actDeleteJobSucc = (data) => ({
+  type: DELETE_JOB_SUCC,
+  payload: data,
+});
+const actDeleteJobFail = (error) => ({
+  type: DELETE_JOB_FAIL,
+  payload: error,
+});
+export const actDeleteJob = (id) => {
+  return (dispatch,getState)=> {
+    dispatch(actDeleteJobReq());
+    jobApi.deleteJob(id).then(res=>{
+      const {jobList} = getState().JobManagementReducer;
+      const jobIdx = jobList.findIndex(job => job._id === id);
+      if(jobIdx !== -1) {
+        jobList.splice(jobIdx, 1);
+      };
+      const jobData = [...jobList];
+      dispatch(actDeleteJobSucc(jobData));
+    })
+    .catch(error=>{
+      dispatch(actDeleteJobFail(error));
+    });
+  };
+};

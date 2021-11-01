@@ -1,6 +1,7 @@
 .tableJobList {
-  margin-top: 10px;
+  margin-top: 15px;
   table {
+    position: relative;
     th {
       padding: 10px 5px !important;
       text-align: center !important;
@@ -55,4 +56,102 @@
       }
     }
   }
+  .ant-table-tbody{
+    &:after{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.632);
+      z-index: -5;
+      transition: height 0.3s, z-index 0.1s;
+    }
+  }
+  .ant-table-tbody.deleteItem{
+    &:after{
+      z-index: 10;
+      height: 100%;
+    }
+  }
+  .ant-table-row{
+    box-shadow: none;
+    transition: box-shadow .3s;
+  }
+  .ant-table-row.deleteItem{
+    position: relative;
+    z-index: 12;
+    box-shadow: 0 4px 12px 0 #ccc;
+  }
+  .settingJob.comfirm{
+    p{
+      margin-bottom: 0;
+      color: #ff7070;
+      font-weight: 500;
+    }
+    span{
+      cursor: pointer;
+      margin: 0 5px;
+      &:hover{
+        animation: wave 0.6s ease-out infinite;
+      }
+      &:nth-of-type(1){
+        color: #849f80;
+      }
+      &:nth-of-type(2){
+        color: #ff7070;
+      }
+    }
+  }
+}
+.ant-table-pagination.ant-pagination{
+  .ant-pagination-prev,.ant-pagination-next{
+    button{
+      border: none;
+      span{
+        vertical-align: 0px;
+      }
+    }
+  }
+  .ant-pagination-item{
+    border-radius: 50%;
+    &:hover{
+      border-color: transparent;
+      background-color: #d9d9d9;
+    }
+  }
+  .ant-pagination-item-active{
+    background-color: #73BFDD;
+    border-color: transparent;
+    a{
+      color: #fff;
+      font-weight: 500;
+    }
+    &:hover{
+      background-color: #73BFDD;
+      a{
+        color: #fff;
+      }
+    }
+  }
+  .ant-select{
+    &:hover{
+      border-color: #73BFDD!important;
+    }
+  }
+  .ant-select-selector{
+    border-radius: 30px!important;
+    text-align: center;
+    .ant-select-selection-item{
+      padding: 0;
+    }
+  }
+  span.ant-select-arrow{
+    display: none;
+  }
+}
+.ant-table-pagination.deleteItem{
+  pointer-events:none;
+  opacity: 0.2;
 }
