@@ -1,9 +1,11 @@
+import BoxLayout from 'layouts/BoxLayout';
 import React from 'react';
+import Jobinfo from './JobInfo/JobInfo';
 
 const Editjob = () => {
     return (
         <div>
-            Edit Job
+            <BoxLayout component={Jobinfo} title = 'Job Info'/>
         </div>
     );
 }

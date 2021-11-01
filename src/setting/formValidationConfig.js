@@ -83,5 +83,12 @@ export const formValidConfig = (name) => {
           message: "Please input your birthday!",
         },
       ]
+    default: 
+      return [
+        {
+          required: true,
+          message: `Please input info!`,
+        },
+      ]
   }
 };
