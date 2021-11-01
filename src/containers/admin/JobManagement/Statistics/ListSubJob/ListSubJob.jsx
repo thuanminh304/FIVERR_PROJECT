@@ -160,7 +160,7 @@ const Listsubjob = (props) => {
                 <div className="subJobType-content row">
                     {mainJob[jobId]?.subTypeJobs.map((subJobType,idx)=>{
                         return (
-                            <div key={idx} data-key={idx} data-subjobid = {subJobType._id} className={"subJobType-item col-md-3 " + (!editState||editState?.key === idx?"":"disabled")}>
+                            <div key={idx} data-key={idx} data-subjobid = {subJobType._id} className={"subJobType-item col-md-3 " + (!editState||editState?.key == idx?"":"disabled")}>
                                 <div className="subJobType__content row">
                                     <div className="subJobType__settingContent">
                                         <SettingOutlined onClick={editFunc}/>
