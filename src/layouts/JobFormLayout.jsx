@@ -3,6 +3,7 @@ import React, {useState, useEffect} from "react";
 import {useSelector} from 'react-redux';
 import { Form, Input, Select, Switch } from "antd";
 import { formValidConfig } from "setting/formValidationConfig";
+import { InboxOutlined  } from "@ant-design/icons";
 const { Option } = Select;
 const Jobformlayout = (props) => {
   const { jobTypes, formData } = props;
@@ -43,13 +44,13 @@ const Jobformlayout = (props) => {
   }
   if(type === 'switch'){
       return(
-        <Form.Item>
+        <Form.Item name={name} valuePropName="checked">
           <Switch size='small'/>
         </Form.Item>
       )
   }
   return (
-    <Form.Item name={name} rules={formValidConfig(name)} hasFeedback>
+    <Form.Item name={name} rules={formValidConfig(name)}>
       <Input type={type} placeholder={placeHolderText} />
     </Form.Item>
   );

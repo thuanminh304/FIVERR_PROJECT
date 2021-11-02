@@ -2,6 +2,14 @@
   background-color: #EAEEF3;
   min-height: calc(100vh - 50px);
 }
+.ant-modal-root{
+  .ant-modal-wrap{
+    z-index: 200001;
+  }
+  .ant-modal-mask{
+    z-index: 200001;
+  }
+}
 .adminContainer-content{
   display: flex;
   margin-top: 50px;

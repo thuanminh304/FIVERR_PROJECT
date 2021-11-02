@@ -31,6 +31,9 @@ const jobApi = {
     deleteJob(id){
         return callApi(`api/jobs/${id}`,'DELETE',null,'token');
     },
+    getJobDetail(id){
+        return callApi(`api/jobs/${id}`);
+    },
 }
 
 export default jobApi;
