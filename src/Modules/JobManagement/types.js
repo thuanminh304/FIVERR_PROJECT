@@ -47,3 +47,8 @@ export const GET_SUB_TYPE_JOB_LIST_FAIL = 'GET_SUB_TYPE_JOB_LIST_FAIL';
 export const DELETE_JOB_REQ = 'DELETE_JOB_REQ';
 export const DELETE_JOB_SUCC = 'DELETE_JOB_SUCC';
 export const DELETE_JOB_FAIL = 'DELETE_JOB_FAIL';
+
+// get job detail
+export const GET_JOB_DETAIL_REQ = 'GET_JOB_DETAIL_REQ';
+export const GET_JOB_DETAIL_SUCC = 'GET_JOB_DETAIL_SUCC';
+export const GET_JOB_DETAIL_FAIL = 'GET_JOB_DETAIL_FAIL';

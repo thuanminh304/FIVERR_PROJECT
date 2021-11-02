@@ -28,6 +28,9 @@ import {
   DELETE_JOB_REQ,
   DELETE_JOB_SUCC,
   DELETE_JOB_FAIL,
+  GET_JOB_DETAIL_REQ,
+  GET_JOB_DETAIL_SUCC,
+  GET_JOB_DETAIL_FAIL,
 } from "./types";
 import jobApi from "apis/jobApi";
 // get type of main job lists
@@ -306,6 +309,39 @@ export const actDeleteJob = (id) => {
     })
     .catch(error=>{
       dispatch(actDeleteJobFail(error));
+    });
+  };
+};
+
+// get job detail 
+const actGetJobDetailReq = () => ({
+  type: GET_JOB_DETAIL_REQ,
+});
+const actGetJobDetailSucc = (data) => ({
+  type: GET_JOB_DETAIL_SUCC,
+  payload: data,
+});
+const actGetJobDetailFail = (error) => ({
+  type: GET_JOB_DETAIL_FAIL,
+  payload: error,
+});
+export const actGetJobDetail = (id) => {
+  return (dispatch, getState) => {
+    dispatch(actGetJobDetailReq());
+    jobApi.getJobDetail(id).then(res=>{
+      const {listAllUser} = getState().managementUserReducer;
+      const userCreated = listAllUser.find(user=>{
+        return user._id = res.data.userCreated;
+      });
+      let userName = userCreated?.name;
+      if(!userName) {
+        userName = 'No Name';
+      }
+      const data = {...res.data, userCreated: userName};
+      dispatch(actGetJobDetailSucc(data));
+    })
+    .catch(error=>{
+      dispatch(actGetJobDetailFail(error));
     });
   };
 };
