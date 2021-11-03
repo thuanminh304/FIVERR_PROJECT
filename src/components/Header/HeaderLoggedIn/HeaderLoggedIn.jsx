@@ -7,7 +7,7 @@ import "./headerLoggedIn.scss";
 
 export default function HeaderLoggedIn() {
   const dispatch = useDispatch();
-
+  
   const { currentUser } = useSelector((state) => state.AuthReducer);
   const currentUserUpload = JSON.parse(
     localStorage.getItem("fiverrUserUpload")
@@ -40,17 +40,19 @@ export default function HeaderLoggedIn() {
     .splice(0, 1)
     .toString()
     .toUpperCase();
-  const renderAvatar = () => {
-    if (currentUserUpload) {
-      return (
-        <img src={currentUserUpload.avatar} className="avatar-mini" alt="" />
-      );
-    } else if (currentUser?.avatar) {
-      return <img className="avatar-mini" src={currentUser.avatar} alt="" />;
-    } else {
-      return <Button className="name-avatar">{nameAvatar} </Button>;
-    }
-  };
+    const renderAvatar = () => {
+      if (currentUser?.avatar) {
+        return <img className="avatar-mini" src={currentUser.avatar} alt="" />;
+      } else if (currentUserUpload) {
+        return (
+          <img src={currentUserUpload.avatar} className="avatar-mini" alt="" />
+        );
+      } else {
+        return (
+          <Button className="name-avatar">{nameAvatar} </Button>
+        );
+      }
+    };
   return (
     <div>
       <div id="header-fixed-loggedin">
@@ -80,6 +82,7 @@ export default function HeaderLoggedIn() {
               placement="bottomRight"
               arrow
             >
+             
               {renderAvatar()}
             </Dropdown>
           </div>
