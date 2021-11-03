@@ -123,19 +123,15 @@ export const actUploadAvatar = (formdata) => {
     userApi
       .uploadAvatar(formdata)
       .then((res) => {
-        messageConfig.loading();
 
         localStorage.setItem("fiverrUserUpload", JSON.stringify(res.data));
         dispatch({
           type: UPLOAD_AVATAR,
           payload: res.data,
         });
-        setTimeout(() => {
           messageConfig.success();
-        }, 2000);
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        
+       
       })
       .catch((err) => console.log(err?.response));
   };

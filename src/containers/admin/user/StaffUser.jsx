@@ -72,6 +72,7 @@ export default function AdminUser() {
               borderRadius: "50%",
               width: 40,
               height: 40,
+              objectFit:"cover"
             }}
             alt=""
           />
