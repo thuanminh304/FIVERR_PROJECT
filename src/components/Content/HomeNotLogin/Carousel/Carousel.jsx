@@ -21,7 +21,7 @@ export default function Carousel() {
           Find the perfect <i> freelance </i>services for your business
         </p>
         <div className="carousel-input-search">
-          <i class="fa fa-search"></i>
+          <i className="fa fa-search"></i>
           <input placeholder='Try "building mobile app"' />
           <button>Search</button>
         </div>

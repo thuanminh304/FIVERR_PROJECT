@@ -7,8 +7,10 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   DETAIL_USER,
+  UPLOAD_AVATAR,
 } from "./types";
 import userApi from "apis/userApi";
+import messageConfig from "components/Message/message";
 
 // loginUser
 const actUserRequest = () => ({
@@ -65,6 +67,8 @@ export const actLogout = () => {
   return (dispatch) => {
     localStorage.removeItem("fiverrUser");
     localStorage.removeItem("fiverrToken");
+    localStorage.removeItem("fiverrUserUpload");
+
     dispatch({
       type: LOGOUT,
     });
@@ -111,5 +115,28 @@ export const actGetDetailUser = (id) => {
         });
       })
       .catch((err) => console.log(err?.response.data));
+  };
+};
+
+export const actUploadAvatar = (formdata) => {
+  return (dispatch) => {
+    userApi
+      .uploadAvatar(formdata)
+      .then((res) => {
+        messageConfig.loading();
+
+        localStorage.setItem("fiverrUserUpload", JSON.stringify(res.data));
+        dispatch({
+          type: UPLOAD_AVATAR,
+          payload: res.data,
+        });
+        setTimeout(() => {
+          messageConfig.success();
+        }, 2000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      })
+      .catch((err) => console.log(err?.response));
   };
 };

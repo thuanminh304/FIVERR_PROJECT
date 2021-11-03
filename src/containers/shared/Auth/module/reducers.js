@@ -7,6 +7,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   DETAIL_USER,
+  UPLOAD_AVATAR,
 } from "./types";
 
 const initialState = {
@@ -66,6 +67,8 @@ const AuthReducer = (state = initialState, { type, payload }) => {
       };
     case DETAIL_USER:
       return { ...state, detailUser: payload };
+    case UPLOAD_AVATAR:
+      return { ...state, currentUser: payload };
     default:
       return state;
   }

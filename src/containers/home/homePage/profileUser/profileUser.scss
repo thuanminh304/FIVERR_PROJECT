@@ -16,39 +16,84 @@
       border: 1px solid #ddd;
       .info-top {
         text-align: center;
-        // label {
-        //   width: 150px;
-        //   height: 150px;
-        //   border-radius: 50%;
-        //   background-color: $color-cato-sub;
-        //   position: relative;
-        //   top: 50px;
-        //   margin-bottom: 65px;
-        //   span {
-        //     color: white;
-        //     position: absolute;
-        //     top: 25%;
-        //     font-size: 50px;
-        //     left: 40%;
-        //     font-weight: 600;
-        //   }
-        // }
-        .change-avatar{
-          margin-top: 50px;
-        }
-        .name-edit {
-          font-size: 20px;
-          p {
-            margin-bottom: -10px;
-            font-weight: 700;
+        .icon-edit {
+          font-size: 16px;
+          &:hover {
+            color: black;
+            cursor: pointer;
           }
-          .icon-edit {
-            font-size: 16px;
-            &:hover {
-              color: black;
-              cursor: pointer;
+        }
+        .custom-input-file {
+          display: none;
+          position: absolute;
+          label {
+            cursor: pointer;
+            background-color: black !important;
+            color: #ffffff;
+            padding: 10px 20px;
+            i {
+              padding: 10px;
+              top: 43px;
+              font-size: 40px;
+              position: absolute;
+              left: 46px;
+              background-color: gray;
+              border-radius: 50%;
+              line-height: 100%;
             }
           }
+          #upload {
+            opacity: 0;
+            position: absolute;
+            z-index: -1;
+          }
+        }
+        .avatar-edit {
+          margin: auto;
+          width: 150px;
+          font-size: 20px;
+          position: relative;
+          margin-top: 50px;
+          transition: all 2s;
+          border-radius: 50%;
+          &:hover {
+            .custom-input-file {
+              width: 100%;
+              display: block;
+              top: 0;
+              opacity: 0.7;
+              border-radius: 50%;
+              height: 100%;
+            }
+          }
+          .avatar-user {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+          }
+
+          label {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: $color-cato-sub;
+            position: relative;
+
+            span {
+              color: white;
+              position: absolute;
+              top: 25%;
+              font-size: 50px;
+              left: 40%;
+              font-weight: 600;
+            }
+          }
+        }
+        p {
+          margin: 10px 0 4px;
+          font-weight: 700;
+          font-size: 20px;
         }
         button {
           margin: 20px 0;
@@ -147,7 +192,7 @@
     .info-others {
       background-color: $color-white;
       margin-top: 32px;
-      padding:15px 30px;
+      padding: 15px 30px;
       border: 1px solid #ddd;
       p {
         font-weight: 700;
@@ -169,6 +214,14 @@
           font-weight: 600;
           background-color: transparent;
           font-size: 14px;
+        }
+        input[type="text"] {
+          border: none;
+          margin-bottom: 16px;
+          color: $color-cato-title;
+          &:focus-visible{
+            outline: none;
+          }
         }
       }
       .certification {

@@ -11,3 +11,5 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 
 export const DETAIL_USER = "DETAIL_USER";
+
+export const UPLOAD_AVATAR="UPLOAD_AVATAR"

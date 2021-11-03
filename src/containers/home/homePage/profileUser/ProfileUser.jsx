@@ -2,92 +2,80 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "./profileUser.scss";
 import { EditOutlined } from "@ant-design/icons";
-import { Upload, message } from "antd";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { actUploadAvatar } from "containers/shared/Auth/module/actions";
 import { useState } from "react";
-import { BASE_URL, tokenByClass } from "setting/apiConfig";
 
-export default function ProfileUser() {
-  const { detailUser } = useSelector((state) => state.AuthReducer);
+import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
+export default function ProfileUser(props) {
+  const { currentUser } = useSelector((state) => state.AuthReducer);
+  const currentUserUpload = JSON.parse(
+    localStorage.getItem("fiverrUserUpload")
+  );
+  const dispatch = useDispatch();
   const [imageUrl, setImageUrl] = useState(null);
-  function getBase64(img, callback) {
-    const reader = new FileReader();
-    reader.addEventListener("load", () => callback(reader.result));
-    reader.readAsDataURL(img);
-  }
-  function beforeUpload(file) {
-    const isLt2M = file.size / 1024 / 1024 < 2;
-    if (!isLt2M) {
-      message.error("Image must smaller than 2MB!");
-    }
-    return isLt2M;
-  }
-  const handleChange = (info) => {
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (imageUrl) => setImageUrl(imageUrl));
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      avatar: null,
+    },
+  });
+  const handleChangeAvatar = (event) => {
+    let file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.addEventListener("load", (event) => {
+        setImageUrl(event.target.result);
+      });
+      formik.setFieldValue("avatar", file);
+      const formData = new FormData();
+      formData.append("avatar", file, file.name);
+      dispatch(actUploadAvatar(formData));
     }
   };
-  let token = "";
-  if (localStorage.getItem("fiverrToken")) {
-    token = JSON.parse(localStorage.getItem("fiverrToken"));
-  }
+  const renderAvatar = () => {
+    if (currentUser?.avatar) {
+      return <img className="avatar-user" src={currentUser.avatar} alt="" />;
+    } else if (imageUrl) {
+      return <img src={imageUrl} className="avatar-user" alt="" />;
+    } else if (currentUserUpload) {
+      return (
+        <img src={currentUserUpload.avatar} className="avatar-user" alt="" />
+      );
+    } else {
+      return (
+        <label htmlFor="">
+          <span>T</span>
+        </label>
+      );
+    }
+  };
   return (
     <div className="profile-user row">
       <div className="col-3 profile-left">
         <div className="info-basic">
           <div className="info-top">
-            {/* <label>
-              {" "}
-              <span>T</span>{" "}
-            </label> */}
-            <div className="change-avatar">
-              {detailUser?.avatar ? (
-                <img
-                  src={detailUser.avatar}
-                  style={{
-                    borderRadius: "50%",
-                    width: 150,
-                    height: 150,
-                    cursor: "pointer",
-                  }}
-                  alt=""
-                />
-              ) : (
-                <Upload
-                  accept=".jpg,.png,.jpeg,.gif,.jfif"
+            <div className="avatar-edit">
+              {renderAvatar()}
+
+              <div className="custom-input-file">
+                <label htmlFor="upload">
+                  <i className="fa fa-camera"></i>
+                </label>
+
+                <input
+                  required
+                  id="upload"
                   name="avatar"
-                  listType="picture-card"
-                  className="avatar-uploader"
-                  showUploadList={false}
-                  action={`${BASE_URL}/api/users/upload-avatar`}
-                  beforeUpload={beforeUpload}
-                  onChange={handleChange}
-                  headers={
-                    token
-                      ? {
-                          token: token,
-                          tokenByClass: tokenByClass,
-                        }
-                      : { tokenByClass: tokenByClass }
-                  }
-                >
-                  {imageUrl ? (
-                    <img
-                      src={imageUrl}
-                      alt="avatar"
-                      style={{ width: 150, height: 150, borderRadius: "50%" }}
-                    />
-                  ) : (
-                    "uploadAvatar"
-                  )}
-                </Upload>
-              )}
+                  type="file"
+                  onChange={handleChangeAvatar}
+                  accept=".jpg,.png,jpeg"
+                />
+              </div>
             </div>
-            <div className="name-edit">
-              <p>{detailUser.name}</p>
-              <EditOutlined className="icon-edit" />
-            </div>
+            <p>{currentUser?.name}</p>
+            <EditOutlined className="icon-edit" />
             <button>Preview Public Mode</button>
             <span className="span-online">Online</span>
           </div>
@@ -147,7 +135,7 @@ export default function ProfileUser() {
                 <li>
                   <a style={{ color: "#555555", cursor: "default" }} href="# ">
                     <span>
-                      <i class="fa fa-google-plus-square"></i>
+                      <i className="fa fa-google-plus-square"></i>
                     </span>
                     Google
                   </a>
@@ -186,15 +174,43 @@ export default function ProfileUser() {
             </div>
           </div>
           <div className="skill">
-            <p>Skill</p>
+            <div>
+              <p>Skill</p>
+              <input
+                type="text"
+                value={currentUser.skill}
+                placeholder="Add your Skill.
+"
+              />
+            </div>
             <button>Add New</button>
           </div>
           <div className="education">
-            <p>Education</p>
+            <div>
+              <p>Skill</p>
+              <input
+                type="text"
+                placeholder="Add your Education.
+"
+                style={{
+                  fontSize: 14,
+                  fontWeight: 600,
+                  opacity:0.4
+                }}
+              />
+            </div>
             <button>Add New</button>
           </div>
           <div className="certification">
-            <p>Certification</p>
+            <div>
+              <p>Skill</p>
+              <input
+                type="text"
+                value={currentUser.certification}
+                placeholder="Add your Certification.
+"
+              />
+            </div>
             <button>Add New</button>
           </div>
         </div>
