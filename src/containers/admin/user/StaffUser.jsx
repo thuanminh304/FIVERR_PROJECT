@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actGetAllUser } from "./module/action";
-import { Table, Tag, Space, Popconfirm, message, Input,Avatar } from "antd";
-import { EditOutlined, DeleteOutlined,UserOutlined } from "@ant-design/icons";
+import { Table, Tag, Space, Popconfirm, Input, Avatar } from "antd";
+import { EditOutlined, DeleteOutlined, UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import userApi from "apis/userApi";
 import Loader from "components/Loader/Loader";
@@ -25,11 +25,10 @@ export default function AdminUser() {
   const handleDeleteUser = (id) => {
     userApi
       .deleteUser(id)
-      .then((res) => {
-        messageConfig.loading()
+      .then(() => {
+        messageConfig.loading();
         setTimeout(() => {
-          messageConfig.success()
-
+          messageConfig.success();
         }, 1000);
         setTimeout(() => {
           dispatch(actGetAllUser());
@@ -46,10 +45,10 @@ export default function AdminUser() {
     {
       title: "#",
       key: "index",
-      width: 20,
+      width: 30,
       fixed: "left",
       render: (text, record, index) => {
-        return <span>{index+1}</span>;
+        return <span key={index + 1}>{index + 1}</span>;
       },
     },
     {
@@ -65,8 +64,20 @@ export default function AdminUser() {
       key: "avatar",
       width: 50,
       fixed: "left",
-      render: () => {
-        return <Avatar icon={<UserOutlined />} />;
+      render: (text, record) => {
+        return record.avatar ? (
+          <img
+            src={record.avatar}
+            style={{
+              borderRadius: "50%",
+              width: 40,
+              height: 40,
+            }}
+            alt=""
+          />
+        ) : (
+          <Avatar key={record._id} icon={<UserOutlined />} />
+        );
       },
     },
     {
@@ -75,9 +86,8 @@ export default function AdminUser() {
       key: "gender",
       width: 50,
 
-      render: (text) => {
-        let params = text === true ? "MALE" : "FEMALE";
-        return <span>{params}</span>;
+      render: (text, record) => {
+        return <span key={record._id}>{text === true ? "MALE" : "FEMALE"}</span>;
       },
     },
     {
@@ -112,7 +122,7 @@ export default function AdminUser() {
 
               return (
                 <Tag color={color} key={idx}>
-                  {`${skill.toUpperCase()}`}
+                  {skill.toUpperCase()}
                 </Tag>
               );
             })}
@@ -137,7 +147,7 @@ export default function AdminUser() {
 
               return (
                 <Tag color={color} key={idx}>
-                  {`${certification.toUpperCase()}`}
+                  {certification.toUpperCase()}
                 </Tag>
               );
             })}
@@ -152,7 +162,7 @@ export default function AdminUser() {
       width: 60,
       render: (text, user) => {
         return (
-          <Tag color={"volcano"} key={user.role}>
+          <Tag color={"volcano"} key={user._id}>
             {user.role}
           </Tag>
         );
@@ -164,11 +174,12 @@ export default function AdminUser() {
       width: 50,
       fixed: "right",
       render: (text, record) => (
-        <Space size="middle">
+        <Space key={record._id} size="middle">
           <Link to={`/admin/update-user/${record._id}`}>
             <EditOutlined />
           </Link>
           <Popconfirm
+            key={record._id}
             title="Are you sure delete this user ?"
             onConfirm={() => {
               handleDeleteUser(record._id);
@@ -216,6 +227,8 @@ export default function AdminUser() {
         />
       </div>
       <Table
+        rowKey={(record) => record._id}
+        key={(record) => record._id}
         pagination={{
           size: "small",
           total: listStaffUser?.length,

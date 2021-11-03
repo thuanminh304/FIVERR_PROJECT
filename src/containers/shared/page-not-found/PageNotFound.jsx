@@ -9,7 +9,7 @@ export default function PageNotFound() {
       <Result
         status="404"
         title="404"
-        subTitle="Xin lỗi , trang này không tồn tại"
+        subTitle="Xin lỗi , trang này không tồn tại  "
         extra={<Button onClick={()=>{
             history.goBack()
         }} type="primary">Quay lại</Button>}

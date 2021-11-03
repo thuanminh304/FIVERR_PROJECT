@@ -24,6 +24,9 @@ const userApi = {
   },
   registerUser(newUser) {
     return callApi(`api/auth/signup`,"POST",newUser);
+  },
+  uploadAvatar(formdata){
+    return callApi("api/users/upload-avatar","POST",formdata)
   }
 
 };

@@ -1,26 +1,23 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "./review.scss";
 import ReactPlayer from "react-player";
 import { Modal } from "react-responsive-modal";
 export default function Review() {
-   const [open, setOpen] = useState({
-open1:false,
-open2:false,
-open3:false,
-open4:false,
+  const [open, setOpen] = useState({
+    open1: false,
+    open2: false,
+    open3: false,
+    open4: false,
+  });
 
-   });
-  
+  const onOpenModal1 = () => setOpen({ ...open, open1: true });
+  const onOpenModal2 = () => setOpen({ ...open, open2: true });
+  const onOpenModal3 = () => setOpen({ ...open, open3: true });
+  const onOpenModal4 = () => setOpen({ ...open, open4: true });
 
-  const onOpenModal1 = () => setOpen({...open,open1:true});
-   const onOpenModal2 = () => setOpen({...open,open2:true});
-    const onOpenModal3 = () => setOpen({...open,open3:true});
-     const onOpenModal4 = () => setOpen({...open,open4:true});
-  
   const onCloseModal = () => {
-    setOpen(false)
-    
+    setOpen(false);
   };
   const settings = {
     infinite: true,
@@ -38,24 +35,22 @@ open4:false,
                 <img
                   className="img-fluid"
                   src="images/testimonial-video-still-rooted.jpg"
-                  alt
+                  alt=""
                 />
               </div>
               <Modal
-            className="modal-video-mp4"
-            open={open.open1}
-            onClose={onCloseModal}
-            center
-          >
-            <ReactPlayer
-              controls={true}
-              playing={false}
-              url="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/yja2ld5fnolhsixj3xxw"
-            />
-          </Modal>
-              <a
-                onClick={onOpenModal1}
+                className="modal-video-mp4"
+                open={open.open1}
+                onClose={onCloseModal}
+                center
               >
+                <ReactPlayer
+                  controls={true}
+                  playing={false}
+                  url="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/yja2ld5fnolhsixj3xxw"
+                />
+              </Modal>
+              <a href="# " onClick={onOpenModal1}>
                 <div className="fiverrReview__btnPlay">
                   <i className="fa fa-play" />
                 </div>
@@ -65,7 +60,7 @@ open4:false,
               <h5>
                 Kay Kim, Co-Founder
                 <span>
-                  <img src="images/rooted-logo-x2.321d79d.png" alt />
+                  <img src="images/rooted-logo-x2.321d79d.png" alt="" />
                 </span>
               </h5>
               <p>
@@ -84,35 +79,32 @@ open4:false,
                 <img
                   className="img-fluid"
                   src="images/testimonial-video-still-naadam.jpg"
-                  alt
+                  alt=""
                 />
               </div>
               <Modal
-            className="modal-video-mp4"
-            open={open.open2}
-            onClose={onCloseModal}
-            center
-          >
-            <ReactPlayer
-              controls={true}
-              playing={false}
-              url="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/plfa6gdjihpdvr10rchl"
-            />
-          </Modal>
-              <a
-                onClick={onOpenModal2}
+                className="modal-video-mp4"
+                open={open.open2}
+                onClose={onCloseModal}
+                center
               >
+                <ReactPlayer
+                  controls={true}
+                  playing={false}
+                  url="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/plfa6gdjihpdvr10rchl"
+                />
+              </Modal>
+              <a href="# " onClick={onOpenModal2}>
                 <div className="fiverrReview__btnPlay">
                   <i className="fa fa-play" />
                 </div>
               </a>
-             
             </div>
             <div className="fiverrReview__box">
               <h5>
                 Caitlin Tormey, Chief Commercial Officer
                 <span>
-                  <img src="./images/naadam-logo-x2.0a3b198.png" alt />
+                  <img src="./images/naadam-logo-x2.0a3b198.png" alt="" />
                 </span>
               </h5>
               <p>
@@ -130,35 +122,32 @@ open4:false,
                 <img
                   className="img-fluid"
                   src="./images/testimonial-video-still-lavender.jpg"
-                  alt
+                  alt=""
                 />
               </div>
               <Modal
-            className="modal-video-mp4"
-            open={open.open3}
-            onClose={onCloseModal}
-            center
-          >
-            <ReactPlayer
-              controls={true}
-              playing={false}
-              url="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/rb8jtakrisiz0xtsffwi"
-            />
-          </Modal>
-              <a
-                onClick={onOpenModal3}
+                className="modal-video-mp4"
+                open={open.open3}
+                onClose={onCloseModal}
+                center
               >
+                <ReactPlayer
+                  controls={true}
+                  playing={false}
+                  url="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/rb8jtakrisiz0xtsffwi"
+                />
+              </Modal>
+              <a href="# " onClick={onOpenModal3}>
                 <div className="fiverrReview__btnPlay">
                   <i className="fa fa-play" />
                 </div>
               </a>
-              
             </div>
             <div className="fiverrReview__box">
               <h5>
                 Brighid Gannon (DNP, PMHNP-BC), Co-Founder
                 <span>
-                  <img src="./images/lavender-logo-x2.89c5e2e.png" alt />
+                  <img src="./images/lavender-logo-x2.89c5e2e.png" alt="" />
                 </span>
               </h5>
               <p>
@@ -176,33 +165,32 @@ open4:false,
                 <img
                   className="img-fluid"
                   src="./images/testimonial-video-still-haerfest.jpg"
-                  alt
+                  alt=""
                 />
               </div>
               <Modal
-            className="modal-video-mp4"
-            open={open.open4}
-            onClose={onCloseModal}
-            center
-          >
-            <ReactPlayer
-              controls={true}
-              playing={false}
-              url="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/bsncmkwya3nectkensun"
-            />
-          </Modal>
-              <a
-                onClick={onOpenModal4}
+                className="modal-video-mp4"
+                open={open.open4}
+                onClose={onCloseModal}
+                center
               >
-                  <i className="fa fa-play fiverrReview__btnPlay" />
+                <ReactPlayer
+                  controls={true}
+                  playing={false}
+                  url="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/bsncmkwya3nectkensun"
+                />
+              </Modal>
+              <a href="# " onClick={onOpenModal4}>
+                <div className="fiverrReview__btnPlay">
+                  <i className="fa fa-play" />
+                </div>
               </a>
-             
             </div>
             <div className="fiverrReview__box">
               <h5>
                 Tim and Dan Joo, Co-Founders
                 <span>
-                  <img src="./images/haerfest-logo-x2.03fa5c5.png" alt />
+                  <img src="./images/haerfest-logo-x2.03fa5c5.png" alt="" />
                 </span>
               </h5>
               <p>
