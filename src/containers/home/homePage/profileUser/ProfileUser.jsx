@@ -34,19 +34,24 @@ export default function ProfileUser(props) {
       dispatch(actUploadAvatar(formData));
     }
   };
+  const nameAvatar = currentUser?.email
+    .split("")
+    .splice(0, 1)
+    .toString()
+    .toUpperCase();
   const renderAvatar = () => {
-    if (currentUser?.avatar) {
-      return <img className="avatar-user" src={currentUser.avatar} alt="" />;
-    } else if (imageUrl) {
-      return <img src={imageUrl} className="avatar-user" alt="" />;
-    } else if (currentUserUpload) {
+    if (currentUserUpload) {
       return (
         <img src={currentUserUpload.avatar} className="avatar-user" alt="" />
       );
+    } else if (imageUrl) {
+      return <img src={imageUrl} className="avatar-user" alt="" />;
+    } else if (currentUser?.avatar) {
+      return <img className="avatar-user" src={currentUser.avatar} alt="" />;
     } else {
       return (
         <label htmlFor="">
-          <span>T</span>
+          <span>{nameAvatar}</span>
         </label>
       );
     }
@@ -187,7 +192,7 @@ export default function ProfileUser(props) {
           </div>
           <div className="education">
             <div>
-              <p>Skill</p>
+              <p>Education</p>
               <input
                 type="text"
                 placeholder="Add your Education.
@@ -195,7 +200,7 @@ export default function ProfileUser(props) {
                 style={{
                   fontSize: 14,
                   fontWeight: 600,
-                  opacity:0.4
+                  opacity: 0.4,
                 }}
               />
             </div>
@@ -203,7 +208,7 @@ export default function ProfileUser(props) {
           </div>
           <div className="certification">
             <div>
-              <p>Skill</p>
+              <p>Certification</p>
               <input
                 type="text"
                 value={currentUser.certification}

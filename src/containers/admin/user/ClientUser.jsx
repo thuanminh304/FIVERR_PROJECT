@@ -71,6 +71,7 @@ export default function ClientUser() {
               borderRadius: "50%",
               width: 40,
               height: 40,
+              objectFit:"cover"
             }}
             alt=""
           />
