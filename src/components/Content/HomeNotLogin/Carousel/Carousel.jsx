@@ -30,19 +30,19 @@ export default function Carousel() {
           <ul>
             <li>
               {" "}
-              <a href="">Website Design</a>
+              <a href="# ">Website Design</a>
             </li>
             <li>
               {" "}
-              <a href="#">WordPress</a>
+              <a href="# ">WordPress</a>
             </li>
             <li>
               {" "}
-              <a href="#">Logo Design</a>
+              <a href="# ">Logo Design</a>
             </li>
             <li>
               {" "}
-              <a href="#">Dropshipping</a>
+              <a href="# ">Dropshipping</a>
             </li>
           </ul>
         </div>

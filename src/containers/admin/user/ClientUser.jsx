@@ -2,8 +2,8 @@ import Loader from "components/Loader/Loader";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actGetAllUser } from "./module/action";
-import { Table, Tag, Space, Popconfirm, Input,Avatar  } from "antd";
-import { EditOutlined, DeleteOutlined ,UserOutlined } from "@ant-design/icons";
+import { Table, Tag, Space, Popconfirm, Input, Avatar } from "antd";
+import { EditOutlined, DeleteOutlined, UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import userApi from "apis/userApi";
 import messageConfig from "components/Message/message";
@@ -24,11 +24,10 @@ export default function ClientUser() {
   const handleDeleteUser = (id) => {
     userApi
       .deleteUser(id)
-      .then((res) => {
-        messageConfig.loading()
+      .then(() => {
+        messageConfig.loading();
         setTimeout(() => {
-          messageConfig.success()
-
+          messageConfig.success();
         }, 1000);
         setTimeout(() => {
           dispatch(actGetAllUser());
@@ -45,10 +44,10 @@ export default function ClientUser() {
     {
       title: "#",
       key: "index",
-      width: 20,
+      width: 30,
       fixed: "left",
       render: (text, record, index) => {
-        return <span>{index+1}</span>;
+        return <span key={index + 1}>{index + 1}</span>;
       },
     },
     {
@@ -64,8 +63,20 @@ export default function ClientUser() {
       key: "avatar",
       width: 50,
       fixed: "left",
-      render: () => {
-        return <Avatar icon={<UserOutlined />} />;
+      render: (text, record) => {
+        return record.avatar ? (
+          <img
+            src={record.avatar}
+            style={{
+              borderRadius: "50%",
+              width: 40,
+              height: 40,
+            }}
+            alt=""
+          />
+        ) : (
+          <Avatar key={record._id} icon={<UserOutlined />} />
+        );
       },
     },
     {
@@ -74,9 +85,8 @@ export default function ClientUser() {
       key: "gender",
       width: 50,
 
-      render: (text) => {
-        let params = text === true ? "MALE" : "FEMALE";
-        return <span>{params}</span>;
+      render: (text, record) => {
+        return <span key={record._id}>{text === true ? "MALE" : "FEMALE"}</span>;
       },
     },
     {
@@ -111,7 +121,7 @@ export default function ClientUser() {
 
               return (
                 <Tag color={color} key={idx}>
-                  {`${skill.toUpperCase()}`}
+                  {skill.toUpperCase()}
                 </Tag>
               );
             })}
@@ -137,7 +147,7 @@ export default function ClientUser() {
 
               return (
                 <Tag color={color} key={idx}>
-                  {`${certification.toUpperCase()}`}
+                  {certification.toUpperCase()}
                 </Tag>
               );
             })}
@@ -152,7 +162,7 @@ export default function ClientUser() {
       width: 60,
       render: (text, user) => {
         return (
-          <Tag color={"green"} key={user.role}>
+          <Tag color={"green"} key={user._id}>
             {user.role}
           </Tag>
         );
@@ -164,11 +174,13 @@ export default function ClientUser() {
       width: 50,
       fixed: "right",
       render: (text, record) => (
-        <Space size="middle">
+        <Space key={record._id} size="middle">
           <Link to={`/admin/update-user/${record._id}`}>
             <EditOutlined />
           </Link>
-          <Popconfirm className="popup-confirm-delete"
+          <Popconfirm
+            key={record._id}
+            className="popup-confirm-delete"
             title="Are you sure delete this user ?"
             onConfirm={() => {
               handleDeleteUser(record._id);
@@ -184,7 +196,6 @@ export default function ClientUser() {
       ),
     },
   ];
-  // nếu gọi thành công api tìm kiếm user( length>0) thì sẽ render mảng tìm kiếm , không thì render mảng all user
   let data = listClientUser;
   const { Search } = Input;
   const onSearch = (value) => {
@@ -210,6 +221,8 @@ export default function ClientUser() {
         />
       </div>
       <Table
+        rowKey={(record) => record._id}
+        key={(record) => record._id}
         pagination={{
           size: "small",
           total: listClientUser?.length,

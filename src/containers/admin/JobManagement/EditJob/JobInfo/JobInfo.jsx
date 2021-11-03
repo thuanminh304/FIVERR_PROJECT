@@ -112,8 +112,7 @@ const Jobinfo = (props) => {
                 })}
               </div>
             </div>
-            <div className="jobInfo__formContentItem col-12 col-md-5">
-            </div>
+            <div className="jobInfo__formContentItem col-12 col-md-5"></div>
             <div className="jobInfo__formContentItem col-12 col-md-3">
               <div className="jobInfo__title">
                 <p>Project Manager</p>
@@ -128,8 +127,10 @@ const Jobinfo = (props) => {
             </div>
           </div>
           <div className="form__Submit">
-              <button type="submit" className="form__btn form__SubmitBtn">Update</button>
-              <button className="form__btn form__canceltBtn">Back</button>
+            <button type="submit" className="form__btn form__SubmitBtn">
+              Update
+            </button>
+            <button className="form__btn form__canceltBtn">Back</button>
           </div>
         </Form>
         {jobId}
