@@ -1,0 +1,67 @@
+.notifynote{
+    position: absolute;
+    top: 150%;
+    right: -100%;
+    width: 230px;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: right 0.5s;
+    .notifynote__content{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+        padding: 8px 15px;
+        .ant-progress{
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: -10px;
+            .ant-progress-text{
+                display: none;
+            }
+            .ant-progress-outer{
+                margin-right: 0;
+                padding-right: 0;
+            }
+            .ant-progress-inner{
+                background-color: transparent;
+                border-radius: 5px!important;
+            }
+            .ant-progress-bg{
+                background-color: #73BFDD;
+                height: 3px!important;
+                border-radius: 5px!important;
+            }
+        }
+    }
+    .notifynote__content.error{
+        .ant-progress-bg{
+            background-color: #ff7070;
+        }
+    }
+    .item__notifyType{
+        margin-right: 10px;
+    }
+    .notifyType__icon{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 3px solid #73BFDD;
+        font-size: 30px;
+        line-height: 25px;
+        text-align: center;
+        color: #73BFDD;
+    }
+    .notifyType__icon.error{
+        border: 3px solid #ff7070;
+        color: #ff7070;
+    }
+    .notifyType__icon.warning{
+        border: 3px solid #e4c94f;
+        color: #e4c94f;
+    }
+}
+.notifynote.showNote{
+    right: 25px;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Upload, Modal } from "antd";
-import { InboxOutlined, EyeOutlined } from "@ant-design/icons";
+import { CloudUploadOutlined, EyeOutlined } from "@ant-design/icons";
 import { getBase } from "containers/shared/GetBase/GetBase";
 import "./UploadImage.scss";
 const { Dragger } = Upload;
@@ -20,10 +20,8 @@ const Uploadimage = (props) => {
     onChange: (e) => {
       if (e.file.status === "removed") {
         setFileUpload(false);
-        changeImage(null);
       } else {
         setFileUpload(true);
-        changeImage(e.file);
       }
     },
     beforeUpload(file) {
@@ -71,7 +69,7 @@ const Uploadimage = (props) => {
         <Form.Item name="job" valuePropName={File}>
           <Dragger {...uploadDrops} onPreview={handlePreview}>
             <p className="ant-upload-drag-icon">
-              <InboxOutlined />
+              <CloudUploadOutlined />
             </p>
             <p className="ant-upload-text">Click or drag file to this area</p>
           </Dragger>

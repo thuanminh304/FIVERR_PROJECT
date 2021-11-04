@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useHistory} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Form,Input } from "antd";
+import {LoadingOutlined} from '@ant-design/icons';
 import JobFormLayout from "layouts/JobFormLayout";
 import "./JobInfo.scss";
 import Uploadimage from "../UploadImage/UploadImage";
-import { actGetJobDetail } from "Modules/JobManagement/actions";
+import { actGetJobDetail, actUpdateJobDetail } from "Modules/JobManagement/actions";
 const Jobinfo = (props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const formRef = React.createRef();
-  const [imageJob, setImage] = useState(
-    "https://fiverr.cybersoft.edu.vn/public/images/job/1635838516420_phu-thuy-syndra.jpg"
-  );
   const [initialValue, setInitialValue] = useState(null);
+  const [isEdit, setIsEdit] = useState(false);
   const [indexType,setIndexType] = useState(0);
   const jobField = [
     {
@@ -61,13 +61,20 @@ const Jobinfo = (props) => {
       type: "switch",
     },
   ];
-  const { mainJob, jobDetail } = useSelector(
+  const { mainJob, jobDetail,loadingAction } = useSelector(
     (state) => state.JobManagementReducer
   );
+  const {isNote} = useSelector(state=>state.AdminDashBoardSettingReducer);
   const { jobId } = useParams();
   useEffect(() => {
     dispatch(actGetJobDetail(jobId));
   }, []);
+  useEffect(()=>{
+    if(!isNote && !!isEdit){
+      history.goBack();
+      setIsEdit(false);
+    }
+  },[isNote])
   useEffect(() => {
     const initialValue = {
       name: "",
@@ -81,6 +88,8 @@ const Jobinfo = (props) => {
       onlineSellers: false,
       deliveryTime: false,
       image: "",
+      userCreatedName: '',
+      userBookingName: '',
     };
     for (let i in initialValue) {
       for (let j in jobDetail) {
@@ -103,12 +112,22 @@ const Jobinfo = (props) => {
   }, [jobDetail]);
   useEffect(()=>{
     formRef.current.setFieldsValue(initialValue);
-  },[initialValue,indexType])
+  },[initialValue])
   const onFinish = (values) => {
-    console.log(values);
-  };
-  const changeImage = (image) => {
-    console.log(image);
+    const data = {...values};
+    const job = values.job?.file;
+    delete data.job;
+    let formData = new FormData();
+    if(job && job?.status !== 'removed'){
+      formData.append('job',job,job.name);
+    };
+    if(!!formData.get('job')){
+      dispatch(actUpdateJobDetail(jobDetail._id,data,formData));
+    }
+    else{
+      dispatch(actUpdateJobDetail(jobDetail._id,data));
+    }
+    setIsEdit(true);
   };
   const changeSubType = (typeId) => {
     const typeIdx = mainJob.findIndex(type=>{
@@ -117,6 +136,29 @@ const Jobinfo = (props) => {
     if(typeIdx !== -1) {
       setIndexType(typeIdx);
     }
+  };
+  const onFieldChange = (changedFields) => {
+    const fieldName = changedFields[0].name[0];
+    if(fieldName === 'type'){
+      const typeId = changedFields[0].value;
+      if(typeId !== initialValue.type){
+        const typeIdx = mainJob.findIndex(type=>{
+          return type._id === typeId;
+        });
+        if(typeIdx !== -1) {
+          setIndexType(typeIdx);
+          formRef.current.setFieldsValue({subType: mainJob[typeIdx].subTypeJobs[0]._id});
+        }
+      }
+      else{
+        changeSubType(typeId);
+        formRef.current.setFieldsValue({subType: initialValue.subType});
+      }
+    }
+  };
+  const BacktoPrevPage = (e) => {
+    e.preventDefault();
+    history.goBack();
   }
   return (
     <div className="JobInfo">
@@ -126,7 +168,7 @@ const Jobinfo = (props) => {
           scrollToFirstError
           ref={formRef}
           initialValues={initialValue}
-          // initialValues={{"name": initialValue?.name}}
+          onFieldsChange = {onFieldChange}
         >
           <div className="jobInfo__formContent row">
             <div className="jobInfo__formContentItem col-12">
@@ -134,10 +176,7 @@ const Jobinfo = (props) => {
                 <div className="jobInfo__title">
                   <p>Project Name</p>
                 </div>
-                <Form.Item name="name">
-                  <Input type='text'/>
-                </Form.Item>
-                {/* <JobFormLayout formData={jobField[0]} /> */}
+                <JobFormLayout formData={jobField[0]} />
               </div>
             </div>
             <div className="jobInfo__formContentItem col-12 col-md-6">
@@ -188,7 +227,7 @@ const Jobinfo = (props) => {
               <div className="jobInfo__title">
                 <p>Project Manager</p>
               </div>
-              <div className="jobInfo__nameUser">{initialValue?.userCreated}</div>
+              <div className="jobInfo__nameUser">{initialValue?.userCreatedName}</div>
             </div>
             <div className="jobInfo__formContentItem col-12 col-md-9">
               <div className="jobInfo__title">
@@ -197,7 +236,6 @@ const Jobinfo = (props) => {
               <div className="jobInfo__uploadFile">
                 <Uploadimage
                   imageJob={initialValue?.image}
-                  changeImage={changeImage}
                   jobTitle={initialValue?.name}
                 />
               </div>
@@ -205,9 +243,9 @@ const Jobinfo = (props) => {
           </div>
           <div className="form__Submit">
             <button type="submit" className="form__btn form__SubmitBtn">
-              Update
+              Update {loadingAction?<LoadingOutlined />:''}
             </button>
-            <button className="form__btn form__canceltBtn">Back</button>
+            <button className="form__btn form__canceltBtn" onClick={BacktoPrevPage}>Back</button>
           </div>
         </Form>
         {jobId}
