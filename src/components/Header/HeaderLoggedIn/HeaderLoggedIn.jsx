@@ -9,9 +9,9 @@ export default function HeaderLoggedIn() {
   const dispatch = useDispatch();
 
   const { currentUser } = useSelector((state) => state.AuthReducer);
-  const currentUserUpload = JSON.parse(
-    localStorage.getItem("fiverrUserUpload")
-  );
+  // const currentUserUpload = JSON.parse(
+  //   localStorage.getItem("fiverrUserUpload")
+  // );
   const logOut = () => {
     dispatch(actLogout());
     window.location.replace("/");
@@ -41,11 +41,12 @@ export default function HeaderLoggedIn() {
     .toString()
     .toUpperCase();
   const renderAvatar = () => {
-    if (currentUserUpload) {
-      return (
-        <img src={currentUserUpload.avatar} className="avatar-mini" alt="" />
-      );
-    } else if (currentUser?.avatar) {
+    // if (currentUser) {
+      // return (
+      //   <img src={currentUser.avatar} className="avatar-mini" alt="" />
+      // );
+    // } else 
+    if (currentUser?.avatar) {
       return <img className="avatar-mini" src={currentUser.avatar} alt="" />;
     } else {
       return <Button className="name-avatar">{nameAvatar} </Button>;

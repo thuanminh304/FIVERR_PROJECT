@@ -68,7 +68,6 @@ export const actLogout = () => {
     localStorage.removeItem("fiverrUser");
     localStorage.removeItem("fiverrToken");
     localStorage.removeItem("fiverrUserUpload");
-
     dispatch({
       type: LOGOUT,
     });
@@ -123,15 +122,14 @@ export const actUploadAvatar = (formdata) => {
     userApi
       .uploadAvatar(formdata)
       .then((res) => {
-
-        localStorage.setItem("fiverrUserUpload", JSON.stringify(res.data));
+        const userLogin = JSON.parse(localStorage.getItem("fiverrUser"));
+        userLogin.user = {...userLogin.user, avatar: res.data.avatar};
+        localStorage.setItem("fiverrUser", JSON.stringify(userLogin));
         dispatch({
           type: UPLOAD_AVATAR,
           payload: res.data,
         });
           messageConfig.success();
-        
-       
       })
       .catch((err) => console.log(err?.response));
   };

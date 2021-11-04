@@ -68,7 +68,7 @@ const AuthReducer = (state = initialState, { type, payload }) => {
     case DETAIL_USER:
       return { ...state, detailUser: payload };
     case UPLOAD_AVATAR:
-      return { ...state, currentUser: payload };
+      return { ...state, currentUser: {...state.currentUser, avatar: payload.avatar}};
     default:
       return state;
   }
