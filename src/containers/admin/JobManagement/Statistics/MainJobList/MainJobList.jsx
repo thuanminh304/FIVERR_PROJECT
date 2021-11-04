@@ -237,7 +237,7 @@ const Mainjoblist = (props) => {
               key={idx}
               className={
                 "tabMainJob " +
-                (!editState || editState?.key === idx ? "" : "editAfter")
+                (!editState || editState?.key == idx ? "" : "editAfter")
               }
               data-key={idx}
               data-idjob={job._id}
