@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import { Form, Input, Button } from "antd";
 import "./MainJobList.scss";
-import {actAddNewMainJob, actUpdateMainJob, actDeleteMainJob} from 'Modules/JobManagement/actions';
+import {
+  actAddNewMainJob,
+  actUpdateMainJob,
+  actDeleteMainJob,
+} from "Modules/JobManagement/actions";
 const Mainjoblist = (props) => {
   const settings = {
     dots: false,
@@ -48,7 +52,7 @@ const Mainjoblist = (props) => {
       },
     ],
   };
-  const {setCurrentMainJobTypeID} = props;
+  const { setCurrentMainJobTypeID } = props;
   const dispatch = useDispatch();
   const [editing, setEditing] = useState(false);
   const [currentJobType, setCurrentJobType] = useState(0);
@@ -58,103 +62,111 @@ const Mainjoblist = (props) => {
 
   const showFormAddFunc = () => {
     setAdd(true);
-  }
+  };
   const onFinish = (values) => {
-    const data = {...values, status:true};
+    const data = { ...values, status: true };
     dispatch(actAddNewMainJob(data));
   };
   const addNewJob = () => {
-    document.querySelector('#submidAddNew').click();
-  }
+    document.querySelector("#submidAddNew").click();
+  };
   const cancleAddJob = () => {
     formRef.current.resetFields();
     setAdd(false);
   };
-  const editMainType= (e) => {
-    const key = e.target.closest('.tabMainJob').dataset.key;
-    const jobId = e.target.closest('.tabMainJob').dataset.idjob;
-    const tabMainJob = document.querySelectorAll('.tabMainJob');
-    const contentTab = tabMainJob[key].querySelector('.tabMainJob__title p');
+  const editMainType = (e) => {
+    const key = e.target.closest(".tabMainJob").dataset.key;
+    const jobId = e.target.closest(".tabMainJob").dataset.idjob;
+    const tabMainJob = document.querySelectorAll(".tabMainJob");
+    const contentTab = tabMainJob[key].querySelector(".tabMainJob__title p");
     const prevContent = contentTab.innerText;
-    contentTab.setAttribute('contentEditable',true);
+    contentTab.setAttribute("contentEditable", true);
     contentTab.focus();
     let edit = {
       key: null,
-      idJob: '',
-      prevContent: '',
-    }
+      idJob: "",
+      prevContent: "",
+    };
     edit.key = key;
     edit.idJob = jobId;
     edit.prevContent = prevContent;
     setEditing(true);
-    setEditState(edit)
+    setEditState(edit);
   };
   const updateMainType = (e) => {
-    const tabMainJob = document.querySelectorAll('.tabMainJob');
-    const contentTab = tabMainJob[editState.key].querySelector('.tabMainJob__title p');
-    const jobTab = tabMainJob[editState.key].querySelector('.tabMainJob__title');
-    if(contentTab.innerHTML === '') {
-      jobTab.classList.add('error');
+    const tabMainJob = document.querySelectorAll(".tabMainJob");
+    const contentTab = tabMainJob[editState.key].querySelector(
+      ".tabMainJob__title p"
+    );
+    const jobTab =
+      tabMainJob[editState.key].querySelector(".tabMainJob__title");
+    if (contentTab.innerHTML === "") {
+      jobTab.classList.add("error");
       contentTab.focus();
-    }
-    else{
-      jobTab.classList.remove('error');
-      contentTab.setAttribute('contentEditable',false);
-      const data = {...mainJob.find(job=> {
-        return job._id === editState.idJob;
-      })};
+    } else {
+      jobTab.classList.remove("error");
+      contentTab.setAttribute("contentEditable", false);
+      const data = {
+        ...mainJob.find((job) => {
+          return job._id === editState.idJob;
+        }),
+      };
       data.name = contentTab.innerText;
       delete data.__v;
       delete data._id;
       delete data.deleteAt;
-      if(data.name !== editState.prevContent){
-        dispatch(actUpdateMainJob(editState.idJob,data));
+      if (data.name !== editState.prevContent) {
+        dispatch(actUpdateMainJob(editState.idJob, data));
       }
       setEditing(false);
       setEditState(null);
     }
-  }
+  };
   const exitEdit = () => {
-    const tabMainJob = document.querySelectorAll('.tabMainJob');
-    const contentTab = tabMainJob[editState.key].querySelector('.tabMainJob__title p');
-    const jobTab = tabMainJob[editState.key].querySelector('.tabMainJob__title');
-    jobTab.classList.remove('error');
-    contentTab.setAttribute('contentEditable',false);
+    const tabMainJob = document.querySelectorAll(".tabMainJob");
+    const contentTab = tabMainJob[editState.key].querySelector(
+      ".tabMainJob__title p"
+    );
+    const jobTab =
+      tabMainJob[editState.key].querySelector(".tabMainJob__title");
+    jobTab.classList.remove("error");
+    contentTab.setAttribute("contentEditable", false);
     contentTab.innerHTML = editState.prevContent;
     setEditing(false);
     setEditState(null);
-  }
+  };
   const deleteMainType = (e) => {
-    const key = e.target.closest('.tabMainJob').dataset.key;
-    const jobId = e.target.closest('.tabMainJob').dataset.idjob;
-    const tabMainJob = document.querySelectorAll('.tabMainJob');
-    const jobTab = tabMainJob[key].querySelector('.tabMainJob__title');
-    jobTab.classList.add('promptNote');
+    const key = e.target.closest(".tabMainJob").dataset.key;
+    const jobId = e.target.closest(".tabMainJob").dataset.idjob;
+    const tabMainJob = document.querySelectorAll(".tabMainJob");
+    const jobTab = tabMainJob[key].querySelector(".tabMainJob__title");
+    jobTab.classList.add("promptNote");
     let edit = {
       key: null,
-      idJob: '',
-      prevContent: '',
-    }
+      idJob: "",
+      prevContent: "",
+    };
     edit.key = key;
     edit.idJob = jobId;
-    setEditState(edit)
+    setEditState(edit);
   };
   const deleteMainJob = (e) => {
     e.stopPropagation();
-    const deleteBtn = e.target.closest('.prompNote.delete');
-    if(!!deleteBtn){
+    const deleteBtn = e.target.closest(".prompNote.delete");
+    if (!!deleteBtn) {
       dispatch(actDeleteMainJob(editState.idJob));
     }
-    const tabMainJob = document.querySelectorAll('.tabMainJob');
-    const jobTab = tabMainJob[editState.key].querySelector('.tabMainJob__title');
-    jobTab.classList.remove('promptNote');
+    const tabMainJob = document.querySelectorAll(".tabMainJob");
+    const jobTab =
+      tabMainJob[editState.key].querySelector(".tabMainJob__title");
+    jobTab.classList.remove("promptNote");
     setEditState(null);
-  }
+  };
   const choseSubJobType = (e) => {
-    const key = e.target.closest('.tabMainJob').dataset.key;
+    const key = e.target.closest(".tabMainJob").dataset.key;
     setCurrentJobType(key);
     setCurrentMainJobTypeID(key);
-  }
+  };
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
   useEffect(() => {
     formRef.current.resetFields();
@@ -165,13 +177,11 @@ const Mainjoblist = (props) => {
   return (
     <div className="mainjob-List__content">
       <div className="manjob-List__addNew">
-        <button className="typeJobAdd" onClick={showFormAddFunc}>Add new type job</button>
-        <div className={"newJob__context " + (isAdd?"show":"")}>
-          <Form
-            onFinish={onFinish}
-            ref={formRef}
-            autoComplete="off"
-          >
+        <button className="typeJobAdd" onClick={showFormAddFunc}>
+          Add new type job
+        </button>
+        <div className={"newJob__context " + (isAdd ? "show" : "")}>
+          <Form onFinish={onFinish} ref={formRef} autoComplete="off">
             <Form.Item
               name="name"
               rules={[
@@ -182,48 +192,87 @@ const Mainjoblist = (props) => {
                 ({ getFieldValue }) => ({
                   validator(_, value) {
                     let isDublicate = -1;
-                    if(value){
-                      isDublicate = mainJob.findIndex(job=>{
+                    if (value) {
+                      isDublicate = mainJob.findIndex((job) => {
                         return job.name.toLowerCase() === value.toLowerCase();
                       });
                     }
                     if (!value || isDublicate === -1) {
                       return Promise.resolve();
                     }
-                    return Promise.reject(new Error('Job type is exist!'));
+                    return Promise.reject(new Error("Job type is exist!"));
                   },
                 }),
               ]}
             >
               <Input />
             </Form.Item>
-            <Button style={{visibility: 'hidden'}} type="primary" id="submidAddNew" htmlType="submit">
+            <Button
+              style={{ visibility: "hidden" }}
+              type="primary"
+              id="submidAddNew"
+              htmlType="submit"
+            >
               Register
             </Button>
           </Form>
           <div className="newJob__action">
-              <button className="typeJobAdd tyJobAddBtn" type='submit' onClick={addNewJob}>Add</button>
-              <button className="typeJobAdd typeJobCancle" onClick={cancleAddJob}>Cancle</button>
-            </div>
+            <button
+              className="typeJobAdd tyJobAddBtn"
+              type="submit"
+              onClick={addNewJob}
+            >
+              Add
+            </button>
+            <button className="typeJobAdd typeJobCancle" onClick={cancleAddJob}>
+              Cancle
+            </button>
+          </div>
         </div>
       </div>
       <Slider {...settings}>
         {mainJob.map((job, idx) => {
           return (
-            <div key={idx} className={"tabMainJob " + (!editState||editState?.key == idx?"":"editAfter")} data-key={idx} data-idjob={job._id}>
-              <div className={"tabMainJob__title " + (currentJobType == idx?"active":"")} onClick={choseSubJobType}>
+            <div
+              key={idx}
+              className={
+                "tabMainJob " +
+                (!editState || editState?.key === idx ? "" : "editAfter")
+              }
+              data-key={idx}
+              data-idjob={job._id}
+            >
+              <div
+                className={
+                  "tabMainJob__title " + (currentJobType === idx ? "active" : "")
+                }
+                onClick={choseSubJobType}
+              >
                 <p suppressContentEditableWarning={true}>{job.name}</p>
                 <div className="tabMainJob__overLay">
-                  <button className="prompNote delete" onClick={deleteMainJob}>Yes</button>
-                  <button className="prompNote noDelete" onClick={deleteMainJob}>No</button>
+                  <button className="prompNote delete" onClick={deleteMainJob}>
+                    Yes
+                  </button>
+                  <button
+                    className="prompNote noDelete"
+                    onClick={deleteMainJob}
+                  >
+                    No
+                  </button>
                 </div>
               </div>
               <div className="tabMainJob__editting">
-                <div className="editing__item editBtn" onClick={editing?updateMainType:editMainType}>
-                  {editing?"Save":"Edit"}
+                <div
+                  className="editing__item editBtn"
+                  onClick={editing ? updateMainType : editMainType}
+                >
+                  {editing ? "Save" : "Edit"}
                 </div>
-                <div className="editing__item deleteBtn" onClick={editing?exitEdit:deleteMainType}>
-                  {editing?"Cancle":"Delete"}
+                <div
+                  className="editing__item deleteBtn"
+                  onClick={editing ? exitEdit : deleteMainType}
+                >
+                  {editing ? "Cancle" : "Delete"}
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Table } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -115,11 +115,11 @@ const Tablelist = (props) => {
       render: (text, record, index) => {
         return (
           <div
-            className={"settingJob " + ((DeleteIdx && DeleteIdx == index)?"comfirm":"")}
+            className={"settingJob " + ((DeleteIdx && DeleteIdx === index)?"comfirm":"")}
             data-jobid={record._id}
             data-index={index}
           >
-            {DeleteIdx && DeleteIdx == index ? (
+            {DeleteIdx && DeleteIdx === index ? (
               <>
                 <p>Confirm?</p>
                 <CheckCircleOutlined id="approveDelete" onClick={deleteJob}/>

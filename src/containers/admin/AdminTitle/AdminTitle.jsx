@@ -1,6 +1,6 @@
 import React, {useEffect, useState, Fragment} from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory, useLocation, useParams } from 'react-router';
+import {  useLocation, useParams } from 'react-router';
 import {Link} from 'react-router-dom';
 import {adminRoutes} from 'routes/index';
 import {HomeOutlined, RightOutlined} from '@ant-design/icons';

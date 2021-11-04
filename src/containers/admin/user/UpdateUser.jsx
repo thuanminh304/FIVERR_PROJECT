@@ -10,22 +10,19 @@ import Loader from "components/Loader/Loader";
 import "./user.scss";
 import messageConfig from "components/Message/message";
 import errorForm from "components/showErrors/showError";
+import { useDispatch } from "react-redux";
+import { actGetDetailUser } from "containers/shared/Auth/module/actions";
 
 //CONTENT
 export default function UpdateUser() {
   const params = useParams();
   const history = useHistory();
-  const [detailUser, setDetailUser] = useState(null);
+  const dispatch = useDispatch();
+  const { detailUser } = useSelector((state) => state.AuthReducer);
   const { loading } = useSelector((state) => state.managementUserReducer);
   useEffect(() => {
-    userApi
-      .getDetailUser(params.idUser)
-      .then((res) => {
-        setDetailUser(res.data);
-      })
-      .catch((err) => console.log(err?.response.data));
+    dispatch(actGetDetailUser(params.idUser));
   }, []);
-
   //tạo form để lưu trừ thông tin nhập từ input
   const formik = useFormik({
     enableReinitialize: true,
@@ -119,7 +116,7 @@ export default function UpdateUser() {
                 placeholder="Enter name"
                 value={values.name}
               />
-               {errorForm.showErrors(
+              {errorForm.showErrors(
                 errors.name,
                 touched.name,
                 values.name,
@@ -153,7 +150,7 @@ export default function UpdateUser() {
                 onChange={formik.handleChange}
                 value={values.phone}
               />
-             {errorForm.showErrors(
+              {errorForm.showErrors(
                 errors.phone,
                 touched.phone,
                 values.phone,
@@ -186,7 +183,7 @@ export default function UpdateUser() {
                 onChange={handleChangeGender}
                 value={values.gender}
               />
-             {errorForm.showErrorsDefault(errors.gender, touched.gender)}
+              {errorForm.showErrorsDefault(errors.gender, touched.gender)}
             </Form.Item>
             <Form.Item>
               <label htmlFor="">Role</label>

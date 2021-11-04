@@ -15,22 +15,22 @@ export default function Projects() {
         <Slider {...settings}>
           <div className="fiverrProject__item">
             <div className="fiverrProject__img">
-              <a href="#">
-                <img className="img-fluid" src="./images/eveeelin.jpeg" alt />
+              <a href="# ">
+                <img className="img-fluid" src="./images/eveeelin.jpeg" alt="" />
               </a>
             </div>
             <div className="fiverrProject__bot">
               <div className="fiverrProject__user">
-                <a href="#">
-                  <img src="./images/user11.png" alt />
+                <a href="# ">
+                  <img src="./images/user11.png" alt="" />
                 </a>
               </div>
               <div className="fiverrProject__name">
-                <a href="#">
+                <a href="# ">
                   <b>Logo Design</b>
                 </a>
                 <br />
-                <a href="#" id="username">
+                <a href="# " id="username">
                   by eveeelin
                 </a>
               </div>
@@ -38,26 +38,26 @@ export default function Projects() {
           </div>
           <div className="fiverrProject__item">
             <div className="fiverrProject__img">
-              <a href="#">
+              <a href="# ">
                 <img
                   className="img-fluid"
                   src="./images/bruno_malagrino.jfif"
-                  alt
+                  alt=""
                 />
               </a>
             </div>
             <div className="fiverrProject__bot">
               <div className="fiverrProject__user">
-                <a href="#">
-                  <img src="./images/user8.jfif" className="img-fluid" alt />
+                <a href="# ">
+                  <img src="./images/user8.jfif" className="img-fluid" alt="" />
                 </a>
               </div>
               <div className="fiverrProject__name">
-                <a href="#">
+                <a href="# ">
                   <b>Logo Design</b>
                 </a>
                 <br />
-                <a href="#" id="username">
+                <a href="# " id="username">
                   by bruno_malagrino
                 </a>
               </div>
@@ -65,22 +65,22 @@ export default function Projects() {
           </div>
           <div className="fiverrProject__item">
             <div className="fiverrProject__img">
-              <a href="#">
-                <img className="img-fluid" src="./images/spickex.jpeg" alt />
+              <a href="# ">
+                <img className="img-fluid" src="./images/spickex.jpeg" alt="" />
               </a>
             </div>
             <div className="fiverrProject__bot">
               <div className="fiverrProject__user">
-                <a href="#">
-                  <img src="./images/user10.jpg" alt />
+                <a href="# ">
+                  <img src="./images/user10.jpg" alt="" />
                 </a>
               </div>
               <div className="fiverrProject__name">
-                <a href="#">
+                <a href="# ">
                   <b>Portraits &amp; Caricatures</b>
                 </a>
                 <br />
-                <a href="#" id="username">
+                <a href="# " id="username">
                   by spickex
                 </a>
               </div>
@@ -88,22 +88,22 @@ export default function Projects() {
           </div>
           <div className="fiverrProject__item">
             <div className="fiverrProject__img">
-              <a href="#">
-                <img className="img-fluid" src="./images/skydesigner.png" alt />
+              <a href="# ">
+                <img className="img-fluid" src="./images/skydesigner.png" alt="" />
               </a>
             </div>
             <div className="fiverrProject__bot">
               <div className="fiverrProject__user">
-                <a href="#">
-                  <img src="./images/user3.png" alt />
+                <a href="# ">
+                  <img src="./images/user3.png" alt="" />
                 </a>
               </div>
               <div className="fiverrProject__name">
-                <a href="#">
+                <a href="# ">
                   <b>Web &amp; Mobile Design</b>
                 </a>
                 <br />
-                <a href="#" id="username">
+                <a href="# " id="username">
                   by skydesigner
                 </a>
               </div>
@@ -111,26 +111,26 @@ export default function Projects() {
           </div>
           <div className="fiverrProject__item">
             <div className="fiverrProject__img">
-              <a href="#">
+              <a href="# ">
                 <img
                   className="img-fluid"
                   src="./images/christophbrandl.jfif"
-                  alt
+                  alt=""
                 />
               </a>
             </div>
             <div className="fiverrProject__bot">
               <div className="fiverrProject__user">
-                <a href="#">
-                  <img src="./images/user5.png" alt />
+                <a href="# ">
+                  <img src="./images/user5.png" alt="" />
                 </a>
               </div>
               <div className="fiverrProject__name">
-                <a href="#">
+                <a href="# ">
                   <b>Illustration</b>
                 </a>
                 <br />
-                <a href="#" id="username">
+                <a href="# " id="username">
                   by christophbrandl
                 </a>
               </div>
@@ -138,26 +138,26 @@ export default function Projects() {
           </div>
           <div className="fiverrProject__item">
             <div className="fiverrProject__img">
-              <a href="#">
+              <a href="# ">
                 <img
                   className="img-fluid"
                   src="./images/lamonastudio-img.jfif"
-                  alt
+                  alt=""
                 />
               </a>
             </div>
             <div className="fiverrProject__bot">
               <div className="fiverrProject__user">
-                <a href="#">
-                  <img src="./images/user4.png" alt />
+                <a href="# ">
+                  <img src="./images/user4.png" alt="" />
                 </a>
               </div>
               <div className="fiverrProject__name">
-                <a href="#">
+                <a href="# ">
                   <b>Animated GIFs</b>
                 </a>
                 <br />
-                <a href="#" id="username">
+                <a href="# " id="username">
                   by lamonastudio
                 </a>
               </div>
@@ -165,26 +165,26 @@ export default function Projects() {
           </div>
           <div className="fiverrProject__item">
             <div className="fiverrProject__img">
-              <a href="#">
+              <a href="# ">
                 <img
                   className="img-fluid"
                   src="./images/annapietrangeli.jpeg"
-                  alt
+                  alt=""
                 />
               </a>
             </div>
             <div className="fiverrProject__bot">
               <div className="fiverrProject__user">
-                <a href="#">
-                  <img src="./images/user2.jpg" alt />
+                <a href="# ">
+                  <img src="./images/user2.jpg" alt="" />
                 </a>
               </div>
               <div className="fiverrProject__name">
-                <a href="#">
+                <a href="# ">
                   <b>Book Design</b>
                 </a>
                 <br />
-                <a href="#" id="username">
+                <a href="# " id="username">
                   by annapietrangeli
                 </a>
               </div>
@@ -192,26 +192,26 @@ export default function Projects() {
           </div>
           <div className="fiverrProject__item">
             <div className="fiverrProject__img">
-              <a href="#">
+              <a href="# ">
                 <img
                   className="img-fluid"
                   src="./images/mijalzagier.jfif"
-                  alt
+                  alt=""
                 />
               </a>
             </div>
             <div className="fiverrProject__bot">
               <div className="fiverrProject__user">
-                <a href="#">
-                  <img src="./images/user7.jpg" alt />
+                <a href="# ">
+                  <img src="./images/user7.jpg" alt="" />
                 </a>
               </div>
               <div className="fiverrProject__name">
-                <a href="#">
+                <a href="# ">
                   <b>Packaging Design</b>
                 </a>
                 <br />
-                <a href="#" id="username">
+                <a href="# " id="username">
                   by mijalzagier
                 </a>
               </div>
@@ -219,26 +219,26 @@ export default function Projects() {
           </div>
           <div className="fiverrProject__item">
             <div className="fiverrProject__img">
-              <a href="#">
+              <a href="# ">
                 <img
                   className="img-fluid"
                   src="./images/passionshake.jpeg"
-                  alt
+                  alt=""
                 />
               </a>
             </div>
             <div className="fiverrProject__bot">
               <div className="fiverrProject__user">
-                <a href="#">
-                  <img src="./images/user6.jpg" alt />
+                <a href="# ">
+                  <img src="./images/user6.jpg" alt="" />
                 </a>
               </div>
               <div className="fiverrProject__name">
-                <a href="#">
+                <a href="# ">
                   <b>Product Photography</b>
                 </a>
                 <br />
-                <a href="#" id="username">
+                <a href="# " id="username">
                   by passionshake
                 </a>
               </div>
@@ -246,26 +246,26 @@ export default function Projects() {
           </div>
           <div className="fiverrProject__item">
             <div className="fiverrProject__img">
-              <a href="#">
+              <a href="# ">
                 <img
                   className="img-fluid"
                   src="./images/fernandobengua.jfif"
-                  alt
+                  alt=""
                 />
               </a>
             </div>
             <div className="fiverrProject__bot">
               <div className="fiverrProject__user">
-                <a href="#">
-                  <img src="./images/user9.jfif" alt />
+                <a href="# ">
+                  <img src="./images/user9.jfif" alt="" />
                 </a>
               </div>
               <div className="fiverrProject__name">
-                <a href="#">
+                <a href="# ">
                   <b>Social Media Design</b>
                 </a>
                 <br />
-                <a href="#" id="username">
+                <a href="# " id="username">
                   by fernandobengua
                 </a>
               </div>
@@ -273,29 +273,29 @@ export default function Projects() {
           </div>
           <div className="fiverrProject__item">
             <div className="fiverrProject__img">
-              <a href="#">
-                <img className="img-fluid" src="./images/noneyn.jfif" alt />
+              <a href="# ">
+                <img className="img-fluid" src="./images/noneyn.jfif" alt="" />
               </a>
             </div>
             <div className="fiverrProject__bot">
               <div className="fiverrProject__user">
-                <a href="#">
-                  <img src="./images/user1.jpg" alt />
+                <a href="# ">
+                  <img src="./images/user1.jpg" alt="" />
                 </a>
               </div>
               <div className="fiverrProject__name">
-                <a href="#">
+                <a href="# ">
                   <b>Flyer Design</b>
                 </a>
                 <br />
-                <a href="#" id="username">
+                <a href="# " id="username">
                   by noneyn
                 </a>
               </div>
             </div>
           </div>
         </Slider>
-        <a href="#" className="see-more-link">
+        <a href="# " className="see-more-link">
           See More Project &gt;{" "}
         </a>
       </div>

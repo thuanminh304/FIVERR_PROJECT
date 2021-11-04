@@ -13,7 +13,7 @@ const Mainjoblist = (props) => {
     const {mainId,subJob,proService,localSeller,onlineSeller} = useSelector(state=>state.FilterJobListReducer)
     const [data,setData] = useState([]);
     const selectList = mainJob?.find(job=>{
-        return job._id == isParrams;
+        return job._id === isParrams;
     })?.subTypeJobs;
     useEffect(() => {
         if(isParrams !== mainId){
