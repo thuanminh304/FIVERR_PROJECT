@@ -47,7 +47,7 @@ const Formlayout = (props) => {
   if (name === "certification") {
     return (
       <>
-        <Form.Item name={name} rules={formValidConfig(name)}>
+        <Form.Item name={name}>
           <Input type={type} placeholder={placeHolderText} />
         </Form.Item>
         <div className="certificationResult"></div>
@@ -57,7 +57,7 @@ const Formlayout = (props) => {
   if (name === "skill") {
     return (
       <>
-        <Form.Item name={name} rules={formValidConfig(name)}>
+        <Form.Item name={name}>
           <Input type={type} placeholder={placeHolderText} />
         </Form.Item>
         <div className="skillResult"></div>

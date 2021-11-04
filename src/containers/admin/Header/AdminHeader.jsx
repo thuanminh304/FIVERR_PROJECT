@@ -1,16 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import Sidebar from './sideBar/SideBar';
 import {BellOutlined, MessageOutlined, MoreOutlined} from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import './AdminHeader.scss';
 import Messagenotify from './Notify/MessageNotify';
 import Notify from './Notify/Notify';
-import { FIX_SIDE_BAR } from './modules/types';
+import { DELETE_NOTIFY, FIX_SIDE_BAR, SEE_NOTIFY } from './modules/types';
+import Notifynote from './Notify/NotifyNote/NotifyNote';
 const Adminheader = () => {
     const [showSideRight, setShowSideRight] = useState(false);
-    const [sideContent, setContent] = useState();
+    const [sideContent, setContent] = useState('');
     const dispatch = useDispatch();
     const {isFixSideBar, themeColor} = useSelector(state=>state.AdminDashBoardSettingReducer);
+    const {isNote, listNote, isNewNotify} = useSelector(state=>state.AdminDashBoardSettingReducer);
     const handleClick = (event) => {
         const noteBtn = event.target.closest('.noteIcon');
         const messageIcon = event.target.closest('.messageIcon');
@@ -22,6 +24,7 @@ const Adminheader = () => {
             if(!!isShow){
                 if(!!noteBtn){
                     type = 'note';
+                    dispatch({type:SEE_NOTIFY});
                 }
                 else if(!!messageIcon){
                     type = 'message';
@@ -43,10 +46,13 @@ const Adminheader = () => {
                 setShowSideRight(false);
             }, 100);   
         }
-    }
+    };
     const fixSideBar = () => {
         const fixSideBar = !isFixSideBar;
         dispatch({type: FIX_SIDE_BAR,payload:fixSideBar})
+    };
+    const deleteNotify = () => {
+        dispatch({type: DELETE_NOTIFY});
     }
     return (
         <header className = {"AdminHeader " +  themeColor} onClick={handleClick}>
@@ -67,15 +73,21 @@ const Adminheader = () => {
                 <div className="header__user">
                     <div className="user__item noteIcon">
                         <BellOutlined />
-                        <div className="notice"></div>
-                        <div className="notice__heartbeat"></div>
+                        
+                        {isNewNotify?(
+                            <>
+                                <div className="notice"></div>
+                                <div className="notice__heartbeat"></div>
+                            </>
+                        ):''}
                     </div>
                     <div className="user__item messageIcon">
                         <MessageOutlined />
-                        <div className="notice"></div>
-                        <div className="notice__heartbeat"></div>
+                        {/* <div className="notice"></div> */}
+                        {/* <div className="notice__heartbeat"></div> */}
                     </div>
                     <div className="user__item userIcon">
+                        <div className="notice"></div>
                         <div className="userImg">
                             <img src="" alt="" />
                         </div>
@@ -89,7 +101,8 @@ const Adminheader = () => {
             </div>
             <Sidebar setting={sideContent}/>
             <Messagenotify message={sideContent}/>
-            <Notify notify={sideContent}/>
+            <Notify notify={sideContent} deleteNotify={deleteNotify} listNote={listNote}/>
+            {isNote?<Notifynote/>:""}
             </div>
         </header>
     );

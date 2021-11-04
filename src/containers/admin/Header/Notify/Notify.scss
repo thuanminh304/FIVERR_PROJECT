@@ -32,8 +32,14 @@
         }
         .messageNotify__messageBox{  
             margin-bottom: 0;
-            height: 320px;
+            max-height: 320px;
             overflow-y: auto;
+            p{
+                text-align: center;
+                margin: 14px 0;
+                font-size: 15px;
+                color: #EFF0F4;
+            }
         }
         .messageBox__item{
             display:flex;
@@ -83,6 +89,11 @@
             background-color: #EFF0F4;
             p{
                 margin-bottom: 0;
+                cursor: pointer;
+                transition: color 0.2s;
+                &:hover{
+                    color: #49cdd0;
+                }
             }
         }
         .notify__footer{

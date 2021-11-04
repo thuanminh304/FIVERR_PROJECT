@@ -34,6 +34,12 @@ const jobApi = {
     getJobDetail(id){
         return callApi(`api/jobs/${id}`);
     },
+    updateJobDetail(id, data){
+        return callApi(`api/jobs/${id}`, "PUT", data, 'token');
+    },
+    updateJobImage(id,data){
+        return callApi(`api/jobs/upload-image/${id}`, 'POST', data, 'token');
+    }
 }
 
 export default jobApi;

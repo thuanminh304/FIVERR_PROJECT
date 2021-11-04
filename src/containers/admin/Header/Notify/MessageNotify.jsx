@@ -9,7 +9,8 @@ const Messagenotify = (props) => {
                     <h4>MESSAGES</h4>
                 </div>
                 <ul className="messageNotify__messageBox">
-                    <li className="messageBox__item">
+                    <p>Feature is Processing...</p>
+                    {/* <li className="messageBox__item">
                         <div className="item__userItem">
                             <div className="user__img"></div>
                         </div>
@@ -86,7 +87,7 @@ const Messagenotify = (props) => {
                                 Lorem ipsum dolor sit amet...
                             </div>
                         </div>
-                    </li>
+                    </li> */}
                 </ul>
                 <div className="messageNotify__viewAllBtn">
                     <p>View all message</p>

@@ -31,8 +31,24 @@ import {
   GET_JOB_DETAIL_REQ,
   GET_JOB_DETAIL_SUCC,
   GET_JOB_DETAIL_FAIL,
+  UPDATE_JOB_DETAIL_REQ,
+  UPDATE_JOB_DETAIL_SUCC,
+  UPDATE_JOB_DETAIL_FAIL,
 } from "./types";
 import jobApi from "apis/jobApi";
+import { actShowNote, actTurnOffNote } from "containers/admin/Header/modules/actions";
+
+const showNote = (dispatch, getState, typeNote, contentNote) => {
+    const {isNote} = getState().AdminDashBoardSettingReducer;
+    if(isNote){
+      dispatch(actTurnOffNote());
+    }
+    const note = {type: typeNote, content: contentNote};
+    console.log()
+    dispatch(actShowNote(note));
+}
+
+
 // get type of main job lists
 const actGetMainJobListReq = () => ({
   type: GET_MAIN_JOB_REQUEST,
@@ -73,15 +89,17 @@ const actAddNewMainJobFail = (error) => ({
   payload: error,
 });
 export const actAddNewMainJob = (newData) => {
-  return (dispatch) => {
+  return (dispatch,getState) => {
     dispatch(actAddNewMainJobReq());
     jobApi
       .addNewMainJob(newData)
       .then((res) => {
         dispatch(actAddNewMainJobSucc(res.data));
+        showNote(dispatch, getState,'complete','Add New Type Job Complete');
       })
       .catch((error) => {
         dispatch(actAddNewMainJobFail(error));
+        showNote(dispatch, getState,'error','Add New Type Job Fail');
       });
   };
 };
@@ -99,7 +117,7 @@ const actUpdateMainJobFail = (error) => ({
   payload: error,
 });
 export const actUpdateMainJob = (id, data) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(actUpdateMainJobReq());
     jobApi
       .updateMainJon(id, data)
@@ -107,9 +125,11 @@ export const actUpdateMainJob = (id, data) => {
         const newData = { ...res.data };
         newData.name = data.name;
         dispatch(actUpdateMainJobSucc(newData));
+        showNote(dispatch, getState,'complete','Update Type Job Name Complete');
       })
       .catch((error) => {
         dispatch(actUpdateMainJobFail(error));
+        showNote(dispatch, getState,'error','Update Type Job Name Fail');
       });
   };
 };
@@ -128,15 +148,18 @@ const actdeleteMainJobFail = (error) => ({
 });
 
 export const actDeleteMainJob = (id) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const {isNote} = getState().AdminDashBoardSettingReducer;
     dispatch(actdeleteMainJobReq());
     jobApi
       .deleteMainJob(id)
       .then((res) => {
         dispatch(actdeleteMainJobSucc(id));
+        showNote(dispatch, getState,'complete','Delete Type Job Name Complete');
       })
       .catch((error) => {
         dispatch(actdeleteMainJobFail(error));
+        showNote(dispatch, getState,'error','Delete Type Job Name Fail');
       });
   };
 };
@@ -158,15 +181,17 @@ const actAddNewSubJobTypeFail = (error) => ({
 });
 
 export const actAddNewSubJobType = (data) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(actAddNewSubJobTypeReq());
     jobApi
       .addNewSubJobType(data)
       .then((res) => {
         dispatch(actAddNewSubJobTypeSuc(res.data));
+        showNote(dispatch, getState,'complete','Add New SubType Job Name Complete');
       })
       .catch((error) => {
         dispatch(actAddNewSubJobTypeFail(error));
+        showNote(dispatch, getState,'error','Add New SubType Job Name Fail');
       });
   };
 };
@@ -188,7 +213,7 @@ const actUpdateSubJobTypeFail = (error) => ({
 });
 
 export const actUpdateSubJob = (id, data) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(actUpdateSubJobTypeReq());
     jobApi
       .updateSubJobType(id, data)
@@ -196,9 +221,11 @@ export const actUpdateSubJob = (id, data) => {
         const newData = { ...res.data };
         newData.name = data.name;
         dispatch(actUpdateSubJobTypeSuc(newData));
+        showNote(dispatch, getState,'complete','Update SubType Job Name Complete');
       })
       .catch((error) => {
         dispatch(actUpdateSubJobTypeFail(error));
+        showNote(dispatch, getState,'error','Update SubType Job Name Fail');
       });
   };
 };
@@ -219,15 +246,17 @@ const actDeleteSubJobTypeFail = (error) => ({
 });
 
 export const actDeleteSubJobType = (id) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(actDeleteSubJobTypeReq());
     jobApi
       .deleteSubJobType(id)
       .then((res) => {
         dispatch(actDeleteSubJobTypeSuc(res.data));
+        showNote(dispatch, getState,'complete','Delete SubType Job Name Complete');
       })
       .catch((error) => {
         dispatch(actDeleteSubJobTypeFail(error));
+        showNote(dispatch, getState,'error','Delete SubType Job Name Fail');
       });
   };
 };
@@ -306,9 +335,11 @@ export const actDeleteJob = (id) => {
       };
       const jobData = [...jobList];
       dispatch(actDeleteJobSucc(jobData));
+      showNote(dispatch, getState,'complete','Delete Job Complete');
     })
     .catch(error=>{
       dispatch(actDeleteJobFail(error));
+      showNote(dispatch, getState,'error','Delete Job Fail');
     });
   };
 };
@@ -333,15 +364,52 @@ export const actGetJobDetail = (id) => {
       const userCreated = listAllUser.find(user=>{
         return user._id = res.data.userCreated;
       });
+      const userBooking = listAllUser.find(user=>{
+        return user._id = res.data.usersBooking;
+      });
+      let userBookingName = userBooking?.name;
       let userName = userCreated?.name;
       if(!userName) {
         userName = 'No Name';
-      }
-      const data = {...res.data, userCreated: userName};
+      };
+      const data = {...res.data, userCreatedName: userName, userBookingName: userBookingName};
       dispatch(actGetJobDetailSucc(data));
     })
     .catch(error=>{
       dispatch(actGetJobDetailFail(error));
+    });
+  };
+};
+
+// update job detail
+const actUpdateJobDetailReq = () => ({
+  type: UPDATE_JOB_DETAIL_REQ,
+});
+const actUpdateJobDetailFail = (error) => ({
+  type: UPDATE_JOB_DETAIL_FAIL,
+  payload: error,
+});
+export const actUpdateJobDetail = (id, data, image=null) => {
+  return (dispatch, getState) => {
+    dispatch(actUpdateJobDetailReq());
+    jobApi.updateJobDetail(id,data).then(res=>{
+      if(!image){
+        dispatch(actGetJobDetail(id));
+        showNote(dispatch, getState,'complete','Update Job Complete');
+      }
+      else{
+        jobApi.updateJobImage(id,image).then(res=>{
+          dispatch(actGetJobDetail(id));
+          showNote(dispatch, getState,'complete','Update Job Complete');
+        })
+        .catch(error=>{
+          dispatch(actUpdateJobDetailFail(error));
+        });
+      }
+    })
+    .catch(error=>{
+      dispatch(actUpdateJobDetailFail(error));
+      showNote(dispatch, getState,'error','Update Job Fail');
     });
   };
 };

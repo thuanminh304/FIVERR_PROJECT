@@ -28,7 +28,7 @@ const Tablelist = (props) => {
       fixed: "left",
       key: "index",
       render: (value, item, index) => {
-        return (currentPage - 1) * 10 + index + 1;
+        return (currentPage - 1) * currentPageSize + index + 1;
       },
     },
     {
