@@ -4,65 +4,75 @@ import "./profileUser.scss";
 import { EditOutlined } from "@ant-design/icons";
 import { actUploadAvatar } from "containers/shared/Auth/module/actions";
 import { useState } from "react";
-
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
+import { useHistory } from "react-router";
+import {
+  renderInputCert,
+  renderInputSkill,
+  renderAvatar,
+} from "components/render/render";
+
 export default function ProfileUser(props) {
   const { currentUser } = useSelector((state) => state.AuthReducer);
-  const currentUserUpload = JSON.parse(
-    localStorage.getItem("fiverrUserUpload")
-  );
   const dispatch = useDispatch();
+  const history = useHistory();
   const [imageUrl, setImageUrl] = useState(null);
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      avatar: null,
+      avatar: currentUser?.avatar,
+      skill: currentUser?.skill,
+      bookingJob: currentUser?.bookingJob,
+      email: currentUser?.email,
+      gender: currentUser?.gender,
+      name: currentUser?.name,
+      phone: currentUser?.phone,
+      birthday: currentUser?.birthday,
+      role: currentUser?.role,
+      certification: currentUser?.certification,
+      _id: currentUser?._id,
+    },
+    onSubmit: (values) => {
+      console.log(values);
     },
   });
   const handleChangeAvatar = (event) => {
     let file = event.target.files[0];
     if (file) {
+      //
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.addEventListener("load", (event) => {
         setImageUrl(event.target.result);
       });
       formik.setFieldValue("avatar", file);
+      //
       const formData = new FormData();
       formData.append("avatar", file, file.name);
       dispatch(actUploadAvatar(formData));
     }
   };
-  const nameAvatar = currentUser?.email
-    .split("")
-    .splice(0, 1)
-    .toString()
-    .toUpperCase();
-  const renderAvatar = () => {
-    if (currentUserUpload) {
-      return (
-        <img src={currentUserUpload.avatar} className="avatar-user" alt="" />
-      );
-    } else if (imageUrl) {
-      return <img src={imageUrl} className="avatar-user" alt="" />;
-    } else if (currentUser?.avatar) {
-      return <img className="avatar-user" src={currentUser.avatar} alt="" />;
-    } else {
-      return (
-        <label htmlFor="">
-          <span>{nameAvatar}</span>
-        </label>
-      );
-    }
-  };
+const handleClickBlockInput=(e,classInput)=>{
+  e.preventDefault();
+  document.querySelector(classInput).style.display =
+    "block";
+}
+const handleClickDone=()=>{
+
+}
+  
+
   return (
     <div className="profile-user row">
       <div className="col-3 profile-left">
         <div className="info-basic">
           <div className="info-top">
             <div className="avatar-edit">
-              {renderAvatar()}
+              {renderAvatar(
+                imageUrl ? imageUrl : currentUser?.avatar,
+                currentUser
+              )}
 
               <div className="custom-input-file">
                 <label htmlFor="upload">
@@ -119,105 +129,128 @@ export default function ProfileUser(props) {
           <button>Enroll Now</button>
         </div>
         <div className="info-others">
-          <div className="description">
-            <p>Description</p>
-            <button>Edit Description</button>
-          </div>
-          <div className="languages">
-            <p>Languages</p>
-            <button>Add New</button>
-          </div>
-          <div className="link-accounts">
-            <p>Link Accounts</p>
-            <div className="list-accounts">
-              <ul>
-                <li>
-                  <a href="# ">
-                    <span>+</span>
-                    Facebook
-                  </a>
-                </li>
-                <li>
-                  <a style={{ color: "#555555", cursor: "default" }} href="# ">
-                    <span>
-                      <i className="fa fa-google-plus-square"></i>
-                    </span>
-                    Google
-                  </a>
-                </li>
-                <li>
-                  <a href="# ">
-                    <span>+</span>
-                    Dribbble
-                  </a>
-                </li>
-                <li>
-                  <a href="# ">
-                    <span>+</span>
-                    Stack Overflow
-                  </a>
-                </li>
-                <li>
-                  <a href="# ">
-                    <span>+</span>
-                    Github
-                  </a>
-                </li>
-                <li>
-                  <a href="# ">
-                    <span>+</span>
-                    Vimeo
-                  </a>
-                </li>
-                <li>
-                  <a href="# ">
-                    <span>+</span>
-                    Twitter
-                  </a>
-                </li>
-              </ul>
+          <form onSubmitCapture={formik.handleSubmit}>
+            <div className="description">
+              <p>Description</p>
+              <button>Edit Description</button>
             </div>
-          </div>
-          <div className="skill">
-            <div>
-              <p>Skill</p>
-              <input
-                type="text"
-                value={currentUser.skill}
-                placeholder="Add your Skill.
-"
-              />
+            <div className="languages">
+              <p>Languages</p>
+              <button>Add New</button>
             </div>
-            <button>Add New</button>
-          </div>
-          <div className="education">
-            <div>
-              <p>Education</p>
-              <input
-                type="text"
-                placeholder="Add your Education.
+            <div className="link-accounts">
+              <p>Link Accounts</p>
+              <div className="list-accounts">
+                <ul>
+                  <li>
+                    <a href="# ">
+                      <span>+</span>
+                      Facebook
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      style={{ color: "#555555", cursor: "default" }}
+                      href="# "
+                    >
+                      <span>
+                        <i className="fa fa-google-plus-square"></i>
+                      </span>
+                      Google
+                    </a>
+                  </li>
+                  <li>
+                    <a href="# ">
+                      <span>+</span>
+                      Dribbble
+                    </a>
+                  </li>
+                  <li>
+                    <a href="# ">
+                      <span>+</span>
+                      Stack Overflow
+                    </a>
+                  </li>
+                  <li>
+                    <a href="# ">
+                      <span>+</span>
+                      Github
+                    </a>
+                  </li>
+                  <li>
+                    <a href="# ">
+                      <span>+</span>
+                      Vimeo
+                    </a>
+                  </li>
+                  <li>
+                    <a href="# ">
+                      <span>+</span>
+                      Twitter
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="skill">
+              <div>
+                <p>Skill</p>
+                {renderInputSkill(currentUser?.skill)}
+                <input
+                  type="text"
+                  value={formik.values.skill}
+                  placeholder="Add your Skill.
 "
-                style={{
-                  fontSize: 14,
-                  fontWeight: 600,
-                  opacity: 0.4,
+                  onChange={formik.handleChange}
+                />
+              </div>
+              <button
+                onClick={(e) => {
+                  handleClickBlockInput(e,".input-addnew-skill")
                 }}
-              />
+              >
+                {currentUser?.skill.length > 1 ? "Edit" : "Add New"}
+              </button>
             </div>
-            <button>Add New</button>
-          </div>
-          <div className="certification">
-            <div>
-              <p>Certification</p>
-              <input
-                type="text"
-                value={currentUser.certification}
-                placeholder="Add your Certification.
+            <div className="education">
+              <div>
+                <p>Education</p>
+                <input
+                  type="text"
+                  placeholder="Add your Education.
 "
-              />
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 600,
+                    opacity: 0.4,
+                  }}
+                />
+              </div>
+              <button>Add New</button>
             </div>
-            <button>Add New</button>
-          </div>
+            <div className="certification">
+              <div>
+                <p>Certification</p>
+                {renderInputCert(currentUser?.certification)}
+                <input
+                  type="text"
+                  value={formik.values.certification}
+                  onChange={formik.handleChange}
+                  placeholder="Add your Certification.
+"
+                />
+              </div>
+              <button
+                
+                onClick={(e) => {
+                  handleClickBlockInput(e,".input-addnew-cert")
+                }}
+              >
+                {currentUser?.certification.length > 1 ? "Edit" : "Add New"}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
       <div className="col-7 profile-right">
