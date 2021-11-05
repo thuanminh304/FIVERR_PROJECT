@@ -3,11 +3,17 @@ import { Button } from "antd";
 export const renderInputSkill = (skill) => {
   return (
     <div className="input-addnew-skill" style={{ display: "none" }}>
-      <input className="values-addnew-skill" type="textarea" defaultValue={skill} />
+      <input
+        className="values-addnew-skill"
+        type="textarea"
+        defaultValue={skill}
+      />
       <button
         type="submit"
         onClick={(e) => {
-          let valuesAddnew = document.querySelector(".values-addnew-skill").value;
+          let valuesAddnew = document.querySelector(
+            ".values-addnew-skill"
+          ).value;
           const upload = valuesAddnew.split(",");
           const userLogin = JSON.parse(localStorage.getItem("fiverrUser"));
           userLogin.user = {
@@ -16,12 +22,19 @@ export const renderInputSkill = (skill) => {
           };
           localStorage.setItem("fiverrUser", JSON.stringify(userLogin));
           setTimeout(() => {
-            // document.getElementsByClassName(".input-addnew-skill").style.display = "none";
             window.location.reload();
           }, 0);
         }}
       >
         Done
+      </button>
+      <button className="ml-2" type="button"
+        onClick={() => {
+          document.querySelector(".input-addnew-skill").style.display =
+            "none";
+        }}
+      >
+        Cancel
       </button>
     </div>
   );
@@ -30,11 +43,17 @@ export const renderInputSkill = (skill) => {
 export const renderInputCert = (cert) => {
   return (
     <div className="input-addnew-cert" style={{ display: "none" }}>
-      <input className="values-addnew-cert" type="textarea" defaultValue={cert} />
+      <input
+        className="values-addnew-cert"
+        type="textarea"
+        defaultValue={cert}
+      />
       <button
         type="submit"
         onClick={(e) => {
-          let valuesAddnew = document.querySelector(".values-addnew-cert").value;
+          let valuesAddnew = document.querySelector(
+            ".values-addnew-cert"
+          ).value;
           const upload = valuesAddnew.split(",");
           const userLogin = JSON.parse(localStorage.getItem("fiverrUser"));
           userLogin.user = {
@@ -43,12 +62,20 @@ export const renderInputCert = (cert) => {
           };
           localStorage.setItem("fiverrUser", JSON.stringify(userLogin));
           setTimeout(() => {
-            // document.getElementsByClassName(".input-addnew-cert").style.display = "none";
             window.location.reload();
           }, 0);
         }}
       >
         Done
+      </button>
+
+      <button className="ml-2" type="button"
+        onClick={() => {
+          document.querySelector(".input-addnew-cert").style.display =
+            "none";
+        }}
+      >
+        Cancel
       </button>
     </div>
   );
@@ -61,23 +88,17 @@ export const renderAvatar = (imageUrl, currentUser) => {
     .toString()
     .toUpperCase();
   if (imageUrl) {
-    return (
-      <img
-        src={imageUrl}
-        className= "avatar-user" 
-        alt=""
-      />
-    );
+    return <img src={imageUrl} className="avatar-user" alt="" />;
   } else if (currentUser?.avatar) {
     return (
       <img
-        className={imageUrl!==null ? "avatar-user" : "avatar-mini"}
+        className={imageUrl !== null ? "avatar-user" : "avatar-mini"}
         src={currentUser?.avatar}
         alt=""
       />
     );
   } else {
-    return imageUrl!==null ? (
+    return imageUrl !== null ? (
       <label>
         <span>{nameAvatar}</span>
       </label>

@@ -53,16 +53,11 @@ export default function ProfileUser(props) {
       dispatch(actUploadAvatar(formData));
     }
   };
-const handleClickBlockInput=(e,classInput)=>{
-  e.preventDefault();
-  document.querySelector(classInput).style.display =
-    "block";
-}
-const handleClickDone=()=>{
-
-}
+  const handleClickBlockInput = (e, classInput) => {
+    e.preventDefault();
+    document.querySelector(classInput).style.display = "block";
+  };
   
-
   return (
     <div className="profile-user row">
       <div className="col-3 profile-left">
@@ -207,7 +202,7 @@ const handleClickDone=()=>{
               </div>
               <button
                 onClick={(e) => {
-                  handleClickBlockInput(e,".input-addnew-skill")
+                  handleClickBlockInput(e, ".input-addnew-skill");
                 }}
               >
                 {currentUser?.skill.length > 1 ? "Edit" : "Add New"}
@@ -242,9 +237,8 @@ const handleClickDone=()=>{
                 />
               </div>
               <button
-                
                 onClick={(e) => {
-                  handleClickBlockInput(e,".input-addnew-cert")
+                  handleClickBlockInput(e, ".input-addnew-cert");
                 }}
               >
                 {currentUser?.certification.length > 1 ? "Edit" : "Add New"}
