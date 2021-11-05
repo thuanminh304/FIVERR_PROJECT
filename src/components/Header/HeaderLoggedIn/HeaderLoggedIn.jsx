@@ -4,14 +4,13 @@ import { Menu, Dropdown, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./headerLoggedIn.scss";
+import { renderAvatar } from "components/render/render";
 
 export default function HeaderLoggedIn() {
   const dispatch = useDispatch();
 
   const { currentUser } = useSelector((state) => state.AuthReducer);
-  // const currentUserUpload = JSON.parse(
-  //   localStorage.getItem("fiverrUserUpload")
-  // );
+  
   const logOut = () => {
     dispatch(actLogout());
     window.location.replace("/");
@@ -35,23 +34,18 @@ export default function HeaderLoggedIn() {
       </Menu.Item>
     </Menu>
   );
-  const nameAvatar = currentUser?.email
-    .split("")
-    .splice(0, 1)
-    .toString()
-    .toUpperCase();
-  const renderAvatar = () => {
-    // if (currentUser) {
-      // return (
-      //   <img src={currentUser.avatar} className="avatar-mini" alt="" />
-      // );
-    // } else 
-    if (currentUser?.avatar) {
-      return <img className="avatar-mini" src={currentUser.avatar} alt="" />;
-    } else {
-      return <Button className="name-avatar">{nameAvatar} </Button>;
-    }
-  };
+  // const nameAvatar = currentUser?.email
+  //   .split("")
+  //   .splice(0, 1)
+  //   .toString()
+  //   .toUpperCase();
+  // const renderAvatar = () => {
+  //   if (currentUser?.avatar) {
+  //     return <img className="avatar-mini" src={currentUser.avatar} alt="" />;
+  //   } else {
+  //     return <Button className="name-avatar">{nameAvatar} </Button>;
+  //   }
+  // };
   return (
     <div>
       <div id="header-fixed-loggedin">
@@ -81,7 +75,7 @@ export default function HeaderLoggedIn() {
               placement="bottomRight"
               arrow
             >
-              {renderAvatar()}
+              {renderAvatar(null,currentUser)}
             </Dropdown>
           </div>
         </div>

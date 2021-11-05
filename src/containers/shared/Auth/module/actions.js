@@ -32,6 +32,7 @@ export const actLoginUser = (user) => {
     userApi
       .loginUser(user)
       .then((res) => {
+        console.log(res.data,"abc");
         if (!!isRemember) {
           localStorage.setItem("fiverrUser", JSON.stringify(res.data));
         }
@@ -57,6 +58,7 @@ export const actChangeRememberUserLoginStatus = () => {
 
 export const actUploadUserLogin = (data) => {
   return (dispatch) => {
+    console.log(data);
     dispatch(actLoginUserSuccess(data));
   };
 };

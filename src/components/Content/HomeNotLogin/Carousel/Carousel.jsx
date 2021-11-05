@@ -81,8 +81,8 @@ export default function Carousel() {
         </div>
       </Slider>
 
-      <div class="carousel-trusted">
-        <span class="trusted-text">Trusted by:</span>
+      <div className="carousel-trusted">
+        <span className="trusted-text">Trusted by:</span>
         <ul>
           <li>
             <img src="images/facebook.543cf10.png" alt="" />
