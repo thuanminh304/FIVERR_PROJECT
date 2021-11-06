@@ -18,6 +18,7 @@ export default function RenderUploadAvatar(props) {
       jobApi
         .updateJobImage(currentJob?._id, formData)
         .then((res) => {
+            console.log("ok")
           // setTimeout(() => {
           //   setCurrent(current + 1);
           // }, 0);

@@ -63,6 +63,7 @@ const RenderOverview = (props) => {
     <Form onSubmitCapture={formik.handleSubmit} className="render-overview">
       <Form.Item className="item-name" label="Name">
         <Input
+          defaultValue="PROJECT FIVERR"
           placeholder="Name"
           name="name"
           type="text"
