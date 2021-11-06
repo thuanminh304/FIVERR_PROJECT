@@ -9,6 +9,7 @@ import ClientUser from "containers/admin/user/ClientUser";
 import StaffUser from "containers/admin/user/StaffUser";
 import ProfileUser from "containers/home/homePage/profileUser/ProfileUser";
 import Editjob from "containers/admin/JobManagement/EditJob/EditJob";
+import CreateNewJobByUser from "containers/home/homePage/profileUser/createNewJobByUser/CreateNewJobByUser";
 
 export const clientRoutes = [
   {
@@ -20,6 +21,12 @@ export const clientRoutes = [
   {
     path: "/user/:email",
     component: ProfileUser,
+    exact: true,
+    isPrivate: true,
+  },
+  {
+    path: "/by-user/create-new-job",
+    component: CreateNewJobByUser,
     exact: true,
     isPrivate: true,
   },
@@ -64,7 +71,7 @@ export const adminRoutes = [
   {
     path: "/admin/staff/add-staff",
     component: AddNewStaff,
-    exact: false,
+    exact: true,
     isPrivate: true,
     name: 'Add New Staff',
     href: ['Add New Staff'],
@@ -72,7 +79,7 @@ export const adminRoutes = [
   {
     path: "/admin/update-user/:idUser",
     component: UpdateUser,
-    exact: false,
+    exact: true,
     isPrivate: true,
     name: 'Update User',
     href: ['User Lists','Update User'],

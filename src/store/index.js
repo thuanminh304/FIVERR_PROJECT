@@ -8,13 +8,14 @@ import AuthReducer from "containers/shared/Auth/module/reducers";
 import AdminDashBoardSettingReducer from 'containers/admin/Header/modules/reducers';
 import JobManagementReducer from 'Modules/JobManagement/reducers';
 import FilterJobListReducer from 'containers/admin/JobManagement/MainJobType/Modules/reducers';
-
+import profileUserReducer from "containers/home/homePage/profileUser/createNewJobByUser/StepsCreateNewGig/modules/reducer"; 
 const rootReducer = combineReducers({
   managementUserReducer,
   AuthReducer,
   AdminDashBoardSettingReducer,
   JobManagementReducer,
   FilterJobListReducer,
+  profileUserReducer,
 });
 
 const persistConfig = {

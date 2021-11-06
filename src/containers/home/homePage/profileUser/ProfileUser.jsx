@@ -12,6 +12,7 @@ import {
   renderInputSkill,
   renderAvatar,
 } from "components/render/render";
+import { Link } from "react-router-dom";
 
 export default function ProfileUser(props) {
   const { currentUser } = useSelector((state) => state.AuthReducer);
@@ -80,7 +81,7 @@ export default function ProfileUser(props) {
                   name="avatar"
                   type="file"
                   onChange={handleChangeAvatar}
-                  accept=".jpg,.png,jpeg"
+                  accept="image/*"
                 />
               </div>
             </div>
@@ -261,11 +262,15 @@ export default function ProfileUser(props) {
               {">"}
             </p>
           </div>
-          <span>X</span>
+          <span style={{cursor:"pointer"}} onClick={()=>{
+            document.querySelector(".buying-services").style.display="none"
+          }}>X</span>
         </div>
         <div className="create-gig">
           <p>It seems that you don't have any active Gigs. Get selling!</p>
-          <button>Create a New Gig</button>
+          <Link to="/by-user/create-new-job" >
+            <button>Create a New Gig</button>
+          </Link>
         </div>
       </div>
     </div>

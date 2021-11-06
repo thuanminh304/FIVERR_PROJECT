@@ -56,3 +56,5 @@ export const GET_JOB_DETAIL_FAIL = 'GET_JOB_DETAIL_FAIL';
 //update job detail
 export const UPDATE_JOB_DETAIL_REQ = 'UPDATE_JOB_DETAIL_REQ';
 export const UPDATE_JOB_DETAIL_FAIL = 'UPDATE_JOB_DETAIL_FAIL';
+
+
