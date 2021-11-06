@@ -72,7 +72,7 @@ const JobSatictis = () => {
   return (
     <div className="topJob">
       <div className="topJob__content">
-        <Table columns={columns} dataSource={data} scroll={{ x: 768 }} pagination = {data.length<10?false:pagination}/>
+        <Table columns={columns} dataSource={data} scroll={{ x: 768 }} pagination = {data?.length<10?false:pagination}/>
       </div>
     </div>
   );
