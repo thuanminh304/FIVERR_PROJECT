@@ -34,9 +34,16 @@ import {
   UPDATE_JOB_DETAIL_REQ,
   UPDATE_JOB_DETAIL_SUCC,
   UPDATE_JOB_DETAIL_FAIL,
+  GET_ALL_JOB_REQ,
+  GET_ALL_JOB_SUCC,
+  GET_ALL_JOB_FAIL,
 } from "./types";
 import jobApi from "apis/jobApi";
 import { actShowNote, actTurnOffNote } from "containers/admin/Header/modules/actions";
+import { RevertData } from 'setting/RevertData';
+import { RevertUser } from "setting/RevertDataUser";
+import userApi from "apis/userApi";
+import { actGetUserSatictis } from "containers/admin/user/module/action";
 
 const showNote = (dispatch, getState, typeNote, contentNote) => {
     const {isNote} = getState().AdminDashBoardSettingReducer;
@@ -410,6 +417,39 @@ export const actUpdateJobDetail = (id, data, image=null) => {
     .catch(error=>{
       dispatch(actUpdateJobDetailFail(error));
       showNote(dispatch, getState,'error','Update Job Fail');
+    });
+  };
+};
+
+// get all job
+const actGetAllJobReq = () => ({
+  type: GET_ALL_JOB_REQ,
+});
+const actGetAllJobSucc = (data) => ({
+  type: GET_ALL_JOB_SUCC,
+  payload: data,
+});
+const actGetAllJobFail = (error) => ({
+  type: GET_ALL_JOB_FAIL,
+  payload: error,
+});
+export const actGetAllJob = () => {
+  return (dispatch,getState)=>{
+    dispatch(actGetAllJobReq());
+    jobApi.getAllJob().then(jobRes=>{
+      const dataSort = RevertData(jobRes.data);
+      userApi.getAllUser().then(userRes=>{
+        const userSatictis = RevertUser(userRes.data,jobRes.data);
+        console.log(userSatictis);
+        dispatch(actGetUserSatictis(userSatictis))
+        dispatch(actGetAllJobSucc(dataSort));
+      })
+      .catch(error=> {
+        dispatch(actGetAllJobFail(error));
+      })
+    })
+    .catch(error=>{
+      dispatch(actGetAllJobFail(error));
     });
   };
 };

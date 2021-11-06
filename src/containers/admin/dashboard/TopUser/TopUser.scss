@@ -1,0 +1,49 @@
+.topUser {
+  table {
+    td {
+      &:nth-of-type(2) {
+          text-align: center;
+        .topUser__avatar {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 40px;
+            width: 40px;
+            border: 2px solid #888;
+            border-radius: 50%;
+            padding: 1px;
+            overflow: hidden;
+            box-shadow: 0 5px 10px 0 #ccc;
+            img{
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                object-fit: cover;
+                object-position: center;
+            }
+            p{
+                font-weight: 700;
+                font-size: 23px;
+                color: #73BFDD;
+                margin-bottom: 0;
+            }
+        }
+      }
+    }
+  }
+  .topUser__skillList{
+      display: flex;
+      justify-content: center;
+    .topUser__skillItem{
+        margin: 0 2px;
+        padding: 2px 8px;
+        background-color: #849f80;
+        border-radius: 10px;
+        color: #fff;
+        &:first-of-type{
+            background-color: #73BFDD;
+        }
+    }
+  }
+}

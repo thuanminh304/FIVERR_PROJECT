@@ -57,4 +57,7 @@ export const GET_JOB_DETAIL_FAIL = 'GET_JOB_DETAIL_FAIL';
 export const UPDATE_JOB_DETAIL_REQ = 'UPDATE_JOB_DETAIL_REQ';
 export const UPDATE_JOB_DETAIL_FAIL = 'UPDATE_JOB_DETAIL_FAIL';
 
-
+// get all job
+export const GET_ALL_JOB_REQ = 'GET_ALL_JOB_REQ';
+export const GET_ALL_JOB_SUCC = 'GET_ALL_JOB_SUCC';
+export const GET_ALL_JOB_FAIL = 'GET_ALL_JOB_FAIL';
