@@ -40,13 +40,14 @@ const jobApi = {
   updateJobImage(id, data) {
     return callApi(`api/jobs/upload-image/${id}`, "POST", data, "token");
   },
-
-  //
+  getAllJob() {
+    return callApi(`api/jobs`);
+  },
   getDetailTypeMainjob(id) {
     return callApi(`api/type-jobs/${id}`);
   },
   createNewJobByUser(formData) {
-    return callApi("api/jobs","POST", formData);
+    return callApi("api/jobs", "POST", formData);
   },
 };
 

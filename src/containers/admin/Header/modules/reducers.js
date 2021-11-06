@@ -34,7 +34,8 @@ const AdminDashBoardSettingReducer =  (state = initialState, { type, payload }) 
             const resetCurrent = {type: '', content: ''};
             const current = {...state.currentNote}
             list.unshift(current);
-            return {...state, listNote: list, isNewNotify: true, currentNote: resetCurrent, isNote: false};
+            // , currentNote: resetCurrent
+            return {...state, listNote: list, isNewNotify: true, isNote: false};
         }
         case SEE_NOTIFY: {
             return {...state, isNewNotify: false};
