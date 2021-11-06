@@ -1,12 +1,93 @@
 @import "helpers/variables";
 
-.form-create-job-by-user{
-    color:$color-nav-title;
-    background-color: #f7f7f7;
-    .content-create-job-by-user{
-        width: 60%;
-        margin: 50px auto;
-        background-color: white;
-        padding: 20px;
+.form-create-job-by-user {
+  color: $color-nav-title;
+  background-color: #f7f7f7;
+  .content-create-job-by-user {
+    width: 60%;
+    margin: 50px auto;
+    background-color: white;
+    border: 1px solid $color-cato-sub;
+    padding: 20px;
+    //render overview
+
+    .render-overview {
+      label[title] {
+        width: 100px;
+        color: $color-nav-title;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      .item-select {
+        .ant-form-item-control-input-content {
+          display: flex;
+          gap: 50px;
+        }
+      }
+      .item-status {
+        .ant-form-item-control-input-content {
+          display: flex;
+          justify-content: space-between;
+          label {
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 5px;
+          }
+        }
+      }
     }
+    //render upload avatar
+    .render-upload-avatar {
+      & > h3 {
+        font-size: 28px;
+        color: $color-sm-title;
+      }
+      & > p {
+        color: $color-sm-title;
+        font-size: 16px;
+      }
+      .dragger-image {
+        .ant-form-item-control-input-content {
+          & > span {
+            display: flex;
+          }
+        }
+      }
+    }
+  }
+  .steps-action {
+    text-align: center;
+    margin-bottom: 0px;
+    padding-bottom: 40px;
+    width: 60%;
+    margin: 0 auto;
+    .ant-form-item-control-input-content {
+      display: flex;
+      justify-content: space-between;
+      .btn-pre-steps {
+        border-radius: 5px;
+        padding: 10px 35px 35px 35px;
+        font-size: $fs-3;
+        font-weight: $fw-4;
+        border: 1px solid $color-cato-sub;
+        &:hover {
+          color: $color-green-all;
+        }
+      }
+      .btn-next-steps {
+        border: none;
+        border-radius: 5px;
+        background-color: $color-green-all;
+        color: $color-white;
+        padding: 10px 35px 35px 35px;
+        font-size: $fs-3;
+        font-weight: $fw-4;
+        transition: all 0.2s;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
 }

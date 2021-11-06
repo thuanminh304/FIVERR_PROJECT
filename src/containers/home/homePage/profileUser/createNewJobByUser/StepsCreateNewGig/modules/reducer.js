@@ -1,18 +1,19 @@
-import { GET_DETAIL_TYPE_MAINJOB } from "./type"
+import { CREATE_JOB_BY_USER, GET_DETAIL_TYPE_MAINJOB } from "./type";
 
 const initialState = {
-    listDetailTypeMainjob:{}
-}
+  listDetailTypeMainjob: {},
+  currentJob: null,
+};
 
-const profileUserReducer=(state = initialState, { type, payload }) => {
-    switch (type) {
-
+const profileUserReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case GET_DETAIL_TYPE_MAINJOB:
-        return { ...state ,listDetailTypeMainjob: payload}
-
+      return { ...state, listDetailTypeMainjob: payload };
+    case CREATE_JOB_BY_USER:
+      return { ...state, currentJob: payload };
     default:
-        return state
-    }
-}
- 
-export default profileUserReducer
+      return state;
+  }
+};
+
+export default profileUserReducer;

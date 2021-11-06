@@ -1,21 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { Form, Input, InputNumber, Switch } from "antd";
+import React, { useState } from "react";
+import { Form, Input, InputNumber, Switch, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Select } from "antd";
-import { actGetDetailTypeMainjob } from "./modules/action";
+import { useFormik } from "formik";
 import jobApi from "apis/jobApi";
+import { useHistory } from "react-router";
+import { actCreateJobByUser } from "./modules/action";
 const RenderOverview = (props) => {
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
-  const { listDetailTypeMainjob } = useSelector(
-    (state) => state.profileUserReducer
-  );
-  const formik = props.formik;
+
   const [state, setState] = useState(null);
+  const history = useHistory();
   const dispatch = useDispatch();
+  const [current, setCurrent] = props.currentStep;
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      rating: 10,
+      price: 0,
+      proServices: false,
+      localSellers: false,
+      onlineSellers: false,
+      deliveryTime: false,
+      type: "",
+      subType: "",
+    },
+    onSubmit: (value) => {
+      dispatch(actCreateJobByUser(value));
+      setTimeout(() => {
+        setCurrent(current + 1);
+      }, 0);
+    },
+  });
 
   async function handleChangeMainJob(value) {
     formik.setFieldValue("type", value);
-    console.log(value);
 
     try {
       const data = await jobApi.getDetailTypeMainjob(value);
@@ -26,7 +45,6 @@ const RenderOverview = (props) => {
   }
 
   const handleChangeSubJob = (value) => {
-    console.log(value);
     formik.setFieldValue("subType", value);
   };
   const handleChangePrice = (value) => {
@@ -40,9 +58,10 @@ const RenderOverview = (props) => {
       formik.setFieldValue(name, value);
     };
   };
+
   return (
-    <div className="render-overview">
-      <Form.Item label="Name">
+    <Form onSubmitCapture={formik.handleSubmit} className="render-overview">
+      <Form.Item className="item-name" label="Name">
         <Input
           placeholder="Name"
           name="name"
@@ -51,8 +70,9 @@ const RenderOverview = (props) => {
         />
       </Form.Item>
 
-      <Form.Item label="CATEGORY">
+      <Form.Item className="item-select" label="CATEGORY">
         <Select
+          name="type"
           options={mainJob?.map((mainjob, idx) => ({
             label: mainjob.name,
             value: mainjob._id,
@@ -61,6 +81,7 @@ const RenderOverview = (props) => {
           placeholder="SELECT A CATEGORY"
         />
         <Select
+          name="subType"
           options={state?.subTypeJobs.map((subjob, idx) => ({
             label: subjob.name,
             value: subjob._id,
@@ -88,7 +109,7 @@ const RenderOverview = (props) => {
           onChange={handleChangeRate}
         />
       </Form.Item>
-      <Form.Item label="Status">
+      <Form.Item className="item-status" label="Status">
         <div>
           <label htmlFor="proServices">Pro Services</label>
           <Switch
@@ -120,7 +141,21 @@ const RenderOverview = (props) => {
           />
         </div>
       </Form.Item>
-    </div>
+      <Form.Item className="steps-action">
+        <Button
+          className="btn-pre-steps"
+          onClick={() => {
+            history.goBack();
+          }}
+        >
+          Cancel
+        </Button>
+
+        <Button htmlType="submit" className="btn-next-steps">
+          Next
+        </Button>
+      </Form.Item>
+    </Form>
   );
 };
 export default RenderOverview;
