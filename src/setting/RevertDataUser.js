@@ -23,10 +23,12 @@ export const RevertUser = (data,jobList) => {
                         const priceJob = jobList.find(job=>{
                             return job._id === jobId;
                         });
-                        return totalCoin + priceJob.price*0.8;
+                        if(!!priceJob){
+                            return totalCoin + priceJob.price*0.8;
+                        }
                     },0);
                 }
-                const userData = new User(userId, avatar, name, email, skill, bookingJobQty, wallet)
+                const userData = new User(userId, avatar, name, email, skill, bookingJobQty, !wallet?0:wallet);
                 Arr.push(userData);
             }
         }
