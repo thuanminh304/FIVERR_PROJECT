@@ -28,10 +28,11 @@ export const renderInputSkill = (skill) => {
       >
         Done
       </button>
-      <button className="ml-2" type="button"
+      <button
+        className="ml-2"
+        type="button"
         onClick={() => {
-          document.querySelector(".input-addnew-skill").style.display =
-            "none";
+          document.querySelector(".input-addnew-skill").style.display = "none";
         }}
       >
         Cancel
@@ -69,10 +70,11 @@ export const renderInputCert = (cert) => {
         Done
       </button>
 
-      <button className="ml-2" type="button"
+      <button
+        className="ml-2"
+        type="button"
         onClick={() => {
-          document.querySelector(".input-addnew-cert").style.display =
-            "none";
+          document.querySelector(".input-addnew-cert").style.display = "none";
         }}
       >
         Cancel
@@ -106,4 +108,31 @@ export const renderAvatar = (imageUrl, currentUser) => {
       <Button className="name-avatar">{nameAvatar} </Button>
     );
   }
+};
+
+export const renderCategoriesHeader = (mainJob,currentUser) => {
+  return (
+    <div id={currentUser ? "category__content-loggedin" : "category__content"}>
+      <ul>
+        {mainJob?.map((mainjob, idx) => {
+          return (
+            <li className="li-cate" key={mainjob._id}>
+              <a href="# ">{mainjob.name}</a>
+              <div className={currentUser ? "category__hover cate-active" : "category__hover pos-right"}>
+                <ul className="hover__item">
+                  {mainjob.subTypeJobs.map((subjob, idx) => {
+                    return (
+                      <li key={subjob._id}>
+                        <a href="# ">{subjob.name}</a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 };

@@ -13,13 +13,13 @@ const initialState = {
 const JobManagementReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case GET_MAIN_JOB_REQUEST: {
-            return {...state, loadding: true, isError: false};
+            return {...state, loading: true, isError: false};
         };
         case GET_MAIN_JOB_SUCCESS: {
-            return {...state,loadding: false, mainJob: payload, isError: false};
+            return {...state,loading: false, mainJob: payload, isError: false};
         };
         case GET_MAIN_JOB_FAIL: {
-            return {...state, loadding: false, isError: true};
+            return {...state, loading: false, isError: true};
         }
         case ADD_NEW_MAIN_JOB_REQUEST: {
             return {...state, loadingAction: true, isError: false};
@@ -147,10 +147,10 @@ const JobManagementReducer = (state = initialState, { type, payload }) => {
             return {...state, loadingAction: false, isError: true};
         };
         case GET_JOB_DETAIL_REQ: {
-            return {...state, loadding: true, isError: false};
+            return {...state, loading: true, isError: false};
         };
         case GET_JOB_DETAIL_SUCC: {
-            return {...state, loadding: false, loadingAction: false, isError: false, jobDetail: payload};
+            return {...state, loading: false, loadingAction: false, isError: false, jobDetail: payload};
         };
         case GET_JOB_DETAIL_FAIL: {
             return {...state, loadingAction: false, isError: true};

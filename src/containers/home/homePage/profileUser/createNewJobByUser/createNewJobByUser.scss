@@ -1,0 +1,12 @@
+@import "helpers/variables";
+
+.form-create-job-by-user{
+    color:$color-nav-title;
+    background-color: #f7f7f7;
+    .content-create-job-by-user{
+        width: 60%;
+        margin: 50px auto;
+        background-color: white;
+        padding: 20px;
+    }
+}
