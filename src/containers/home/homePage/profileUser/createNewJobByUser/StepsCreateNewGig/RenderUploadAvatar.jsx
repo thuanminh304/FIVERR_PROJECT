@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
-import { useState } from "react";
 import jobApi from "apis/jobApi";
 import { useSelector } from "react-redux";
+import { Upload } from "antd";
+import { InboxOutlined } from "@ant-design/icons";
+import getBase64 from "components/base64/getBase64";
+import messageConfig from "components/Message/message";
+
+const { Dragger } = Upload;
 export default function RenderUploadAvatar(props) {
   const { currentJob } = useSelector((state) => state.profileUserReducer);
   const [imageUrl, setImageUrl] = useState(null);
@@ -15,34 +20,37 @@ export default function RenderUploadAvatar(props) {
     onSubmit: (value) => {
       const formData = new FormData();
       formData.append("job", value.job, value.job.name);
+      messageConfig.loading();
+
       jobApi
         .updateJobImage(currentJob?._id, formData)
         .then((res) => {
-            console.log("ok")
-          // setTimeout(() => {
-          //   setCurrent(current + 1);
-          // }, 0);
+          setTimeout(() => {
+            setCurrent(current + 1);
+          }, 1500);
+          setTimeout(() => {
+            messageConfig.success();
+          }, 1000);
         })
-        .catch((err) => {
-          console.log(err?.response);
-        });
+        .catch(() => {});
     },
   });
 
-  const handleChangeAvatar = (event) => {
-    let file = event.target.files[0];
-    if (file) {
-      //
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.addEventListener("load", (event) => {
-        setImageUrl(event.target.result);
-      });
-      formik.setFieldValue("job", file);
-      //
-    }
+  const propsDragger = {
+    name: "job",
+    multiple: false,
+    maxCount: 1,
+    accept: "image/*",
+    listType: "picture-card",
+    onChange(info) {
+      getBase64(info.file.originFileObj, setImageUrl);
+      formik.setFieldValue("job", info.file.originFileObj);
+    },
+    onDrop(e) {
+      getBase64(e.dataTransfer.files[0], setImageUrl);
+      formik.setFieldValue("job", e.dataTransfer.files[0]);
+    },
   };
-
   return (
     <div className="render-upload-avatar">
       <h3>Showcase Your Services In A Gig Gallery</h3>
@@ -51,13 +59,21 @@ export default function RenderUploadAvatar(props) {
       </p>
       <form onSubmitCapture={formik.handleSubmit}>
         <div className="dragger-image">
-          <input
-            onChange={handleChangeAvatar}
-            type="file"
-            accept="image/*"
-            name="image"
-          />
-          <img src={imageUrl} alt="" />
+          <Dragger {...propsDragger}>
+            <p className="ant-upload-drag-icon">
+              <InboxOutlined />
+            </p>
+            <p className="ant-upload-text">
+              Click or drag file to this area to upload
+            </p>
+            <p className="ant-upload-hint">
+              Support for a single or bulk upload. Strictly prohibit from
+              uploading company data or other band files
+            </p>
+          </Dragger>
+          <div className="ant-show-upload-image">
+            <img src={imageUrl} alt="" />
+          </div>
         </div>
         <div className="steps-action">
           <button
