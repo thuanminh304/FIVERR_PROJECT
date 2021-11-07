@@ -23,7 +23,7 @@ const Notifynote = () => {
         };
         const progressing = setInterval(() => {
                 setLoaddingProgess(loaddingProgess-0.5);
-            }, 1);
+            }, 5);
         return () => clearInterval(progressing);
     },[loaddingProgess]);
     useEffect(() => {

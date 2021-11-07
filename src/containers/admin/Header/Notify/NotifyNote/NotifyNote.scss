@@ -1,7 +1,7 @@
 .notifynote{
     position: absolute;
     top: 150%;
-    right: -100%;
+    right: -255px;
     width: 230px;
     background-color: #fff;
     border-radius: 3px;
@@ -34,10 +34,20 @@
                 border-radius: 5px!important;
             }
         }
+        .item__userItem{
+            .user__name{
+                color: #73BFDD;
+            }
+        }
     }
     .notifynote__content.error{
         .ant-progress-bg{
             background-color: #ff7070;
+        }
+        .item__userItem{
+            .user__name{
+                color: #ff7070;
+            }
         }
     }
     .item__notifyType{
@@ -51,11 +61,11 @@
         font-size: 30px;
         line-height: 25px;
         text-align: center;
-        color: #73BFDD;
+        color: #73BFDD!important;
     }
     .notifyType__icon.error{
         border: 3px solid #ff7070;
-        color: #ff7070;
+        color: #ff7070!important;
     }
     .notifyType__icon.warning{
         border: 3px solid #e4c94f;
@@ -63,5 +73,5 @@
     }
 }
 .notifynote.showNote{
-    right: 25px;
+    right: 40px;
 }

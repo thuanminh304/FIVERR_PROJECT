@@ -95,12 +95,12 @@ const Jobinfo = (props) => {
       for (let j in jobDetail) {
         if (i == j) {
           if (i === "type") {
-            initialValue[i] = jobDetail[j]._id;
-            changeSubType(jobDetail[j]._id);
+            initialValue[i] = jobDetail[j]?._id;
+            changeSubType(jobDetail[j]?._id);
             break;
           }
           if (i === "subType") {
-            initialValue[i] = jobDetail[j]._id;
+            initialValue[i] = jobDetail[j]?._id;
             break;
           }
           initialValue[i] = jobDetail[j];
