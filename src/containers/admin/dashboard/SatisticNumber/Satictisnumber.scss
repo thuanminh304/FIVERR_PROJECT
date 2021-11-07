@@ -1,0 +1,55 @@
+.satisticContent__conatiner{
+    height: 300px;
+    align-content: space-between;
+    .satistic__item{
+        &:nth-of-type(1), &:nth-of-type(3){
+            padding-right: 15px;
+        }
+        &:nth-of-type(2), &:nth-of-type(4){
+            padding-left: 15px;
+        }
+    }
+    .satistic__itemContent{
+        padding: 35px 15px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 20px;
+        transition: box-shadow .3s;
+        cursor: default;
+        &:hover{
+            box-shadow: 0 7px 14px 0 #ccc;
+        }
+    }
+    .satistic_itemJobQty{
+        background: linear-gradient(to left, #3a7bd5, #3a6073);
+    }
+    .satistic_itemClientQty{
+        background: linear-gradient(to right, #c33764, #1d2671);
+    }
+    .satistic_itemjobBookingQty{
+        background: linear-gradient(to left, #d38312, #a83279);
+    }
+    .satistic_itemjobEarning{
+        background: linear-gradient(to left, #134e5e, #71b280);
+    }
+    .satistic__itemIcon{
+        height: 65px;
+        width: 65px;
+        border-radius: 100%;
+        background-color: #00000021;
+        text-align: center;        
+        color: #fff;
+        font-weight: 600;
+        font-size: 30px;
+    }
+    .satistic__itemNumber{
+        margin-left: 15px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
