@@ -6,6 +6,8 @@ import { useFormik } from "formik";
 import jobApi from "apis/jobApi";
 import { useHistory } from "react-router";
 import { actCreateJobByUser } from "./modules/action";
+import * as yup from "yup";
+import errorForm from "components/showErrors/showError";
 const RenderOverview = (props) => {
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
 
@@ -16,7 +18,7 @@ const RenderOverview = (props) => {
   const formik = useFormik({
     initialValues: {
       name: "",
-      rating: 10,
+      rating: 0,
       price: 0,
       proServices: false,
       localSellers: false,
@@ -26,11 +28,22 @@ const RenderOverview = (props) => {
       subType: "",
     },
     onSubmit: (value) => {
-      dispatch(actCreateJobByUser(value));
-      setTimeout(() => {
-        setCurrent(current + 1);
-      }, 0);
+      dispatch(actCreateJobByUser(value, [current, setCurrent]));
     },
+    validationSchema: yup.object({
+      name: yup
+        .string()
+        .matches(
+          /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ ]+$/
+        )
+        .required(),
+      type: yup.string().required("Please select !"),
+      subType: yup.string().required("Please select !"),
+      price: yup
+        .string()
+
+        .required("- Not yet entered"),
+    }),
   });
 
   async function handleChangeMainJob(value) {
@@ -58,7 +71,9 @@ const RenderOverview = (props) => {
       formik.setFieldValue(name, value);
     };
   };
-
+  const errors = formik.errors;
+  const touched = formik.touched;
+  const values = formik.values;
   return (
     <Form onSubmitCapture={formik.handleSubmit} className="render-overview">
       <Form.Item className="item-name" label="Name">
@@ -68,34 +83,51 @@ const RenderOverview = (props) => {
           type="text"
           onChange={formik.handleChange}
         />
+        {errorForm.showErrors(
+          errors.name,
+          touched.name,
+          values.name,
+          "- Not yet entered",
+          "- Do not use punctuation, numberic and special characters"
+        )}
       </Form.Item>
 
       <Form.Item className="item-select" label="CATEGORY">
-        <Select
-          name="type"
-          options={mainJob?.map((mainjob, idx) => ({
-            label: mainjob.name,
-            value: mainjob._id,
-          }))}
-          onChange={handleChangeMainJob}
-          placeholder="SELECT A CATEGORY"
-        />
-        <Select
-          name="subType"
-          options={state?.subTypeJobs.map((subjob, idx) => ({
-            label: subjob.name,
-            value: subjob._id,
-          }))}
-          onChange={handleChangeSubJob}
-          placeholder="SELECT A SUBCATEGORY"
-        />
+        <div>
+          <Select
+            name="type"
+            options={mainJob?.map((mainjob, idx) => ({
+              label: mainjob.name,
+              value: mainjob._id,
+            }))}
+            onChange={handleChangeMainJob}
+            placeholder="SELECT A CATEGORY"
+          />
+
+          {errorForm.showErrorsDefault(errors.type, touched.type)}
+        </div>
+
+        <div>
+          <Select
+            name="subType"
+            options={state?.subTypeJobs.map((subjob, idx) => ({
+              label: subjob.name,
+              value: subjob._id,
+            }))}
+            onChange={handleChangeSubJob}
+            placeholder="SELECT A SUBCATEGORY"
+          />
+
+          {errorForm.showErrorsDefault(errors.subType, touched.subType)}
+        </div>
       </Form.Item>
       <Form.Item label="Price">
         <InputNumber
           min={0}
           name="price"
           step={5}
-          defaultValue={0}
+          addonAfter="$"
+          value={values.price}
           onChange={handleChangePrice}
         />
       </Form.Item>
@@ -105,7 +137,7 @@ const RenderOverview = (props) => {
           max={10}
           name="rating"
           step={0.1}
-          defaultValue={10}
+          value={values.rating}
           onChange={handleChangeRate}
         />
       </Form.Item>
@@ -142,18 +174,18 @@ const RenderOverview = (props) => {
         </div>
       </Form.Item>
       <Form.Item className="steps-action">
-        <Button
+        <button
           className="btn-pre-steps"
           onClick={() => {
             history.goBack();
           }}
         >
           Cancel
-        </Button>
+        </button>
 
-        <Button htmlType="submit" className="btn-next-steps">
+        <button type="submit" className="btn-next-steps">
           Next
-        </Button>
+        </button>
       </Form.Item>
     </Form>
   );

@@ -24,6 +24,12 @@ const messageConfig = {
       className: "custom-message",
     });
   },
+  loadingToSuccess() {
+    return message.loading("Redirecting to profile..", 2.5).then(() => {
+      message.success("Success !", 2)
+      window.history.back();
+    });
+  },
 };
 
 export default messageConfig;
