@@ -1,65 +1,27 @@
-import React, {useEffect} from "react";
-import {useDispatch} from 'react-redux';
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from 'react-redux';
 import ReactECharts from "echarts-for-react";
 import "./Statistics.scss";
-import {actGetMainJobList} from 'Modules/JobManagement/actions';
+import {actGetAllJob, actGetMainJobList} from 'Modules/JobManagement/actions';
 import Mainjoblayout from "./MainJobLayout";
 import BoxLayout from "layouts/BoxLayout";
 const Statistics = () => {
   const dispatch = useDispatch();
+  const [data,setData] = useState([]);
+  const { dataSatictis } = useSelector((state) => state.JobManagementReducer);
   useEffect(() => {
     dispatch(actGetMainJobList());
+    dispatch(actGetAllJob());
   },[]);
-  const dataComponent = [
-    "Graphic & Design",
-    "Digital Marketing",
-    "Writing & Translation",
-    "Video & Animation",
-    "Music & Audio",
-    "Programming & Tech",
-    "Data",
-    "Business",
-    "Lifestyle",
-  ];
-  const dataValue = [1, 10, 0, 0, 0, 0, 0, 0, 0];
-  const dataPieChart = [
-    {
-      value: 50,
-      name: "Graphic & Design",
-    },
-    {
-      value: 25,
-      name: "Digital Marketing",
-    },
-    {
-      value: 30,
-      name: "Writing & Translation",
-    },
-    {
-      value: 43,
-      name: "Video & Animation",
-    },
-    {
-      value: 56,
-      name: "Music & Audio",
-    },
-    {
-      value: 120,
-      name: "Programming & Tech",
-    },
-    {
-      value: 90,
-      name: "Data",
-    },
-    {
-      value: 20,
-      name: "Business",
-    },
-    {
-      value: 10,
-      name: "Lifestyle",
-    },
-  ];
+  useEffect(() =>{
+    const dataChart = dataSatictis.map(job=>{
+      return {
+        name: job.type,
+        value: job.jobQty
+      };
+    });
+    setData(dataChart);
+  },[dataSatictis]);
   const optionsBarChart = {
     tooltip: {
       trigger: "axis",
@@ -68,16 +30,17 @@ const Statistics = () => {
       },
     },
     grid: {
-      left: "center",
+      right: "center",
       top: "15%",
       bottom: "6%",
       containLabel: true,
-    //   height: "100%",
-      width: "70%",
+      width: "90%",
     },
     xAxis: {
       type: "category",
-      data: dataComponent,
+      data: data.map(job=>{
+        return job.name;
+      }),
       axisLabel: {
         interval: 0,
         rotate: 45,
@@ -90,8 +53,10 @@ const Statistics = () => {
       {
         name: "Job's Quality",
         type: "bar",
-        barWidth: "80%",
-        data: dataValue,
+        barWidth: "70%",
+        data: data.map(job=>{
+          return job.value;
+        }),
       },
     ],
     animation: true,
@@ -102,11 +67,11 @@ const Statistics = () => {
       formatter: "{a} <br/>{b}: {d}%",
     },
     grid: {
-      left: "center",
+      right: "20%",
       top: "50%",
       bottom: "3%",
       containLabel: true,
-      width: "70%",
+      width: "100%",
     },
     legend: {
       top: "center",
@@ -118,7 +83,8 @@ const Statistics = () => {
       {
         name: "Percent of Total Quality",
         type: "pie",
-        radius: ["10%", "70%"],
+        radius: ["20%", "70%"],
+        center: ['35%', '50%'],
         avoidLabelOverlap: false,
         itemStyle: {
           borderRadius: 10,
@@ -139,7 +105,7 @@ const Statistics = () => {
         labelLine: {
           show: true,
         },
-        data: dataPieChart,
+        data: data,
       },
     ],
   };

@@ -4,6 +4,8 @@ import JobSatictis from "./TopJob/JobSatictis";
 import BoxLayout from "layouts/BoxLayout";
 import Topuser from "./TopUser/TopUser";
 import { actGetAllJob } from "Modules/JobManagement/actions";
+import Dashboardchart from "./DashboardChart/DashboardChart";
+import SatictisNumber from './SatisticNumber/SatictisNumber';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -13,12 +15,12 @@ export default function Dashboard() {
   return (
     <div className="adminDashBoard">
       <div className="adminDashBoard__content">
-        <div className="adminDashBoard__satistic">
-          <div className="adminDashBoard__chart">
-
+        <div className="adminDashBoard__satistic row">
+          <div className="adminDashBoard__chart col-5">
+            <Dashboardchart/>
           </div>
-          <div className="adminDashBoard__satisticContent">
-
+          <div className="adminDashBoard__satisticContent col-7">
+            <SatictisNumber/>
           </div>
         </div>
         <div className="adminDashBoard__jobTop">
