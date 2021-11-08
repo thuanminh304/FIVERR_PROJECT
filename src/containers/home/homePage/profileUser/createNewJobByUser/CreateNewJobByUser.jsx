@@ -22,14 +22,14 @@ const CreateNewJobByUser = () => {
       content: [<RenderUploadAvatar currentStep={[current, setCurrent]} />],
     },
     {
-      title: "Finish",
+      title: "Publish Gig",
       content: [<RenderDone currentStep={[current, setCurrent]} />],
     },
   ];
 
   return (
     <div className="form-create-job-by-user">
-      <Steps className="steps-create-job-by-user" current={current}>
+      <Steps className="stepsbar-create-job-by-user" current={current}>
         {steps.map((item) => (
           <Step key={item.title} title={item.title} />
         ))}
