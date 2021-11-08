@@ -1,0 +1,39 @@
+.adminInfo-setting {
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0px 5px 25px 0px rgb(0 0 0 / 20%);
+  .adminInfo-settingContent{
+      padding: 20px;
+  }
+  .adminInfo-settingTitle{
+    display: inline-block;
+    background-color: #ff7070;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    color: #fff;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  button{
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    margin: 0 10px;
+  }
+  .formSetting__button{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+  }
+  #infoSettingUpdate{
+    background-color: #73bfdd;
+  }
+  #infoSettingGoBack{
+    background-color: #ff7070;
+  }
+}
