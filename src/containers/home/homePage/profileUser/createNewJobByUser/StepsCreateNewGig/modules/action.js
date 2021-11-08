@@ -1,21 +1,6 @@
 import jobApi from "apis/jobApi";
 import messageConfig from "components/Message/message";
-import { CREATE_JOB_BY_USER, GET_DETAIL_TYPE_MAINJOB } from "./type";
-
-export const actGetDetailTypeMainjob = (id) => {
-  return (dispatch) => {
-    jobApi
-      .getDetailTypeMainjob(id)
-      .then((res) => {
-        console.log(res.data);
-        dispatch({
-          type: GET_DETAIL_TYPE_MAINJOB,
-          payload: res?.data,
-        });
-      })
-      .catch((err) => console.log(err?.response));
-  };
-};
+import { CREATE_JOB_BY_USER, GET_ALL_JOBS_BY_USER } from "./type";
 
 export const actCreateJobByUser = (formJob, [current, setCurrent]) => {
   return (dispatch) => {
@@ -35,9 +20,23 @@ export const actCreateJobByUser = (formJob, [current, setCurrent]) => {
           messageConfig.success();
         }, 1000);
       })
-      .catch((err) => {
+      .catch(() => {
         messageConfig.error();
+      });
+  };
+};
 
+export const actGetAllJobsByUser = () => {
+  return (dispatch) => {
+    jobApi
+      .getAllJob()
+      .then((res) => {
+        dispatch({
+          type: GET_ALL_JOBS_BY_USER,
+          payload: res?.data,
+        });
+      })
+      .catch((err) => {
         console.log(err?.response);
       });
   };

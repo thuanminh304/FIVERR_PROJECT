@@ -43,6 +43,7 @@ const jobApi = {
   getAllJob() {
     return callApi(`api/jobs`);
   },
+  //
   getDetailTypeMainjob(id) {
     return callApi(`api/type-jobs/${id}`);
   },

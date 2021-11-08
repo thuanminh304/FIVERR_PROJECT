@@ -12,13 +12,20 @@ import {
   renderInputSkill,
   renderAvatar,
 } from "components/render/render";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { actGetAllJobsByUser } from "./createNewJobByUser/StepsCreateNewGig/modules/action";
+import ProfileHasJobs from "./ProfileHasJobs";
+import ProfileNoJob from "./ProfileNoJob";
 
 export default function ProfileUser(props) {
+  const [imageUrl, setImageUrl] = useState(null);
+
   const { currentUser } = useSelector((state) => state.AuthReducer);
+  const { listAllJobsByUser } = useSelector(
+    (state) => state.profileUserReducer
+  );
   const dispatch = useDispatch();
   const history = useHistory();
-  const [imageUrl, setImageUrl] = useState(null);
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -58,7 +65,14 @@ export default function ProfileUser(props) {
     e.preventDefault();
     document.querySelector(classInput).style.display = "block";
   };
-  
+  useEffect(() => {
+    dispatch(actGetAllJobsByUser());
+  }, []);
+  const listJobsCreatedByUser = listAllJobsByUser?.filter(
+    (job) => job.userCreated === currentUser?._id
+  );
+  console.log(listJobsCreatedByUser);
+
   return (
     <div className="profile-user row">
       <div className="col-3 profile-left">
@@ -249,29 +263,11 @@ export default function ProfileUser(props) {
         </div>
       </div>
       <div className="col-7 profile-right">
-        <div className="buying-services">
-          <img src="/images/imagesProfile/office-building.7ac5061.gif" alt="" />
-          <div>
-            <p>
-              {" "}
-              <strong>Buying services for work?</strong>Get the best experience
-              for your business with 3 quick questions.{" "}
-            </p>
-            <p>
-              What’s your industry
-              {">"}
-            </p>
-          </div>
-          <span style={{cursor:"pointer"}} onClick={()=>{
-            document.querySelector(".buying-services").style.display="none"
-          }}>X</span>
-        </div>
-        <div className="create-gig">
-          <p>It seems that you don't have any active Gigs. Get selling!</p>
-          <Link to="/by-user/create-new-job" >
-            <button>Create a New Gig</button>
-          </Link>
-        </div>
+        {listJobsCreatedByUser?.length > 0 ? (
+          <ProfileHasJobs listJobsCreatedByUser={listJobsCreatedByUser} />
+        ) : (
+          <ProfileNoJob />
+        )}
       </div>
     </div>
   );

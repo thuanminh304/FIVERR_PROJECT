@@ -5,6 +5,35 @@
   background-color: #f7f7f7;
   padding-bottom: 150px;
   position: relative;
+  .stepsbar-create-job-by-user {
+    padding-top: 20px;
+    font-weight: 600;
+    width: 60%;
+    margin: auto;
+    .ant-steps-item-process {
+      .ant-steps-item-icon {
+        background-color: $color-green-all;
+        border: none;
+      }
+    }
+    .ant-steps-item-finish {
+      .ant-steps-item-icon {
+        border: 2px solid $color-green-all;
+        .ant-steps-finish-icon {
+          color: $color-green-all;
+          transform: translate(0%, -25%);
+          font-size: 20px;
+        }
+      }
+      .ant-steps-item-content {
+        & > .ant-steps-item-title:after {
+          background-color: $color-green-all;
+          height:2px;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
   .content-create-job-by-user {
     width: 60%;
     margin: 50px auto 0;
@@ -63,7 +92,7 @@
       }
       .ant-show-upload-image {
         img {
-          width: 100vh;
+          width: 100%;
           object-fit: cover;
           height: 100%;
         }
