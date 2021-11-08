@@ -4,6 +4,7 @@ import { MailOutlined, UserOutlined, PoweroffOutlined } from '@ant-design/icons'
 import './SideBar.scss';
 import Theme from './Theme/Theme';
 import { CHANGE_THEME } from '../modules/types';
+import { Link } from 'react-router-dom';
 const Sidebar = (props) => {
     const {setting} = props;
     const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const Sidebar = (props) => {
                     </div>
                     <div className="userFeature">
                         <MailOutlined />
-                        <UserOutlined />
+                        <Link to="/admin/adminProfile"><UserOutlined /></Link>
                         <PoweroffOutlined />
                     </div>
                 </div>
