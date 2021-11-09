@@ -35,14 +35,8 @@ const Login = () => {
   ];
   const JoinForm = [
     {
-      name: "first_name",
-      placeHolderText: "First Name",
-      type: "text",
-      isLogin: false,
-    },
-    {
-      name: "last_name",
-      placeHolderText: "Last Name",
+      name: "name",
+      placeHolderText: "Name",
       type: "text",
       isLogin: false,
     },
@@ -151,14 +145,14 @@ const Login = () => {
           data[key] = moment(values[key]).format("YYYY-MM-DD");
           continue;
         }
-        if (key === "gender") {
-          if (values === "male") {
-            data[key] = true;
-          } else {
-            data[key] = false;
-          }
-          continue;
-        }
+        // if (key === "gender") {
+        //   if (values === "male") {
+        //     data[key] = true;
+        //   } else {
+        //     data[key] = false;
+        //   }
+        //   continue;
+        // }
         data[key] = values[key];
       }
       let setErrorForm = false;

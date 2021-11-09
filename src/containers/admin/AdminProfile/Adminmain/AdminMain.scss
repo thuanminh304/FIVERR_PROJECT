@@ -14,6 +14,7 @@
       border: 3px solid #ccc;
       margin: auto;
       box-shadow: 0 8px 14px 0 rgb(210, 214, 222);
+      position: relative;
       img {
         width: 100%;
         height: 100%;
@@ -30,6 +31,102 @@
         font-weight: 700;
         font-size: 73px;
         line-height: 130px;
+      }
+      .edit-avatar {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+        z-index: 200;
+        padding: 3px;
+        &:hover{
+          .edit-avatarConfig.uploaded{
+            z-index: 300;
+            visibility: visible;
+          }
+        }
+        & > span {
+          display: block;
+          position: relative;
+          width: 100%;
+          height: 100%;
+          &:hover {
+            .ant-upload {
+              opacity: 1;
+              z-index: 100;
+            }
+          }
+        }
+        .ant-upload {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 100%;
+          height: 100%;
+          z-index: 200;
+          transform: translate(-50%, -50%);
+          background-color: rgba(204, 204, 204, 0.2);
+          transition: opacity 0.2s;
+          opacity: 0;
+          z-index: -1;
+          .anticon-camera {
+            line-height: 120px;
+            font-size: 50px;
+            color: #ff7070;
+          }
+        }
+        .ant-upload-list-item-name,
+        .ant-tooltip-inner, .ant-upload.uploaded {
+          display: none;
+        }
+        .ant-upload-list-picture {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          margin: auto;
+          border-radius: 100%;
+          overflow: hidden;
+          .ant-upload-list-item {
+            border: none;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+          }
+          .ant-upload-list-item-card-actions-btn {
+            visibility: hidden;
+          }
+        }
+        .ant-upload-span {
+          display: block;
+        }
+        .edit-avatarConfig{
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: rgba(63, 63, 63, 0.8);
+          z-index: 0;
+          visibility: hidden;
+          span{
+            margin: 3px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            line-height: 130px;
+            &:nth-of-type(1){
+              color: #91CC75;
+            }
+            &:nth-of-type(2){
+              color: #ff7070;
+            }
+          }
+        }
       }
     }
     .name {
@@ -61,7 +158,7 @@
         background-color: #ff7070;
         opacity: 0.6;
       }
-      button.active{
+      button.active {
         box-shadow: 0 8px 25px 0 rgb(129, 132, 139);
         opacity: 1;
       }

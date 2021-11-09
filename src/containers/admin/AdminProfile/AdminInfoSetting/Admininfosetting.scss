@@ -29,11 +29,41 @@
     width: 100%;
     margin: auto;
     text-align: center;
+    margin-top: 20px;
   }
   #infoSettingUpdate{
     background-color: #73bfdd;
   }
   #infoSettingGoBack{
     background-color: #ff7070;
+  }
+  .ant-picker{
+    width: 100%;
+  }
+  .item-label{
+    font-size: 15px;
+    color: #73bfdd;
+    font-weight: 600;
+  }
+  .field{
+    padding: 5px 8px;
+    margin: 0 3px;
+    border-radius: 15px;
+    background-color: #91CC75;
+    position: relative;
+    cursor: pointer;
+    color: #fff;
+    &:hover{
+      i{
+        transform: scale(0.8);
+      }
+    }
+    i{
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      color: #ff7070;
+      transition: transform .2s;
+    }
   }
 }

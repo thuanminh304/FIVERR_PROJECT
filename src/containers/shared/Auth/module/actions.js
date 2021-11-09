@@ -8,9 +8,13 @@ import {
   REGISTER_FAIL,
   DETAIL_USER,
   UPLOAD_AVATAR,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_FAIL,
 } from "./types";
 import userApi from "apis/userApi";
 import messageConfig from "components/Message/message";
+import { showNote } from "Modules/JobManagement/actions";
 
 // loginUser
 const actUserRequest = () => ({
@@ -118,19 +122,78 @@ export const actGetDetailUser = (id) => {
 };
 
 export const actUploadAvatar = (formdata) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const { currentUser } = getState().AuthReducer;
     userApi
       .uploadAvatar(formdata)
       .then((res) => {
         const userLogin = JSON.parse(localStorage.getItem("fiverrUser"));
-        userLogin.user = {...userLogin.user, avatar: res.data.avatar};
+        userLogin.user = { ...userLogin.user, avatar: res.data.avatar };
         localStorage.setItem("fiverrUser", JSON.stringify(userLogin));
         dispatch({
           type: UPLOAD_AVATAR,
           payload: res.data,
         });
+        if (currentUser.role === "ADMIN") {
+          showNote(dispatch, getState, "complete", "Upload avatar success");
+        } else if (currentUser.role === "CLIENT") {
           messageConfig.success();
+        }
       })
-      .catch((err) => console.log(err?.response));
+      .catch((err) => {
+        console.log(err?.response)
+        if (currentUser.role === "ADMIN") {
+          showNote(dispatch, getState, "error", "Upload avatar fail");
+        }
+      });
+  };
+};
+
+// update profile
+const actUpdateProfileReq = () => ({
+  type: UPDATE_PROFILE_REQUEST,
+});
+const actUpdateProfileSucc = (data) => ({
+  type: UPDATE_PROFILE_SUCCESS,
+  payload: data,
+});
+const actUpdateProfileFail = (error) => ({
+  type: UPDATE_PROFILE_FAIL,
+  payload: error,
+});
+export const actUpdateProfile = (id, data) => {
+  return (dispatch, getState) => {
+    dispatch(actUpdateProfileReq());
+    userApi
+      .editUser(id, data)
+      .then((res) => {
+        userApi
+          .getDetailUser(id)
+          .then((res) => {
+            const userLogin = JSON.parse(localStorage.getItem("fiverrUser"));
+            userLogin.user = { ...res.data };
+            localStorage.setItem("fiverrUser", JSON.stringify(userLogin));
+            dispatch(actUpdateProfileSucc(res.data));
+            showNote(
+              dispatch,
+              getState,
+              "complete",
+              "Update admin info success"
+            );
+          })
+          .catch((error) => {
+            dispatch(actUpdateProfileFail(error));
+            showNote(
+              dispatch,
+              getState,
+              "error",
+              "Update admin info success but load data fail"
+            );
+          });
+      })
+      .catch((error) => {
+        dispatch(actUpdateProfileFail(error));
+        showNote(dispatch, getState, "error", "Update admin info fail");
+      });
   };
 };
