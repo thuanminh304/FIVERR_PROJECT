@@ -102,8 +102,14 @@ const Login = () => {
   useEffect(() => {
     const pathName = location.pathname;
     if (!!currentUser?._id) {
-      history.push("/");
-    }
+      if (currentUser.role === 'ADMIN') {
+        history.push("/admin");
+      }
+      else{
+        history.push("/");
+      }
+    };
+    
     if (pathName === "/login") {
       setFormStructure(signInForm);
       setIsLogin(true);
@@ -333,7 +339,12 @@ const Login = () => {
     if (!isError) {
       if (!!isLogin) {
         setTimeout(() => {
-          history.push("/");
+          if (currentUser.role === 'ADMIN') {
+            history.push("/admin");
+          }
+          else{
+            history.push("/");
+          }
         }, 2000);
         return;
       } else {

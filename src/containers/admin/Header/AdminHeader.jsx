@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
 import Sidebar from './sideBar/SideBar';
 import {BellOutlined, MessageOutlined, MoreOutlined} from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,8 @@ const Adminheader = () => {
     const dispatch = useDispatch();
     const {isFixSideBar, themeColor} = useSelector(state=>state.AdminDashBoardSettingReducer);
     const {isNote, listNote, isNewNotify} = useSelector(state=>state.AdminDashBoardSettingReducer);
+    const {currentUser} = useSelector(state=>state.AuthReducer);
+    const {avatar, email} = currentUser;
     const handleClick = (event) => {
         const noteBtn = event.target.closest('.noteIcon');
         const messageIcon = event.target.closest('.messageIcon');
@@ -89,7 +91,7 @@ const Adminheader = () => {
                     <div className="user__item userIcon">
                         <div className="notice"></div>
                         <div className="userImg">
-                            <img src="" alt="" />
+                            {!!avatar?(<img src={avatar} alt="admin avatar" />):(<p>{email.slice(0,1).toUpperCase()}</p>)}
                         </div>
                     </div>
                     <div className="user__item settingIcon">
