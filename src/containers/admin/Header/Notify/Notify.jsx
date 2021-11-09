@@ -19,14 +19,14 @@ const Notify = (props) => {
         <ul className="messageNotify__messageBox">
           {listNote.length>0?listNote.map((note, idx) => {
             return (
-              <li className="messageBox__item notifyBox__item">
+              <li key={idx} className="messageBox__item notifyBox__item">
                 <div className={"item__userItem item__notifyType " + note.type}>
-                  <div className="notifyType__icon">
+                  <div className={"notifyType__icon " + note.type}>
                     {note.type === 'complete'?<CheckOutlined />:<CloseOutlined/>}
                   </div>
                 </div>
                 <div className="item__userItem">
-                  <div className="user__name">{note.content === ''?'No Problem':note.content}</div>
+                  <div className={"user__name " + note.type}>{note.content === ''?'No Problem':note.content}</div>
                 </div>
               </li>
             );

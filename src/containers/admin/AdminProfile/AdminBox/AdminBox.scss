@@ -40,3 +40,24 @@
     text-align: center;
   }
 }
+.adminInfo{
+  .adminBox-list{
+    text-align: center;
+    .infoField-List{
+      display: inline-block;
+      margin: 0 5px;
+      width: auto;
+      &:nth-of-type(1){
+        span{
+          background-color: #ff7070;
+        }
+      }
+      span{
+        background-color: #91CC75;
+        padding: 5px 10px;
+        border-radius: 20px;
+        color: #fff;
+      }
+    }
+  }
+}

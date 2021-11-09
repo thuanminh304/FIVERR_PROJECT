@@ -3,11 +3,10 @@ import { Route } from "react-router";
 import Admininfo from "./AdminBox/AdminInfo";
 import Adminmessage from "./AdminBox/AdminMessage";
 import AdminInfoSettingLayout from "./AdminInfoSetting/AdminInfoSettingLayout";
-import Admininfosetting from "./AdminInfoSetting/AdminInfoSettingLayout";
 import Adminmain from './Adminmain/AdminMain';
 const Adminprofile = () => {
   return (
-    <div classname="adminProfile">
+    <div className="adminProfile">
       <div className="adminProfile__content row">
         <div className="admin__bar col-4">
           <div className="admin__main">
