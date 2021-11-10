@@ -1,12 +1,16 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
-import { MailOutlined, UserOutlined, PoweroffOutlined } from '@ant-design/icons';
+import {useDispatch, useSelector} from 'react-redux';
+import { ImportOutlined, UserOutlined, PoweroffOutlined } from '@ant-design/icons';
 import './SideBar.scss';
 import Theme from './Theme/Theme';
 import { CHANGE_THEME } from '../modules/types';
+import { Link } from 'react-router-dom';
+import { actLogout } from 'containers/shared/Auth/module/actions';
 const Sidebar = (props) => {
     const {setting} = props;
     const dispatch = useDispatch();
+    const {currentUser} = useSelector((state) => state.AuthReducer);
+    const {name, avatar, email} = currentUser;
     const handleClick = (e) => {
         const themeItem = e.target.closest('.themeUI');
         const themeBtn = e.target.closest('button.standardBtn');
@@ -18,21 +22,25 @@ const Sidebar = (props) => {
             const themeId = themeBtn.dataset.theme;
             dispatch({type:CHANGE_THEME, payload: themeId});
         }
+    };
+    const logOut = () => {
+        dispatch(actLogout());
+        window.location.replace("/");
     }
     return (
         <div className={"sideBar " + (setting==='setting'?'show':'')} onClick = {handleClick}>
             <div className="sideBar__content">
                 <div className="userCurrent">
                     <div className="userImg">
-                        <div></div>
+                        {!!avatar?(<img src ={avatar} alt='admin-avatar'/>):(<p>{email.slice(0,1).toUpperCase()}</p>)}
                     </div>
                     <div className="userName">
-                        Vo Nhat Nam
+                        {name}
                     </div>
                     <div className="userFeature">
-                        <MailOutlined />
-                        <UserOutlined />
-                        <PoweroffOutlined />
+                        <Link to="/"><ImportOutlined /></Link>
+                        <Link to="/admin/adminProfile"><UserOutlined /></Link>
+                        <PoweroffOutlined onClick={logOut}/>
                     </div>
                 </div>
                 <div className="sideBar__theme">

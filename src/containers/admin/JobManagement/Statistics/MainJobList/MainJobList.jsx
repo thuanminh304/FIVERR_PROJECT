@@ -244,7 +244,7 @@ const Mainjoblist = (props) => {
             >
               <div
                 className={
-                  "tabMainJob__title " + (currentJobType === idx ? "active" : "")
+                  "tabMainJob__title " + (currentJobType == idx ? "active" : "")
                 }
                 onClick={choseSubJobType}
               >
