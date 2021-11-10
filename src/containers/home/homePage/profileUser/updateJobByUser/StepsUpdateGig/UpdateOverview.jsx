@@ -53,7 +53,7 @@ const UpdateOverview = (props) => {
         )
         .required(),
       type: yup.string().required("Please select !"),
-      subType: yup.string().required("Please select !"),
+      subType: yup.object().required("Please select !"),
       price: yup
         .string()
 

@@ -10,8 +10,6 @@ import messageConfig from "components/Message/message";
 const { Dragger } = Upload;
 export default function UpdateUploadAvatar(props) {
   const detailJobCreatedByUser = props.detailJobCreatedByUser;
-  console.log(detailJobCreatedByUser);
-  const { currentJob } = useSelector((state) => state.profileUserReducer);
   const [imageUrl, setImageUrl] = useState(null);
   const [current, setCurrent] = props.currentStep;
   const formik = useFormik({
@@ -20,15 +18,12 @@ export default function UpdateUploadAvatar(props) {
       job: null,
     },
     onSubmit: (value) => {
-      console.log(value)
       const formData = new FormData();
-      formData.append("job", value.job, value.job.name);
-      messageConfig.loading();
-
-      jobApi
+      if (value.job !== null) {
+        formData.append("job", value.job, value.job.name);
+        jobApi
         .updateJobImage(detailJobCreatedByUser?._id, formData)
         .then((res) => {
-          messageConfig.loading();
           setTimeout(() => {
             setCurrent(current + 1);
           }, 1500);
@@ -36,7 +31,19 @@ export default function UpdateUploadAvatar(props) {
             messageConfig.success();
           }, 1000);
         })
-        .catch(() => {});
+        .catch((err) => {
+          console.log(err?.response);
+        });
+      }
+
+      messageConfig.loading();
+      setTimeout(() => {
+        setCurrent(current + 1);
+      }, 1500);
+      setTimeout(() => {
+        messageConfig.success();
+      }, 1000);
+     
     },
   });
 

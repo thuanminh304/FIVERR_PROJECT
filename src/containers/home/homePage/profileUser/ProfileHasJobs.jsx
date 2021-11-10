@@ -1,8 +1,13 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import jobApi from "apis/jobApi";
+import { useDispatch } from "react-redux";
+import { actGetAllJobsByUser } from "./createNewJobByUser/StepsCreateNewGig/modules/action";
 export default function ProfileHasJobs(props) {
   const listJobsCreatedByUser = props.listJobsCreatedByUser;
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.AuthReducer);
   return (
     <div className="profile-right-content-jobs">
       <div className="row jobs-content">
@@ -21,9 +26,42 @@ export default function ProfileHasJobs(props) {
                 />
                 <div className="card-body">
                   <h4 className="card-title">{job.name}</h4>
-                  <Link to={`/by-user/update-job/${job._id}`}>
-                    View Detail
-                  </Link>
+                  <div className="hover-overlay">
+                   <strong>...</strong>
+                    <div className="overlay">
+                      <div>
+                        <Link to={`/by-user/update-job/${job._id}`}>
+                          <i class="fa fa-edit"></i>
+                          Update
+                        </Link>
+                      </div>
+                      <div>
+                        <Link to={`/by-user/${currentUser?.name}/${job._id}`}>
+                          <i class="fa fa-eye"></i>
+                          Preview
+                        </Link>
+                      </div>
+                      <div>
+                        <button
+                          onClick={() => {
+                            jobApi
+                              .deleteJob(job._id)
+                              .then((res) => {
+                                console.log(res.data);
+                                dispatch(actGetAllJobsByUser());
+                              })
+                              .catch((err) => {
+                                console.log(err?.response);
+                              });
+                          }}
+                        >
+                          <i class="fa fa-trash"></i>
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
                   <p className="card-text">
                     STARTING AT $<span>{job.price}</span>{" "}
                   </p>

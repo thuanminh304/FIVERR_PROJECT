@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./profileUser.scss";
-import { EditOutlined, PictureOutlined,FileDoneOutlined,EyeOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  PictureOutlined,
+  FileDoneOutlined,
+  EyeOutlined,
+} from "@ant-design/icons";
 import { actUploadAvatar } from "containers/shared/Auth/module/actions";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
@@ -79,7 +84,6 @@ export default function ProfileUser(props) {
   useEffect(() => {
     dispatch(actGetListJobBookedByUser());
   }, []);
-
   const listJobFinished = listJobBookedByUser?.filter(
     (job) => job.usersBooking === null
   );
@@ -141,7 +145,7 @@ export default function ProfileUser(props) {
           render: () => {
             return (
               <div className="action-table-gigs">
-                <span  className="filedoneoutlined">
+                <span className="filedoneoutlined">
                   <FileDoneOutlined />
                 </span>
                 <span className="eyeoutlined">
@@ -347,7 +351,7 @@ export default function ProfileUser(props) {
       <div className="col-7 profile-right">
         <div className="info-bars">
           <p>
-            WALLET: <span>{totalWallet} $</span>{" "}
+            WALLET: <span>{totalWallet } $</span>{" "}
           </p>
         </div>
         <Tabs className="tab-profile-right-content" defaultActiveKey="1">
@@ -366,30 +370,24 @@ export default function ProfileUser(props) {
             )}
           </TabPane>
           <TabPane tab="Booked" key="2">
-            {listJobsCreatedByUser?.length > 0 ? (
-              <div className="render-job-booked">
-                <Table
-                  columns={columns}
-                  dataSource={dataJobBooked}
-                  size="small"
-                />
-              </div>
-            ) : (
-              <Empty />
-            )}
+            <div className="render-job-booked">
+              <Table
+                key="tableBooked"
+                size="small"
+                columns={columns}
+                dataSource={dataJobBooked}
+              />
+            </div>
           </TabPane>
           <TabPane tab="Finised" key="3">
-            {listJobsCreatedByUser?.length > 0 ? (
-              <div className="render-job-finished">
-                <Table
-                  columns={columns}
-                  dataSource={dataJobFinised}
-                  size="small"
-                />
-              </div>
-            ) : (
-              <Empty />
-            )}
+            <div className="render-job-finished">
+              <Table
+                key="tableFinished"
+                columns={columns}
+                size="small"
+                dataSource={dataJobFinised}
+              />
+            </div>
           </TabPane>
         </Tabs>
       </div>

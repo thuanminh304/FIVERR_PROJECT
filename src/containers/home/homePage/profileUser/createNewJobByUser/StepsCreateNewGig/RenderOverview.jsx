@@ -39,10 +39,7 @@ const RenderOverview = (props) => {
         .required(),
       type: yup.string().required("Please select !"),
       subType: yup.string().required("Please select !"),
-      price: yup
-        .string()
-
-        .required("- Not yet entered"),
+      price: yup.string().min(0).required("- Not yet entered"),
     }),
   });
 
@@ -95,6 +92,7 @@ const RenderOverview = (props) => {
       <Form.Item className="item-select" label="CATEGORY">
         <div>
           <Select
+            key="type"
             name="type"
             options={mainJob?.map((mainjob, idx) => ({
               label: mainjob.name,
@@ -109,6 +107,7 @@ const RenderOverview = (props) => {
 
         <div>
           <Select
+            key="subType"
             name="subType"
             options={state?.subTypeJobs.map((subjob, idx) => ({
               label: subjob.name,
@@ -126,7 +125,6 @@ const RenderOverview = (props) => {
           min={0}
           name="price"
           step={5}
-          addonAfter="$"
           value={values.price}
           onChange={handleChangePrice}
         />

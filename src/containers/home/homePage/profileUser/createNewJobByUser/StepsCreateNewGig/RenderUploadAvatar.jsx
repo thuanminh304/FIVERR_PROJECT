@@ -32,7 +32,10 @@ export default function RenderUploadAvatar(props) {
             messageConfig.success();
           }, 1000);
         })
-        .catch(() => {});
+        .catch(() => {
+          messageConfig.error();
+
+        });
     },
   });
 
