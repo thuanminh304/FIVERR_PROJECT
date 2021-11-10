@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./profileUser.scss";
-import { EditOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  PictureOutlined,
+  FileDoneOutlined,
+  EyeOutlined,
+} from "@ant-design/icons";
 import { actUploadAvatar } from "containers/shared/Auth/module/actions";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { useHistory } from "react-router";
@@ -12,16 +16,20 @@ import {
   renderInputSkill,
   renderAvatar,
 } from "components/render/render";
-import { useEffect } from "react";
-import { actGetAllJobsByUser } from "./createNewJobByUser/StepsCreateNewGig/modules/action";
+import {
+  actGetAllJobsByUser,
+  actGetListJobBookedByUser,
+} from "./createNewJobByUser/StepsCreateNewGig/modules/action";
 import ProfileHasJobs from "./ProfileHasJobs";
 import ProfileNoJob from "./ProfileNoJob";
+import { Tabs, Empty, Table, Avatar } from "antd";
 
 export default function ProfileUser(props) {
   const [imageUrl, setImageUrl] = useState(null);
+  const { TabPane } = Tabs;
 
   const { currentUser } = useSelector((state) => state.AuthReducer);
-  const { listAllJobsByUser } = useSelector(
+  const { listAllJobsByUser, listJobBookedByUser } = useSelector(
     (state) => state.profileUserReducer
   );
   const dispatch = useDispatch();
@@ -65,14 +73,92 @@ export default function ProfileUser(props) {
     e.preventDefault();
     document.querySelector(classInput).style.display = "block";
   };
+
   useEffect(() => {
     dispatch(actGetAllJobsByUser());
   }, []);
   const listJobsCreatedByUser = listAllJobsByUser?.filter(
     (job) => job.userCreated === currentUser?._id
   );
-  console.log(listJobsCreatedByUser);
 
+  useEffect(() => {
+    dispatch(actGetListJobBookedByUser());
+  }, []);
+  const listJobFinished = listJobBookedByUser?.filter(
+    (job) => job.usersBooking === null
+  );
+  const listJobBooked = listJobBookedByUser?.filter(
+    (job) => job.usersBooking !== null
+  );
+  const totalWallet = listJobFinished?.reduce(
+    (preValue, curValue) => preValue + curValue.price,
+    0
+  );
+
+  const columns = [
+    {
+      title: "#",
+      key: "index",
+      render: (text, record, index) => {
+        return <span key={index + 1}>{index + 1}</span>;
+      },
+    },
+    {
+      title: "Name of Gig",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Image",
+      dataIndex: "image",
+      key: "image",
+      render: (text, record) => {
+        return record.image ? (
+          <img
+            key={record._id}
+            src={record.image}
+            style={{
+              width: "50px",
+              objectFit: "cover",
+            }}
+            alt=""
+          />
+        ) : (
+          <Avatar key={record._id} shape="square" icon={<PictureOutlined />} />
+        );
+      },
+    },
+    {
+      title: "Price $",
+      dataIndex: "price",
+      key: "price",
+    },
+    {
+      title: "Rate ",
+      dataIndex: "rating",
+      key: "rating",
+    },
+    listJobBooked
+      ? {
+          title: "Action ",
+          key: "action",
+          render: () => {
+            return (
+              <div className="action-table-gigs">
+                <span className="filedoneoutlined">
+                  <FileDoneOutlined />
+                </span>
+                <span className="eyeoutlined">
+                  <EyeOutlined />
+                </span>
+              </div>
+            );
+          },
+        }
+      : null,
+  ];
+  const dataJobFinised = listJobFinished;
+  const dataJobBooked = listJobBooked;
   return (
     <div className="profile-user row">
       <div className="col-3 profile-left">
@@ -263,11 +349,47 @@ export default function ProfileUser(props) {
         </div>
       </div>
       <div className="col-7 profile-right">
-        {listJobsCreatedByUser?.length > 0 ? (
-          <ProfileHasJobs listJobsCreatedByUser={listJobsCreatedByUser} />
-        ) : (
-          <ProfileNoJob />
-        )}
+        <div className="info-bars">
+          <p>
+            WALLET: <span>{totalWallet } $</span>{" "}
+          </p>
+        </div>
+        <Tabs className="tab-profile-right-content" defaultActiveKey="1">
+          <TabPane
+            tab={
+              listJobsCreatedByUser?.length > 0
+                ? "Active Gigs"
+                : "Create New Gigs"
+            }
+            key="1"
+          >
+            {listJobsCreatedByUser?.length > 0 ? (
+              <ProfileHasJobs listJobsCreatedByUser={listJobsCreatedByUser} />
+            ) : (
+              <ProfileNoJob />
+            )}
+          </TabPane>
+          <TabPane tab="Booked" key="2">
+            <div className="render-job-booked">
+              <Table
+                key="tableBooked"
+                size="small"
+                columns={columns}
+                dataSource={dataJobBooked}
+              />
+            </div>
+          </TabPane>
+          <TabPane tab="Finised" key="3">
+            <div className="render-job-finished">
+              <Table
+                key="tableFinished"
+                columns={columns}
+                size="small"
+                dataSource={dataJobFinised}
+              />
+            </div>
+          </TabPane>
+        </Tabs>
       </div>
     </div>
   );

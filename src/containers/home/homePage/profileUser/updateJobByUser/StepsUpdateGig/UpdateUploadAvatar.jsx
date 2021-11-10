@@ -8,8 +8,8 @@ import getBase64 from "components/base64/getBase64";
 import messageConfig from "components/Message/message";
 
 const { Dragger } = Upload;
-export default function RenderUploadAvatar(props) {
-  const { currentJob } = useSelector((state) => state.profileUserReducer);
+export default function UpdateUploadAvatar(props) {
+  const detailJobCreatedByUser = props.detailJobCreatedByUser;
   const [imageUrl, setImageUrl] = useState(null);
   const [current, setCurrent] = props.currentStep;
   const formik = useFormik({
@@ -19,11 +19,10 @@ export default function RenderUploadAvatar(props) {
     },
     onSubmit: (value) => {
       const formData = new FormData();
-      formData.append("job", value.job, value.job.name);
-      messageConfig.loading();
-
-      jobApi
-        .updateJobImage(currentJob?._id, formData)
+      if (value.job !== null) {
+        formData.append("job", value.job, value.job.name);
+        jobApi
+        .updateJobImage(detailJobCreatedByUser?._id, formData)
         .then((res) => {
           setTimeout(() => {
             setCurrent(current + 1);
@@ -32,10 +31,19 @@ export default function RenderUploadAvatar(props) {
             messageConfig.success();
           }, 1000);
         })
-        .catch(() => {
-          messageConfig.error();
-
+        .catch((err) => {
+          console.log(err?.response);
         });
+      }
+
+      messageConfig.loading();
+      setTimeout(() => {
+        setCurrent(current + 1);
+      }, 1500);
+      setTimeout(() => {
+        messageConfig.success();
+      }, 1000);
+     
     },
   });
 
@@ -75,7 +83,10 @@ export default function RenderUploadAvatar(props) {
             </p>
           </Dragger>
           <div className="ant-show-upload-image">
-            <img src={imageUrl} alt="" />
+            <img
+              src={imageUrl ? imageUrl : detailJobCreatedByUser?.image}
+              alt=""
+            />
           </div>
         </div>
         <div className="steps-action">

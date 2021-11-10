@@ -248,67 +248,35 @@
   }
   .profile-right {
     margin-top: 50px;
-
-    .profile-right-content {
-      .buying-services {
-        border: 1px solid #ddd;
-        padding: 16px 16px 10px 32px;
-        display: flex;
-        background-color: $color-white;
-        justify-content: space-between;
-        img {
-          width: 60px;
-          height: 60px;
-          margin-top: 17px;
-        }
-        & > div {
-          padding: 0px 30px 0 17px;
-        }
-        p {
-          font-size: $fs-3;
-
-          &:last-child {
-            line-height: 1.75;
-            color: $color-green-all;
-            font-weight: $fw-3;
-            // &:hover{
-            //   border-bottom: 1px solid $color-green-all;
-            // }
-          }
-        }
+    .info-bars {
+      border: 1px solid #ddd;
+      background-color: $color-white;
+      width: 100%;
+      border-radius: 2px;
+      padding: 0 25px;
+      margin-bottom: 40px;
+      position: relative;
+      p {
+        padding: 23px 0;
+        margin-right: 35px;
+        font-size: 14px;
+        line-height: 130%;
+        font-weight: 600;
+        display: inline-block;
+        cursor: pointer;
+        color: #303030;
+        position: relative;
+        border-bottom: 4px solid $color-green-all;
+        margin-bottom: 0;
         span {
-          font-weight: $fw-4;
-        }
-      }
-      .create-gig {
-        border: 1px solid #ddd;
-        justify-content: space-between;
-        display: flex;
-        padding: 20px 24px;
-        margin-top: 16px;
-        background-color: $color-white;
-        align-items: baseline;
-        p {
-          font-size: 15px;
-          margin-bottom: 0;
-        }
-        button {
-          background-color: $color-green-all;
-          color: white;
-          padding: 0 12px;
-          font-weight: $fw-4;
-          border-radius: 3px;
-          line-height: $fs-4;
-          font-size: 13px;
-          border: none;
-          &:hover {
-            opacity: 0.7;
-          }
+          font-weight: 700;
+          font-size: 20px;
+          color: $color-green-all;
         }
       }
     }
-    .profile-right-content-jobs {
-      .active-bars {
+    .tab-profile-right-content {
+      .ant-tabs-nav {
         border: 1px solid #ddd;
         background-color: $color-white;
         width: 100%;
@@ -316,88 +284,213 @@
         padding: 0 25px;
         margin-bottom: 40px;
         position: relative;
-        span {
-          padding: 23px 0;
-          margin-right: 35px;
-          font-size: 14px;
-          line-height: 130%;
-          font-weight: 600;
-          display: inline-block;
-          cursor: pointer;
-          color: #0e0e0f;
-          position: relative;
-          border-bottom: 4px solid $color-green-all;
+        .ant-tabs-nav-list {
+          .ant-tabs-tab {
+            .ant-tabs-tab-btn {
+              color: $color-nav-title;
+              font-weight: 600;
+            }
+          }
+          .ant-tabs-tab-active {
+            padding: 23px 0;
+            font-size: 15px;
+            line-height: 130%;
+            font-weight: 600;
+            border-bottom: 4px solid $color-green-all;
+            z-index: 2;
+            .ant-tabs-tab-btn {
+              color: $color-green-all;
+            }
+          }
         }
       }
-      .jobs-content {
-        row-gap: 30px;
+      .profile-right-content {
+        .buying-services {
+          border: 1px solid #ddd;
+          padding: 16px 16px 10px 32px;
+          display: flex;
+          background-color: $color-white;
+          justify-content: space-between;
+          img {
+            width: 60px;
+            height: 60px;
+            margin-top: 17px;
+          }
+          & > div {
+            padding: 0px 30px 0 17px;
+          }
+          p {
+            font-size: $fs-3;
 
-        .card {
-          .card-body {
-            padding: 5px 10px 10px;
-            h4.card-title {
-              font-size: 15px;
-              line-height: 140%;
-              font-weight: 600;
-              color: #303030;
-              overflow: hidden;
-              margin: 0;
-              -ms-word-wrap: break-word;
-              word-wrap: break-word;
-              -ms-word-break: break-word;
-              word-break: break-word;
-              -webkit-transition: 0.15s ease-in-out;
-              transition: 0.15s ease-in-out;
-              width: fit-content;
-              margin-bottom: 20px;
+            &:last-child {
+              line-height: 1.75;
+              color: $color-green-all;
+              font-weight: $fw-3;
+            }
+          }
+          span {
+            font-weight: $fw-4;
+          }
+        }
+        .create-gig {
+          border: 1px solid #ddd;
+          justify-content: space-between;
+          display: flex;
+          padding: 20px 24px;
+          margin-top: 16px;
+          background-color: $color-white;
+          align-items: baseline;
+          p {
+            font-size: 15px;
+            margin-bottom: 0;
+          }
+          button {
+            background-color: $color-green-all;
+            color: white;
+            padding: 0 12px;
+            font-weight: $fw-4;
+            border-radius: 3px;
+            line-height: $fs-4;
+            font-size: 13px;
+            border: none;
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+      .profile-right-content-jobs {
+        .jobs-content {
+          row-gap: 30px;
+
+          .card {
+            .card-img-top {
               &:hover {
-                border-bottom: 1px solid $color-green-all;
-                color: $color-green-all;
                 cursor: pointer;
               }
             }
-            p.card-text {
-              color: $color-green-all;
-              font-size: 11px;
-              font-weight: 700;
-              text-transform: uppercase;
-              vertical-align: top;
-              padding: 1px 5px 0 0;
-              text-align: right;
-              span {
-                font-size: 18px;
-                line-height: 20px;
+            .card-body {
+              padding: 5px 10px 10px;
+              position: relative;
+              .overlay {
+                text-align: center;
+                left: 0;
+                top: 0;
+                position: absolute;
+                background: white;
+                width: 100%;
+                height: 100%;
+                transform: translateY(150px);
+                transition: all 1s;
+                border-top: 1px solid #ddd;
+                border-bottom: 1px solid #ddd;
                 font-weight: 700;
-                padding: 0 6px ;
+                padding-top: 14px;
+                a {
+                  color: gray;
+                }
+                i{
+                  width: 20px;
+                }
+                button {
+                  border: none;
+                  background-color: transparent;
+                font-weight: 700;
+                color: gray;
+                }
+              }
+              h4.card-title {
+                font-size: 15px;
+                line-height: 140%;
+                font-weight: 600;
+                color: #303030;
+                overflow: hidden;
+                margin: 0;
+                -ms-word-wrap: break-word;
+                word-wrap: break-word;
+                -ms-word-break: break-word;
+                word-break: break-word;
+                -webkit-transition: 0.15s ease-in-out;
+                transition: 0.15s ease-in-out;
+                width: fit-content;
+                margin-bottom: 20px;
+                &:hover {
+                  border-bottom: 1px solid $color-green-all;
+                  color: $color-green-all;
+                  cursor: pointer;
+                }
+              }
+              p.card-text {
+                color: $color-green-all;
+                font-size: 11px;
+                font-weight: 700;
+                text-transform: uppercase;
+                vertical-align: top;
+                padding: 1px 5px 0 0;
+                text-align: right;
+                span {
+                  font-size: 18px;
+                  line-height: 20px;
+                  font-weight: 700;
+                  padding: 0 6px;
+                }
+              }
+            }
+            &:hover {
+              .card-body {
+                h4.card-title {
+                  color: #19a463;
+                }
+              }
+            }
+            .hover-overlay {
+              &:hover {
+                .overlay {
+                  transform: translateY(0);
+                }
               }
             }
           }
-          &:hover {
-            .card-title {
-              color: #19a463;
+          .create-new-gig {
+            position: relative;
+            text-align: center;
+            a {
+              margin: 42.5px 30px;
+              span {
+                border-radius: 50%;
+                background-color: #78cdd2;
+                font-size: 60px;
+                font-weight: 700;
+                color: white;
+                padding: 0 25px 10px;
+              }
+              p {
+                color: $color-nav-title;
+                font-weight: 700;
+                margin-top: 20px;
+              }
             }
           }
         }
-        .create-new-gig{
-          position: relative;
-          text-align: center;
-          a{
-            margin: 42.5px 30px;
-            span{
-              border-radius: 50%;
-              background-color: #78cdd2;
-              font-size: 60px;
-              font-weight: 700;
-              color: white;
-              padding:0 25px 10px;
-            }
-            p{
-              color: $color-nav-title;
-              font-weight: 700;
-              margin-top: 20px;
-            }
+      }
+      .render-job-booked,
+      .render-job-finished {
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #ddd;
+      }
+      .render-job-booked {
+        .action-table-gigs {
+          display: flex;
+          justify-content: space-evenly;
+          span.filedoneoutlined {
+            cursor: pointer;
+            color: #19a463;
           }
-          
+          span.eyeoutlined {
+            color: #00698c;
+            cursor: pointer;
+          }
         }
       }
     }

@@ -10,6 +10,8 @@ import StaffUser from "containers/admin/user/StaffUser";
 import ProfileUser from "containers/home/homePage/profileUser/ProfileUser";
 import Editjob from "containers/admin/JobManagement/EditJob/EditJob";
 import CreateNewJobByUser from "containers/home/homePage/profileUser/createNewJobByUser/CreateNewJobByUser";
+import UpdateJobByUser from "containers/home/homePage/profileUser/updateJobByUser/UpdateJobByUser";
+import DetailJob from "containers/home/homePage/profileUser/detailJob/DetailJob";
 import Adminprofile from "containers/admin/AdminProfile/AdminProfile";
 
 export const clientRoutes = [
@@ -28,6 +30,18 @@ export const clientRoutes = [
   {
     path: "/by-user/create-new-job",
     component: CreateNewJobByUser,
+    exact: true,
+    isPrivate: true,
+  },
+  {
+    path: "/by-user/update-job/:idJobCreateByUser",
+    component: UpdateJobByUser,
+    exact: true,
+    isPrivate: true,
+  },
+  {
+    path: "/by-user/:idUser/:idJobCreateByUser",
+    component: DetailJob,
     exact: true,
     isPrivate: true,
   },

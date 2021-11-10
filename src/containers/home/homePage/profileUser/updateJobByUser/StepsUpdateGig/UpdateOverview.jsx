@@ -1,34 +1,49 @@
 import React, { useState } from "react";
-import { Form, Input, InputNumber, Switch, Button } from "antd";
+import { Form, Input, InputNumber, Switch } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Select } from "antd";
 import { useFormik } from "formik";
 import jobApi from "apis/jobApi";
-import { useHistory } from "react-router";
-import { actCreateJobByUser } from "./modules/action";
+import { useHistory, useParams } from "react-router";
 import * as yup from "yup";
 import errorForm from "components/showErrors/showError";
-const RenderOverview = (props) => {
-  const { mainJob } = useSelector((state) => state.JobManagementReducer);
-
+import messageConfig from "components/Message/message";
+const UpdateOverview = (props) => {
+  const detailJobCreatedByUser = props.detailJobCreatedByUser;
+  const [current, setCurrent] = props.currentStep;
   const [state, setState] = useState(null);
   const history = useHistory();
   const dispatch = useDispatch();
-  const [current, setCurrent] = props.currentStep;
+  const { mainJob } = useSelector((state) => state.JobManagementReducer);
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      name: "",
-      rating: 0,
-      price: 0,
-      proServices: false,
-      localSellers: false,
-      onlineSellers: false,
-      deliveryTime: false,
-      type: "",
-      subType: "",
+      name: detailJobCreatedByUser?.name,
+      rating: detailJobCreatedByUser?.rating,
+      price: detailJobCreatedByUser?.price,
+      proServices: detailJobCreatedByUser?.proServices,
+      localSellers: detailJobCreatedByUser?.localSellers,
+      onlineSellers: detailJobCreatedByUser?.onlineSellers,
+      deliveryTime: detailJobCreatedByUser?.deliveryTime,
+      type: detailJobCreatedByUser?.type._id,
+      subType: detailJobCreatedByUser?.subType,
     },
     onSubmit: (value) => {
-      dispatch(actCreateJobByUser(value, [current, setCurrent]));
+      jobApi
+        .updateJobDetail(detailJobCreatedByUser?._id, value)
+        .then((res) => {
+          messageConfig.loading()
+          setTimeout(() => {
+            setCurrent(current + 1);
+          }, 1500);
+          setTimeout(() => {
+            messageConfig.success()
+
+          }, 1000);
+        })
+        .catch((err) => {
+          console.log(err?.response);
+        });
     },
     validationSchema: yup.object({
       name: yup
@@ -38,8 +53,11 @@ const RenderOverview = (props) => {
         )
         .required(),
       type: yup.string().required("Please select !"),
-      subType: yup.string().required("Please select !"),
-      price: yup.string().min(0).required("- Not yet entered"),
+      subType: yup.object().required("Please select !"),
+      price: yup
+        .string()
+
+        .required("- Not yet entered"),
     }),
   });
 
@@ -47,13 +65,14 @@ const RenderOverview = (props) => {
     formik.setFieldValue("type", value);
 
     try {
-      const data = await jobApi.getDetailTypeMainjob(value);
+      const data = await jobApi.getDetailTypeMainjob(
+        value ? value : values.type._id
+      );
       setState(data.data);
     } catch (err) {
       console.log(err);
     }
   }
-
   const handleChangeSubJob = (value) => {
     formik.setFieldValue("subType", value);
   };
@@ -78,6 +97,7 @@ const RenderOverview = (props) => {
           placeholder="Name"
           name="name"
           type="text"
+          value={values.name}
           onChange={formik.handleChange}
         />
         {errorForm.showErrors(
@@ -92,12 +112,12 @@ const RenderOverview = (props) => {
       <Form.Item className="item-select" label="CATEGORY">
         <div>
           <Select
-            key="type"
             name="type"
             options={mainJob?.map((mainjob, idx) => ({
               label: mainjob.name,
               value: mainjob._id,
             }))}
+            value={values.type}
             onChange={handleChangeMainJob}
             placeholder="SELECT A CATEGORY"
           />
@@ -107,8 +127,8 @@ const RenderOverview = (props) => {
 
         <div>
           <Select
-            key="subType"
             name="subType"
+            value={values?.subType?.name}
             options={state?.subTypeJobs.map((subjob, idx) => ({
               label: subjob.name,
               value: subjob._id,
@@ -125,6 +145,7 @@ const RenderOverview = (props) => {
           min={0}
           name="price"
           step={5}
+          addonafter="$"
           value={values.price}
           onChange={handleChangePrice}
         />
@@ -143,6 +164,7 @@ const RenderOverview = (props) => {
         <div>
           <label htmlFor="proServices">Pro Services</label>
           <Switch
+            checked={values.proServices}
             name="proServices"
             onChange={handleChangeSwitch("proServices")}
           />
@@ -150,6 +172,7 @@ const RenderOverview = (props) => {
         <div>
           <label htmlFor="localSellers">Local Sellers</label>
           <Switch
+            checked={values.localSellers}
             name="localSellers"
             onChange={handleChangeSwitch("localSellers")}
           />
@@ -158,6 +181,7 @@ const RenderOverview = (props) => {
         <div>
           <label htmlFor="onlineSellers">Online Sellers</label>
           <Switch
+            checked={values.onlineSellers}
             name="onlineSellers"
             onChange={handleChangeSwitch("onlineSellers")}
           />
@@ -166,6 +190,7 @@ const RenderOverview = (props) => {
         <div>
           <label htmlFor="deliveryTime">Delivery Time</label>
           <Switch
+            checked={values.deliveryTime}
             name="deliveryTime"
             onChange={handleChangeSwitch("deliveryTime")}
           />
@@ -173,6 +198,7 @@ const RenderOverview = (props) => {
       </Form.Item>
       <Form.Item className="steps-action">
         <button
+          type="button"
           className="btn-pre-steps"
           onClick={() => {
             history.goBack();
@@ -188,4 +214,4 @@ const RenderOverview = (props) => {
     </Form>
   );
 };
-export default RenderOverview;
+export default UpdateOverview;
