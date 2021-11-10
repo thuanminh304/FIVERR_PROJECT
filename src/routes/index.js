@@ -12,6 +12,7 @@ import Editjob from "containers/admin/JobManagement/EditJob/EditJob";
 import CreateNewJobByUser from "containers/home/homePage/profileUser/createNewJobByUser/CreateNewJobByUser";
 import UpdateJobByUser from "containers/home/homePage/profileUser/updateJobByUser/UpdateJobByUser";
 import DetailJob from "containers/home/homePage/profileUser/detailJob/DetailJob";
+import Adminprofile from "containers/admin/AdminProfile/AdminProfile";
 
 export const clientRoutes = [
   {
@@ -121,5 +122,21 @@ export const adminRoutes = [
     isPrivate: true,
     name: 'Job Edit',
     href: ['Products','Job Edit'],
+  },
+  {
+    path: "/admin/adminProfile",
+    component: Adminprofile,
+    exact: false,
+    isPrivate: true,
+    name: 'Admin Profile',
+    href: ['Admin Profile'],
+  },
+  {
+    path: "/admin/adminMessage",
+    component: Adminprofile,
+    exact: false,
+    isPrivate: true,
+    name: 'Admin Profile',
+    href: ['Admin Profile'],
   },
 ];

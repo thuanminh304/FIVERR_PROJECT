@@ -1,0 +1,63 @@
+.adminBox-container {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0px 5px 25px 0px rgb(0 0 0 / 20%);
+  .adminBox-content {
+    padding: 20px;
+  }
+  .adminBox-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    color: #73bfdd;
+    padding-bottom: 10px;
+    border-bottom: 2px dotted #eee;
+  }
+  .adminBox-list {
+    padding-top: 10px;
+  }
+  .adminInfo__content {
+    display: flex;
+    font-size: 15px;
+    color: #888;
+    margin-top: 10px;
+    justify-content: flex-start;
+    .infoField {
+      font-weight: 500;
+      width: 100px;
+    }
+    // .infoValue{
+    //     font-size: 15px;
+    //     text-align: center;
+    // }
+  }
+  .infoField-List {
+    color: #888;
+    font-weight: 500;
+    width: 100px;
+    text-align: center;
+  }
+}
+.adminInfo{
+  .adminBox-list{
+    text-align: center;
+    .infoField-List{
+      display: inline-block;
+      margin: 0 5px;
+      width: auto;
+      &:nth-of-type(1){
+        span{
+          background-color: #ff7070;
+        }
+      }
+      span{
+        background-color: #91CC75;
+        padding: 5px 10px;
+        border-radius: 20px;
+        color: #fff;
+      }
+    }
+  }
+}

@@ -38,8 +38,8 @@ const Formlayout = (props) => {
     return (
       <Form.Item name={name} rules={formValidConfig(name)} hasFeedback>
         <Select placeholder="select your gender">
-          <Option value="male">Male</Option>
-          <Option value="female">Female</Option>
+          <Option value={true}>Male</Option>
+          <Option value={false}>Female</Option>
         </Select>
       </Form.Item>
     );

@@ -45,7 +45,7 @@ import { RevertUser } from "setting/RevertDataUser";
 import userApi from "apis/userApi";
 import { actGetUserSatictis } from "containers/admin/user/module/action";
 
-const showNote = (dispatch, getState, typeNote, contentNote) => {
+export const showNote = (dispatch, getState, typeNote, contentNote) => {
     const {isNote} = getState().AdminDashBoardSettingReducer;
     if(isNote){
       dispatch(actTurnOffNote());
