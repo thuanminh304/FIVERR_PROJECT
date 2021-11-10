@@ -1,0 +1,96 @@
+.categories {
+  .categories__container {
+    padding: 32px 32px 0;
+  }
+  .categories__header {
+    text-align: center;
+    h4 {
+      font-weight: 700;
+      font-size: 40px;
+      color: #222325;
+      text-transform: none;
+      margin-bottom: 0;
+    }
+  }
+  .categories__content {
+    padding-top: 32px;
+    align-items: flex-start;
+  }
+  .content__sideRight {
+    padding: 0;
+    .sideRight__contentItem {
+      padding-left: 24px;
+      padding-right: 0;
+      overflow: hidden;
+      margin-bottom: 48px;
+      // max-height: 214px;
+      a {
+        display: block;
+        text-decoration: none;
+        color: #222325;
+        font-size: 17px;
+        font-weight: 400;
+        &:hover {
+          span {
+            &:after {
+                opacity: 1;
+            }
+          }
+        }
+        span {
+          position: relative;
+          display: block;
+          width: 100%;
+          height: 100%;
+          &:after {
+            content: "";
+            position: absolute;
+            background-color: rgba(204, 204, 204, 0.4);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform-origin: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+          }
+        }
+        img {
+          display: block;
+          width: 100%;
+          border-radius: 5px;
+
+          // max-width: 290px;
+          // max-height: 180px;
+        }
+        p {
+          margin-top: 3px;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  .content__sideLeft {
+    font-size: 17px;
+    .sideLeft__listTitle {
+      padding-top: 0;
+      color: #222325;
+      font-weight: 600;
+    }
+    .sideLeft__listItem {
+      padding: 0 16px 12px 0;
+      &:hover {
+        a {
+          text-decoration: underline !important;
+        }
+      }
+    }
+    a {
+      display: block;
+      text-decoration: none;
+      color: #7a7d85;
+      font-weight: 400;
+      transition: text-decoration 0.2s;
+    }
+  }
+}
