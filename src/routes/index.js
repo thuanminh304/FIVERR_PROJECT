@@ -13,6 +13,7 @@ import CreateNewJobByUser from "containers/home/homePage/profileUser/createNewJo
 import UpdateJobByUser from "containers/home/homePage/profileUser/updateJobByUser/UpdateJobByUser";
 import DetailJob from "containers/home/homePage/profileUser/detailJob/DetailJob";
 import Adminprofile from "containers/admin/AdminProfile/AdminProfile";
+import Categories from "containers/home/Categories/Categories";
 
 export const clientRoutes = [
   {
@@ -55,6 +56,12 @@ export const clientRoutes = [
     path: "/join",
     component: Login,
     exact: true,
+    isPrivate: true,
+  },
+  {
+    path: "/categories/:typeJob",
+    component: Categories,
+    exact: false,
     isPrivate: true,
   },
 ];
