@@ -18,7 +18,10 @@ const CarouselLoggedIn = lazy(() =>
 
 export default function HomeLoggedIn() {
   return (
-    <div style={{ width: "95%", margin: "auto" }} className="home-loggedin">
+    <div
+      style={{ width: "95%", margin: "auto", paddingBottom: 50 }}
+      className="home-loggedin"
+    >
       <Suspense fallback={<Loader />}>
         <CarouselLoggedIn />
         <PopularGigs />

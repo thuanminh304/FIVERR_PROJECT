@@ -1,0 +1,161 @@
+@import "helpers/variables";
+
+.form-update-by-user {
+  color: $color-nav-title;
+  background-color: #f7f7f7;
+  padding-bottom: 150px;
+  position: relative;
+  .stepsbar-update-job-by-user {
+    padding-top: 20px;
+    font-weight: 600;
+    width: 60%;
+    margin: auto;
+    .ant-steps-item-process {
+      .ant-steps-item-icon {
+        background-color: $color-green-all;
+        border: none;
+      }
+    }
+    .ant-steps-item-finish {
+      .ant-steps-item-icon {
+        border: 2px solid $color-green-all;
+        .ant-steps-finish-icon {
+          color: $color-green-all;
+          transform: translate(0%, -25%);
+          font-size: 20px;
+        }
+      }
+      .ant-steps-item-content {
+        & > .ant-steps-item-title:after {
+          background-color: $color-green-all;
+          height:2px;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+  .content-update-job-by-user {
+    width: 60%;
+    margin: 50px auto 0;
+    background-color: white;
+    border: 1px solid $color-cato-sub;
+    padding: 20px;
+    //render overview
+
+    .render-overview {
+      label[title] {
+        width: 100px;
+        color: $color-nav-title;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      .item-select {
+        .ant-form-item-control-input-content {
+          display: flex;
+          gap: 50px;
+        }
+      }
+      .item-status {
+        .ant-form-item-control-input-content {
+          display: flex;
+          justify-content: space-between;
+          label {
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+    //render upload avatar
+    .render-upload-avatar {
+      & > h3 {
+        font-size: 28px;
+        color: $color-sm-title;
+      }
+      & > p {
+        color: $color-sm-title;
+        font-size: 16px;
+      }
+      .dragger-image {
+        display: flex;
+        gap: 60px;
+        .ant-upload-drag {
+          .ant-upload-btn {
+            padding: 16px;
+          }
+        }
+        .ant-upload-list-picture-card {
+          display: none;
+        }
+      }
+      .ant-show-upload-image {
+        img {
+          width: 100%;
+          object-fit: cover;
+          height: 100%;
+        }
+      }
+    }
+    //render done
+    .render-done {
+      .done-content {
+        margin: auto;
+        text-align: center;
+        width: 50%;
+        h3 {
+          color: #00668c;
+          font-size: 40px;
+          line-height: 120%;
+        }
+        p {
+          color: #404145;
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 31px;
+        }
+      }
+    }
+  }
+  .steps-action {
+    position: absolute;
+    bottom: 24px;
+    text-align: center;
+    padding-bottom: 40px;
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    .ant-form-item-control-input-content {
+      display: flex;
+      justify-content: space-around;
+    }
+    .btn-pre-steps {
+      border-radius: 5px;
+      padding: 0 35px;
+      font-size: $fs-3;
+      background-color: $color-white;
+      height: 50px;
+      font-weight: $fw-4;
+      border: 1px solid $color-cato-sub;
+      &:hover {
+        color: $color-green-all;
+      }
+    }
+    .btn-next-steps {
+      border: none;
+      border-radius: 5px;
+      background-color: $color-green-all;
+      color: $color-white;
+      padding: 0 35px;
+
+      font-size: $fs-3;
+      font-weight: $fw-4;
+      transition: all 0.2s;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

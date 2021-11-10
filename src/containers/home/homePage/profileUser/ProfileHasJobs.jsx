@@ -1,13 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function ProfileHasJobs(props) {
   const listJobsCreatedByUser = props.listJobsCreatedByUser;
   return (
     <div className="profile-right-content-jobs">
-      <div className="active-bars">
-        <span>ACTIVE GIGS</span>
-      </div>
       <div className="row jobs-content">
         {listJobsCreatedByUser.map((job, idx) => {
           return (
@@ -24,6 +21,9 @@ export default function ProfileHasJobs(props) {
                 />
                 <div className="card-body">
                   <h4 className="card-title">{job.name}</h4>
+                  <Link to={`/by-user/update-job/${job._id}`}>
+                    View Detail
+                  </Link>
                   <p className="card-text">
                     STARTING AT $<span>{job.price}</span>{" "}
                   </p>

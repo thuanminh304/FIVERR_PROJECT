@@ -50,6 +50,10 @@ const jobApi = {
   createNewJobByUser(formData) {
     return callApi("api/jobs", "POST", formData);
   },
+
+  getListJobBookedByUser() {
+    return callApi("api/jobs/by-user");
+  },
 };
 
 export default jobApi;
