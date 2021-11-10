@@ -17,22 +17,28 @@ export default function DetailJob() {
   useEffect(() => {
     dispatch(actGetDetailJobCreatedByUser(params?.idJobCreateByUser));
   }, []);
-
+  var barFixed = document.getElementById("bar-fixed");
+//   var fixed = barFixed.offsetTop;
+//   window.addEventListener("scroll", function () {
+//     if (window.pageYOffset >= fixed) {
+//       fixed.classList.add("fixed");
+//     } else {
+//       fixed.classList.remove("fixed");
+//     }
+//   });
   return (
     <div className="detail-job">
       <div className="detail-job-content">
-        <Anchor>
-          <div className="bar-fixed">
-            <ul>
-              <li>
-                <a href="#overview">Overview</a>
-              </li>
-              <li>
-                <a href="#abouttheseller">About The Seller</a>
-              </li>
-            </ul>
-          </div>
-        </Anchor>
+        <div id="bar-fixed">
+          <ul>
+            <li>
+              <a href="#overview">Overview</a>
+            </li>
+            <li>
+              <a href="#abouttheseller">About The Seller</a>
+            </li>
+          </ul>
+        </div>
         <div className="share-gig">
           <div className="content">
             <span>
@@ -72,7 +78,7 @@ export default function DetailJob() {
 
               <div className="info-top">
                 <img src={currentUser.avatar} alt="" />
-                <div >
+                <div>
                   <p>{currentUser.name}</p>
                   <button>Contact Me</button>
                 </div>
