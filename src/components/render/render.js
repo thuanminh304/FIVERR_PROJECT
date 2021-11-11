@@ -117,9 +117,10 @@ export const renderCategoriesHeader = (mainJob, currentUser) => {
     <div id={currentUser ? "category__content-loggedin" : "category__content"}>
       <ul>
         {mainJob?.map((mainjob, idx) => {
+          const name = configName(mainjob.name);
           return (
             <li className="li-cate" key={mainjob._id}>
-              <a href="# ">{mainjob.name}</a>
+              <Link to={`/categories/${name}`}>{mainjob.name}</Link>
               <div
                 className={
                   currentUser
@@ -129,7 +130,6 @@ export const renderCategoriesHeader = (mainJob, currentUser) => {
               >
                 <ul className="hover__item">
                   {mainjob.subTypeJobs.map((subjob, idx) => {
-                    let name = configName(mainjob.name);
                     return (
                       <li key={subjob._id}>
                         <Link to={`/categories/${name}/${subjob._id}`}>

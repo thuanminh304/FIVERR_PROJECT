@@ -17,8 +17,8 @@ const Categories = () => {
     const type = mainJob.find((job) => {
       return configNameTypeJob(job.name) === typeJob;
     });
-    if (!!type && dataImg.length === 0) {
-      setMainType(type);
+    setMainType(type);
+    if (!!type) {
       setLoading(true);
       jobApi.getMainJobList(type._id).then(res=>{
         const imageJob = res.data.filter((job) => {
@@ -32,14 +32,7 @@ const Categories = () => {
         setDataImg([]);
       });
     }
-  }, [mainJob]);
-  // useEffect(() => {
-  //   if (jobList.length > 0) {
-      
-  //     console.log(imageJob);
-      
-  //   }
-  // }, [jobList]);
+  }, [mainJob,typeJob]);
   const findImage = (id) => {
     if (dataImg.length > 0) {
       const imageUrl = dataImg.find((img) => {
