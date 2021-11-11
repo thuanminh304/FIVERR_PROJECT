@@ -104,7 +104,7 @@ export default function HeaderNotLogin() {
             </button>
             <div className="header__icon-fixed">
               <a href="# ">
-                <img src="images/Fiverr_Logo_09.2020-fixed.svg" alt="Fiverr" />
+                <img src="/images/Fiverr_Logo_09.2020-fixed.svg" alt="Fiverr" />
               </a>
             </div>
             <nav className="header__nav">

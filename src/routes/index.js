@@ -14,6 +14,7 @@ import UpdateJobByUser from "containers/home/homePage/profileUser/updateJobByUse
 import DetailJob from "containers/home/homePage/profileUser/detailJob/DetailJob";
 import Adminprofile from "containers/admin/AdminProfile/AdminProfile";
 import Categories from "containers/home/Categories/Categories";
+import DetailListSupType from "containers/home/Categories/DetailListSubType/DetailListSupType";
 
 export const clientRoutes = [
   {
@@ -61,7 +62,13 @@ export const clientRoutes = [
   {
     path: "/categories/:typeJob",
     component: Categories,
-    exact: false,
+    exact: true,
+    isPrivate: true,
+  },
+  {
+    path: "/categories/:nameTypeJob/:idSubTypeJob",
+    component: DetailListSupType,
+    exact: true,
     isPrivate: true,
   },
 ];
