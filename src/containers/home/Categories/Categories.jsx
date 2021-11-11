@@ -23,7 +23,7 @@ const Categories = () => {
             <div className="sideRight__contentItem col-4">
               <Link to="...." className="">
                 <span>
-                  <img src="../images/album_cover.jpg" alt="" />
+                  <img src="../images/defaultTypeJob/defaultTypeJob.jpg" onError={(e) => (e.target.onerror = null, e.target.src = '../images/defaultTypeJob/defaultTypeJob.jpg')} alt="" />
                 </span>
                 <p className="title">Logo Design</p>
               </Link>
