@@ -103,9 +103,9 @@ export default function HeaderNotLogin() {
               <i className="fa fa-bars" />
             </button>
             <div className="header__icon-fixed">
-              <a href="# ">
+              <Link to="/">
                 <img src="/images/Fiverr_Logo_09.2020-fixed.svg" alt="Fiverr" />
-              </a>
+              </Link>
             </div>
             <nav className="header__nav">
               <a className="btn-dis" href="# ">

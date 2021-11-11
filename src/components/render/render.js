@@ -1,5 +1,7 @@
 import { Button } from "antd";
 import { Link } from "react-router-dom";
+import configName from "setting/configNameTypeJob";
+
 export const renderInputSkill = (skill) => {
   return (
     <div className="input-addnew-skill" style={{ display: "none" }}>
@@ -127,9 +129,10 @@ export const renderCategoriesHeader = (mainJob, currentUser) => {
               >
                 <ul className="hover__item">
                   {mainjob.subTypeJobs.map((subjob, idx) => {
+                    let name = configName(mainjob.name);
                     return (
                       <li key={subjob._id}>
-                        <Link to={`/categories/${mainjob.name}/${subjob._id}`}>
+                        <Link to={`/categories/${name}/${subjob._id}`}>
                           {subjob.name}
                         </Link>
                       </li>
