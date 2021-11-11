@@ -54,6 +54,10 @@ const jobApi = {
   getListJobBookedByUser() {
     return callApi("api/jobs/by-user");
   },
+
+  getDetailSubTypeJob(idSubType) {
+    return callApi(`api/sub-type-jobs/${idSubType}`);
+  },
 };
 
 export default jobApi;

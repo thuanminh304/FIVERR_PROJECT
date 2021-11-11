@@ -184,15 +184,6 @@ const UpdateOverview = (props) => {
             onChange={handleChangeSwitch("onlineSellers")}
           />
         </div>
-
-        <div>
-          <label htmlFor="deliveryTime">Delivery Time</label>
-          <Switch
-            checked={values.deliveryTime}
-            name="deliveryTime"
-            onChange={handleChangeSwitch("deliveryTime")}
-          />
-        </div>
       </Form.Item>
       <Form.Item className="steps-action">
         <button

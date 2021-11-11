@@ -1,0 +1,11 @@
+.detail-list-subtype {
+  padding-top: 30px;
+  width: 96%;
+  margin: 0 auto;
+  .render-list-subtype {
+    .result-sort {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
