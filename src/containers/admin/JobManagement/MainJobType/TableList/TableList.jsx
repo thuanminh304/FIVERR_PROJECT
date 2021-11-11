@@ -41,9 +41,10 @@ const Tablelist = (props) => {
       title: "Author",
       dataIndex: "userCreated",
       key: "userCreated",
-      render: (text) => {
+      render: (record) => {
+        
         const author = listAllUser?.find((user) => {
-          return user._id === text;
+          return user._id === record.userCreated;
         });
         if (author) {
           return author.name;

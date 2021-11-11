@@ -1,6 +1,19 @@
-.container-loader{
-    text-align: center;
-    .spin-loader{
-        margin-right: 15px;
-    }
+.container-loader {
+  // text-align: center;
+  // .spin-loader{
+  //     margin-right: 15px;
+  // }
+  min-height: 80vh;
+  .loadding-container {
+    width: 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: 150px;
+    background-position: center;
+  }
 }
