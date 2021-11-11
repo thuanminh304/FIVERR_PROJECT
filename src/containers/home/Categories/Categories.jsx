@@ -2,35 +2,44 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./Categories.scss";
+import jobApi from 'apis/jobApi';
 import configNameTypeJob from "setting/configNameTypeJob";
-import { actGetMainJob } from "Modules/JobManagement/actions";
+import Loader from 'components/Loader/Loader';
 const Categories = () => {
-  const dispatch = useDispatch();
   const [mainType, setMainType] = useState(null);
   const [dataImg, setDataImg] = useState([]);
-  const { mainJob, jobList } = useSelector(
+  const [loading, setLoading] = useState(false);
+  const { mainJob} = useSelector(
     (state) => state.JobManagementReducer
   );
   const { typeJob } = useParams();
-  const type = mainJob.find((job) => {
-    return configNameTypeJob(job.name) === typeJob;
-  });
-  console.log(type);
   useEffect(() => {
-    if (!!type) {
+    const type = mainJob.find((job) => {
+      return configNameTypeJob(job.name) === typeJob;
+    });
+    if (!!type && dataImg.length === 0) {
       setMainType(type);
-      dispatch(actGetMainJob(type._id));
-    }
-  }, [type]);
-  useEffect(() => {
-    if (jobList.length > 0) {
-      const imageJob = jobList.filter((job) => {
-        return !!job.image;
+      setLoading(true);
+      jobApi.getMainJobList(type._id).then(res=>{
+        const imageJob = res.data.filter((job) => {
+          return !!job.image;
+        });
+        setLoading(false);
+        setDataImg(imageJob);
+      })
+      .catch(error=>{
+        setLoading(false);
+        setDataImg([]);
       });
-      console.log(imageJob);
-      setDataImg(imageJob);
     }
-  }, [jobList]);
+  }, [mainJob]);
+  // useEffect(() => {
+  //   if (jobList.length > 0) {
+      
+  //     console.log(imageJob);
+      
+  //   }
+  // }, [jobList]);
   const findImage = (id) => {
     if (dataImg.length > 0) {
       const imageUrl = dataImg.find((img) => {
@@ -43,6 +52,7 @@ const Categories = () => {
       }
     }
   };
+  if(!!loading) return (<Loader/>)
   return (
     <div className="categories">
       <div className="categories__container">
