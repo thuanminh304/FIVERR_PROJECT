@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Form, Input, InputNumber, Switch } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Select } from "antd";
 import { useFormik } from "formik";
 import jobApi from "apis/jobApi";
-import { useHistory, useParams } from "react-router";
+import { useHistory } from "react-router";
 import * as yup from "yup";
 import errorForm from "components/showErrors/showError";
 import messageConfig from "components/Message/message";
@@ -13,7 +13,6 @@ const UpdateOverview = (props) => {
   const [current, setCurrent] = props.currentStep;
   const [state, setState] = useState(null);
   const history = useHistory();
-  const dispatch = useDispatch();
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
   const formik = useFormik({
     enableReinitialize: true,
@@ -32,13 +31,12 @@ const UpdateOverview = (props) => {
       jobApi
         .updateJobDetail(detailJobCreatedByUser?._id, value)
         .then((res) => {
-          messageConfig.loading()
+          messageConfig.loading();
           setTimeout(() => {
             setCurrent(current + 1);
           }, 1500);
           setTimeout(() => {
-            messageConfig.success()
-
+            messageConfig.success();
           }, 1000);
         })
         .catch((err) => {

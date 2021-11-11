@@ -1,15 +1,11 @@
-import React from "react";
-import { Steps, Button, Form } from "antd";
+import React,{ useState } from "react";
+import { Steps} from "antd";
 import RenderOverview from "./StepsCreateNewGig/RenderOverview";
 import RenderUploadAvatar from "./StepsCreateNewGig/RenderUploadAvatar";
 import RenderDone from "./StepsCreateNewGig/RenderDone";
-
 import "./createNewJobByUser.scss";
-import { useHistory } from "react-router";
-import { useState } from "react";
 const CreateNewJobByUser = () => {
   const { Step } = Steps;
-  const history = useHistory();
   const [current, setCurrent] = useState(0);
 
   const steps = [

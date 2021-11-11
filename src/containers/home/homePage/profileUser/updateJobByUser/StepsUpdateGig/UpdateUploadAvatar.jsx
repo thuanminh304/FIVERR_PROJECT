@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import jobApi from "apis/jobApi";
-import { useSelector } from "react-redux";
 import { Upload } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import getBase64 from "components/base64/getBase64";
