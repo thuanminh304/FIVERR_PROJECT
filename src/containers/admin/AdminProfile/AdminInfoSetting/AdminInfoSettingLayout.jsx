@@ -72,7 +72,7 @@ const Admininfosetting = () => {
   }
   const renderForm = (Layout, formInfo) => {
     return formInfo.map((input, idx) => {
-      if (input.name == "name") {
+      if (input.name === "name") {
         return (
           <div key={idx} className="formSetting-item col-12">
             <div className="itemInput nameField">

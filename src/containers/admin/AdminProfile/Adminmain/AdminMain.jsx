@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "./AdminMain.scss";
 import { useLocation } from "react-router-dom";
-import { Upload, Button, Space } from "antd";
+import { Upload } from "antd";
 import {
   CameraOutlined,
   CheckCircleFilled,
@@ -15,12 +15,16 @@ const Adminmain = () => {
   const dispatch = useDispatch();
   const [avatarUpload, setavatarUpload] = useState(null);
   const { currentUser } = useSelector((state) => state.AuthReducer);
-  const { avatar, email, name, _id } = currentUser;
+  const { avatar, email, name } = currentUser;
   const onChange = (file) => {
     setavatarUpload(file.file);
-    document.querySelector(".ant-upload-select-picture").classList.add("uploaded");
-    if(file.file.status === 'removed'){
-      document.querySelector(".ant-upload-select-picture").classList.remove("uploaded");
+    document
+      .querySelector(".ant-upload-select-picture")
+      .classList.add("uploaded");
+    if (file.file.status === "removed") {
+      document
+        .querySelector(".ant-upload-select-picture")
+        .classList.remove("uploaded");
       document.querySelector(".edit-avatarConfig").classList.remove("uploaded");
       setavatarUpload(null);
     }
@@ -34,13 +38,17 @@ const Adminmain = () => {
     dispatch(actUploadAvatar(formData));
   };
   const deleteAvatar = () => {
-    document.querySelector('.ant-upload-list-item-card-actions button')?.click();
+    document
+      .querySelector(".ant-upload-list-item-card-actions button")
+      ?.click();
   };
   useEffect(() => {
-    if(!!avatar){
-      document.querySelector('.ant-upload-list-item-card-actions button')?.click();
+    if (!!avatar) {
+      document
+        .querySelector(".ant-upload-list-item-card-actions button")
+        ?.click();
     }
-  },[avatar])
+  }, [avatar]);
   return (
     <div className="adminMain">
       <div className="adminMain__content">
@@ -61,9 +69,13 @@ const Adminmain = () => {
                 <CameraOutlined />
               </div>
             </Upload>
-            <div className={"edit-avatarConfig " + (!!avatarUpload?"uploaded":"")}>
-              <CheckCircleFilled onClick={updateAvatar}/>
-              <DeleteFilled onClick = {deleteAvatar}/>
+            <div
+              className={
+                "edit-avatarConfig " + (!!avatarUpload ? "uploaded" : "")
+              }
+            >
+              <CheckCircleFilled onClick={updateAvatar} />
+              <DeleteFilled onClick={deleteAvatar} />
             </div>
           </div>
         </div>
