@@ -3,6 +3,7 @@ import {
   GET_ALL_JOBS_BY_USER,
   GET_DETAIL_JOB_CREATED_BY_USER,
   GET_DETAIL_SUBTYPE_JOBS,
+  GET_LIST_JOBS_BY_NAME,
   GET_LIST_JOB_BOOKED_BY_USER,
 } from "./type";
 
@@ -11,7 +12,8 @@ const initialState = {
   listAllJobsByUser: null,
   listJobBookedByUser: null,
   detailJobCreatedByUser: null,
-  detailSubTypeJob:null
+  detailSubTypeJob: null,
+  listJobsByName: null,
 };
 
 const profileUserReducer = (state = initialState, { type, payload }) => {
@@ -22,10 +24,12 @@ const profileUserReducer = (state = initialState, { type, payload }) => {
       return { ...state, listAllJobsByUser: payload };
     case GET_LIST_JOB_BOOKED_BY_USER:
       return { ...state, listJobBookedByUser: payload };
-      case GET_DETAIL_JOB_CREATED_BY_USER:
+    case GET_DETAIL_JOB_CREATED_BY_USER:
       return { ...state, detailJobCreatedByUser: payload };
-      case GET_DETAIL_SUBTYPE_JOBS:
+    case GET_DETAIL_SUBTYPE_JOBS:
       return { ...state, detailSubTypeJob: payload };
+    case GET_LIST_JOBS_BY_NAME:
+      return { ...state, listJobsByName: payload };
     default:
       return state;
   }

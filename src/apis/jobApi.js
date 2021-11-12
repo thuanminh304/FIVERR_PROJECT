@@ -58,6 +58,10 @@ const jobApi = {
   getDetailSubTypeJob(idSubType) {
     return callApi(`api/sub-type-jobs/${idSubType}`);
   },
+  getListJobsByName(name) {
+    return callApi(`api/jobs/by-name?name=${name}`);
+  },
+
 };
 
 export default jobApi;

@@ -6,6 +6,7 @@ import {
   GET_LIST_JOB_BOOKED_BY_USER,
   GET_DETAIL_JOB_CREATED_BY_USER,
   GET_DETAIL_SUBTYPE_JOBS,
+  GET_LIST_JOBS_BY_NAME,
 } from "./type";
 
 export const actCreateJobByUser = (formJob, [current, setCurrent]) => {
@@ -91,3 +92,18 @@ export const actGetDetailSubTypeJob = (idSubType) => {
       .catch((err) => console.log(err?.response));
   };
 };
+
+export const actGetListJobsByName = (name) => {
+  return (dispatch) => {
+    jobApi
+      .getListJobsByName(name)
+      .then((res) => {
+        dispatch({
+          type: GET_LIST_JOBS_BY_NAME,
+          payload: res.data,
+        });
+      })
+      .catch((err) => console.log(err?.response));
+  };
+};
+

@@ -1,8 +1,12 @@
 import React from "react";
 import "./carousel.scss";
 import Slider from "react-slick";
+import { useHistory } from "react-router";
+import { Input } from "antd";
 
 export default function Carousel() {
+  const { Search } = Input;
+  const history = useHistory();
   const settings = {
     infinite: true,
     speed: 500,
@@ -14,17 +18,26 @@ export default function Carousel() {
     fade: true,
     pauseOnHover: false,
   };
+
+  const onSearch = (value) => {
+    setTimeout(() => {
+      history.push(`/search/gigs/${value}`);
+    }, 0);
+  };
   return (
     <div className="carousel">
       <div className="carousel-text">
         <p>
           Find the perfect <i> freelance </i>services for your business
         </p>
-        <div className="carousel-input-search">
-          <i className="fa fa-search"></i>
-          <input placeholder='Try "building mobile app"' />
-          <button>Search</button>
-        </div>
+        <Search
+          className="search-input-antd"
+          placeholder="Find Services"
+          onSearch={onSearch}
+          allowClear
+          enterButton="Search"
+        />
+
         <div className="carousel-popular">
           <span>Popular : </span>
           <ul>

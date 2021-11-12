@@ -14,7 +14,8 @@ import UpdateJobByUser from "containers/home/homePage/profileUser/updateJobByUse
 import DetailJob from "containers/home/homePage/profileUser/detailJob/DetailJob";
 import Adminprofile from "containers/admin/AdminProfile/AdminProfile";
 import Categories from "containers/home/Categories/Categories";
-import DetailListSupType from "containers/home/homePage/DetailListSubType/DetailListSupType"
+import DetailListSubType from "containers/home/homePage/DetailListSubType/DetailListSubType";
+import PageSearchJob from "containers/home/homePage/pageSearchJob/PageSearchJob";
 
 export const clientRoutes = [
   {
@@ -67,7 +68,13 @@ export const clientRoutes = [
   },
   {
     path: "/categories/:nameTypeJob/:idSubTypeJob",
-    component: DetailListSupType,
+    component: DetailListSubType,
+    exact: true,
+    isPrivate: true,
+  },
+  {
+    path: "/search/gigs/:name",
+    component: PageSearchJob,
     exact: true,
     isPrivate: true,
   },
@@ -78,79 +85,79 @@ export const adminRoutes = [
     component: Dashboard,
     exact: true,
     isPrivate: true,
-    name: 'Dashboard',
-    href: ['Dashbord'],
+    name: "Dashboard",
+    href: ["Dashbord"],
   },
   {
     path: "/admin/client-user",
     component: ClientUser,
     exact: true,
     isPrivate: true,
-    name: 'Client Users',
-    href: ['Client Users'],
+    name: "Client Users",
+    href: ["Client Users"],
   },
-   {
+  {
     path: "/admin/staff/staff-user",
     component: StaffUser,
     exact: true,
     isPrivate: true,
-    name: 'Staff Users',
-    href: ['Staff Users'],
+    name: "Staff Users",
+    href: ["Staff Users"],
   },
   {
     path: "/admin/staff/add-staff",
     component: AddNewStaff,
     exact: true,
     isPrivate: true,
-    name: 'Add New Staff',
-    href: ['Add New Staff'],
+    name: "Add New Staff",
+    href: ["Add New Staff"],
   },
   {
     path: "/admin/update-user/:idUser",
     component: UpdateUser,
     exact: true,
     isPrivate: true,
-    name: 'Update User',
-    href: ['User Lists','Update User'],
+    name: "Update User",
+    href: ["User Lists", "Update User"],
   },
   {
     path: "/admin/job-management",
     component: Statistics,
     exact: true,
     isPrivate: true,
-    name: 'Statistics',
-    href: ['Products','Statistics'],
+    name: "Statistics",
+    href: ["Products", "Statistics"],
   },
   {
     path: "/admin/job-management/list/:mainJobId",
     component: Mainjobtype,
     exact: false,
     isPrivate: true,
-    name: '',
-    href: ['Products'],
+    name: "",
+    href: ["Products"],
   },
   {
     path: "/admin/job-management/edit/:jobId",
     component: Editjob,
     exact: false,
     isPrivate: true,
-    name: 'Job Edit',
-    href: ['Products','Job Edit'],
+    name: "Job Edit",
+    href: ["Products", "Job Edit"],
   },
   {
     path: "/admin/adminProfile",
     component: Adminprofile,
     exact: false,
     isPrivate: true,
-    name: 'Admin Profile',
-    href: ['Admin Profile'],
+    name: "Admin Profile",
+    href: ["Admin Profile"],
   },
   {
     path: "/admin/adminMessage",
     component: Adminprofile,
     exact: false,
     isPrivate: true,
-    name: 'Admin Profile',
-    href: ['Admin Profile'],
+    name: "Admin Profile",
+    href: ["Admin Profile"],
   },
 ];
