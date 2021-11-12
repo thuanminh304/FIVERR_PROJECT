@@ -56,6 +56,7 @@ const UpdateOverview = (props) => {
         .string()
 
         .required("- Not yet entered"),
+      rating: yup.string().min(0).max(5).required("- Not yet entered"),
     }),
   });
 
@@ -151,7 +152,7 @@ const UpdateOverview = (props) => {
       <Form.Item label="Rate">
         <InputNumber
           min={0}
-          max={10}
+          max={5}
           name="rating"
           step={0.1}
           value={values.rating}
