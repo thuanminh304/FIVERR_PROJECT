@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory} from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Form,Input } from "antd";
-import {LoadingOutlined} from '@ant-design/icons';
+import { Form } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import JobFormLayout from "layouts/JobFormLayout";
 import "./JobInfo.scss";
 import Uploadimage from "../UploadImage/UploadImage";
-import { actGetJobDetail, actUpdateJobDetail } from "Modules/JobManagement/actions";
+import {
+  actGetJobDetail,
+  actUpdateJobDetail,
+} from "Modules/JobManagement/actions";
 const Jobinfo = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const formRef = React.createRef();
   const [initialValue, setInitialValue] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
-  const [indexType,setIndexType] = useState(0);
+  const [indexType, setIndexType] = useState(0);
   const jobField = [
     {
       name: "name",
@@ -61,20 +64,20 @@ const Jobinfo = (props) => {
       type: "switch",
     },
   ];
-  const { mainJob, jobDetail,loadingAction } = useSelector(
+  const { mainJob, jobDetail, loadingAction } = useSelector(
     (state) => state.JobManagementReducer
   );
-  const {isNote} = useSelector(state=>state.AdminDashBoardSettingReducer);
+  const { isNote } = useSelector((state) => state.AdminDashBoardSettingReducer);
   const { jobId } = useParams();
   useEffect(() => {
     dispatch(actGetJobDetail(jobId));
   }, []);
-  useEffect(()=>{
-    if(!isNote && !!isEdit){
+  useEffect(() => {
+    if (!isNote && !!isEdit) {
       history.goBack();
       setIsEdit(false);
     }
-  },[isNote])
+  }, [isNote]);
   useEffect(() => {
     const initialValue = {
       name: "",
@@ -88,12 +91,12 @@ const Jobinfo = (props) => {
       onlineSellers: false,
       deliveryTime: false,
       image: "",
-      userCreatedName: '',
-      userBookingName: '',
+      userCreatedName: "",
+      userBookingName: "",
     };
     for (let i in initialValue) {
       for (let j in jobDetail) {
-        if (i == j) {
+        if (i === j) {
           if (i === "type") {
             initialValue[i] = jobDetail[j]?._id;
             changeSubType(jobDetail[j]?._id);
@@ -110,56 +113,56 @@ const Jobinfo = (props) => {
     }
     setInitialValue(initialValue);
   }, [jobDetail]);
-  useEffect(()=>{
+  useEffect(() => {
     formRef.current.setFieldsValue(initialValue);
-  },[initialValue])
+  }, [initialValue]);
   const onFinish = (values) => {
-    const data = {...values};
+    const data = { ...values };
     const job = values.job?.file;
     delete data.job;
     let formData = new FormData();
-    if(job && job?.status !== 'removed'){
-      formData.append('job',job,job.name);
-    };
-    if(!!formData.get('job')){
-      dispatch(actUpdateJobDetail(jobDetail._id,data,formData));
+    if (job && job?.status !== "removed") {
+      formData.append("job", job, job.name);
     }
-    else{
-      dispatch(actUpdateJobDetail(jobDetail._id,data));
+    if (!!formData.get("job")) {
+      dispatch(actUpdateJobDetail(jobDetail._id, data, formData));
+    } else {
+      dispatch(actUpdateJobDetail(jobDetail._id, data));
     }
     setIsEdit(true);
   };
   const changeSubType = (typeId) => {
-    const typeIdx = mainJob.findIndex(type=>{
+    const typeIdx = mainJob.findIndex((type) => {
       return type._id === typeId;
     });
-    if(typeIdx !== -1) {
+    if (typeIdx !== -1) {
       setIndexType(typeIdx);
     }
   };
   const onFieldChange = (changedFields) => {
     const fieldName = changedFields[0].name[0];
-    if(fieldName === 'type'){
+    if (fieldName === "type") {
       const typeId = changedFields[0].value;
-      if(typeId !== initialValue.type){
-        const typeIdx = mainJob.findIndex(type=>{
+      if (typeId !== initialValue.type) {
+        const typeIdx = mainJob.findIndex((type) => {
           return type._id === typeId;
         });
-        if(typeIdx !== -1) {
+        if (typeIdx !== -1) {
           setIndexType(typeIdx);
-          formRef.current.setFieldsValue({subType: mainJob[typeIdx].subTypeJobs[0]._id});
+          formRef.current.setFieldsValue({
+            subType: mainJob[typeIdx].subTypeJobs[0]._id,
+          });
         }
-      }
-      else{
+      } else {
         changeSubType(typeId);
-        formRef.current.setFieldsValue({subType: initialValue.subType});
+        formRef.current.setFieldsValue({ subType: initialValue.subType });
       }
     }
   };
   const BacktoPrevPage = (e) => {
     e.preventDefault();
     history.goBack();
-  }
+  };
   return (
     <div className="JobInfo">
       <div className="jobInfo__content">
@@ -168,7 +171,7 @@ const Jobinfo = (props) => {
           scrollToFirstError
           ref={formRef}
           initialValues={initialValue}
-          onFieldsChange = {onFieldChange}
+          onFieldsChange={onFieldChange}
         >
           <div className="jobInfo__formContent row">
             <div className="jobInfo__formContentItem col-12">
@@ -227,7 +230,9 @@ const Jobinfo = (props) => {
               <div className="jobInfo__title">
                 <p>Project Manager</p>
               </div>
-              <div className="jobInfo__nameUser">{initialValue?.userCreatedName}</div>
+              <div className="jobInfo__nameUser">
+                {initialValue?.userCreatedName}
+              </div>
             </div>
             <div className="jobInfo__formContentItem col-12 col-md-9">
               <div className="jobInfo__title">
@@ -243,9 +248,14 @@ const Jobinfo = (props) => {
           </div>
           <div className="form__Submit">
             <button type="submit" className="form__btn form__SubmitBtn">
-              Update {loadingAction?<LoadingOutlined />:''}
+              Update {loadingAction ? <LoadingOutlined /> : ""}
             </button>
-            <button className="form__btn form__canceltBtn" onClick={BacktoPrevPage}>Back</button>
+            <button
+              className="form__btn form__canceltBtn"
+              onClick={BacktoPrevPage}
+            >
+              Back
+            </button>
           </div>
         </Form>
         {jobId}

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Upload, Modal } from "antd";
 import { CloudUploadOutlined, EyeOutlined } from "@ant-design/icons";
 import { getBase } from "containers/shared/GetBase/GetBase";
 import "./UploadImage.scss";
 const { Dragger } = Upload;
 const Uploadimage = (props) => {
-  const { imageJob, changeImage, jobTitle } = props;
+  const { imageJob, jobTitle } = props;
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewTitle, setPreviewTitle] = useState("");
   const [previewImage, setPreviewImage] = useState("");
@@ -15,7 +15,7 @@ const Uploadimage = (props) => {
     listType: "picture-card",
     maxCount: 1,
     onDrop(e) {
-    //   console.log("Dropped files", e.dataTransfer.files);
+      //   console.log("Dropped files", e.dataTransfer.files);
     },
     onChange: (e) => {
       if (e.file.status === "removed") {
@@ -45,7 +45,7 @@ const Uploadimage = (props) => {
     setPreviewImage(imageJob);
     setPreviewTitle(jobTitle);
     setPreviewVisible(true);
-  }
+  };
   console.log(fileUpload);
   const renderImageJob = () => {
     if (!fileUpload) {
@@ -55,7 +55,7 @@ const Uploadimage = (props) => {
             <div className="renderImage__content">
               <img src={imageJob} alt="" />
               <div className="icon">
-                <EyeOutlined onClick={previewImageFunc}/>
+                <EyeOutlined onClick={previewImageFunc} />
               </div>
             </div>
           </div>

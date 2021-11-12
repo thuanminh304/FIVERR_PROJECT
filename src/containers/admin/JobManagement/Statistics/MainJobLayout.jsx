@@ -1,18 +1,17 @@
-import React, { useState} from 'react';
+import React, { useState } from "react";
 import Mainjoblist from "./MainJobList/MainJobList";
-import Listsubjob from './ListSubJob/ListSubJob';
+import Listsubjob from "./ListSubJob/ListSubJob";
 const Mainjoblayout = (props) => {
-    console.log(props);
-    const [currentMainJobType, setCurrentMainJobType] = useState('');
-    const setCurrentMainJobTypeID = (id) => {
-        setCurrentMainJobType(id);
-    }
-    return (
-        <>
-            <Mainjoblist setCurrentMainJobTypeID={setCurrentMainJobTypeID}/>
-            <Listsubjob jobId = {currentMainJobType}/>
-        </>
-    );
-}
+  const [currentMainJobType, setCurrentMainJobType] = useState("");
+  const setCurrentMainJobTypeID = (id) => {
+    setCurrentMainJobType(id);
+  };
+  return (
+    <>
+      <Mainjoblist setCurrentMainJobTypeID={setCurrentMainJobTypeID} />
+      <Listsubjob jobId={currentMainJobType} />
+    </>
+  );
+};
 
 export default Mainjoblayout;

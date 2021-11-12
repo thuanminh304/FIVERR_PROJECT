@@ -42,7 +42,6 @@ const Tablelist = (props) => {
       dataIndex: "userCreated",
       key: "userCreated",
       render: (record) => {
-        
         const author = listAllUser?.find((user) => {
           return user._id === record.userCreated;
         });
@@ -116,14 +115,16 @@ const Tablelist = (props) => {
       render: (text, record, index) => {
         return (
           <div
-            className={"settingJob " + ((DeleteIdx && DeleteIdx == index)?"comfirm":"")}
+            className={
+              "settingJob " + (DeleteIdx && DeleteIdx === index ? "comfirm" : "")
+            }
             data-jobid={record._id}
             data-index={index}
           >
-            {DeleteIdx && DeleteIdx == index ? (
+            {DeleteIdx && DeleteIdx === index ? (
               <>
                 <p>Confirm?</p>
-                <CheckCircleOutlined id="approveDelete" onClick={deleteJob}/>
+                <CheckCircleOutlined id="approveDelete" onClick={deleteJob} />
                 <CloseCircleOutlined id="canleDelete" onClick={deleteJob} />
               </>
             ) : (
@@ -140,31 +141,31 @@ const Tablelist = (props) => {
     },
   ];
   const deleteJob = (e) => {
-    const deleteBtn = e.target.closest('#deleteIcon');
-    const cancleDeleteBtn = e.target.closest('#canleDelete');
-    const approveDeleteBtn = e.target.closest('#approveDelete');
+    const deleteBtn = e.target.closest("#deleteIcon");
+    const cancleDeleteBtn = e.target.closest("#canleDelete");
+    const approveDeleteBtn = e.target.closest("#approveDelete");
     const settingJobBtn = e.target.closest(".settingJob");
     const index = settingJobBtn.dataset.index;
     const jobId = settingJobBtn.dataset.jobid;
     const tbodyBox = document.querySelector(".ant-table-tbody");
-    const paginationBox = document.querySelector('ul.ant-pagination');
+    const paginationBox = document.querySelector("ul.ant-pagination");
     const tdItem = document.querySelectorAll(".ant-table-row");
-    if(!!deleteBtn){
+    if (!!deleteBtn) {
       tdItem[index].classList.add("deleteItem");
-      paginationBox.classList.add('deleteItem');
+      paginationBox.classList.add("deleteItem");
       tbodyBox.classList.add("deleteItem");
       setDelete(index);
-    };
-    if(!!cancleDeleteBtn){
+    }
+    if (!!cancleDeleteBtn) {
       tdItem[index].classList.remove("deleteItem");
-      paginationBox.classList.remove('deleteItem');
+      paginationBox.classList.remove("deleteItem");
       tbodyBox.classList.remove("deleteItem");
       setDelete(null);
-    };
-    if(!!approveDeleteBtn){
+    }
+    if (!!approveDeleteBtn) {
       approveDelete(jobId);
       tdItem[index].classList.remove("deleteItem");
-      paginationBox.classList.remove('deleteItem');
+      paginationBox.classList.remove("deleteItem");
       tbodyBox.classList.remove("deleteItem");
       setDelete(null);
     }
