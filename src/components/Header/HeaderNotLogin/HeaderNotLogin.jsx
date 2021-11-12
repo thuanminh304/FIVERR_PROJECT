@@ -5,13 +5,22 @@ import "./headerNotLogin.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { actGetMainJobList } from "Modules/JobManagement/actions";
 import { renderCategoriesHeader } from "components/render/render";
+import { useHistory } from "react-router";
+import { Input } from "antd";
 
 export default function HeaderNotLogin() {
+  const { Search } = Input;
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
+  const history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actGetMainJobList());
   }, []);
+  const onSearch = (value) => {
+    setTimeout(() => {
+      history.push(`/search/gigs/${value}`);
+    }, 0);
+  };
   return (
     <header>
       <div className="header__content">
@@ -68,16 +77,38 @@ export default function HeaderNotLogin() {
               className="dropdown-menu dropdown-menu-lastchild"
               aria-labelledby="dropdownMenuButton"
             >
-              <a href="# ">United States Dollar(USD) - $</a>
-              <a href="# ">Euro(EUR) - €</a>
-              <a href="# ">British Pound (GBP) - £</a>
-              <a href="# ">Australian Dollar (AUD) - A$</a>
-              <a href="# ">Canadian Dollar (CAD) - C$</a>
-              <a href="# ">Israeli Shekel (ILS) - ₪</a>
-              <a href="# ">Brazilian Real (BRL) - R$</a>
-              <a href="# ">Hong Kong Dollar (HKD) - HK$</a>
-              <a href="# ">Swedish Krona (SEK) - kr</a>
-              <a href="# ">New Zealand Dollar (NZD) - NZ$</a>
+              <ul>
+                <li>
+                  <a href="# ">United States Dollar(USD) - $</a>
+                </li>
+                <li>
+                  <a href="# ">Euro(EUR) - €</a>
+                </li>
+                <li>
+                  <a href="# ">British Pound (GBP) - £</a>
+                </li>
+                <li>
+                  <a href="# ">Australian Dollar (AUD) - A$</a>
+                </li>
+                <li>
+                  <a href="# ">Canadian Dollar (CAD) - C$</a>
+                </li>
+                <li>
+                  <a href="# ">Israeli Shekel (ILS) - ₪</a>
+                </li>
+                <li>
+                  <a href="# ">Brazilian Real (BRL) - R$</a>
+                </li>
+                <li>
+                  <a href="# ">Hong Kong Dollar (HKD) - HK$</a>
+                </li>
+                <li>
+                  <a href="# ">Swedish Krona (SEK) - kr</a>
+                </li>
+                <li>
+                  <a href="# ">New Zealand Dollar (NZD) - NZ$</a>
+                </li>
+              </ul>
             </div>
           </div>
           <a className="btn-dis" href="# ">
@@ -94,19 +125,17 @@ export default function HeaderNotLogin() {
       <div>
         <div id="header-fixed">
           <div id="header__content-fixed">
-            <button
-              type="button"
-              className="mainbutton mainbutton-fixed"
-              data-toggle="modal"
-              data-target="#responNav-fixed"
-            >
-              <i className="fa fa-bars" />
-            </button>
             <div className="header__icon-fixed">
               <Link to="/">
                 <img src="/images/Fiverr_Logo_09.2020-fixed.svg" alt="Fiverr" />
               </Link>
             </div>
+            <Search
+              className="search-input-antd"
+              placeholder="Find Services"
+              onSearch={onSearch}
+              enterButton="Search"
+            />
             <nav className="header__nav">
               <a className="btn-dis" href="# ">
                 Fiverr Business
@@ -151,19 +180,42 @@ export default function HeaderNotLogin() {
                   <span>$ USD</span>
                 </a>
                 <div
+                  style={{ transform: "translate3d(0px, 25px, 0px)" }}
                   className="dropdown-menu dropdown-menu-lastchild"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <a href="# ">United States Dollar(USD) - $</a>
-                  <a href="# ">Euro(EUR) - €</a>
-                  <a href="# ">British Pound (GBP) - £</a>
-                  <a href="# ">Australian Dollar (AUD) - A$</a>
-                  <a href="# ">Canadian Dollar (CAD) - C$</a>
-                  <a href="# ">Israeli Shekel (ILS) - ₪</a>
-                  <a href="# ">Brazilian Real (BRL) - R$</a>
-                  <a href="# ">Hong Kong Dollar (HKD) - HK$</a>
-                  <a href="# ">Swedish Krona (SEK) - kr</a>
-                  <a href="# ">New Zealand Dollar (NZD) - NZ$</a>
+                  <ul>
+                    <li>
+                      <a href="# ">United States Dollar(USD) - $</a>
+                    </li>
+                    <li>
+                      <a href="# ">Euro(EUR) - €</a>
+                    </li>
+                    <li>
+                      <a href="# ">British Pound (GBP) - £</a>
+                    </li>
+                    <li>
+                      <a href="# ">Australian Dollar (AUD) - A$</a>
+                    </li>
+                    <li>
+                      <a href="# ">Canadian Dollar (CAD) - C$</a>
+                    </li>
+                    <li>
+                      <a href="# ">Israeli Shekel (ILS) - ₪</a>
+                    </li>
+                    <li>
+                      <a href="# ">Brazilian Real (BRL) - R$</a>
+                    </li>
+                    <li>
+                      <a href="# ">Hong Kong Dollar (HKD) - HK$</a>
+                    </li>
+                    <li>
+                      <a href="# ">Swedish Krona (SEK) - kr</a>
+                    </li>
+                    <li>
+                      <a href="# ">New Zealand Dollar (NZD) - NZ$</a>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <a className="btn-dis" href="# ">
@@ -176,13 +228,8 @@ export default function HeaderNotLogin() {
               </Link>
             </nav>
           </div>
-          <div id="header-search">
-            <input type="text" placeholder="Find Services" />
-            <i className="icon-input-header fa fa-search" />
-            <button>Search</button>
-          </div>
         </div>
-     {/* render categories */}
+        {/* render categories */}
         {renderCategoriesHeader(mainJob)}
       </div>
     </header>

@@ -1,6 +1,5 @@
+import React, { useState, useEffect } from "react";
 import { actGetSubJob } from "Modules/JobManagement/actions";
-import React, { useState } from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Breadcrumb, Avatar, Switch } from "antd";
@@ -8,13 +7,28 @@ import { actGetDetailSubTypeJob } from "containers/home/homePage/profileUser/cre
 import { UserOutlined } from "@ant-design/icons";
 import "./detailListSubType.scss";
 import { Link } from "react-router-dom";
+import {
+  dataSwitch,
+  filterSwitch,
+} from "containers/shared/FilterJobBySwitch/filterJobBySwitch";
+
 export default function DetailListSupType() {
   const dispatch = useDispatch();
   const params = useParams();
   let { jobList } = useSelector((state) => state.JobManagementReducer);
   const { detailSubTypeJob } = useSelector((state) => state.profileUserReducer);
-  const [switchValue, setSwitchValue] = useState(false);
-  const [switchName, setSwitchName] = useState("");
+  const [switchPro, setSwitchPro] = useState({
+    value: false,
+    name: "",
+  });
+  const [switchLocal, setSwitchLocal] = useState({
+    value: false,
+    name: "",
+  });
+  const [switchOnl, setSwitchOnl] = useState({
+    value: false,
+    name: "",
+  });
 
   useEffect(() => {
     dispatch(actGetDetailSubTypeJob(params?.idSubTypeJob));
@@ -22,36 +36,36 @@ export default function DetailListSupType() {
   useEffect(() => {
     dispatch(actGetSubJob(params?.idSubTypeJob));
   }, [params?.idSubTypeJob]);
-  const handleChangeSwitch = (name) => {
+  const handleChangeSwitch = (name, setSwitch) => {
     return (value) => {
-      setSwitchValue(value);
-      setSwitchName(name);
+      setSwitch({
+        value: value,
+        name: name,
+      });
     };
   };
-  const proSer = jobList?.filter((job) => job.proServices === true);
-  const localSel = jobList?.filter((job) => job.localSellers === true);
-  const onlSel = jobList?.filter((job) => job.onlineSellers === true);
-  //
-  const proLocal = jobList?.filter(
-    (job) => job.proServices === true && job.localSellers === true
-  );
-  const proOnl = jobList?.filter(
-    (job) => job.proServices === true && job.onlineSellers === true
-  );
-  const localOnl = jobList?.filter(
-    (job) => job.onlineSellers === true && job.localSellers === true
-  );
+  const proSer = dataSwitch.proSer(jobList);
+  const localSel = dataSwitch.localSel(jobList);
+  const onlSel = dataSwitch.onlSel(jobList);
+  const proLocal = dataSwitch.proLocal(jobList);
+  const proOnl = dataSwitch.proOnl(jobList);
+  const localOnl = dataSwitch.localOnl(jobList);
+  const all = dataSwitch.all(jobList);
 
-  if (switchName === "proServices" && switchValue) {
-    jobList = proSer;
-  } else if (switchName === "localSellers" && switchValue) {
-    jobList = localSel;
-  } else if (switchName === "onlineSellers" && switchValue) {
-    jobList = onlSel;
-  } else if (!switchName === "onlineSellers" && switchValue) {
-    jobList = proLocal;
-  }
-  console.log(jobList);
+  const dataList = filterSwitch(
+    switchOnl,
+    switchPro,
+    switchLocal,
+    jobList,
+    all,
+    proOnl,
+    localOnl,
+    proLocal,
+    proSer,
+    localSel,
+    onlSel
+  );
+  jobList = dataList;
   return (
     <div className="detail-list-subtype">
       <div className="info-type-subtype">
@@ -60,7 +74,7 @@ export default function DetailListSupType() {
             <strong>FIVERR</strong>
           </Breadcrumb.Item>
           <Breadcrumb.Item href={`/categories/${params?.nameTypeJob}`}>
-            {params?.nameTypeJob}
+            <strong>{params?.nameTypeJob.toUpperCase()}</strong>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             {detailSubTypeJob?.name.toUpperCase()}{" "}
@@ -81,14 +95,14 @@ export default function DetailListSupType() {
               <label htmlFor="proServices">Pro Services</label>
               <Switch
                 name="proServices"
-                onChange={handleChangeSwitch("proServices")}
+                onChange={handleChangeSwitch("proServices", setSwitchPro)}
               />
             </div>
             <div>
               <label htmlFor="localSellers">Local Sellers</label>
               <Switch
                 name="localSellers"
-                onChange={handleChangeSwitch("localSellers")}
+                onChange={handleChangeSwitch("localSellers", setSwitchLocal)}
               />
             </div>
 
@@ -96,7 +110,7 @@ export default function DetailListSupType() {
               <label htmlFor="onlineSellers">Online Sellers</label>
               <Switch
                 name="onlineSellers"
-                onChange={handleChangeSwitch("onlineSellers")}
+                onChange={handleChangeSwitch("onlineSellers", setSwitchOnl)}
               />
             </div>
           </div>
