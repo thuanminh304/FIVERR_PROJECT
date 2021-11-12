@@ -14,7 +14,7 @@ import UpdateJobByUser from "containers/home/homePage/profileUser/updateJobByUse
 import DetailJob from "containers/home/homePage/profileUser/detailJob/DetailJob";
 import Adminprofile from "containers/admin/AdminProfile/AdminProfile";
 import Categories from "containers/home/Categories/Categories";
-import DetailListSupType from "containers/home/Categories/DetailListSubType/DetailListSupType";
+import DetailListSupType from "containers/home/homePage/DetailListSubType/DetailListSupType"
 
 export const clientRoutes = [
   {

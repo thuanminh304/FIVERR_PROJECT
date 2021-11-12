@@ -28,7 +28,7 @@
       .ant-steps-item-content {
         & > .ant-steps-item-title:after {
           background-color: $color-green-all;
-          height:2px;
+          height: 2px;
           opacity: 0.5;
         }
       }
@@ -49,6 +49,23 @@
         font-size: 12px;
         text-transform: uppercase;
         font-weight: 700;
+      }
+      .item-name {
+        .ant-form-item-control-input-content {
+          position: relative;
+          span {
+            z-index: 1;
+            top: 9%;
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            font-size: 16px;
+            padding-left: 10px;
+          }
+          input {
+            padding-left: 55px;
+          }
+        }
       }
       .item-select {
         .ant-form-item-control-input-content {

@@ -40,12 +40,12 @@ const RenderOverview = (props) => {
       type: yup.string().required("Please select !"),
       subType: yup.string().required("Please select !"),
       price: yup.string().min(0).required("- Not yet entered"),
+      rating: yup.number().min(0).max(5).required("- Not yet entered"),
     }),
   });
 
   async function handleChangeMainJob(value) {
     formik.setFieldValue("type", value);
-
     try {
       const data = await jobApi.getDetailTypeMainjob(value);
       setState(data.data);
@@ -68,17 +68,22 @@ const RenderOverview = (props) => {
       formik.setFieldValue(name, value);
     };
   };
+  const handleChangeName = (value) => {
+    formik.setFieldValue("name", `I will ${value.target.value}`);
+  };
   const errors = formik.errors;
   const touched = formik.touched;
   const values = formik.values;
   return (
     <Form onSubmitCapture={formik.handleSubmit} className="render-overview">
-      <Form.Item className="item-name" label="Name">
+      <Form.Item className="item-name" label="GIG TITLE">
+        <span>I will</span>
         <Input
-          placeholder="Name"
+          placeholder="GIG TITLE
+          "
           name="name"
           type="text"
-          onChange={formik.handleChange}
+          onChange={handleChangeName}
         />
         {errorForm.showErrors(
           errors.name,
@@ -132,7 +137,7 @@ const RenderOverview = (props) => {
       <Form.Item label="Rate">
         <InputNumber
           min={0}
-          max={10}
+          max={5}
           name="rating"
           step={0.1}
           value={values.rating}
