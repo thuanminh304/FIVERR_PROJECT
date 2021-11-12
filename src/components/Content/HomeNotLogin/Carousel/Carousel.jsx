@@ -31,10 +31,9 @@ export default function Carousel() {
           Find the perfect <i> freelance </i>services for your business
         </p>
         <Search
-          className="search-input-antd"
-          placeholder="Find Services"
+          className="search-input-antd-carousel"
+          placeholder="Try 'building mobile app'"
           onSearch={onSearch}
-          allowClear
           enterButton="Search"
         />
 

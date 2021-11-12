@@ -16,6 +16,28 @@
       font-weight: 700;
       line-height: 56px;
     }
+    .search-input-antd-carousel {
+      width: 80%;
+      .ant-input-group {
+        .ant-input {
+          border-radius: 5px 0 0 5px;
+          padding: 10px;
+        }
+        .ant-input-group-addon {
+          background-color: #1dbf73;
+          border-radius: 0 5px 5px 0;
+
+          button {
+            border: none;
+            background-color: #1dbf73;
+            color: white;
+            font-weight: bolder;
+            padding: 0 25px;
+            font-size: 18px;
+          }
+        }
+      }
+    }
     .carousel-input-search {
       display: flex;
       position: relative;
@@ -44,7 +66,7 @@
         font-weight: bolder;
         padding: 0 25px;
         font-size: 18px;
-        a{
+        a {
           color: white;
         }
       }
