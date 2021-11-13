@@ -1,6 +1,7 @@
 import React from "react";
 import "./business.scss";
 import { CheckCircleOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 export default function Business() {
   return (
@@ -37,7 +38,9 @@ export default function Business() {
               </span>
             </li>
           </ul>
-          <button>Explore Fiverr Business</button>
+          <button>
+            <Link style={{color:"white"}} to="/categories/business">Explore Fiverr Business</Link>
+          </button>
         </div>
         <div className="solution__right ">
           <img

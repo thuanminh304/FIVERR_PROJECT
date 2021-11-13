@@ -15,6 +15,10 @@ import {
 export default function DetailListSupType() {
   const dispatch = useDispatch();
   const params = useParams();
+  const [pagination, setPagination] = useState({
+    page: 0,
+    limit: 12,
+  });
   let { jobList } = useSelector((state) => state.JobManagementReducer);
   const { detailSubTypeJob } = useSelector((state) => state.profileUserReducer);
   const [switchPro, setSwitchPro] = useState({
@@ -32,7 +36,7 @@ export default function DetailListSupType() {
 
   useEffect(() => {
     dispatch(actGetDetailSubTypeJob(params?.idSubTypeJob));
-  }, [params?.idSubTypeJob]);
+  }, [params?.idSubTypeJob, pagination.page]);
   useEffect(() => {
     dispatch(actGetSubJob(params?.idSubTypeJob));
   }, [params?.idSubTypeJob]);
@@ -66,6 +70,12 @@ export default function DetailListSupType() {
     onlSel
   );
   jobList = dataList;
+
+  const totalPage = Math.ceil(jobList?.length / pagination.limit);
+  const listFilter = jobList?.slice(
+    pagination.page * pagination.limit,
+    pagination.page * pagination.limit + 10
+  );
   return (
     <div className="detail-list-subtype">
       <div className="info-type-subtype">
@@ -90,7 +100,6 @@ export default function DetailListSupType() {
           <p>{jobList?.length} services available</p>
           <div className="search-by-switch">
             <p>Sort by:</p>
-
             <div>
               <label htmlFor="proServices">Pro Services</label>
               <Switch
@@ -116,9 +125,9 @@ export default function DetailListSupType() {
           </div>
         </div>
         <div className="main-content row">
-          {jobList?.map((job, idx) => {
+          {listFilter?.map((job, idx) => {
             return (
-              <div className="col-3">
+              <div key={job._id} className="col-3">
                 <div className="card job-item">
                   <Link to={`/${params?.nameTypeJob}/${job._id}`}>
                     <img className="card-img-top" src={job.image} alt="" />
@@ -154,6 +163,30 @@ export default function DetailListSupType() {
               </div>
             );
           })}
+        </div>
+        <div className="pagination">
+          <button
+            disabled={pagination.page === 0}
+            onClick={() => {
+              setPagination({
+                ...pagination,
+                page: pagination.page - 1,
+              });
+            }}
+          >
+            Pre
+          </button>
+          <button
+            disabled={pagination.page === totalPage - 1}
+            onClick={() => {
+              setPagination({
+                ...pagination,
+                page: pagination.page + 1,
+              });
+            }}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

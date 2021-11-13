@@ -106,4 +106,3 @@ export const actGetListJobsByName = (name) => {
       .catch((err) => console.log(err?.response));
   };
 };
-

@@ -53,7 +53,7 @@ export default function PopularServices() {
         <div className="services__item">
           <div className="services__text">
             <p>Customize your site</p>
-            <h2>WordRress</h2>
+            <h2>WordPress</h2>
           </div>
           <div className="services__image">
             <img src="images/wordpress-2x.jpg" alt="" />
