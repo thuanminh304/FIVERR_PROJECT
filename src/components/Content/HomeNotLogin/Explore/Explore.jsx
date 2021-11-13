@@ -5,7 +5,6 @@ import configName from "setting/configNameTypeJob";
 import "./explore.scss";
 export default function Explore() {
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
-  console.log(mainJob);
   return (
     <section className="explore">
       <div className="explore__content">

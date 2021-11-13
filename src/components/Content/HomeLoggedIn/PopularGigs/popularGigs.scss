@@ -13,9 +13,10 @@
     .gigs-item {
       width: 90% !important;
       &:hover {
-        .text-active {
-          color: #1dbf73;
-          transition: color 0.5s;
+        p.text-active {
+          a {
+            color: #1dbf73;
+          }
         }
       }
       .card-body {
@@ -34,9 +35,10 @@
           }
         }
         p {
-          color: #404145;
           font-size: 18px;
-
+          a {
+            color: #404145;
+          }
           &:last-child {
             font-size: 13px;
             color: #ffbe5b;
@@ -92,5 +94,4 @@
     top: 31%;
     right: 33%;
   }
-  
 }

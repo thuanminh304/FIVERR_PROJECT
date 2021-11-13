@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { useEffect } from "react";
 import { useState } from "react";
 import jobApi from "apis/jobApi";
+import { Link } from "react-router-dom";
 export default function GigsInWordPress() {
   const [listLogo, setListLogo] = useState([]);
   useEffect(async () => {
@@ -21,16 +22,22 @@ export default function GigsInWordPress() {
     slidesToShow: 5,
     autoplay: false,
   };
+  let listJobNotBookedYet = listLogo?.filter(
+    (job) => job.usersBooking === undefined
+  );
   return (
     <div className="popular-gigs">
       <h3>
         Most popular Gigs in <span>Logo Design</span>{" "}
       </h3>
       <Slider className="popular-gigs-slider" {...settings}>
-        {listLogo?.map((job, idx) => {
+        {listJobNotBookedYet?.map((job, idx) => {
           return (
             <div key={job._id} className="card gigs-item">
-              <img className="card-img-top" src={job.image} alt="" />
+              <Link to={`/graphics-design/${job._id}`}>
+                <img className="card-img-top" src={job.image} alt="" />
+              </Link>
+
               <div className="card-body">
                 <div className="card-avatar">
                   <span>
@@ -38,10 +45,13 @@ export default function GigsInWordPress() {
                     explalno
                   </span>
                 </div>
+
                 <p className="card-text text-active">
-                  {job.name.length < 20
-                    ? job.name
-                    : `${job.name.substr(0, 20)}...`}
+                  <Link to={`/graphics-design/${job._id}`}>
+                    {job.name.length < 20
+                      ? job.name
+                      : `${job.name.substr(0, 20)}...`}
+                  </Link>
                 </p>
                 <p className="card-text">
                   <i className="fa fa-star"></i>

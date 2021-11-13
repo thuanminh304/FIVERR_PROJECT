@@ -14,10 +14,15 @@ import {
   dataSwitch,
   filterSwitch,
 } from "containers/shared/FilterJobBySwitch/filterJobBySwitch";
+import { renderPagination } from "components/render/render";
 
 export default function PageSearchJob() {
   const params = useParams();
   const dispatch = useDispatch();
+  const [pagination, setPagination] = useState({
+    page: 0,
+    limit: 12,
+  });
   const [switchPro, setSwitchPro] = useState({
     value: false,
     name: "",
@@ -42,20 +47,22 @@ export default function PageSearchJob() {
       });
     };
   };
-
-  const proSer = dataSwitch.proSer(listJobsByName);
-  const localSel = dataSwitch.localSel(listJobsByName);
-  const onlSel = dataSwitch.onlSel(listJobsByName);
-  const proLocal = dataSwitch.proLocal(listJobsByName);
-  const proOnl = dataSwitch.proOnl(listJobsByName);
-  const localOnl = dataSwitch.localOnl(listJobsByName);
-  const all = dataSwitch.all(listJobsByName);
+  let listJobNotBookedYet = listJobsByName?.filter(
+    (job) => job.usersBooking === undefined
+  );
+  const proSer = dataSwitch.proSer(listJobNotBookedYet);
+  const localSel = dataSwitch.localSel(listJobNotBookedYet);
+  const onlSel = dataSwitch.onlSel(listJobNotBookedYet);
+  const proLocal = dataSwitch.proLocal(listJobNotBookedYet);
+  const proOnl = dataSwitch.proOnl(listJobNotBookedYet);
+  const localOnl = dataSwitch.localOnl(listJobNotBookedYet);
+  const all = dataSwitch.all(listJobNotBookedYet);
 
   const dataList = filterSwitch(
     switchOnl,
     switchPro,
     switchLocal,
-    listJobsByName,
+    listJobNotBookedYet,
     all,
     proOnl,
     localOnl,
@@ -64,13 +71,18 @@ export default function PageSearchJob() {
     localSel,
     onlSel
   );
-  listJobsByName = dataList;
+  listJobNotBookedYet = dataList;
+  const totalPage = Math.ceil(listJobNotBookedYet?.length / pagination.limit);
+  const listFilter = listJobNotBookedYet?.slice(
+    pagination.page * pagination.limit,
+    pagination.page * pagination.limit + 12
+  );
   return (
     <div className="page-search-job">
       <h3>Search for "{params?.name}"</h3>
       <div className="render-list-jobs">
         <div className="result-sort">
-          <p>{listJobsByName?.length} services available</p>
+          <p>{listJobNotBookedYet?.length} services available</p>
           <div className="search-by-switch">
             <p>Sort by:</p>
 
@@ -99,7 +111,7 @@ export default function PageSearchJob() {
           </div>
         </div>
         <div className="main-content row">
-          {listJobsByName?.map((job, idx) => {
+          {listFilter?.map((job, idx) => {
             let name = configName(job.type.name);
             return (
               <div className="col-3">
@@ -143,6 +155,7 @@ export default function PageSearchJob() {
             );
           })}
         </div>
+        {renderPagination(setPagination, pagination, totalPage)}
       </div>
     </div>
   );

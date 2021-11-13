@@ -11,6 +11,7 @@ import {
   dataSwitch,
   filterSwitch,
 } from "containers/shared/FilterJobBySwitch/filterJobBySwitch";
+import { renderPagination } from "components/render/render";
 
 export default function DetailListSupType() {
   const dispatch = useDispatch();
@@ -48,19 +49,22 @@ export default function DetailListSupType() {
       });
     };
   };
-  const proSer = dataSwitch.proSer(jobList);
-  const localSel = dataSwitch.localSel(jobList);
-  const onlSel = dataSwitch.onlSel(jobList);
-  const proLocal = dataSwitch.proLocal(jobList);
-  const proOnl = dataSwitch.proOnl(jobList);
-  const localOnl = dataSwitch.localOnl(jobList);
-  const all = dataSwitch.all(jobList);
+  let listJobNotBookedYet = jobList?.filter(
+    (job) => job.usersBooking === undefined
+  );
+  const proSer = dataSwitch.proSer(listJobNotBookedYet);
+  const localSel = dataSwitch.localSel(listJobNotBookedYet);
+  const onlSel = dataSwitch.onlSel(listJobNotBookedYet);
+  const proLocal = dataSwitch.proLocal(listJobNotBookedYet);
+  const proOnl = dataSwitch.proOnl(listJobNotBookedYet);
+  const localOnl = dataSwitch.localOnl(listJobNotBookedYet);
+  const all = dataSwitch.all(listJobNotBookedYet);
 
   const dataList = filterSwitch(
     switchOnl,
     switchPro,
     switchLocal,
-    jobList,
+    listJobNotBookedYet,
     all,
     proOnl,
     localOnl,
@@ -69,12 +73,11 @@ export default function DetailListSupType() {
     localSel,
     onlSel
   );
-  jobList = dataList;
-
-  const totalPage = Math.ceil(jobList?.length / pagination.limit);
-  const listFilter = jobList?.slice(
+  listJobNotBookedYet = dataList;
+  const totalPage = Math.ceil(listJobNotBookedYet?.length / pagination.limit);
+  const listFilter = listJobNotBookedYet?.slice(
     pagination.page * pagination.limit,
-    pagination.page * pagination.limit + 10
+    pagination.page * pagination.limit + 12
   );
   return (
     <div className="detail-list-subtype">
@@ -97,7 +100,7 @@ export default function DetailListSupType() {
       </div>
       <div className="render-list-subtype">
         <div className="result-sort">
-          <p>{jobList?.length} services available</p>
+          <p>{listJobNotBookedYet?.length} services available</p>
           <div className="search-by-switch">
             <p>Sort by:</p>
             <div>
@@ -164,30 +167,7 @@ export default function DetailListSupType() {
             );
           })}
         </div>
-        <div className="pagination">
-          <button
-            disabled={pagination.page === 0}
-            onClick={() => {
-              setPagination({
-                ...pagination,
-                page: pagination.page - 1,
-              });
-            }}
-          >
-            Pre
-          </button>
-          <button
-            disabled={pagination.page === totalPage - 1}
-            onClick={() => {
-              setPagination({
-                ...pagination,
-                page: pagination.page + 1,
-              });
-            }}
-          >
-            Next
-          </button>
-        </div>
+        {renderPagination(setPagination, pagination, totalPage)}
       </div>
     </div>
   );

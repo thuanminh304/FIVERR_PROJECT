@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, InputNumber, Switch, Button } from "antd";
+import { Form, Input, InputNumber, Switch } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Select } from "antd";
 import { useFormik } from "formik";
@@ -10,7 +10,6 @@ import * as yup from "yup";
 import errorForm from "components/showErrors/showError";
 const RenderOverview = (props) => {
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
-
   const [state, setState] = useState(null);
   const history = useHistory();
   const dispatch = useDispatch();

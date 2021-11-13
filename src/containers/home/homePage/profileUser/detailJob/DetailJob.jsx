@@ -43,7 +43,6 @@ export default function DetailJob() {
     document.querySelector(".seller").style.borderBottom = "4px solid #1dbf73";
     document.querySelector(".over").style.borderBottom = "none";
   }
-  console.log(over, seller);
 
   return (
     <div className="detail-job">
