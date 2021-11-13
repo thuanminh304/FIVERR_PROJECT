@@ -21,9 +21,12 @@ import {
 } from "./createNewJobByUser/StepsCreateNewGig/modules/action";
 import ProfileHasJobs from "./ProfileHasJobs";
 import ProfileNoJob from "./ProfileNoJob";
-import { Tabs, Table, Avatar } from "antd";
+import { Tabs, Table, Avatar, Popconfirm } from "antd";
+import { Link } from "react-router-dom";
+import jobApi from "apis/jobApi";
+import messageConfig from "components/Message/message";
 
-export default function ProfileUser(props) {
+export default function ProfileUser() {
   const [imageUrl, setImageUrl] = useState(null);
   const { TabPane } = Tabs;
   const { currentUser } = useSelector((state) => state.AuthReducer);
@@ -77,21 +80,20 @@ export default function ProfileUser(props) {
   const listJobsCreatedByUser = listAllJobsByUser?.filter(
     (job) => job.userCreated === currentUser?._id
   );
-
+  const listJobFinished = listJobBookedByUser?.filter(
+    (job) => job.usersBooking === null && job.status === true
+  );
+  const listJobBooked = listJobBookedByUser?.filter(
+    (job) => job.usersBooking !== null && job.status === false
+  );
   useEffect(() => {
     dispatch(actGetListJobBookedByUser());
   }, []);
-  const listJobFinished = listJobBookedByUser?.filter(
-    (job) => job.usersBooking === null
-  );
-  const listJobBooked = listJobBookedByUser?.filter(
-    (job) => job.usersBooking !== null
-  );
+
   const totalWallet = listJobFinished?.reduce(
     (preValue, curValue) => preValue + curValue.price,
     0
   );
-
   const columns = [
     {
       title: "#",
@@ -139,14 +141,41 @@ export default function ProfileUser(props) {
       ? {
           title: "Action ",
           key: "action",
-          render: () => {
+          render: (text, record) => {
+            let job = { ...record };
             return (
               <div className="action-table-gigs">
-                <span className="filedoneoutlined">
-                  <FileDoneOutlined />
-                </span>
+                {record.status === true ? null : (
+                  <span className="filedoneoutlined">
+                    <Popconfirm
+                      title="Would you like to hand over this assignment?"
+                      onConfirm={() => {
+                        messageConfig.loading();
+                        jobApi
+                          .doneJobBooked(record._id)
+                          .then((res) => {
+                            setTimeout(() => {
+                              messageConfig.success();
+                            }, 500);
+                            setTimeout(() => {
+                              dispatch(actGetListJobBookedByUser());
+                            }, 1000);
+                          })
+                          .catch((err) => {
+                            console.log(err?.response.data);
+                          });
+                      }}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <FileDoneOutlined />
+                    </Popconfirm>
+                  </span>
+                )}
                 <span className="eyeoutlined">
-                  <EyeOutlined />
+                  <Link to={`/${record.type}/${record._id}`}>
+                    <EyeOutlined />
+                  </Link>
                 </span>
               </div>
             );

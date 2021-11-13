@@ -61,6 +61,9 @@ const jobApi = {
   getListJobsByName(name) {
     return callApi(`api/jobs/by-name?name=${name}`);
   },
+  doneJobBooked(idJob) {
+    return callApi(`api/jobs/done/${idJob}`, "PATCH");
+  },
 };
 
 export default jobApi;

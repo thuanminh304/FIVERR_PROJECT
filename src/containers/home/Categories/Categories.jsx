@@ -2,16 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./Categories.scss";
-import jobApi from 'apis/jobApi';
+import jobApi from "apis/jobApi";
 import configNameTypeJob from "setting/configNameTypeJob";
-import Loader from 'components/Loader/Loader';
+import Loader from "components/Loader/Loader";
 const Categories = () => {
   const [mainType, setMainType] = useState(null);
   const [dataImg, setDataImg] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { mainJob} = useSelector(
-    (state) => state.JobManagementReducer
-  );
+  const { mainJob } = useSelector((state) => state.JobManagementReducer);
   const { typeJob } = useParams();
   useEffect(() => {
     const type = mainJob.find((job) => {
@@ -20,19 +18,21 @@ const Categories = () => {
     setMainType(type);
     if (!!type) {
       setLoading(true);
-      jobApi.getMainJobList(type._id).then(res=>{
-        const imageJob = res.data.filter((job) => {
-          return !!job.image;
+      jobApi
+        .getMainJobList(type._id)
+        .then((res) => {
+          const imageJob = res.data.filter((job) => {
+            return !!job.image;
+          });
+          setLoading(false);
+          setDataImg(imageJob);
+        })
+        .catch((error) => {
+          setLoading(false);
+          setDataImg([]);
         });
-        setLoading(false);
-        setDataImg(imageJob);
-      })
-      .catch(error=>{
-        setLoading(false);
-        setDataImg([]);
-      });
     }
-  }, [mainJob,typeJob]);
+  }, [mainJob, typeJob]);
   const findImage = (id) => {
     if (dataImg.length > 0) {
       const imageUrl = dataImg.find((img) => {
@@ -45,7 +45,7 @@ const Categories = () => {
       }
     }
   };
-  if(!!loading) return (<Loader/>)
+  if (!!loading) return <Loader />;
   return (
     <div className="categories">
       <div className="categories__container">
@@ -78,30 +78,32 @@ const Categories = () => {
           </div>
           <div className="content__sideRight col-9 row">
             {mainType?.subTypeJobs.map((job, idx) => {
-              return (<div key={idx} className="sideRight__contentItem col-4">
-                <Link
-                  to={
-                    "/categories/" +
-                    configNameTypeJob(mainType.name) +
-                    "/" +
-                    job._id
-                  }
-                >
-                  <span>
-                    <img
-                      src={findImage(job._id)}
-                      onError={(e) => (
-                        (e.target.onerror = null),
-                        (e.target.src =
-                          "../images/defaultTypeJob/defaultTypeJob.jpg")
-                      )}
-                      alt=""
-                    />
-                  </span>
-                  <p className="title">{job.name}</p>
-                </Link>
-              </div>
-            )
+              return (
+                <div key={idx} className="sideRight__contentItem col-4">
+                  <Link
+                    to={
+                      "/categories/" +
+                      configNameTypeJob(mainType.name) +
+                      "/" +
+                      job._id
+                    }
+                  >
+                    <span>
+                      <img
+                        src={findImage(job._id)}
+                        onError={(e) =>
+                          (e.target.onerror = null)(
+                            (e.target.src =
+                              "../images/defaultTypeJob/defaultTypeJob.jpg")
+                          )
+                        }
+                        alt=""
+                      />
+                    </span>
+                    <p className="title">{job.name}</p>
+                  </Link>
+                </div>
+              );
             })}
           </div>
         </div>

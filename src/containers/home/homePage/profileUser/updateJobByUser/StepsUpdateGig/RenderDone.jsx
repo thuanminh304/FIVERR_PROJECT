@@ -1,10 +1,8 @@
 import messageConfig from "components/Message/message";
 import React from "react";
-import { useHistory } from "react-router";
 
 export default function RenderDone(props) {
   const [current, setCurrent] = props.currentStep;
-  const history = useHistory();
   return (
     <div className="render-done">
       <div className="done-content">
@@ -24,7 +22,6 @@ export default function RenderDone(props) {
           className="btn-next-steps"
           onClick={() => {
             messageConfig.loadingToSuccess();
-           
           }}
         >
           Public Gig

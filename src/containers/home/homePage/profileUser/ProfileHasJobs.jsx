@@ -8,10 +8,13 @@ export default function ProfileHasJobs(props) {
   const listJobsCreatedByUser = props.listJobsCreatedByUser;
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.AuthReducer);
+  const listJobNotBookedYet = listJobsCreatedByUser?.filter(
+    (job) => job.usersBooking === undefined
+  );
   return (
     <div className="profile-right-content-jobs">
       <div className="row jobs-content">
-        {listJobsCreatedByUser.map((job, idx) => {
+        {listJobNotBookedYet?.map((job, idx) => {
           return (
             <div key={job._id} className="col-4">
               <div className="card">
@@ -27,17 +30,17 @@ export default function ProfileHasJobs(props) {
                 <div className="card-body">
                   <h4 className="card-title">{job.name}</h4>
                   <div className="hover-overlay">
-                   <strong>...</strong>
+                    <strong>...</strong>
                     <div className="overlay">
                       <div>
                         <Link to={`/by-user/update-job/${job._id}`}>
-                          <i class="fa fa-edit"></i>
+                          <i className="fa fa-edit"></i>
                           Update
                         </Link>
                       </div>
                       <div>
                         <Link to={`/by-user/${currentUser?.name}/${job._id}`}>
-                          <i class="fa fa-eye"></i>
+                          <i className="fa fa-eye"></i>
                           Preview
                         </Link>
                       </div>
@@ -55,7 +58,7 @@ export default function ProfileHasJobs(props) {
                               });
                           }}
                         >
-                          <i class="fa fa-trash"></i>
+                          <i className="fa fa-trash"></i>
                           Delete
                         </button>
                       </div>

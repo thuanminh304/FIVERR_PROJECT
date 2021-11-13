@@ -1,8 +1,9 @@
 .page-search-job {
-    padding-top: 30px;
-    padding-bottom: 50px;
-    width: 96%;
-    margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 80px;
+  width: 96%;
+  margin: 0 auto;
+  position: relative;
   .render-list-jobs {
     .result-sort {
       display: flex;
@@ -80,6 +81,29 @@
           }
         }
       }
+    }
+  }
+}
+
+.pagination {
+  position: absolute;
+  bottom: 15px;
+  right: 0;
+  button {
+    border: none;
+    padding: 10px 20px;
+    background-color: #1dbf73;
+    margin-left: 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    opacity: 0.9;
+    &:hover {
+      opacity: 1;
+    }
+    &:disabled {
+      background-color: #b5b6ba;
+      color: #404145;
     }
   }
 }

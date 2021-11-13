@@ -11,8 +11,13 @@ export default function Projects() {
   );
   const numberRandomMax = Math.floor(Math.random() * 12) + 8;
   const numberRandomMin = Math.floor(Math.random() * 4);
-
-  const listRandom = listAllJobsByUser?.slice(numberRandomMin, numberRandomMax);
+  let listJobNotBookedYet = listAllJobsByUser?.filter(
+    (job) => job.usersBooking === undefined
+  );
+  const listRandom = listJobNotBookedYet?.slice(
+    numberRandomMin,
+    numberRandomMax
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actGetAllJobsByUser());
@@ -31,8 +36,7 @@ export default function Projects() {
         <Slider {...settings}>
           {listRandom?.map((job, idx) => {
             return (
-              <div key={job._id} 
-              className="fiverrProject__item">
+              <div key={job._id} className="fiverrProject__item">
                 <div className="fiverrProject__img">
                   <a href="# ">
                     <img className="img-fluid" src={job.image} alt="" />

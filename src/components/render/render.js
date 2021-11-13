@@ -147,3 +147,45 @@ export const renderCategoriesHeader = (mainJob, currentUser) => {
     </div>
   );
 };
+
+export const renderPagination = (setPagination, pagination, totalPage) => {
+  return (
+    <div className="pagination">
+      <button
+        disabled={pagination.page === 0}
+        onClick={() => {
+          setPagination({
+            ...pagination,
+            page: pagination.page - 1,
+          });
+        }}
+      >
+        Pre
+      </button>
+
+      <button
+        disabled
+        style={{
+          border: "1px solid #1dbf73",
+          borderRadius: "50%",
+          fontWeight: 700,
+          backgroundColor: "white",
+        }}
+      >
+        {pagination.page + 1}
+      </button>
+
+      <button
+        disabled={pagination.page === totalPage - 1}
+        onClick={() => {
+          setPagination({
+            ...pagination,
+            page: pagination.page + 1,
+          });
+        }}
+      >
+        Next
+      </button>
+    </div>
+  );
+};

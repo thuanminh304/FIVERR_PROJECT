@@ -2,38 +2,38 @@
 .verified-pro {
   margin-top: 40px;
   background-color: #fafafa;
-  padding:24px;
-    .verified-pro-text{
-        .title {
-            color: $color-sm-title;
-            font-weight:600;
-            margin-bottom:0;
-            span {
-              color: #02c2a9;
-            }
-          }
-        .text{
-            color: #62646a;
-            display: flex;
-            justify-content: space-between;
-            font-size: 16px;
-            font-weight: 600;
-
-            span{
-              color: #02c2a9;
-
-            }
-        }
+  padding: 24px;
+  .verified-pro-text {
+    .title {
+      color: $color-sm-title;
+      font-weight: 600;
+      margin-bottom: 0;
+      span {
+        color: #02c2a9;
+      }
     }
+    .text {
+      color: #62646a;
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 600;
+
+      span {
+        color: #02c2a9;
+      }
+    }
+  }
   .verified-pro-list {
     margin-top: 10px;
-    display:flex;
-    gap:36px;
+    display: flex;
+    gap: 36px;
     .list-pro-item {
       &:hover {
-        .text-active {
-          color: #1dbf73;
-          transition: color 0.5s;
+        p.text-active {
+          a {
+            color: #1dbf73;
+          }
         }
       }
       .card-body {
@@ -52,7 +52,9 @@
           }
         }
         p {
-          color: #404145;
+          a {
+            color: #404145;
+          }
           font-size: 18px;
 
           &:last-child {
@@ -61,7 +63,7 @@
             font-weight: bolder;
             display: flex;
             justify-content: space-between;
-            
+
             align-content: center;
             align-items: baseline;
             .fa {

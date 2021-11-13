@@ -1,11 +1,10 @@
+import React, { useEffect, useState } from "react";
 import { actGetAllJobsByUser } from "containers/home/homePage/profileUser/createNewJobByUser/StepsCreateNewGig/modules/action";
-import React from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
 import "./editorsPicks.scss";
-import { useState } from "react";
-
+import configName from "setting/configNameTypeJob";
+import { Link } from "react-router-dom";
+import { renderPagination } from "components/render/render";
 export default function EditorsPicks(props) {
   const { listAllJobsByUser } = useSelector(
     (state) => state.profileUserReducer
@@ -19,9 +18,11 @@ export default function EditorsPicks(props) {
   useEffect(() => {
     dispatch(actGetAllJobsByUser());
   }, [pagination.page]);
-
-  const totalPage = Math.ceil(listAllJobsByUser?.length / pagination.limit);
-  const listFilter = listAllJobsByUser?.slice(
+  let listJobNotBookedYet = listAllJobsByUser?.filter(
+    (job) => job.usersBooking === undefined
+  );
+  const totalPage = Math.ceil(listJobNotBookedYet?.length / pagination.limit);
+  const listFilter = listJobNotBookedYet?.slice(
     pagination.page * pagination.limit,
     pagination.page * pagination.limit + 12
   );
@@ -31,9 +32,12 @@ export default function EditorsPicks(props) {
       <h3>Editors' picks</h3>
       <div className="editors-row">
         {listFilter?.map((job, idx) => {
+          let name = configName(job.type.name);
           return (
             <div key={job._id} className="card  editor-item">
-              <img className="card-img-top" src={job.image} alt="" />
+              <Link to={`/${name}/${job._id}`}>
+                <img className="card-img-top" src={job.image} alt="" />
+              </Link>
               <div className="card-body">
                 <div className="card-avatar">
                   <span>
@@ -42,9 +46,11 @@ export default function EditorsPicks(props) {
                   </span>
                 </div>
                 <p className="card-text text-active">
-                  {job.name.length < 28
-                    ? job.name
-                    : `${job.name.substr(0, 28)}...`}
+                  <Link to={`/${name}/${job._id}`}>
+                    {job.name.length < 28
+                      ? job.name
+                      : `${job.name.substr(0, 28)}...`}
+                  </Link>
                 </p>
                 <p className="card-text">
                   <i className="fa fa-star"></i>
@@ -64,31 +70,7 @@ export default function EditorsPicks(props) {
           );
         })}
       </div>
-      <div className="pagination">
-        <button
-          disabled={pagination.page === 0}
-          onClick={() => {
-            setPagination({
-              ...pagination,
-              page: pagination.page - 1,
-            });
-          }}
-        >
-          Pre
-        </button>
-        
-        <button
-          disabled={pagination.page === totalPage - 1}
-          onClick={() => {
-            setPagination({
-              ...pagination,
-              page: pagination.page + 1,
-            });
-          }}
-        >
-          Next
-        </button>
-      </div>
+      {renderPagination(setPagination, pagination, totalPage)}
     </div>
   );
 }

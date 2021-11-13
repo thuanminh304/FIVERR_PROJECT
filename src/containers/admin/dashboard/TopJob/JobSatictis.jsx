@@ -1,14 +1,13 @@
-import React, {useEffect, useState} from "react";
-import { StarFilled, CheckOutlined } from "@ant-design/icons";
+import React, { useEffect, useState } from "react";
 import { Table } from "antd";
-import { useSelector, useDispatch } from "react-redux";
-import './JobSatictis.scss';
+import { useSelector } from "react-redux";
+import "./JobSatictis.scss";
 const JobSatictis = () => {
   const { dataSatictis } = useSelector((state) => state.JobManagementReducer);
   const [data, setData] = useState(null);
   const pagination = {
     pageSize: 10,
-  }
+  };
   const columns = [
     {
       title: "No.",
@@ -50,29 +49,34 @@ const JobSatictis = () => {
       width: "15%",
     },
     {
-        title: "Delivery Time Qty",
-        dataIndex: "deliveryTimeQty",
-        key: "deliveryTimeQty",
-        width: "15%",
-      },
+      title: "Delivery Time Qty",
+      dataIndex: "deliveryTimeQty",
+      key: "deliveryTimeQty",
+      width: "15%",
+    },
     {
-        title: "Earning",
-        dataIndex: "price",
-        key: "price",
-        width: "8%",
-        fixed: "right",
-        render: (text) => {
-          return <span>{text + "$"}</span>;
-        },
+      title: "Earning",
+      dataIndex: "price",
+      key: "price",
+      width: "8%",
+      fixed: "right",
+      render: (text) => {
+        return <span>{text + "$"}</span>;
       },
+    },
   ];
-  useEffect(()=>{
+  useEffect(() => {
     setData(dataSatictis);
-  },[dataSatictis]);
+  }, [dataSatictis]);
   return (
     <div className="topJob">
       <div className="topJob__content">
-        <Table columns={columns} dataSource={data} scroll={{ x: 768 }} pagination = {data?.length<10?false:pagination}/>
+        <Table
+          columns={columns}
+          dataSource={data}
+          scroll={{ x: 768 }}
+          pagination={data?.length < 10 ? false : pagination}
+        />
       </div>
     </div>
   );
