@@ -1,0 +1,199 @@
+.jobdetail {
+  scroll-behavior: smooth;
+  .jobdetail__content {
+    padding: 32px;
+  }
+  .categories-link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 10px;
+    span {
+      margin-right: 10px;
+      font-size: 14px;
+      &:hover {
+        a {
+          text-decoration: underline !important;
+        }
+      }
+      a {
+        color: #02c2a9;
+        font-weight: 600;
+      }
+    }
+    .anticon {
+      line-height: 14px;
+      vertical-align: 0;
+    }
+  }
+  .jobDetail__infoMain {
+    .info__title {
+      h1 {
+        margin-bottom: 0;
+        font-size: 28px;
+        padding-bottom: 16px;
+        line-height: 130%;
+        font-weight: 700;
+        color: #404145;
+      }
+    }
+    .info__container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 30px;
+      .info__userCreate,
+      .info__review {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .anticon {
+          vertical-align: 1px;
+        }
+      }
+      .userCreate__avatar {
+        width: 32px;
+        height: 32px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 100%;
+        overflow: hidden;
+        margin-right: 10px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        h4 {
+          font-size: 15px;
+          line-height: 30px;
+          margin-bottom: 0;
+          font-weight: 700;
+          color: #02c2a9;
+        }
+      }
+      .userCreate__name {
+        margin-right: 5px;
+        padding: 0 5px 3px 0;
+        border-right: 2px solid #ccc;
+        h4 {
+          font-size: 15px;
+          font-weight: 500;
+          margin-bottom: 0;
+        }
+      }
+      .info__rating,
+      .info__reviewQty {
+        margin-right: 5px;
+        span {
+          font-size: 15px;
+          font-weight: 500;
+          color: #ffb33e;
+          margin-right: 2px;
+        }
+        a {
+          span {
+            color: #02c2a9;
+          }
+        }
+      }
+    }
+    .jobDetail__infoImage {
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .jobDetail__book{
+    padding: 32px;
+    top: 50px;
+    .jobPrice__item{
+      padding: 20px 15px;
+    }
+    .jobDetail__jobPrice{
+      border: 1px solid #ccc;
+      width: 400px;
+      margin: auto;
+      transition: position 0.3s;
+    }
+    .jobDetail__jobPrice.fix{
+      position: fixed;
+      // width: 29%;
+      left: 74.4%;
+      // transform: translate3d(-50%, -200px, 0);
+    }
+    .jobDetail__jobPrice.notFix{
+      margin: auto;
+    }
+    .jobPrice__title{
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      background-color: #fafafa;
+      padding: 15px;
+    }
+    .jobPrice__listService{
+      text-align: center;
+      color: #02c2a9;
+      font-weight: 16px;
+      font-size: 15px;
+      border-bottom: 1px dotted #ccc;
+      span{
+        margin: 15px;
+      }
+    }
+    .jobPrice__price{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+      font-weight: 700;
+      span {
+        &:last-of-type{
+          font-size: 38px;
+          color: #02c2a9;
+        }
+      }
+    }
+    .jobPrice__slogan{
+      text-align: center;
+      padding-top: 0;
+      font-weight: 500;
+      font-size: 15px;
+      color: #62646a;
+      margin-bottom: 30px;
+    }
+    .jobPrice__booking, .jobPrice__contact{
+      width: 100%;
+      text-align: center;
+      padding-top: 0;
+      border-bottom: 1px dotted #ccc;
+      button{
+        padding: 5px 10px;
+        border: none;
+        width: 100%;
+        background-color: #1dbf73;
+        font-size: 18px;
+        font-weight: 600;
+        color: #fff;
+        border-radius: 3px;
+        transition: background-color .3s;
+        &:hover{
+          background-color: #19a463;
+        }
+      }
+    }
+    .jobPrice__contact{
+      padding-top: 40px;
+      padding-bottom: 40px;
+      background-color: #fafafa;
+      border-bottom: none;
+      button{
+        a{
+          color: #fff;
+        }
+        background-color: #7a7d85;
+      }
+    }
+  }
+}

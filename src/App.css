@@ -10,7 +10,9 @@ body {
   color: #62646a;
   position: relative;
   width: 100%;
+  height: auto!important;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 a {
   text-decoration: none !important;

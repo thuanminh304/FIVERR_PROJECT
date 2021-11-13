@@ -16,6 +16,7 @@ import Adminprofile from "containers/admin/AdminProfile/AdminProfile";
 import Categories from "containers/home/Categories/Categories";
 import DetailListSubType from "containers/home/homePage/DetailListSubType/DetailListSubType";
 import PageSearchJob from "containers/home/homePage/pageSearchJob/PageSearchJob";
+import Jobdetail from "containers/home/JobDetail/JobDetail";
 
 export const clientRoutes = [
   {
@@ -75,6 +76,12 @@ export const clientRoutes = [
   {
     path: "/search/gigs/:name",
     component: PageSearchJob,
+    exact: true,
+    isPrivate: true,
+  },
+  {
+    path: "/:nameTypeJob/detail/:jobId",
+    component: Jobdetail,
     exact: true,
     isPrivate: true,
   },

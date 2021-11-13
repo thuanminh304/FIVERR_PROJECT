@@ -132,7 +132,7 @@ export default function DetailListSupType() {
             return (
               <div key={job._id} className="col-3">
                 <div className="card job-item">
-                  <Link to={`/${params?.nameTypeJob}/${job._id}`}>
+                  <Link to={`/${params?.nameTypeJob}/detail/${job._id}`}>
                     <img className="card-img-top" src={job.image} alt="" />
                   </Link>
 
