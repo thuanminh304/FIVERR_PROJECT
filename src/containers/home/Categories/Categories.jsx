@@ -11,12 +11,13 @@ const Categories = () => {
   const [loading, setLoading] = useState(false);
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
   const { typeJob } = useParams();
+  useEffect(() => {});
   useEffect(() => {
     const type = mainJob.find((job) => {
       return configNameTypeJob(job.name) === typeJob;
     });
-    setMainType(type);
-    if (!!type) {
+    if (dataImg.length === 0 || mainType._id !== type._id) {
+      setMainType(type);
       setLoading(true);
       jobApi
         .getMainJobList(type._id)
@@ -41,7 +42,7 @@ const Categories = () => {
       if (!!imageUrl) {
         return imageUrl.image;
       } else {
-        return "../images/defaultTypeJob/defaultTypeJob.jpg";
+        return "images/defaultTypeJob/defaultTypeJob.jpg";
       }
     }
   };
@@ -91,12 +92,11 @@ const Categories = () => {
                     <span>
                       <img
                         src={findImage(job._id)}
-                        onError={(e) =>
-                          (e.target.onerror = null)(
-                            (e.target.src =
-                              "../images/defaultTypeJob/defaultTypeJob.jpg")
-                          )
-                        }
+                        onError={(e) => (
+                          (e.target.onerror = null),
+                          (e.target.src =
+                            "images/defaultTypeJob/defaultTypeJob.jpg")
+                        )}
                         alt=""
                       />
                     </span>
