@@ -187,7 +187,7 @@ const Listsubjob = (props) => {
                 data-subjobid={subJobType._id}
                 className={
                   "subJobType-item col-md-3 " +
-                  (!editState || editState?.key === idx ? "" : "disabled")
+                  (!editState || editState?.key == idx ? "" : "disabled")
                 }
               >
                 <div className="subJobType__content row">
