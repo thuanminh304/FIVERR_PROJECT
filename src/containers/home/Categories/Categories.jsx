@@ -19,21 +19,23 @@ const Categories = () => {
     if (dataImg.length === 0 || mainType._id !== type._id) {
       setMainType(type);
       setLoading(true);
-      jobApi
-        .getMainJobList(type._id)
-        .then((res) => {
-          const imageJob = res.data.filter((job) => {
-            return !!job.image;
+      if (!!type) {
+        jobApi
+          .getMainJobList(type._id)
+          .then((res) => {
+            const imageJob = res.data.filter((job) => {
+              return !!job.image;
+            });
+            setLoading(false);
+            setDataImg(imageJob);
+          })
+          .catch((error) => {
+            setLoading(false);
+            setDataImg([]);
           });
-          setLoading(false);
-          setDataImg(imageJob);
-        })
-        .catch((error) => {
-          setLoading(false);
-          setDataImg([]);
-        });
+      }
     }
-  }, [mainJob, typeJob]);
+  }, [mainJob,typeJob]);
   const findImage = (id) => {
     if (dataImg.length > 0) {
       const imageUrl = dataImg.find((img) => {
