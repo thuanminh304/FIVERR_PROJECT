@@ -3,6 +3,7 @@ import "./carousel.scss";
 import Slider from "react-slick";
 import { useHistory } from "react-router";
 import { Input } from "antd";
+import { Link } from "react-router-dom";
 
 export default function Carousel() {
   const { Search } = Input;
@@ -42,19 +43,27 @@ export default function Carousel() {
           <ul>
             <li>
               {" "}
-              <a href="# ">Website Design</a>
+              <Link to="/categories/graphics-design/618d245d95d99f001c0c0ace ">
+                Illustration
+              </Link>
             </li>
             <li>
               {" "}
-              <a href="# ">WordPress</a>
+              <Link to="/categories/graphics-design/618d243b95d99f001c0c0ac2 ">
+                Game Art
+              </Link>
             </li>
             <li>
               {" "}
-              <a href="# ">Logo Design</a>
+              <Link to="/categories/graphics-design/618c910f95d99f001c0c047c ">
+                Logo Design
+              </Link>
             </li>
             <li>
               {" "}
-              <a href="# ">Dropshipping</a>
+              <Link to="/categories/graphics-design/618d252295d99f001c0c0b0e">
+                UX Design
+              </Link>
             </li>
           </ul>
         </div>

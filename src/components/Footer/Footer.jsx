@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import "./footer.scss";
 import { Modal } from "antd";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import configName from "setting/configNameTypeJob";
 
 const Footer = () => {
+  const { mainJob } = useSelector((state) => state.JobManagementReducer);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -23,36 +27,14 @@ const Footer = () => {
             <h6>Categories</h6>
             <div className="footer__item">
               <ul>
-                <a href="# ">
-                  <li>Graphics & Design</li>
-                </a>
-                <a href="# ">
-                  <li>Digital Marketing</li>
-                </a>
-                <a href="# ">
-                  <li>Writing & Translation</li>
-                </a>
-                <a href="# ">
-                  <li>Video & Animation</li>
-                </a>
-                <a href="# ">
-                  <li>Music & Audio</li>
-                </a>
-                <a href="# ">
-                  <li>Programming & Tech</li>
-                </a>
-                <a href="# ">
-                  <li>Data</li>
-                </a>
-                <a href="# ">
-                  <li>Business</li>
-                </a>
-                <a href="# ">
-                  <li>Lifestyle</li>
-                </a>
-                <a href="# ">
-                  <li>Sitemap</li>
-                </a>
+                {mainJob?.map((maintype) => {
+                  let name = configName(maintype.name);
+                  return (
+                    <Link key={maintype._id} to={`/categories/${name}`}>
+                      <li>{maintype.name}</li>
+                    </Link>
+                  );
+                })}
               </ul>
             </div>
           </div>

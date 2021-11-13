@@ -10,7 +10,6 @@ import {
 import { actUploadAvatar } from "containers/shared/Auth/module/actions";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
-import { useHistory } from "react-router";
 import {
   renderInputCert,
   renderInputSkill,
@@ -22,18 +21,16 @@ import {
 } from "./createNewJobByUser/StepsCreateNewGig/modules/action";
 import ProfileHasJobs from "./ProfileHasJobs";
 import ProfileNoJob from "./ProfileNoJob";
-import { Tabs, Empty, Table, Avatar } from "antd";
+import { Tabs, Table, Avatar } from "antd";
 
 export default function ProfileUser(props) {
   const [imageUrl, setImageUrl] = useState(null);
   const { TabPane } = Tabs;
-
   const { currentUser } = useSelector((state) => state.AuthReducer);
   const { listAllJobsByUser, listJobBookedByUser } = useSelector(
     (state) => state.profileUserReducer
   );
   const dispatch = useDispatch();
-  const history = useHistory();
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -351,7 +348,7 @@ export default function ProfileUser(props) {
       <div className="col-7 profile-right">
         <div className="info-bars">
           <p>
-            WALLET: <span>{totalWallet } $</span>{" "}
+            WALLET: <span>{totalWallet} $</span>{" "}
           </p>
         </div>
         <Tabs className="tab-profile-right-content" defaultActiveKey="1">
