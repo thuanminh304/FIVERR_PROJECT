@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { RightOutlined, StarFilled, MessageOutlined } from "@ant-design/icons";
+import { RightOutlined, StarFilled, MessageOutlined, LoadingOutlined } from "@ant-design/icons";
 import defaultJob from "assets/images/defaultTypeJob/defaultJob.jpg";
 import "./JobDetail.scss";
 import Comment from "./Comment/Comment";
 import { actGetJobDetail } from "Modules/JobManagement/actions";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import commentApi from "apis/commentApi";
+import jobApi from 'apis/jobApi';
 import Loader from "components/Loader/Loader";
 const Jobdetail = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { nameTypeJob, jobId } = useParams();
   const [statusPos, setStatusPos] = useState("");
   const [commentList, setCommentList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isBook, setIsBook] = useState(false);
+  const [isBooked, setBooked] = useState('');
   const [isSendCommnet, setIsSendComment] = useState(false);
   const { jobDetail } = useSelector((state) => state.JobManagementReducer);
   const { listAllUser } = useSelector((state) => state.managementUserReducer);
+  const {currentUser} = useSelector((state) => state.AuthReducer);
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -113,6 +118,24 @@ const Jobdetail = () => {
       return user._id === userId;
     });
     return userCmt;
+  };
+  const bookJob = () => {
+    setIsBook(true);
+    jobApi.bookingJob(jobId).then(res=>{
+      setIsBook(false);
+      setBooked('success');
+      setTimeout(() => {
+        setBooked('');
+        history.push(`/user/${jobDetail?.email}`)
+      }, 2000);
+    })
+    .catch(error=>{
+      setIsBook(false);
+      setBooked('fail');
+      setTimeout(() => {
+        setBooked('');
+      }, 2000);
+    })
   }
   if (!!loading) return <Loader />;
   return (
@@ -202,7 +225,7 @@ const Jobdetail = () => {
               {`You will get a professional custom ${jobDetail?.type.name.toLowerCase()} suitable for your project`}
             </p>
             <div className="jobPrice__booking jobPrice__item">
-              <button className="bookingBtn">Confirm & Pay</button>
+              <button className="bookingBtn" onClick={bookJob}>{!isBook?"Confirm & Pay":<LoadingOutlined />}</button>
             </div>
             <div className="jobPrice__contact jobPrice__item">
               <button className="bookingBtn">
@@ -210,6 +233,11 @@ const Jobdetail = () => {
                   Contact Seller via Email
                 </a>
               </button>
+            </div>
+            <div className={"jobBook__note " + ((!!isBooked||!currentUser?._id)?'show':"")}>
+              {isBooked === 'success'?(<h4 className="noteSuccess note">Success</h4>):""}
+              {isBooked === 'fail'?(<h4 className="noteFail note">Fail</h4>):""}
+              {!currentUser?._id?(<button className="noteLogin"><Link to="/login">Login Now</Link></button>):""}
             </div>
           </div>
         </div>
