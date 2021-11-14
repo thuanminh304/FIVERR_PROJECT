@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import defaultJobType from 'assets/images/defaultTypeJob/defaultTypeJob.jpg';
 import "./Categories.scss";
 import jobApi from "apis/jobApi";
 import configNameTypeJob from "setting/configNameTypeJob";
@@ -44,7 +45,7 @@ const Categories = () => {
       if (!!imageUrl) {
         return imageUrl.image;
       } else {
-        return "images/defaultTypeJob/defaultTypeJob.jpg";
+        return defaultJobType;
       }
     }
   };
@@ -96,8 +97,7 @@ const Categories = () => {
                         src={findImage(job._id)}
                         onError={(e) => (
                           (e.target.onerror = null),
-                          (e.target.src =
-                            "images/defaultTypeJob/defaultTypeJob.jpg")
+                          (e.target.src = {defaultJobType})
                         )}
                         alt=""
                       />
