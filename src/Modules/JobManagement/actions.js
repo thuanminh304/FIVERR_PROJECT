@@ -369,17 +369,19 @@ export const actGetJobDetail = (id) => {
     jobApi.getJobDetail(id).then(res=>{
       const {listAllUser} = getState().managementUserReducer;
       const userCreated = listAllUser.find(user=>{
-        return user._id = res.data.userCreated;
+        return user._id === res.data.userCreated;
       });
       const userBooking = listAllUser.find(user=>{
-        return user._id = res.data.usersBooking;
+        return user._id === res.data.usersBooking;
       });
       let userBookingName = userBooking?.name;
       let userName = userCreated?.name;
+      const userAvatar = userCreated?.avatar;
+      const userEmail = userCreated?.email;
       if(!userName) {
         userName = 'No Name';
       };
-      const data = {...res.data, userCreatedName: userName, userBookingName: userBookingName};
+      const data = {...res.data, userCreatedName: userName, userBookingName: userBookingName, userAvatar: userAvatar, userEmail: userEmail};
       dispatch(actGetJobDetailSucc(data));
     })
     .catch(error=>{
