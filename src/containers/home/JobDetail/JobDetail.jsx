@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { RightOutlined, StarFilled, MessageOutlined, LoadingOutlined } from "@ant-design/icons";
 import defaultJob from "assets/images/defaultTypeJob/defaultJob.jpg";
+import userDefaultAvatar from 'assets/images/defaultAvatar/defaultAvatar.jpg';
 import "./JobDetail.scss";
 import Comment from "./Comment/Comment";
 import { actGetJobDetail } from "Modules/JobManagement/actions";
@@ -21,20 +22,15 @@ const Jobdetail = () => {
   const [isBooked, setBooked] = useState('');
   const [isSendCommnet, setIsSendComment] = useState(false);
   const { jobDetail } = useSelector((state) => state.JobManagementReducer);
-  const { listAllUser } = useSelector((state) => state.managementUserReducer);
   const {currentUser} = useSelector((state) => state.AuthReducer);
   useEffect(() => {
+    setLoading(true);
+    dispatch(actGetJobDetail(jobId));
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  useEffect(() => {
-    if (listAllUser.length > 0) {
-      setLoading(true);
-      dispatch(actGetJobDetail(jobId));
-    }
-  }, [listAllUser]);
   useEffect(() => {
     if (jobDetail?._id === jobId) {
       commentApi
@@ -43,13 +39,7 @@ const Jobdetail = () => {
           console.log(res.data);
           setLoading(false);
           const data = res.data.map(comment => {
-            let userCmt = null;
-            if (!!res.data.user) {
-              userCmt = findUserCmt(res.data.user);
-            }
-            else{
-              userCmt = {avatar: null, name: 'Guest'};
-            };
+            const userCmt = {avatar: null, name: 'Guest'};
             return {...comment, user: userCmt};
           });
           setCommentList(data.reverse());
@@ -95,14 +85,7 @@ const Jobdetail = () => {
         .createComment(data)
         .then((res) => {
           const listCmt = [...commentList];
-          let userCmt = null;
-          if (!!res.data.user) {
-            debugger;
-            userCmt = findUserCmt(res.data.user);
-          }
-          else{
-            userCmt = {avatar: null, name: 'Guest'};
-          };
+          const userCmt = {avatar: null, name: 'Guest'};
           const newComment = {...res.data, user: userCmt};
           listCmt.unshift(newComment);
           setCommentList(listCmt);
@@ -112,12 +95,6 @@ const Jobdetail = () => {
           setIsSendComment(false);
         });
     }
-  };
-  const findUserCmt = (userId) => {
-    const userCmt = listAllUser.find((user) => {
-      return user._id === userId;
-    });
-    return userCmt;
   };
   const bookJob = () => {
     setIsBook(true);
@@ -162,20 +139,6 @@ const Jobdetail = () => {
               <h1>{jobDetail?.name}</h1>
             </div>
             <div className="info__container">
-              <div className="info__userCreate">
-                <div className="userCreate__avatar">
-                  {!!jobDetail?.userAvatar ? (
-                    <img src={jobDetail.userAvatar} alt="user-avatar" />
-                  ) : (
-                    <h4>
-                      {jobDetail?.userCreatedName.slice(0, 1).toUpperCase()}
-                    </h4>
-                  )}
-                </div>
-                <div className="userCreate__name">
-                  <h4>{jobDetail?.userCreatedName}</h4>
-                </div>
-              </div>
               <div className="info__review">
                 <div className="info__rating">
                   <span>{jobDetail?.rating}</span>
@@ -242,7 +205,7 @@ const Jobdetail = () => {
           </div>
         </div>
         <div id="review" className="jobDetail__item jobDetail__comment col-6">
-          <Comment commentList={commentList} isSendCommnet={isSendCommnet} creatComment={createNewComment} />
+          <Comment commentList={commentList} isSendCommnet={isSendCommnet} creatComment={createNewComment} currentUser = {currentUser}/>
         </div>
       </div>
     </div>

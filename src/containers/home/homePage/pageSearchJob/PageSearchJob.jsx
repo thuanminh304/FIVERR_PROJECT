@@ -116,7 +116,7 @@ export default function PageSearchJob() {
             return (
               <div className="col-3">
                 <div className="card job-item">
-                  <Link to={`/${name}/${job._id}`}>
+                  <Link to={`/${params?.nameTypeJob}/detail/${job._id}`}>
                     <img className="card-img-top" src={job.image} alt="" />
                   </Link>
 
@@ -128,7 +128,7 @@ export default function PageSearchJob() {
                         <p>Level 1 Seller</p>
                       </span>
                     </div>
-                    <Link to={`/${name}/${job._id}`}>
+                    <Link to={`/${params?.nameTypeJob}/detail/${job._id}`}>
                       <p className="card-text text-active">
                         {job.name.length < 35
                           ? job.name
