@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import defaultJobType from 'assets/images/defaultTypeJob/defaultTypeJob.jpg';
 import "./Categories.scss";
+import {RightOutlined} from '@ant-design/icons';
 import jobApi from "apis/jobApi";
 import configNameTypeJob from "setting/configNameTypeJob";
 import Loader from "components/Loader/Loader";
@@ -28,6 +29,7 @@ const Categories = () => {
               return !!job.image;
             });
             setLoading(false);
+            console.log(imageJob);
             setDataImg(imageJob);
           })
           .catch((error) => {
@@ -42,11 +44,14 @@ const Categories = () => {
       const imageUrl = dataImg.find((img) => {
         return img.subType === id;
       });
-      if (!!imageUrl) {
+      if (!!imageUrl?.image) {
         return imageUrl.image;
       } else {
         return defaultJobType;
       }
+    }
+    else{
+      return defaultJobType;
     }
   };
   if (!!loading) return <Loader />;
@@ -74,13 +79,14 @@ const Categories = () => {
                       }
                     >
                       {job.name}
+                      <RightOutlined />
                     </Link>
                   </li>
                 );
               })}
             </ul>
           </div>
-          <div className="content__sideRight col-9 row">
+          <div className="content__sideRight col-xl-9 row">
             {mainType?.subTypeJobs.map((job, idx) => {
               return (
                 <div key={idx} className="sideRight__contentItem col-4">
@@ -97,7 +103,7 @@ const Categories = () => {
                         src={findImage(job._id)}
                         onError={(e) => (
                           (e.target.onerror = null),
-                          (e.target.src = {defaultJobType})
+                          (e.target.src ={defaultJobType})
                         )}
                         alt=""
                       />

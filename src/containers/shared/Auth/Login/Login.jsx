@@ -9,8 +9,8 @@ import { Form } from "antd";
 import {
   CheckOutlined,
   LoadingOutlined
-  
 } from "@ant-design/icons";
+import {signInForm,JoinForm} from "../FormField";
 import {
   actChangeRememberUserLoginStatus,
   actLoginUser,
@@ -19,76 +19,7 @@ import {
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const signInForm = [
-    {
-      name: "email",
-      placeHolderText: "Email",
-      type: "text",
-      isLogin: true,
-    },
-    {
-      name: "password",
-      placeHolderText: "Password",
-      type: "password",
-      isLogin: true,
-    },
-  ];
-  const JoinForm = [
-    {
-      name: "name",
-      placeHolderText: "Name",
-      type: "text",
-      isLogin: false,
-    },
-    {
-      name: "email",
-      placeHolderText: "Email",
-      type: "text",
-      isLogin: false,
-    },
-    {
-      name: "password",
-      placeHolderText: "Password",
-      type: "password",
-      isLogin: false,
-    },
-    {
-      name: "re-password",
-      placeHolderText: "Re-Password",
-      type: "password",
-      isLogin: false,
-    },
-    {
-      name: "phone",
-      placeHolderText: "Phone Number",
-      type: "text",
-      isLogin: false,
-    },
-    {
-      name: "birthday",
-      placeHolderText: "BirthDay",
-      type: "text",
-      isLogin: false,
-    },
-    {
-      name: "gender",
-      placeHolderText: "Gender",
-      type: "text",
-      isLogin: false,
-    },
-    {
-      name: "certification",
-      placeHolderText: "Certification (Ex: DIB, PYNOW, ...)",
-      type: "text",
-      isLogin: false,
-    },
-    {
-      name: "skill",
-      placeHolderText: "Skill (Ex: PHP, Java, Javascript, Web design, ...)",
-      type: "text",
-      isLogin: false,
-    },
-  ];  
+  
   const [formStructure, setFormStructure] = useState([]);
   const [isLogin, setIsLogin] = useState(true);
   const [isShowPopup, setShowPopup] = useState(false);
@@ -151,14 +82,6 @@ const Login = () => {
           data[key] = moment(values[key]).format("YYYY-MM-DD");
           continue;
         }
-        // if (key === "gender") {
-        //   if (values === "male") {
-        //     data[key] = true;
-        //   } else {
-        //     data[key] = false;
-        //   }
-        //   continue;
-        // }
         data[key] = values[key];
       }
       let setErrorForm = false;
@@ -175,7 +98,7 @@ const Login = () => {
     }
   };
   const checkError = (key) => {
-    const skillField = document.querySelector('.ant-form-item:nth-of-type(11)');
+    const skillField = document.querySelector('.ant-form-item:nth-of-type(10)');
     const skillFieldControl = skillField.querySelector('.ant-form-item-control');
     const skillFieldChild = skillField.querySelector('.ant-form-item-control-input');
     const noteIcon = document.createElement('span');
@@ -225,7 +148,8 @@ const Login = () => {
     }
   };
   const onFielsChange = (fielsChange) => {
-    const field = fielsChange[0].name;
+    console.log(fielsChange);
+    const field = fielsChange[0].name[0];
     if (field === "certification") {
       const value = fielsChange[0].value;
       const findIndex = value.search(",");
@@ -290,7 +214,6 @@ const Login = () => {
     const number = Math.floor(Math.random() * 3) + 1;
     return number;
   };
-  const onValuesChange = (changedValues) => {};
   const changeRememberUserLogin = (e) => {
     const checkBlock = e.target.closest(".checkBoxForm");
     const rememberText = e.target.closest(".rememberNote");
@@ -366,7 +289,6 @@ const Login = () => {
             scrollToFirstError
             ref={formRef}
             onFieldsChange={onFielsChange}
-            onValuesChange={onValuesChange}
             onClick={handleClickTab}
             onBlur = {handleFocusOut}
           >

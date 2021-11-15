@@ -11,7 +11,6 @@ const Comment = (props) => {
     formRef.current.resetFields();
   };
   const { TextArea } = Input;
-  console.log(commentList);
   const renderListComment = () => {
     return commentList?.map((comment, idx) => {
       return (
