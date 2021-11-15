@@ -4,10 +4,11 @@ import { Modal } from "antd";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import configName from "setting/configNameTypeJob";
-
+import { Menu } from "antd";
 const Footer = () => {
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { SubMenu } = Menu;
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -157,6 +158,58 @@ const Footer = () => {
               </ul>
             </div>
           </div>
+        </div>
+        <div className="footer-responsive">
+          <Menu className="menu-visible" mode="inline">
+            <SubMenu key="sub1" title="Categories">
+              {mainJob?.map((maintype, idx) => {
+                const name = configName(maintype.name);
+                return (
+                  <Menu.Item key={maintype._id}>
+                    <Link to={`/categories/${name}`}>{maintype.name}</Link>
+                  </Menu.Item>
+                );
+              })}
+            </SubMenu>
+            <SubMenu title="About" key="sub2">
+              <Menu.Item key="1">Careers</Menu.Item>
+              <Menu.Item key="2">Press & News</Menu.Item>
+
+              <Menu.Item key="3">Partnerships</Menu.Item>
+
+              <Menu.Item key="4">Privacy Policy</Menu.Item>
+
+              <Menu.Item key="5">Terms of Service</Menu.Item>
+
+              <Menu.Item key="6">Intellectual Property Claims</Menu.Item>
+
+              <Menu.Item key="7">Investor Relations</Menu.Item>
+            </SubMenu>
+            <SubMenu title="Support" key="sub3">
+              <Menu.Item key="8">Help & Support</Menu.Item>
+              <Menu.Item key="9">Trust & Safety</Menu.Item>
+
+              <Menu.Item key="10">Selling on Fiverr</Menu.Item>
+
+              <Menu.Item key="11">Buying on Fiverr</Menu.Item>
+            </SubMenu>
+            <SubMenu title="Community" key="sub4">
+              <Menu.Item key="12">Events</Menu.Item>
+              <Menu.Item key="13">Blog</Menu.Item>
+
+              <Menu.Item key="14">Forum</Menu.Item>
+
+              <Menu.Item key="15">Podcast</Menu.Item>
+            </SubMenu>
+            <SubMenu title="More From Fiverr" key="sub5">
+              <Menu.Item key="16">Fiverr Business</Menu.Item>
+              <Menu.Item key="17">Fiverr Pro</Menu.Item>
+
+              <Menu.Item key="18">Fiverr Studio</Menu.Item>
+
+              <Menu.Item key="19">Fiverr Guides</Menu.Item>
+            </SubMenu>
+          </Menu>
         </div>
         <div className="footer-mini-bottom">
           <div className="mini-left">

@@ -224,3 +224,27 @@
   margin-bottom: 8px;
   margin-left: 8px;
 }
+@keyframes example {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.relativeDot {
+  position: relative;
+  .dot {
+    top: 0;
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid #19a463;
+    background-color: #1dbf73;
+    width: 10px;
+    height: 10px;
+    animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.01, 0.35, 1, 1.38);
+  }
+}

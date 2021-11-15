@@ -24,6 +24,9 @@
       }
     }
   }
+  .header-fixed-reponsive {
+    display: none;
+  }
 }
 
 #header__content-fixed {
@@ -182,4 +185,110 @@
 
 #category__content .li-cate:hover .category__hover {
   display: block;
+}
+
+@media only screen and (max-width: 375px) {
+  header {
+    .header__content {
+      display: none;
+    }
+    #header-fixed {
+      position: fixed;
+      z-index: 1000;
+      width: 100%;
+      #header__content-fixed {
+        display: none;
+      }
+      .header-fixed-reponsive {
+        background-color: white;
+        width: 100%;
+        position: fixed;
+        display: flex;
+        padding: 20px 0;
+        justify-content: space-around;
+        align-items: stretch;
+        .menu-hidden-left {
+          color: #7a7d85;
+          i {
+            margin-top: 4px;
+            font-size: 26px;
+          }
+        }
+        .header-fixed-logo {
+          img {
+            width: 90px;
+          }
+        }
+        button {
+          border: none;
+          background: transparent;
+          font-weight: 600;
+          font-size: 16px;
+          a {
+            color: #7a7d85;
+          }
+        }
+      }
+    }
+    #category__content {
+      display: none;
+    }
+  }
+  .ant-drawer-open {
+    .ant-drawer-content-wrapper {
+      .ant-drawer-content {
+        .ant-drawer-wrapper-body {
+          .ant-drawer-header {
+            padding-top: 30px;
+            .ant-drawer-title {
+              font-size: 17px;
+              display: inline;
+              background: #1dbf73;
+              border-radius: 4px;
+              padding: 10px 20px;
+              font-weight: 600;
+              a {
+                color: white;
+              }
+            }
+          }
+          .ant-drawer-body {
+            padding: 0;
+          }
+          .menu-visible {
+            color: rgb(190, 185, 185);
+            font-weight: 600;
+            font-size: 17px;
+            .ant-menu-item {
+              .ant-menu-title-content {
+                a {
+                  color: rgb(190, 185, 185);
+                }
+              }
+              &:hover {
+                color: #1dbf73;
+              }
+            }
+
+            .ant-menu-item-active {
+              color: #1dbf73;
+            }
+            .ant-menu-submenu:hover,
+            .ant-menu-submenu-arrow {
+              color: #1dbf73;
+            }
+            .fiverr-pro {
+              color: #02c2a9;
+            }
+            .fiverr-business {
+              color: #1dbf73;
+            }
+            .general {
+              color: black;
+            }
+          }
+        }
+      }
+    }
+  }
 }

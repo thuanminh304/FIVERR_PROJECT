@@ -125,3 +125,42 @@
     }
   }
 }
+
+//
+@media only screen and (max-width: 375px) {
+  .fiverrReview {
+    .fiverrReview__container {
+      .slick-slider {
+        .slick-list {
+          .fiverrReview__content {
+            display: flex;
+            flex-direction: column;
+            .fiverrReview__video {
+              width: 90%;
+            }
+            .fiverrReview__box {
+              padding: 0 20px;
+              width: 100%;
+              h5 {
+                top: unset;
+                width: 10%;
+              }
+              p {
+                padding-top: 60px;
+                font-size: 24px;
+              }
+            }
+          }
+        }
+        .slick-next {
+          top: 100px;
+          right: 0;
+        }
+        .slick-prev {
+          top: 100px;
+          left: 0;
+        }
+      }
+    }
+  }
+}

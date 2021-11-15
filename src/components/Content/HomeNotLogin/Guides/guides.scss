@@ -1,11 +1,15 @@
 @import "helpers/variables.scss";
+.fiverrGuides{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 .fiverrGuides__content {
   position: relative;
   width: 95%;
   margin: auto;
-  h2{
-    font-size:$fs-4;
-    color:$color-sm-title
+  h2 {
+    font-size: $fs-4;
+    color: $color-sm-title;
   }
 }
 .fiverrGuides__box {
@@ -36,4 +40,25 @@
   flex-direction: column;
   width: 32%;
   background-color: #fff;
+}
+//
+@media only screen and (max-width: 375px) {
+  .fiverrGuides {
+    padding-bottom: 0;
+    .fiverrGuides__content {
+      padding-bottom: 50px;
+      width: 90%;
+      .fiverrGuides__box{
+        flex-direction: column;
+        .fiverrGuides__item{
+          width: 100%;
+        }
+      }
+      .see-more-link {
+        bottom: 0;
+        left: 0;
+        top: unset;
+      }
+    }
+  }
 }

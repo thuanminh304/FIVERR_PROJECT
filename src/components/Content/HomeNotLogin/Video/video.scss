@@ -15,8 +15,8 @@
     font-size: 25px;
     padding-left: 0px;
     & > svg {
-      margin-top: -5px; 
-      color:$color-nav-title
+      margin-top: -5px;
+      color: $color-nav-title;
     }
   }
 }
@@ -28,13 +28,13 @@
   padding-left: 10px;
   word-spacing: 3px;
   font-size: $fs-2;
-  color:$color-sm-title
+  color: $color-sm-title;
 }
 
 .video__text p {
   color: $color-nav-title;
   font-weight: $fw-3;
-  font-size:$fs-2;
+  font-size: $fs-2;
 }
 .video__text h2 {
   font-weight: bold;
@@ -55,5 +55,32 @@
 .react-responsive-modal-root {
   .react-responsive-modal-modal {
     padding: 0;
+  }
+}
+
+//
+@media only screen and (max-width: 375px) {
+  .video {
+    padding: 50px 0;
+    .video__content {
+      flex-direction: column;
+      .video__text {
+        padding: 0 10px;
+      }
+    }
+  }
+  .react-responsive-modal-root {
+    .react-responsive-modal-container {
+      .react-responsive-modal-modal {
+        div {
+          width: 50vh !important;
+          height: 200px !important;
+          video {
+            width: 100% !important;
+            height: 100% !important;
+          }
+        }
+      }
+    }
   }
 }

@@ -6,7 +6,7 @@
 .fiverrProject__content {
   position: relative;
   width: 95%;
-    margin: auto;
+  margin: auto;
 }
 .fiverrProject__title a {
   text-decoration: none;
@@ -73,19 +73,18 @@
   top: 0;
   text-decoration: none;
   color: #4a73e8;
-  font-size:$fs-2;
+  font-size: $fs-2;
   padding-top: 16px;
-  &:active{
-  color: #4a73e8;
-
+  &:active {
+    color: #4a73e8;
   }
 }
 
-.fiverrProject__content{
-  h2{
+.fiverrProject__content {
+  h2 {
     color: $color-sm-title;
     font-size: $fs-4;
-    margin-left:16px
+    margin-left: 16px;
   }
   .slick-prev {
     left: -13px;
@@ -105,5 +104,21 @@
     position: absolute;
     top: 31%;
     right: 33%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .fiverrProject {
+    .fiverrProject__content {
+      padding-bottom: 50px;
+      h2 {
+        font-size: 30px;
+      }
+      .see-more-link {
+        font-weight: 600;
+        top: unset;
+        left: 0;
+      }
+    }
   }
 }

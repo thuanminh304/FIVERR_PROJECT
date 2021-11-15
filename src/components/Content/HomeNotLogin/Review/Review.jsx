@@ -24,12 +24,21 @@ export default function Review() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 376,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   return (
     <section className="fiverrReview py-5">
       <div className="fiverrReview__container container slick-single  px-0">
         <Slider {...settings}>
-          <div className="fiverrReview__content ">
+          <div className="fiverrReview__content">
             <div className="fiverrReview__video py-3">
               <div className="fiverrReview__img ">
                 <img

@@ -28,7 +28,7 @@ export default function PopularServices() {
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 376,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
