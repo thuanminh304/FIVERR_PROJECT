@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { RightOutlined, StarFilled, MessageOutlined, LoadingOutlined } from "@ant-design/icons";
@@ -24,11 +24,14 @@ const Jobdetail = () => {
   const { jobDetail } = useSelector((state) => state.JobManagementReducer);
   const {currentUser} = useSelector((state) => state.AuthReducer);
   useEffect(() => {
+    window.scrollTo(0,0);
     setLoading(true);
     dispatch(actGetJobDetail(jobId));
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener('resize',handleResize);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('resize',handleResize);
     };
   }, []);
   useEffect(() => {
@@ -36,7 +39,6 @@ const Jobdetail = () => {
       commentApi
         .getComment(jobId)
         .then((res) => {
-          console.log(res.data);
           setLoading(false);
           const data = res.data.map(comment => {
             const userCmt = {avatar: null, name: 'Guest'};
@@ -56,24 +58,32 @@ const Jobdetail = () => {
     const bookingBox = document.querySelector(".jobDetail__jobPrice");
     const windowY = window.scrollY;
     if(!!content && !!footer && !!bookingBox){
+      console.log(bookingBox.clientWidth,windowY, content.offsetTop, footer.offsetTop);
       if (
-        windowY >= content?.offsetTop + 65 &&
-        windowY < footer.offsetTop - 590
+        windowY >= content.offsetTop + 50 &&
+        windowY <= footer.offsetTop - 590
       ) {
         setStatusPos("fix");
         bookingBox.style.transform = `translate3d(-50%, -200px, 0)`;
+        // bookingBox.style.width = `${bookingBox.clientWidth}px`;
       } else if (windowY >= footer.offsetTop - 590) {
         setStatusPos("notFix");
-        bookingBox.style.transform = `translate3d(0, ${
+        bookingBox.style.transform = `translate3d(-50%, ${
           footer.offsetTop - 793
         }px, 0)`;
       } else {
         setStatusPos("");
         bookingBox.style.transform = "";
+        bookingBox.style.width = `${bookingBox.offsetWidth}px`;
       }
     }
-
   };
+  const handleResize = () => {
+    const bookingBoxContainer = document.querySelector(".jobDetail__book");
+    const bookingBox = document.querySelector(".jobDetail__jobPrice");
+    const widthContainer = bookingBoxContainer.offsetWidth*0.7;
+    bookingBox.style.width = `${widthContainer}px`;
+  }
   const createNewComment = (content) => {
     const data = {
       content: content,
@@ -118,7 +128,7 @@ const Jobdetail = () => {
   return (
     <div className="jobdetail">
       <div className="jobdetail__content row">
-        <div className="jobDetail__item jobDetail__info col-6">
+        <div className="jobDetail__item jobDetail__info col-12 col-lg-6">
           <div className="categories-link">
             <span>
               <Link to={`/categories/${nameTypeJob}`}>
@@ -172,7 +182,7 @@ const Jobdetail = () => {
             </div>
           </div>
         </div>
-        <div className="jobDetail__item jobDetail__book col-6">
+        <div className="jobDetail__item jobDetail__book col-12 col-lg-6">
           <div className={"jobDetail__jobPrice " + statusPos}>
             <div className="jobPrice__title">Service Package</div>
             <div className="jobPrice__listService jobPrice__item">
@@ -204,7 +214,7 @@ const Jobdetail = () => {
             </div>
           </div>
         </div>
-        <div id="review" className="jobDetail__item jobDetail__comment col-6">
+        <div id="review" className="jobDetail__item jobDetail__comment col-12 col-lg-6">
           <Comment commentList={commentList} isSendCommnet={isSendCommnet} creatComment={createNewComment} currentUser = {currentUser}/>
         </div>
       </div>
