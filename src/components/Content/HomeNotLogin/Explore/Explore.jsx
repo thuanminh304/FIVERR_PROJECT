@@ -6,7 +6,7 @@ import "./explore.scss";
 export default function Explore() {
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
   return (
-    <section className="explore">
+    <section id="explore" className="explore">
       <div className="explore__content">
         <h2>Explore the marketplace</h2>
         <div className="explore__grid">

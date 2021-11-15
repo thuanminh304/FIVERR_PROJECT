@@ -7,7 +7,7 @@
 .explore__content h2 {
   font-weight: bold;
   font-size: $fs-4;
-  color:$color-sm-title
+  color: $color-sm-title;
 }
 .explore__row {
   margin: 0 auto;
@@ -37,8 +37,8 @@
     width: 59px;
     height: 48px;
   }
-  p{
-    font-size:$fs-3;
+  p {
+    font-size: $fs-3;
     font-weight: 600;
     color: #222325;
   }
@@ -47,8 +47,21 @@
       transform: scaleX(2);
       background-image: radial-gradient($color-green-all, $color-green-all);
     }
-    a{
-      color:black;
+    a {
+      color: black;
+    }
+  }
+}
+
+@media only screen and(max-width:375px) {
+  .explore {
+    .explore__content {
+      margin: 40px auto;
+      .explore__grid {
+        .explore__row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
     }
   }
 }

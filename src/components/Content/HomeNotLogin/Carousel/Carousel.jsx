@@ -18,6 +18,16 @@ export default function Carousel() {
     cssEase: "linear",
     fade: true,
     pauseOnHover: false,
+    responsive: [
+      {
+        breakpoint: 376,
+        settings: {
+          autoplay: false,
+          slidesToShow: 1,
+          infinite: false,
+        },
+      },
+    ],
   };
 
   const onSearch = (value) => {
@@ -117,7 +127,7 @@ export default function Carousel() {
           <li>
             <img src="images/pandg.8b7310b.png" alt="" />
           </li>
-          <li>
+          <li className="paypal">
             <img src="images/paypal.ec56157.png" alt="" />
           </li>
         </ul>

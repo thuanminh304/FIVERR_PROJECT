@@ -127,6 +127,7 @@ export const actUploadAvatar = (formdata) => {
     userApi
       .uploadAvatar(formdata)
       .then((res) => {
+        messageConfig.loading();
         const userLogin = JSON.parse(localStorage.getItem("fiverrUser"));
         userLogin.user = { ...userLogin.user, avatar: res.data.avatar };
         localStorage.setItem("fiverrUser", JSON.stringify(userLogin));
@@ -134,6 +135,9 @@ export const actUploadAvatar = (formdata) => {
           type: UPLOAD_AVATAR,
           payload: res.data,
         });
+        setTimeout(() => {
+          messageConfig.success();
+        }, 500);
         if (currentUser.role === "ADMIN") {
           showNote(dispatch, getState, "complete", "Upload avatar success");
         } else if (currentUser.role === "CLIENT") {
@@ -141,7 +145,7 @@ export const actUploadAvatar = (formdata) => {
         }
       })
       .catch((err) => {
-        console.log(err?.response)
+        console.log(err?.response);
         if (currentUser.role === "ADMIN") {
           showNote(dispatch, getState, "error", "Upload avatar fail");
         }

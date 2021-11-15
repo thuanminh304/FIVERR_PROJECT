@@ -25,7 +25,6 @@
     right: 33%;
   }
 
- 
   .services__text {
     position: absolute;
     color: white;
@@ -63,5 +62,12 @@
   .services-overlay:hover {
     opacity: 1;
     transition: all 0.5s;
+  }
+}
+
+//
+@media only screen and (max-width: 375px) {
+  .services{
+    margin: 30px auto;
   }
 }

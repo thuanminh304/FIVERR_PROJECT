@@ -214,7 +214,10 @@ export default function ProfileUser() {
             <p>{currentUser?.name}</p>
             <EditOutlined className="icon-edit" />
             <button>Preview Public Mode</button>
-            <span className="span-online">Online</span>
+            <span className="span-online">
+              <span className="dot"></span>
+              Online
+            </span>
           </div>
           <div className="info-bottom">
             <div className="from">

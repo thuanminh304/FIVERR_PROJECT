@@ -56,3 +56,24 @@
     margin-top: 30px;
   }
 }
+//
+
+@media only screen and (max-width: 375px) {
+  .solution {
+    .solution__content {
+      width: 90%;
+      flex-direction: column;
+      color: white;
+      font-weight: 600;
+      .solution__left {
+        h2 {
+          font-size: 30px;
+          padding: 20px 0 0 0;
+        }
+      }
+      .solution__right{
+        padding-top: 30px;
+      }
+    }
+  }
+}

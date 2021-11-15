@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Business() {
   return (
-    <section className="solution">
+    <section id="business" className="solution">
       <div className="solution__content">
         <div className="solution__left">
           <img src="images/fiverbusiness.png" alt="" />
@@ -39,7 +39,9 @@ export default function Business() {
             </li>
           </ul>
           <button>
-            <Link style={{color:"white"}} to="/categories/business">Explore Fiverr Business</Link>
+            <Link style={{ color: "white" }} to="/categories/business">
+              Explore Fiverr Business
+            </Link>
           </button>
         </div>
         <div className="solution__right ">

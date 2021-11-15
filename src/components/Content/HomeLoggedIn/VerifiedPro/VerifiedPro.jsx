@@ -34,7 +34,7 @@ export default function VerifiedPro() {
         {listSocial?.slice(0, 5).map((job, idx) => {
           return (
             <div key={job._id} className="card list-pro-item">
-              <Link to={`/digital-marketing/${job._id}`}>
+              <Link to={`/digital-marketing/detail/${job._id}`}>
                 <img className="card-img-top" src={job.image} alt="" />
               </Link>
               <div className="card-body">
@@ -45,7 +45,7 @@ export default function VerifiedPro() {
                   </span>
                 </div>
                 <p className="card-text text-active">
-                  <Link to={`/digital-marketing/${job._id}`}>
+                  <Link to={`/digital-marketing/detail/${job._id}`}>
                     {job.name.length < 20
                       ? job.name
                       : `${job.name.substr(0, 20)}...`}

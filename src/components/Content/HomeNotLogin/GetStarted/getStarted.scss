@@ -22,14 +22,29 @@
 .fiverrJoin__btn {
   font-weight: 700;
   background-color: $color-green-all;
-  color:white;
-  border:none;
+  color: white;
+  border: none;
   transition: all 0.5;
-  border-radius:4px;
-  padding:12px 24px;
-  font-size:$fs-3
-
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: $fs-3;
 }
 .fiverrJoin__btn:hover {
   background: #19a463;
+}
+
+//
+@media only screen and (max-width: 375px) {
+  .fiverrJoin {
+    margin: auto;
+    width: 90%;
+    .fiverrJoin__content {
+      .fiverrJoin__text {
+        padding: 30px 20px;
+        h2 {
+          font-size: 34px;
+        }
+      }
+    }
+  }
 }

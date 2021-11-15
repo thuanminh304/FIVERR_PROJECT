@@ -27,10 +27,19 @@ export default function Projects() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
+    responsive: [
+      {
+        breakpoint: 376,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
-    <section className="fiverrProject py-5 my-5">
+    <section className="fiverrProject py-5 ">
       <div className="fiverrProject__content ">
         <h2>Get inspired with projects made by our freelancers</h2>
         <Slider {...settings}>
@@ -38,9 +47,9 @@ export default function Projects() {
             return (
               <div key={job._id} className="fiverrProject__item">
                 <div className="fiverrProject__img">
-                  <a href="# ">
+                  <Link to={`/graphics-design/detail/${job._id}`}>
                     <img className="img-fluid" src={job.image} alt="" />
-                  </a>
+                  </Link>
                 </div>
                 <div className="fiverrProject__bot">
                   <div className="fiverrProject__user">
@@ -51,9 +60,11 @@ export default function Projects() {
                   <div className="fiverrProject__name">
                     <a href="# ">
                       <b>
-                        {job.name.length < 25
-                          ? job.name
-                          : `${job.name.substr(0, 25)}...`}
+                        <Link to={`/graphics-design/detail/${job._id}`}>
+                          {job.name.length < 25
+                            ? job.name
+                            : `${job.name.substr(0, 25)}...`}
+                        </Link>
                       </b>
                     </a>
                     <br />

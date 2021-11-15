@@ -75,14 +75,17 @@ export default function HeaderLoggedIn() {
             <a href="# ">Lists</a>
             <a href="# ">Orders</a>
 
-            <Dropdown
-              overlay={menu}
-              trigger={["click"]}
-              placement="bottomRight"
-              arrow
-            >
-              {renderAvatar(null, currentUser)}
-            </Dropdown>
+            <div className="relativeDot">
+              <Dropdown
+                overlay={menu}
+                trigger={["click"]}
+                placement="bottomRight"
+                arrow
+              >
+                {renderAvatar(null, currentUser)}
+              </Dropdown>
+              <div className="dot"></div>
+            </div>
           </div>
         </div>
       </div>

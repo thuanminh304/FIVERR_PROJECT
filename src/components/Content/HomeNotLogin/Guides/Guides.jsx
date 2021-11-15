@@ -2,13 +2,16 @@ import React from "react";
 import "./guides.scss";
 export default function Guides() {
   return (
-    <section className="fiverrGuides py-5">
+    <section className="fiverrGuides">
       <div className="fiverrGuides__content ">
         <h2 className="mb-4">Fiverr guides</h2>
         <div className="fiverrGuides__box">
           <div className="fiverrGuides__item">
             <div className="fiverrGuides__img">
-              <img src="./images/guide-start-online-business-552-x2.png" alt="" />
+              <img
+                src="./images/guide-start-online-business-552-x2.png"
+                alt=""
+              />
             </div>
             <div className="fiverrGuides__text">
               <h6>Start an online business and work from home</h6>

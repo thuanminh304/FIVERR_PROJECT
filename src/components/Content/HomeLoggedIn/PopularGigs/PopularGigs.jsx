@@ -34,7 +34,7 @@ export default function GigsInWordPress() {
         {listJobNotBookedYet?.map((job, idx) => {
           return (
             <div key={job._id} className="card gigs-item">
-              <Link to={`/graphics-design/${job._id}`}>
+              <Link to={`/graphics-design/detail/${job._id}`}>
                 <img className="card-img-top" src={job.image} alt="" />
               </Link>
 
@@ -47,7 +47,7 @@ export default function GigsInWordPress() {
                 </div>
 
                 <p className="card-text text-active">
-                  <Link to={`/graphics-design/${job._id}`}>
+                  <Link to={`/graphics-design/detail/${job._id}`}>
                     {job.name.length < 20
                       ? job.name
                       : `${job.name.substr(0, 20)}...`}

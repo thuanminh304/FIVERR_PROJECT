@@ -75,7 +75,6 @@ export default function Video() {
               url={[{ src: "video/video/video.mp4", type: "video/mp4" }]}
             />
           </Modal>
-          
         </div>
       </div>
     </section>

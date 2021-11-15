@@ -138,3 +138,58 @@
     }
   }
 }
+
+@media only screen and (max-width: 375px) {
+  .carousel {
+    .carousel-text {
+      width: 100%;
+      top: 20%;
+      p {
+        font-size: 32px;
+        line-height: 48px;
+      }
+      .carousel-popular {
+        display: none;
+      }
+      .search-input-antd-carousel {
+        .ant-input-group {
+          display: flex;
+          flex-direction: column;
+          .ant-input {
+            border-radius: 5px;
+            width: 100%;
+            padding: 15px 10px;
+          }
+          .ant-input-group-addon {
+            padding: 10px;
+            width: 100%;
+            margin-top: 14px;
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+    .slick-slider {
+      .slick-list {
+        height: 450px;
+        .carousel-name-hero {
+          display: none;
+        }
+      }
+    }
+    .carousel-trusted {
+      padding: 5px 0 0 0;
+      .trusted-text {
+        display: none;
+      }
+      ul {
+        li {
+          padding-right: 14px;
+          &:last-child {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
