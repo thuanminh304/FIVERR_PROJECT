@@ -35,7 +35,7 @@ export default function EditorsPicks(props) {
           let name = configName(job.type.name);
           return (
             <div key={job._id} className="card  editor-item">
-              <Link to={`/${name}/${job._id}`}>
+              <Link to={`/${name}/detail/${job._id}`}>
                 <img className="card-img-top" src={job.image} alt="" />
               </Link>
               <div className="card-body">
@@ -46,7 +46,7 @@ export default function EditorsPicks(props) {
                   </span>
                 </div>
                 <p className="card-text text-active">
-                  <Link to={`/${name}/${job._id}`}>
+                  <Link to={`/${name}/detail/${job._id}`}>
                     {job.name.length < 28
                       ? job.name
                       : `${job.name.substr(0, 28)}...`}
