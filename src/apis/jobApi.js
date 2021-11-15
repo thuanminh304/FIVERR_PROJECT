@@ -64,6 +64,9 @@ const jobApi = {
   doneJobBooked(idJob) {
     return callApi(`api/jobs/done/${idJob}`, "PATCH");
   },
+  bookingJob(idJob) {
+    return callApi(`api/jobs/booking/${idJob}`,"PATCH", null, 'token');
+  },
 };
 
 export default jobApi;

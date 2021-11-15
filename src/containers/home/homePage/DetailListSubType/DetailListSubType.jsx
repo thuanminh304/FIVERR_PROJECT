@@ -144,7 +144,7 @@ export default function DetailListSupType() {
                         <p>Level 1 Seller</p>
                       </span>
                     </div>
-                    <Link to={`/${params?.nameTypeJob}/${job._id}`}>
+                    <Link to={`/${params?.nameTypeJob}/detail/${job._id}`}>
                       <p className="card-text text-active">{job.name}</p>
                     </Link>
                     <p className="card-text text-star">

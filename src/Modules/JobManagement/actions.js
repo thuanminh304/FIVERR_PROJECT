@@ -368,21 +368,27 @@ export const actGetJobDetail = (id) => {
     dispatch(actGetJobDetailReq());
     jobApi.getJobDetail(id).then(res=>{
       const {listAllUser} = getState().managementUserReducer;
-      const userCreated = listAllUser.find(user=>{
-        return user._id === res.data.userCreated;
-      });
-      const userBooking = listAllUser.find(user=>{
-        return user._id === res.data.usersBooking;
-      });
-      let userBookingName = userBooking?.name;
-      let userName = userCreated?.name;
-      const userAvatar = userCreated?.avatar;
-      const userEmail = userCreated?.email;
-      if(!userName) {
-        userName = 'No Name';
-      };
-      const data = {...res.data, userCreatedName: userName, userBookingName: userBookingName, userAvatar: userAvatar, userEmail: userEmail};
-      dispatch(actGetJobDetailSucc(data));
+      const {currentUser} = getState().AuthReducer;
+      if(currentUser?.role === 'ADMIN'){
+        const userCreated = listAllUser.find(user=>{
+          return user._id === res.data.userCreated;
+        });
+        const userBooking = listAllUser.find(user=>{
+          return user._id === res.data.usersBooking;
+        });
+        let userBookingName = userBooking?.name;
+        let userName = userCreated?.name;
+        const userAvatar = userCreated?.avatar;
+        const userEmail = userCreated?.email;
+        if(!userName) {
+          userName = 'No Name';
+        };
+        const data = {...res.data, userCreatedName: userName, userBookingName: userBookingName, userAvatar: userAvatar, userEmail: userEmail};
+        dispatch(actGetJobDetailSucc(data));
+      }
+      else{
+        dispatch(actGetJobDetailSucc(res.data));
+      }
     })
     .catch(error=>{
       dispatch(actGetJobDetailFail(error));
