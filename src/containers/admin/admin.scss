@@ -2,6 +2,11 @@
   background-color: #EAEEF3;
   min-height: calc(100vh - 50px);
 }
+.adminContainer.fix{
+  position: fixed;
+  width: 100%;
+  margin: auto;
+}
 .ant-modal-root{
   .ant-modal-wrap{
     z-index: 200001;

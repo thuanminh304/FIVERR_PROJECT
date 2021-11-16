@@ -35,18 +35,18 @@ const Adminheader = () => {
           type = "message";
         } else {
           type = "setting";
-          document.querySelector('.adminContainer').style.position = "fixed";
+          document.querySelector('.adminContainer').classList.add("fix");
         }
       } else {
         type = "";
-        document.querySelector('.adminContainer').style.position = "";
+        document.querySelector('.adminContainer').classList.remove("fix");
       }
       setTimeout(() => {
         setContent(type);
       }, 200);
     } else {
       setContent("");
-      document.querySelector('.adminContainer').style.position = "";
+      document.querySelector('.adminContainer').classList.remove("fix");
       setTimeout(() => {
         setShowSideRight(false);
       }, 100);

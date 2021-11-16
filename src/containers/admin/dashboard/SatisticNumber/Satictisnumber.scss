@@ -34,14 +34,21 @@
         background: linear-gradient(to left, #134e5e, #71b280);
     }
     .satistic__itemIcon{
-        height: 65px;
-        width: 65px;
-        border-radius: 100%;
+        height: 55px;
+        width: 55px;
+        flex-shrink: 0;
+        border-radius: 50%;
         background-color: #00000021;
         text-align: center;        
         color: #fff;
         font-weight: 600;
-        font-size: 30px;
+        font-size: 22px;
+        span.anticon{
+            line-height: 50px;
+        }
+    }
+    .satistic__itemIcon.dontShow{
+        display: none;
     }
     .satistic__itemNumber{
         margin-left: 15px;
@@ -53,3 +60,44 @@
         text-overflow: ellipsis;
     }
 }
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+//responsive
+@include maxResponsive("large-down"){
+    .satisticContent__conatiner{
+        .satistic__itemContent{
+            padding: 35px 10px;
+        }
+    }
+}
+@include maxResponsive("medium-down"){
+    .satisticContent__conatiner{
+        margin-top: 30px;
+    }
+}
+@include maxResponsive("small-down"){
+    .satisticContent__conatiner{
+        height: auto;
+        margin-top: 15px;
+        .satistic__item{
+            margin: 15px 0;
+        }
+        .satistic__itemNumber{
+            font-size: 18px;
+        }
+        .satistic_itemJobQty{
+            background: linear-gradient(to left, #3a6073, #3a7bd5);
+        }
+        .satistic_itemClientQty{
+            background: linear-gradient(to right, #c33764 , #1d2671);
+        }
+        .satistic_itemjobBookingQty{
+            background: linear-gradient(to left, #a83279 , #d38312);
+        }
+        .satistic_itemjobEarning{
+            background: linear-gradient(to left, #134e5e, #71b280);
+        }
+    }
+} 

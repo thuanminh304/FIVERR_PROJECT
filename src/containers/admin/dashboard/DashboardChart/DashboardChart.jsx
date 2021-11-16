@@ -32,10 +32,6 @@ const Dashboardchart = () => {
     xAxis: {
       type: "category",
       data: ["Job", "User"],
-      //   axisLabel: {
-      //     interval: 0,
-      //     rotate: 45,
-      //   },
     },
     yAxis: {
       type: "value",

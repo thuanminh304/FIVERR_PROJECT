@@ -10,6 +10,7 @@ import {
 import "./Satictisnumber.scss";
 const Satictisnumber = () => {
   const [data, setData] = useState(null);
+  const [displayIcon, setDisplayIcon] = useState('');
   const { userSatictis } = useSelector((state) => state.managementUserReducer);
   const { dataSatictis } = useSelector((state) => state.JobManagementReducer);
   useEffect(() => {
@@ -32,11 +33,24 @@ const Satictisnumber = () => {
     };
     setData(dataNum);
   }, [userSatictis, dataSatictis]);
+  useEffect(()=>{
+    const adminContent = document.querySelector('.adminContent__main');
+    new ResizeObserver(changeSizeElement).observe(adminContent);
+  },[]);
+  const changeSizeElement = () => {
+    const adminContent = document.querySelector('.adminContent__main');
+    if(window.innerWidth>=768 && adminContent.offsetWidth<990){
+      setDisplayIcon('dontShow');
+    }
+    else{
+      setDisplayIcon('');
+    }
+  }
   return (
     <div className="satisticContent__conatiner row">
-      <div className="satistic__item col-6">
+      <div className="satistic__item col-12 col-sm-6">
         <div className="satistic__itemContent satistic_itemJobQty">
-          <div className="satistic__itemIcon">
+          <div className={"satistic__itemIcon " + displayIcon}>
             <FundProjectionScreenOutlined />
           </div>
           <div className="satistic__itemNumber">
@@ -47,9 +61,9 @@ const Satictisnumber = () => {
           </div>
         </div>
       </div>
-      <div className="satistic__item col-6">
+      <div className="satistic__item col-12 col-sm-6">
         <div className="satistic__itemContent satistic_itemClientQty">
-          <div className="satistic__itemIcon">
+          <div className={"satistic__itemIcon " + displayIcon}>
             <UserOutlined />
           </div>
           <div className="satistic__itemNumber">
@@ -60,9 +74,9 @@ const Satictisnumber = () => {
           </div>
         </div>
       </div>
-      <div className="satistic__item col-6">
+      <div className="satistic__item col-12 col-sm-6">
         <div className="satistic__itemContent satistic_itemjobBookingQty">
-          <div className="satistic__itemIcon">
+          <div className={"satistic__itemIcon " + displayIcon}>
             <AuditOutlined />
           </div>
           <div className="satistic__itemNumber">
@@ -73,9 +87,9 @@ const Satictisnumber = () => {
           </div>
         </div>
       </div>
-      <div className="satistic__item col-6">
+      <div className="satistic__item col-12 col-sm-6">
         <div className="satistic__itemContent satistic_itemjobEarning">
-          <div className="satistic__itemIcon">
+          <div className={"satistic__itemIcon " + displayIcon}>
             <DollarOutlined />
           </div>
           <div className="satistic__itemNumber">

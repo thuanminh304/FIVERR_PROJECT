@@ -16,10 +16,10 @@ export default function Dashboard() {
     <div className="adminDashBoard">
       <div className="adminDashBoard__content">
         <div className="adminDashBoard__satistic row">
-          <div className="adminDashBoard__chart col-5">
+          <div className="adminDashBoard__chart col-12 col-md-5">
             <Dashboardchart/>
           </div>
-          <div className="adminDashBoard__satisticContent col-7">
+          <div className="adminDashBoard__satisticContent col-12 col-md-7">
             <SatictisNumber/>
           </div>
         </div>

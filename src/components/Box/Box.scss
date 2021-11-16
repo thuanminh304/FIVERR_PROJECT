@@ -18,7 +18,7 @@
     }
     .box-data__data.hiden{
         padding: 0 25px;
-        height: 0.125px;
+        height: 0;
     }
 }
 .box-data.fullScreen{
@@ -29,4 +29,19 @@
     transform: translateX(-50%);
     z-index: 200000;
     padding: 0 30px;
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+//reponsive
+@include maxResponsive("small-down"){
+    .box-data{
+        .box-data__data{
+            padding: 10px;
+        }
+    }
+    .box-data.fullScreen{
+        padding: 0 5px;
+    }
 }
