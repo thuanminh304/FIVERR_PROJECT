@@ -33,6 +33,12 @@
   .header__logoBranch.inFix {
     width: 70px;
   }
+  .header__brandResponsive {
+    display: none;
+    h4 {
+      text-align: center;
+    }
+  }
   .header__humbergetBtn {
     width: 20px;
     height: 20px;
@@ -49,7 +55,7 @@
       width: 100%;
       height: 3px;
       background-color: #444;
-      transition: width .3s;
+      transition: width 0.3s;
       &:nth-of-type(1) {
         width: 50%;
       }
@@ -58,7 +64,7 @@
       }
     }
   }
-  .header__humbergetBtn.inFix{
+  .header__humbergetBtn.inFix {
     li {
       &:nth-of-type(1) {
         width: 100%;
@@ -101,22 +107,22 @@
       border-radius: 50%;
       border: 2px solid #ccc;
       text-align: center;
-      .notice{
+      .notice {
         width: 10px;
         height: 10px;
         top: 20px;
         left: 0px;
       }
-      .userImg{
+      .userImg {
         width: 100%;
         height: 100%;
       }
-      img{
+      img {
         width: 100%;
         height: 100%;
         border-radius: 100%;
       }
-      p{
+      p {
         margin-bottom: 0;
         font-weight: 700;
         color: #49d075;
@@ -161,18 +167,19 @@
 
 // theme setting
 @import "helpers/variables.scss";
+@import "helpers/mixin.scss";
 
 .AdminHeader.lightTheme {
   background-color: $color-main-1 !important;
   color: $font-color-1 !important;
   .header__logoBranch {
     h4 {
-      color: $font-color-1!important;
+      color: $font-color-1 !important;
     }
   }
   .header__humbergetBtn {
     li {
-      background-color: $font-color-1!important;
+      background-color: $font-color-1 !important;
     }
   }
   .header__user {
@@ -188,12 +195,12 @@
   color: $font-color-2 !important;
   .header__logoBranch {
     h4 {
-      color: $font-color-2!important;
+      color: $font-color-2 !important;
     }
   }
   .header__humbergetBtn {
     li {
-      background-color: $font-color-2!important;
+      background-color: $font-color-2 !important;
     }
   }
   .header__user {
@@ -208,12 +215,12 @@
   color: $font-color-2 !important;
   .header__logoBranch {
     h4 {
-      color: $font-color-2!important;
+      color: $font-color-2 !important;
     }
   }
   .header__humbergetBtn {
     li {
-      background-color: $font-color-2!important;
+      background-color: $font-color-2 !important;
     }
   }
   .header__user {
@@ -224,27 +231,27 @@
     }
   }
 }
-.AdminHeader.custom1{
+.AdminHeader.custom1 {
   background-color: $color-main-3 !important;
 }
-.AdminHeader.custom2{
+.AdminHeader.custom2 {
   background-color: $color-main-4 !important;
 }
-.AdminHeader.custom3{
+.AdminHeader.custom3 {
   background-color: $color-main-5 !important;
   .notice {
-    background-color: #f8e23b!important;
+    background-color: #f8e23b !important;
   }
   .notice__heartbeat {
-    background-color: #f8e23b!important;
+    background-color: #f8e23b !important;
   }
   .userIcon {
-    p{
-      color: #fff!important;
+    p {
+      color: #fff !important;
     }
   }
 }
-.AdminHeader.custom4{
+.AdminHeader.custom4 {
   background-color: $color-main-6 !important;
 }
 
@@ -268,5 +275,50 @@
   100% {
     transform: scale(1);
     opacity: 0;
+  }
+}
+
+// reponsive
+@include maxResponsive("large-down") {
+  .AdminHeader {
+    .header__logoBranch {
+      display: none;
+    }
+    .header__brandResponsive {
+      display: block;
+      margin-left: 60px;
+      h4 {
+        text-align: right;
+      }
+    }
+  }
+}
+@include maxResponsive("small-down") {
+  .AdminHeader {
+    .adminHeader-container {
+      padding: 10px 15px;
+    }
+    .header__brandResponsive {
+      display: block;
+      margin-left: 60px;
+      h4 {
+        text-align: center;
+      }
+    }
+    .header__user {
+      .user__item{
+        margin-left: 15px;
+      }
+      .userIcon {
+        display: none;
+      }
+      .settingIcon {
+        &:after {
+          width: 28px;
+          height: 28px;
+          right: -18px;
+        }
+      }
+    }
   }
 }
