@@ -35,15 +35,18 @@ const Adminheader = () => {
           type = "message";
         } else {
           type = "setting";
+          document.querySelector('.adminContainer').style.position = "fixed";
         }
       } else {
         type = "";
+        document.querySelector('.adminContainer').style.position = "";
       }
       setTimeout(() => {
         setContent(type);
       }, 200);
     } else {
       setContent("");
+      document.querySelector('.adminContainer').style.position = "";
       setTimeout(() => {
         setShowSideRight(false);
       }, 100);
@@ -78,6 +81,9 @@ const Adminheader = () => {
                 <li></li>
               </ul>
             </div>
+          </div>
+          <div className="header__brandResponsive header__logoBranch">
+            <h4>FiverrFake</h4>
           </div>
           <div className="header__user">
             <div className="user__item noteIcon">

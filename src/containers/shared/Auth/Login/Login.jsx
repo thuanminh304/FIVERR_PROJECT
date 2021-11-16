@@ -19,7 +19,6 @@ import {
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  
   const [formStructure, setFormStructure] = useState([]);
   const [isLogin, setIsLogin] = useState(true);
   const [isShowPopup, setShowPopup] = useState(false);
@@ -59,8 +58,7 @@ const Login = () => {
       dispatch(actLoginUser(values));
     } else {
       const data = {
-        first_name: "",
-        last_name: "",
+        name: "",
         email: "",
         password: "",
         phone: "",

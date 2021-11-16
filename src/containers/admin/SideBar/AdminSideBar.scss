@@ -71,6 +71,8 @@
 }
 // theme setting
 @import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
 .adminSideBar.lightTheme{
     .menu-item {
         color: $font-color-1!important;

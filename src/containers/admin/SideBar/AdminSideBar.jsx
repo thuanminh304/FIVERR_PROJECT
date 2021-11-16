@@ -14,13 +14,13 @@ const Adminsidebar = () => {
         isCollapseShow[typeMenu] = !isCollapseShow[typeMenu];
         setCollapse(isCollapseShow);
     }
-    useEffect(() => {
-      if(mainJob.length === 0){
-        
+    const onMouseLeave = (e) => {
+      if(window.innerWidth > 992){
+        setCollapse([false,false]);
       }
-    },[]);
+    };
   return (
-    <div className={"adminSideBar " + themeColor + (!isFixSideBar?" inFix":"")}>
+    <div className={"adminSideBar " + themeColor + (!isFixSideBar?" inFix":"")} onMouseLeave={onMouseLeave}>
       <div className="adminSideBar-container">
         <ul className="adminSideBar-menu">
           <NavLink to="/admin" exact={true} className="menu-item">

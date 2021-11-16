@@ -8,6 +8,7 @@ import Adminsidebar from "containers/admin/SideBar/AdminSideBar";
 import Admintitle from "containers/admin/AdminTitle/AdminTitle";
 import { actGetMainJobList } from "Modules/JobManagement/actions";
 import { actGetAllUser } from "containers/admin/user/module/action";
+import { FIX_SIDE_BAR } from "containers/admin/Header/modules/types";
 
 //
 function AdminLayout(props) {
@@ -17,11 +18,19 @@ function AdminLayout(props) {
   const {listAllUser} = useSelector(state=>state.managementUserReducer);
   const {path} = props.children.props.match;
   useEffect(()=>{
+    if(window.innerWidth <= 992 && !!isFixSideBar){
+      dispatch({type: FIX_SIDE_BAR, payload: false});
+    };
     if(mainJob.length === 0 || listAllUser.length === 0){
       dispatch(actGetMainJobList());
       dispatch(actGetAllUser());
-    }
-  },[])
+    };
+  },[]);
+  const onBlurSideBarfunc = (e) => {
+    if(window.innerWidth <= 992 && !!isFixSideBar) {
+      dispatch({type: FIX_SIDE_BAR, payload: false})
+    };
+  };
   return (
     <div className="adminContainer">
       <Adminheader />
@@ -29,7 +38,7 @@ function AdminLayout(props) {
         <div className={"adminContent__sidebar " + themeColor + (!isFixSideBar?" inFix":"")}>
           <Adminsidebar />
         </div>
-        <div className="adminContent__main">
+        <div className="adminContent__main" onClick={onBlurSideBarfunc}>
           <div className="adminContent__title">
             <Admintitle path={path}/>
           </div>
