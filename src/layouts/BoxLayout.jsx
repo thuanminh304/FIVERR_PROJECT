@@ -13,7 +13,6 @@ const Boxlayout = (props) => {
     const fullScreenBtn = e.target.closest(
       ".boxTitle-icon span:nth-of-type(3)"
     );
-    // const nonFullScreenBtn = e.target.closest('.boxTitle-icon span:nth-of-type(4)');
     if (!!hideBtn) {
       hideCompoentData();
     }
