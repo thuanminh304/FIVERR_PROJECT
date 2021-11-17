@@ -3,7 +3,7 @@ import messageConfig from "components/Message/message";
 import {
   CREATE_JOB_BY_USER,
   GET_ALL_JOBS_BY_USER,
-  GET_LIST_JOB_BOOKED_BY_USER,
+  GET_LIST_JOB_RENTED_BY_USER,
   GET_DETAIL_JOB_CREATED_BY_USER,
   GET_DETAIL_SUBTYPE_JOBS,
   GET_LIST_JOBS_BY_NAME,
@@ -49,13 +49,13 @@ export const actGetAllJobsByUser = () => {
   };
 };
 
-export const actGetListJobBookedByUser = () => {
+export const actGetListJobRentedByUser = () => {
   return (dispatch) => {
     jobApi
-      .getListJobBookedByUser()
+      .getListJobRentedByUser()
       .then((res) => {
         dispatch({
-          type: GET_LIST_JOB_BOOKED_BY_USER,
+          type: GET_LIST_JOB_RENTED_BY_USER,
           payload: res?.data.bookingJob,
         });
       })
@@ -66,16 +66,16 @@ export const actGetListJobBookedByUser = () => {
 };
 
 export const actGetDetailJobCreatedByUser = (id) => {
-  return (dispatch) => {
-    jobApi
-      .getJobDetail(id)
-      .then((res) => {
-        dispatch({
-          type: GET_DETAIL_JOB_CREATED_BY_USER,
-          payload: res.data,
-        });
-      })
-      .catch((err) => console.log(err?.response));
+  return async (dispatch) => {
+    try {
+      const res = await jobApi.getJobDetail(id);
+      dispatch({
+        type: GET_DETAIL_JOB_CREATED_BY_USER,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
 

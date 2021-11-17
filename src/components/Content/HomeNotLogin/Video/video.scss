@@ -59,7 +59,7 @@
 }
 
 //
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 768px) {
   .video {
     padding: 50px 0;
     .video__content {
@@ -74,7 +74,7 @@
       .react-responsive-modal-modal {
         div {
           width: 50vh !important;
-          height: 200px !important;
+          height: 290px !important;
           video {
             width: 100% !important;
             height: 100% !important;

@@ -96,8 +96,15 @@ footer {
     }
   }
 }
-
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 768px) {
+  .footer-mini-bottom{
+    flex-direction: column;
+    .mini-right{
+      margin-top: 14px;
+    }
+  }
+}
+@media only screen and (max-width: 414px) {
   footer {
     padding-top: 10px;
     .footer__container {
@@ -132,8 +139,10 @@ footer {
         align-items: center;
       }
       .mini-right {
+        flex-direction: column;
         .mini-logo {
           display: flex;
+          margin-right: 0;
         }
         .mini-button {
           display: flex;

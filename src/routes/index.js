@@ -62,7 +62,7 @@ export const clientRoutes = [
     isPrivate: true,
   },
   {
-    path: "/categories/:typeJob",
+    path: ["/categories/:typeJob"],
     component: Categories,
     exact: true,
     isPrivate: true,
@@ -80,7 +80,7 @@ export const clientRoutes = [
     isPrivate: true,
   },
   {
-    path: "/:nameTypeJob/detail/:jobId",
+    path: ["/:nameTypeJob/detail/:jobId", "/:idTypeJob/detail/:jobId"],
     component: Jobdetail,
     exact: true,
     isPrivate: true,

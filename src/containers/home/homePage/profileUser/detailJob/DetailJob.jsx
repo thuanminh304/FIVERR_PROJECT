@@ -6,7 +6,6 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { actGetDetailJobCreatedByUser } from "../createNewJobByUser/StepsCreateNewGig/modules/action";
 import "./detailJob.scss";
-import { FieldTimeOutlined } from "@ant-design/icons";
 export default function DetailJob() {
   const params = useParams();
   const dispatch = useDispatch();
@@ -43,7 +42,13 @@ export default function DetailJob() {
     document.querySelector(".seller").style.borderBottom = "4px solid #1dbf73";
     document.querySelector(".over").style.borderBottom = "none";
   }
-
+  const configName = (name) => {
+    if (name?.search("&") !== -1) {
+      return name.replace(" & ", "-").toLowerCase();
+    } else {
+      return name.replace(" ", "-").toLowerCase();
+    }
+  };
   return (
     <div className="detail-job">
       <div className="detail-job-content">
@@ -81,35 +86,38 @@ export default function DetailJob() {
             <span></span>
           </button>
         </div>
-        <div className="share-gig">
-          <div className="content">
-            <span>
-              <i class="fa fa-share-alt"></i>
-            </span>
-            <div>
-              <h4>Reach More Customers</h4>
-              <p>
-                You got the talent, now go viral. Share your Gig on Social Media
-                to connect with new customers and get more orders
-              </p>
-            </div>
-          </div>
-          <button>Share Your Gig</button>
-        </div>
+
         <div className="main-content row">
-          <div className="col-7">
+          <div className="col-12 col-md-10 col-xl-10">
             <div className="overview" id="overview">
-              <div className="info-type-subtype">
-                <span>{detailJobCreatedByUser?.type.name}</span>
+              <div className="info-type-subtype pt-2">
+                <span>
+                  <Link to={`/categories/${configName("graphics & design")}`}>
+                    {detailJobCreatedByUser?.type.name}
+                  </Link>
+                </span>
                 {">"}
-                <span>{detailJobCreatedByUser?.subType.name}</span>
+                <span>
+                  <Link
+                    to={`/categories/${configName("graphics & design")}/${
+                      detailJobCreatedByUser?.subType._id
+                    }`}
+                  >
+                    {detailJobCreatedByUser?.subType.name}
+                  </Link>
+                </span>
               </div>
               <div className="info-name">
                 <p>{detailJobCreatedByUser?.name}</p>
               </div>
               <div className="info-avatar">
-                <img src={currentUser.avatar} alt="" />
-                <span>{currentUser.name}</span>
+                <span>
+                  Price:{" "}
+                  <span style={{ fontSize: 18, color: "#1dbf73" }}>
+                    {" "}
+                    ${detailJobCreatedByUser?.price}
+                  </span>{" "}
+                </span>
               </div>
               <div>
                 <img src={detailJobCreatedByUser?.image} alt="" />
@@ -138,141 +146,6 @@ export default function DetailJob() {
                     Member since
                   </span>
                   <p>Oct 2021</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-4 ">
-            <div className="main-content-right sticky-top">
-              <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                  <a
-                    class="nav-link active"
-                    id="home-tab"
-                    data-toggle="tab"
-                    href="#home"
-                    role="tab"
-                    aria-controls="home"
-                    aria-selected="true"
-                  >
-                    Basic
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    id="profile-tab"
-                    data-toggle="tab"
-                    href="#profile"
-                    role="tab"
-                    aria-controls="profile"
-                    aria-selected="false"
-                  >
-                    Standard
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    id="contact-tab"
-                    data-toggle="tab"
-                    href="#contact"
-                    role="tab"
-                    aria-controls="contact"
-                    aria-selected="false"
-                  >
-                    Premium
-                  </a>
-                </li>
-              </ul>
-              <div class="tab-content" id="myTabContent">
-                <div
-                  class="tab-pane fade show active"
-                  id="home"
-                  role="tabpanel"
-                  aria-labelledby="home-tab"
-                >
-                  <div className="tab-pane-content">
-                    <div>
-                      <p>
-                        {" "}
-                        <FieldTimeOutlined />3 Days Delivery
-                      </p>
-                      <ul>
-                        <li>
-                          <i class="fa fa-check"></i>Commercial Use
-                        </li>
-                        <li>
-                          <i class="fa fa-check"></i>Source File
-                        </li>
-                        <li>
-                          <i class="fa fa-check"></i>High Resolution
-                        </li>
-                      </ul>
-                    </div>
-                    <p>US${detailJobCreatedByUser?.price}</p>
-                  </div>
-                  <button>Continue (US${detailJobCreatedByUser?.price})</button>
-                </div>
-                <div
-                  class="tab-pane fade"
-                  id="profile"
-                  role="tabpanel"
-                  aria-labelledby="profile-tab"
-                >
-                  <div className="tab-pane-content">
-                    <div>
-                      <p>
-                        {" "}
-                        <FieldTimeOutlined />3 Days Delivery
-                      </p>
-                      <ul>
-                        <li>
-                          <i class="fa fa-check"></i>Commercial Use
-                        </li>
-                        <li>
-                          <i class="fa fa-check"></i>Source File
-                        </li>
-                        <li>
-                          <i class="fa fa-check"></i>High Resolution
-                        </li>
-                      </ul>
-                    </div>
-                    <p>US${detailJobCreatedByUser?.price + 15}</p>
-                  </div>
-                  <button>
-                    Continue (US${detailJobCreatedByUser?.price + 15})
-                  </button>
-                </div>
-                <div
-                  class="tab-pane fade"
-                  id="contact"
-                  role="tabpanel"
-                  aria-labelledby="contact-tab"
-                >
-                  <div className="tab-pane-content">
-                    <div>
-                      <p>
-                        {" "}
-                        <FieldTimeOutlined />3 Days Delivery
-                      </p>
-                      <ul>
-                        <li>
-                          <i class="fa fa-check"></i>Commercial Use
-                        </li>
-                        <li>
-                          <i class="fa fa-check"></i>Source File
-                        </li>
-                        <li>
-                          <i class="fa fa-check"></i>High Resolution
-                        </li>
-                      </ul>
-                    </div>
-                    <p>US${detailJobCreatedByUser?.price + 30}</p>
-                  </div>
-                  <button>
-                    Continue (US${detailJobCreatedByUser?.price + 30})
-                  </button>
                 </div>
               </div>
             </div>

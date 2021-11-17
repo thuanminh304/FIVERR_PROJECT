@@ -39,12 +39,6 @@ export default function EditorsPicks(props) {
                 <img className="card-img-top" src={job.image} alt="" />
               </Link>
               <div className="card-body">
-                <div className="card-avatar">
-                  <span>
-                    <img src={job.image} alt="" />
-                    explalno
-                  </span>
-                </div>
                 <p className="card-text text-active">
                   <Link to={`/${name}/detail/${job._id}`}>
                     {job.name.length < 28

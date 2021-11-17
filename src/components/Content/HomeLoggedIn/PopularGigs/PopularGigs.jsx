@@ -39,13 +39,6 @@ export default function GigsInWordPress() {
               </Link>
 
               <div className="card-body">
-                <div className="card-avatar">
-                  <span>
-                    <img src={job.image} alt="" />
-                    explalno
-                  </span>
-                </div>
-
                 <p className="card-text text-active">
                   <Link to={`/graphics-design/detail/${job._id}`}>
                     {job.name.length < 20
@@ -59,7 +52,7 @@ export default function GigsInWordPress() {
                 </p>
               </div>
               <div className="card-footer">
-                <span>
+                <span className="icon-footer">
                   <i className="fa fa-bars"></i>
                   <i className="fa fa-heart"></i>
                 </span>

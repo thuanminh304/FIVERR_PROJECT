@@ -1,6 +1,6 @@
 //color light theme
 $color-main-1: #fff;
-$color-sideBar-1: #F1F1F1;
+$color-sideBar-1: #f1f1f1;
 $color-subSideBar-1: #e3e6e8;
 
 // color dark theme
@@ -36,7 +36,7 @@ $font-color-2: #fff;
 // $color-main-3: #ffffff;
 // $color-main-4: #dcd1f0;
 // $color-main-5: #032055;
-$color-white:white;
+$color-white: white;
 $color-black: black;
 $color-sm-title: #404145;
 $color-nav-title: #62646a;
@@ -74,6 +74,7 @@ $breakpoints: (
   "large": 992px,
   "medium": 768px,
   "small": 576px,
+  "extra-small": 414px,
   "mid-large-down": 1023.99px,
   "extra-large-down": 1199.98px,
   "large-down": 991.98px,

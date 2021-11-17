@@ -103,14 +103,14 @@ export default function DetailListSupType() {
           <p>{listJobNotBookedYet?.length} services available</p>
           <div className="search-by-switch">
             <p>Sort by:</p>
-            <div>
+            <div className="switch-icon">
               <label htmlFor="proServices">Pro Services</label>
               <Switch
                 name="proServices"
                 onChange={handleChangeSwitch("proServices", setSwitchPro)}
               />
             </div>
-            <div>
+            <div className="switch-icon">
               <label htmlFor="localSellers">Local Sellers</label>
               <Switch
                 name="localSellers"
@@ -118,7 +118,7 @@ export default function DetailListSupType() {
               />
             </div>
 
-            <div>
+            <div className="switch-icon">
               <label htmlFor="onlineSellers">Online Sellers</label>
               <Switch
                 name="onlineSellers"
@@ -130,20 +130,13 @@ export default function DetailListSupType() {
         <div className="main-content row">
           {listFilter?.map((job, idx) => {
             return (
-              <div key={job._id} className="col-3">
+              <div key={job._id} className="col-6 col-md-4 col-xl-3">
                 <div className="card job-item">
                   <Link to={`/${params?.nameTypeJob}/detail/${job._id}`}>
                     <img className="card-img-top" src={job.image} alt="" />
                   </Link>
 
                   <div className="card-body">
-                    <div className="card-avatar">
-                      <Avatar size="medium" icon={<UserOutlined />} />
-                      <span className="ml-2">
-                        uplancemedia
-                        <p>Level 1 Seller</p>
-                      </span>
-                    </div>
                     <Link to={`/${params?.nameTypeJob}/detail/${job._id}`}>
                       <p className="card-text text-active">{job.name}</p>
                     </Link>

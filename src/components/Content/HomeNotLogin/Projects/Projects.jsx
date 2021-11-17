@@ -29,6 +29,20 @@ export default function Projects() {
     slidesToScroll: 4,
     responsive: [
       {
+        breakpoint: 769,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 415,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
         breakpoint: 376,
         settings: {
           slidesToShow: 1,

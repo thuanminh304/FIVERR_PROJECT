@@ -17,7 +17,7 @@ import {
 } from "components/render/render";
 import {
   actGetAllJobsByUser,
-  actGetListJobBookedByUser,
+  actGetListJobRentedByUser,
 } from "./createNewJobByUser/StepsCreateNewGig/modules/action";
 import ProfileHasJobs from "./ProfileHasJobs";
 import ProfileNoJob from "./ProfileNoJob";
@@ -30,7 +30,7 @@ export default function ProfileUser() {
   const [imageUrl, setImageUrl] = useState(null);
   const { TabPane } = Tabs;
   const { currentUser } = useSelector((state) => state.AuthReducer);
-  const { listAllJobsByUser, listJobBookedByUser } = useSelector(
+  const { listAllJobsByUser, listJobRentedByUser } = useSelector(
     (state) => state.profileUserReducer
   );
   const dispatch = useDispatch();
@@ -80,20 +80,35 @@ export default function ProfileUser() {
   const listJobsCreatedByUser = listAllJobsByUser?.filter(
     (job) => job.userCreated === currentUser?._id
   );
-  const listJobFinished = listJobBookedByUser?.filter(
+  let listJobBooked = [];
+  listJobBooked = listJobsCreatedByUser?.filter(
+    (job) => job.usersBooking !== null && job.status === false
+  );
+  let listJobBookFinished = [];
+  listJobBookFinished = listJobsCreatedByUser?.filter(
     (job) => job.usersBooking === null && job.status === true
   );
-  const listJobBooked = listJobBookedByUser?.filter(
+
+  //
+  const listJobRentFinished = listJobRentedByUser?.filter(
+    (job) => job.usersBooking === null && job.status === true
+  );
+  const listJobRent = listJobRentedByUser?.filter(
     (job) => job.usersBooking !== null && job.status === false
   );
   useEffect(() => {
-    dispatch(actGetListJobBookedByUser());
+    dispatch(actGetListJobRentedByUser());
   }, []);
 
-  const totalWallet = listJobFinished?.reduce(
+  const FEE = listJobRentFinished?.reduce(
     (preValue, curValue) => preValue + curValue.price,
     0
   );
+  const INCOME = listJobBookFinished?.reduce(
+    (preValue, curValue) => preValue + curValue.price,
+    0
+  );
+
   const columns = [
     {
       title: "#",
@@ -137,15 +152,14 @@ export default function ProfileUser() {
       dataIndex: "rating",
       key: "rating",
     },
-    listJobBooked
+    listJobRent
       ? {
           title: "Action ",
           key: "action",
           render: (text, record) => {
-            let job = { ...record };
             return (
               <div className="action-table-gigs">
-                {record.status === true ? null : (
+                {record.userCreated === currentUser?._id ? (
                   <span className="filedoneoutlined">
                     <Popconfirm
                       title="Would you like to hand over this assignment?"
@@ -157,9 +171,9 @@ export default function ProfileUser() {
                             setTimeout(() => {
                               messageConfig.success();
                             }, 500);
-                            setTimeout(() => {
-                              dispatch(actGetListJobBookedByUser());
-                            }, 1000);
+                            // setTimeout(() => {
+                            //   dispatch(actGetListJobRentedByUser());
+                            // }, 1000);
                           })
                           .catch((err) => {
                             console.log(err?.response.data);
@@ -171,9 +185,9 @@ export default function ProfileUser() {
                       <FileDoneOutlined />
                     </Popconfirm>
                   </span>
-                )}
+                ) : null}
                 <span className="eyeoutlined">
-                  <Link to={`/${record.type}/${record._id}`}>
+                  <Link to={`/${record.type}/detail/${record._id}`}>
                     <EyeOutlined />
                   </Link>
                 </span>
@@ -183,11 +197,13 @@ export default function ProfileUser() {
         }
       : null,
   ];
-  const dataJobFinised = listJobFinished;
+  const dataJobRentFinised = listJobRentFinished;
+  const dataJobRented = listJobRent;
   const dataJobBooked = listJobBooked;
+  const dataJobBookFinished = listJobBookFinished;
   return (
     <div className="profile-user row">
-      <div className="col-3 profile-left">
+      <div className="col-4 col-md-4 col-xl-3 profile-left">
         <div className="info-basic">
           <div className="info-top">
             <div className="avatar-edit">
@@ -235,88 +251,10 @@ export default function ProfileUser() {
             </div>
           </div>
         </div>
-        <div className="learn">
-          <img
-            src="https://fiverr-res.cloudinary.com/image/upload/q_auto,f_png/v1/attachments/generic_asset/asset/6bef0aaa4d62dcf41383658e5e3211ee-1571214998624/fiverrlearn_logo.svg"
-            alt=""
-          />
-          <div>
-            <img
-              src="https://npm-assets.fiverrcdn.com/assets/@fiverr-private/fiverr_learn/enroll-icon.69b770f.svg"
-              alt=""
-            />
-            <p>
-              {" "}
-              <strong>Earn badges and stand out</strong>{" "}
-            </p>
-            <p>Boost your sales, by boosting your expertise.</p>
-          </div>
-          <button>Enroll Now</button>
-        </div>
+
         <div className="info-others">
           <form onSubmitCapture={formik.handleSubmit}>
-            <div className="description">
-              <p>Description</p>
-              <button>Edit Description</button>
-            </div>
-            <div className="languages">
-              <p>Languages</p>
-              <button>Add New</button>
-            </div>
-            <div className="link-accounts">
-              <p>Link Accounts</p>
-              <div className="list-accounts">
-                <ul>
-                  <li>
-                    <a href="# ">
-                      <span>+</span>
-                      Facebook
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      style={{ color: "#555555", cursor: "default" }}
-                      href="# "
-                    >
-                      <span>
-                        <i className="fa fa-google-plus-square"></i>
-                      </span>
-                      Google
-                    </a>
-                  </li>
-                  <li>
-                    <a href="# ">
-                      <span>+</span>
-                      Dribbble
-                    </a>
-                  </li>
-                  <li>
-                    <a href="# ">
-                      <span>+</span>
-                      Stack Overflow
-                    </a>
-                  </li>
-                  <li>
-                    <a href="# ">
-                      <span>+</span>
-                      Github
-                    </a>
-                  </li>
-                  <li>
-                    <a href="# ">
-                      <span>+</span>
-                      Vimeo
-                    </a>
-                  </li>
-                  <li>
-                    <a href="# ">
-                      <span>+</span>
-                      Twitter
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            
 
             <div className="skill">
               <div>
@@ -338,22 +276,7 @@ export default function ProfileUser() {
                 {currentUser?.skill.length > 1 ? "Edit" : "Add New"}
               </button>
             </div>
-            <div className="education">
-              <div>
-                <p>Education</p>
-                <input
-                  type="text"
-                  placeholder="Add your Education.
-"
-                  style={{
-                    fontSize: 14,
-                    fontWeight: 600,
-                    opacity: 0.4,
-                  }}
-                />
-              </div>
-              <button>Add New</button>
-            </div>
+
             <div className="certification">
               <div>
                 <p>Certification</p>
@@ -377,20 +300,45 @@ export default function ProfileUser() {
           </form>
         </div>
       </div>
-      <div className="col-7 profile-right">
+      <div className="col-7 col-md-7 col-xl-7 profile-right">
         <div className="info-bars">
           <p>
-            WALLET: <span>{totalWallet} $</span>{" "}
+            FEE: <span>{FEE} $</span>{" "}
           </p>
+          <p>
+            INCOME: <span>{INCOME} $</span>{" "}
+          </p>
+          <Tabs className="tab-profile-right-content" defaultActiveKey="1">
+            <TabPane tab="Booked" key="1">
+              <div className="render-job-booked">
+                <Table
+                  key="tableBooked"
+                  columns={columns}
+                  size="small"
+                  dataSource={dataJobBooked}
+                />
+              </div>
+            </TabPane>
+            <TabPane tab="Finised" key="2">
+              <div className="render-job-book-finished">
+                <Table
+                  key="tableBookFinished"
+                  columns={columns}
+                  size="small"
+                  dataSource={dataJobBookFinished}
+                />
+              </div>
+            </TabPane>
+          </Tabs>
         </div>
-        <Tabs className="tab-profile-right-content" defaultActiveKey="1">
+        <Tabs className="tab-profile-right-content" defaultActiveKey="3">
           <TabPane
             tab={
               listJobsCreatedByUser?.length > 0
                 ? "Active Gigs"
                 : "Create New Gigs"
             }
-            key="1"
+            key="3"
           >
             {listJobsCreatedByUser?.length > 0 ? (
               <ProfileHasJobs listJobsCreatedByUser={listJobsCreatedByUser} />
@@ -398,23 +346,24 @@ export default function ProfileUser() {
               <ProfileNoJob />
             )}
           </TabPane>
-          <TabPane tab="Booked" key="2">
-            <div className="render-job-booked">
+          <TabPane tab="Rent Job" key="4">
+            <div className="render-job-rent">
               <Table
-                key="tableBooked"
+                key="tableRent"
                 size="small"
                 columns={columns}
-                dataSource={dataJobBooked}
+                dataSource={dataJobRented}
               />
             </div>
           </TabPane>
-          <TabPane tab="Finised" key="3">
+
+          <TabPane tab="Finised" key="5">
             <div className="render-job-finished">
               <Table
-                key="tableFinished"
+                key="tableRentFinished"
                 columns={columns}
                 size="small"
-                dataSource={dataJobFinised}
+                dataSource={dataJobRentFinised}
               />
             </div>
           </TabPane>

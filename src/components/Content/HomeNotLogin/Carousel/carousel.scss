@@ -139,19 +139,20 @@
   }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 768px) {
   .carousel {
     .carousel-text {
-      width: 100%;
-      top: 20%;
+      width: 93%;
+      top: 25%;
       p {
-        font-size: 32px;
+        font-size: 40px;
         line-height: 48px;
       }
       .carousel-popular {
         display: none;
       }
       .search-input-antd-carousel {
+        width: 100%;
         .ant-input-group {
           display: flex;
           flex-direction: column;
@@ -171,7 +172,8 @@
     }
     .slick-slider {
       .slick-list {
-        height: 450px;
+        width: 10000px;
+        height: 480px;
         .carousel-name-hero {
           display: none;
         }
@@ -190,6 +192,14 @@
           }
         }
       }
+    }
+  }
+}
+@media only screen and (max-width: 414px) {
+  .carousel {
+    .carousel-text {
+      width: 86%;
+      top: 18%;
     }
   }
 }

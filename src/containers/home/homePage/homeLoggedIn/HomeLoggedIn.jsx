@@ -3,9 +3,7 @@ import React, { lazy, Suspense } from "react";
 const EditorsPicks = lazy(() =>
   import("components/Content/HomeLoggedIn/EditorsPicks/EditorsPicks")
 );
-const CarouselMiddle = lazy(() =>
-  import("components/Content/HomeLoggedIn/CarouselMiddle/CarouselMiddle")
-);
+
 const VerifiedPro = lazy(() =>
   import("components/Content/HomeLoggedIn/VerifiedPro/VerifiedPro")
 );
@@ -31,7 +29,6 @@ export default function HomeLoggedIn() {
         <CarouselLoggedIn />
         <PopularGigs />
         <VerifiedPro />
-        <CarouselMiddle />
         <EditorsPicks />
       </Suspense>
     </div>

@@ -53,7 +53,19 @@
   }
 }
 
-@media only screen and(max-width:375px) {
+@media only screen and(max-width:768px) {
+  .explore {
+    .explore__content {
+      margin: 40px auto;
+      .explore__grid {
+        .explore__row {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    }
+  }
+}
+@media only screen and(max-width:414px) {
   .explore {
     .explore__content {
       margin: 40px auto;
