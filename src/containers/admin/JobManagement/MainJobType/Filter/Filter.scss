@@ -1,42 +1,87 @@
-.mainJobList-filter{
-    p{
-        margin-bottom: 0;
+.mainJobList-filter {
+  p {
+    margin-bottom: 0;
+  }
+  .jobList-filter__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .jobList-filter_btn{
+        display: none;
     }
-    .jobList-filter__content{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .jobList-filter__item{
-            display: flex;
-            justify-content: flex-start;
-            align-items:center;
-        }
-        .jobList-filter__itemTitle{
-            font-size: 15px;
-            font-weight: 600;
-            margin-right: 5px;
-            color: #73BFDD;
-        }
+    .jobList-filter__item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
     }
-    .jobList-filter__itemSub{
-        margin-left: 30px;
+    .jobList-filter__itemTitle {
+      font-size: 15px;
+      font-weight: 600;
+      margin-right: 5px;
+      color: #73bfdd;
     }
-    .jobList-filter__itemFeature{
-        .ant-select-selector{
-            border: 1px solid #bfbfbf36;
-        }
-        span.ant-select-arrow{
-            font-size: 10px;
-            top: 60%;
-        }
-        .ant-switch-checked{
-            background-color: #FF7070;
-        }
-        .ant-form-item{
-            margin-bottom: 0;
-        }
+  }
+  .jobList-filter__itemSub {
+    margin-left: 30px;
+  }
+  .jobList-filter__itemFeature {
+    .ant-select-selector {
+      border: 1px solid #bfbfbf36;
     }
+    span.ant-select-arrow {
+      font-size: 10px;
+      top: 60%;
+    }
+    .ant-switch-checked {
+      background-color: #ff7070;
+    }
+    .ant-form-item {
+      margin-bottom: 0;
+    }
+  }
 }
-.ant-select-dropdown{
-    z-index: 999999999999999!important;
+.ant-select-dropdown {
+  z-index: 999999999999999 !important;
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+// responsive
+@include maxResponsive("small-down") {
+  .mainJobList-filter {
+    .jobList-filter__content {
+      position: relative;
+      .jobList-filter_btn {
+          display: block;
+        padding: 5px 10px;
+        background-color: #73bfdd;
+        border-radius: 10px;
+        color: #fff;
+        font-weight: 600;
+      }
+      .jobList-filter__switch {
+        background-color: #fff;
+        position: absolute;
+        flex-direction: column;
+        top: 32px;
+        right: 5px;
+        width: 150px;
+        z-index: 20;
+        transform-origin: top center;
+        transform: scaleY(0);
+        transition: transform .3s;
+        .jobList-filter__item {
+          justify-content: space-between;
+          width: 80%;
+          flex-shrink: 0;
+          margin-left: 0;
+        }
+      }
+      .jobList-filter__switch.show {
+        transform: scaleY(1);
+        animation: shaky 1s ease-out 1;
+      }
+    }
+  }
 }

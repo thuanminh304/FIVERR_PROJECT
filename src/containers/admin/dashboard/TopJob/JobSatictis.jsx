@@ -10,19 +10,11 @@ const JobSatictis = () => {
   };
   const columns = [
     {
-      title: "No.",
-      width: "5%",
-      fixed: "left",
-      key: "index",
-      render: (value, item, index) => {
-        return index + 1;
-      },
-    },
-    {
       title: "Type Job",
       dataIndex: "type",
       key: "type",
       fixed: "left",
+      width: "16%",
     },
     {
       title: "Job Qty",
@@ -49,17 +41,10 @@ const JobSatictis = () => {
       width: "15%",
     },
     {
-      title: "Delivery Time Qty",
-      dataIndex: "deliveryTimeQty",
-      key: "deliveryTimeQty",
-      width: "15%",
-    },
-    {
       title: "Earning",
       dataIndex: "price",
       key: "price",
       width: "8%",
-      fixed: "right",
       render: (text) => {
         return <span>{text + "$"}</span>;
       },
