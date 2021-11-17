@@ -2,10 +2,11 @@ import React, {useEffect} from "react";
 import {useDispatch} from 'react-redux';
 import JobSatictis from "./TopJob/JobSatictis";
 import BoxLayout from "layouts/BoxLayout";
-import Topuser from "./TopUser/TopUser";
+import TopBuyer from "./TopBuyer/TopBuyer";
 import { actGetAllJob } from "Modules/JobManagement/actions";
 import Dashboardchart from "./DashboardChart/DashboardChart";
 import SatictisNumber from './SatisticNumber/SatictisNumber';
+import TopSeller from "./TopSeller/TopSeller";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -26,8 +27,11 @@ export default function Dashboard() {
         <div className="adminDashBoard__jobTop">
           <BoxLayout component={JobSatictis} title = 'Job Satictis'/>
         </div>
-        <div className="adminDashBoard__clientTop">
-          <BoxLayout component={Topuser} title = 'Top User'/>
+        <div className="adminDashBoard__clientBuyer">
+          <BoxLayout component={TopBuyer} title = 'Top Buyer'/>
+        </div>
+        <div className="adminDashBoard__clientSeller">
+          <BoxLayout component={TopSeller} title = 'Top Seller'/>
         </div>
       </div>
     </div>

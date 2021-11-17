@@ -45,9 +45,13 @@
 @import "helpers/mixin.scss";
 
 //reponsive
-@include maxResponsive("small-down") {
+@include maxResponsive("large-down") {
   .boxTitle-content {
     padding: 10px;
+  }
+}
+@include maxResponsive("small-down") {
+  .boxTitle-content {
     h4 {
       font-size: 18px;
     }

@@ -1,30 +1,46 @@
-.statistic-content{
-    
- .statistic__chart{
-     padding: 15px 0;
-     margin-bottom: 30px;
-     .chart__jobQuality{
-         height: 350px;
-     }
-     .statistic-item{
-        border-radius: 3px;
-        box-shadow: 0px 5px 25px 0px rgb(0 0 0 / 20%);    
-        background-color: #fff;
-        height: 100%;
-        padding: 0 20px;
-        .echarts-for-react{
-            height: 100%!important;
-        }
+.statistic-content {
+  .statistic__chart {
+    padding: 15px 0;
+    margin-bottom: 30px;
+    .chart__jobQuality {
+      height: 350px;
     }
- }
- .jobManage-content{
+    .statistic-item {
+      border-radius: 3px;
+      box-shadow: 0px 5px 25px 0px rgb(0 0 0 / 20%);
+      background-color: #fff;
+      height: 100%;
+      padding: 0 20px;
+      .echarts-for-react {
+        height: 100% !important;
+      }
+    }
+  }
+  .jobManage-content {
     border-radius: 3px;
     background-color: #fff;
     width: 100%;
     padding: 20px 25px;
-    transition: box-shadow .3s;
-    &:hover{
-        box-shadow: 0px 5px 25px 0px rgb(0 0 0 / 20%); 
+    transition: box-shadow 0.3s;
+    &:hover {
+      box-shadow: 0px 5px 25px 0px rgb(0 0 0 / 20%);
     }
- }
+  }
+}
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+// responsive
+@include maxResponsive("medium-down") {
+  .statistic-content {
+    .statistic__chart {
+      margin-bottom: 0;
+      .chart__jobQuality {
+        margin-bottom: 30px;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
 }

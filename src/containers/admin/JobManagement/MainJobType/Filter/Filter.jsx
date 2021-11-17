@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Select, Switch, Form } from "antd";
 import "./Filter.scss";
@@ -13,6 +13,7 @@ const Filter = (props) => {
   const { subJob, proService, localSeller, onlineSeller } = useSelector(
     (state) => state.FilterJobListReducer
   );
+  const [isShowFilter, setShowFilter] = useState(false);
   const { subType } = props;
   const formRef = React.createRef();
   const dispatch = useDispatch();
@@ -34,19 +35,41 @@ const Filter = (props) => {
     }
   };
   const onBlur = () => {
-    console.log("blur");
   };
 
   const onFocus = () => {
-    console.log("focus");
   };
 
   const onSearch = (val) => {
-    console.log("search:", val);
   };
+  useEffect(()=>{
+    const adminContainer = document.querySelector('.adminContainer');
+    const filterTitle = document.querySelector('.jobList-filter__itemTitle p');
+    const mainJob = document.querySelector('.mainJob-JobList');
+    new ResizeObserver(()=>elementChangeSize(mainJob,filterTitle)).observe(mainJob);
+    adminContainer.addEventListener('click',handleClick);
+  },[]);
   useEffect(() => {
     formRef.current.setFieldsValue({ subJobs: subJob });
   }, [subJob]);
+  const elementChangeSize = (mainJob,filterTitle) => {
+    console.log(mainJob.offsetWidth);
+    if(mainJob.offsetWidth<730){
+      filterTitle.style.display = 'none';
+    }
+    else{
+      filterTitle.style.display = 'block';
+    }
+  }
+  const showFilter = () => {
+    setShowFilter(!isShowFilter);
+  };
+  const handleClick = (e) =>{
+    const filterBox = e.target.closest('.jobList-filter__switch');
+    if(!filterBox || !!isShowFilter){
+      setShowFilter(false);
+    };
+  };
   return (
     <div className="mainJobList-filter">
       <div className="jobList-filter__content">
@@ -85,7 +108,10 @@ const Filter = (props) => {
             </Form>
           </div>
         </div>
-        <div className="jobList-filter__item">
+        <div className="jobList-filter_btn" onClick={showFilter}>
+          Filter Button
+        </div>
+        <div className={"jobList-filter__item jobList-filter__switch " + (isShowFilter?"show":"")}>
           <div className="jobList-filter__item jobList-filter__itemSub">
             <div className="jobList-filter__itemTitle">
               <p>proServices</p>

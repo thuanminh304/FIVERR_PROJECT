@@ -35,7 +35,7 @@
 @import "helpers/mixin.scss";
 
 //reponsive
-@include maxResponsive("small-down"){
+@include maxResponsive("large-down"){
     .box-data{
         .box-data__data{
             padding: 10px;

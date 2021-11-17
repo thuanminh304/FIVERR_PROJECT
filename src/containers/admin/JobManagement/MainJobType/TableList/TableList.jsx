@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -16,8 +16,8 @@ import { actDeleteJob } from "Modules/JobManagement/actions";
 const Tablelist = (props) => {
   const { data } = props;
   const [DeleteIdx, setDelete] = useState(null);
+  const [fix,setFix] = useState('left');
   const dispatch = useDispatch();
-  const { listAllUser } = useSelector((state) => state.managementUserReducer);
   const { currentPageSize, currentPage } = useSelector(
     (state) => state.FilterJobListReducer
   );
@@ -25,32 +25,18 @@ const Tablelist = (props) => {
     {
       title: "No.",
       width: "5%",
-      fixed: "left",
+      fixed: fix,
       key: "index",
       render: (value, item, index) => {
         return (currentPage - 1) * currentPageSize + index + 1;
       },
     },
     {
-      title: "Product",
+      title: "Job Name",
       dataIndex: "name",
       key: "name",
-      fixed: "left",
-    },
-    {
-      title: "Author",
-      dataIndex: "userCreated",
-      key: "userCreated",
-      render: (record) => {
-        const author = listAllUser?.find((user) => {
-          return user._id === record.userCreated;
-        });
-        if (author) {
-          return author.name;
-        } else {
-          return "No Name";
-        }
-      },
+      fixed: fix,
+      width: "20%",
     },
     {
       title: "Rating",
@@ -111,17 +97,17 @@ const Tablelist = (props) => {
     {
       title: "Action",
       fixed: "right",
-      width: "10%",
+      width: "8%",
       render: (text, record, index) => {
         return (
           <div
             className={
-              "settingJob " + (DeleteIdx && DeleteIdx === index ? "comfirm" : "")
+              "settingJob " + (DeleteIdx && DeleteIdx == index ? "comfirm" : "")
             }
             data-jobid={record._id}
             data-index={index}
           >
-            {DeleteIdx && DeleteIdx === index ? (
+            {DeleteIdx && DeleteIdx == index ? (
               <>
                 <p>Confirm?</p>
                 <CheckCircleOutlined id="approveDelete" onClick={deleteJob} />
@@ -140,6 +126,18 @@ const Tablelist = (props) => {
       },
     },
   ];
+  useEffect(()=>{
+    if(window.innerWidth<740){
+      setFix('none');
+    };
+    window.addEventListener("resize",handleWindowResize);
+    return () => window.removeEventListener('resize',handleWindowResize);
+  },[]);
+  const handleWindowResize = () => {
+    if(window.innerWidth<740){
+        setFix('none');
+    }
+  }
   const deleteJob = (e) => {
     const deleteBtn = e.target.closest("#deleteIcon");
     const cancleDeleteBtn = e.target.closest("#canleDelete");

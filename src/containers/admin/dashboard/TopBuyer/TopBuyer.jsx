@@ -3,22 +3,12 @@ import { useSelector } from 'react-redux';
 import { Table } from "antd";
 import '../TopJob/JobSatictis.scss';
 import './TopUser.scss';
-const Topuser = () => {
+const TopBuyer = () => {
     const columns = [
-        {
-          title: "No.",
-          width: "5%",
-          fixed: "left",
-          key: "index",
-          render: (value, item, index) => {
-            return index + 1;
-          },
-        },
         {
             title: "Avatar",
             dataIndex: "avatar",
             key: "avatar",
-            fixed: "left",
             width: '10%',
             render: (text, record)=>{
               if(!!text){
@@ -41,12 +31,6 @@ const Topuser = () => {
           title: "Name",
           dataIndex: "name",
           key: "name",
-          fixed: "left",
-        },
-        {
-          title: "Email",
-          dataIndex: "email",
-          key: "email",
         },
         {
           title: "Skill",
@@ -69,13 +53,13 @@ const Topuser = () => {
             title: "Job Booking Qty",
             dataIndex: "jobBookingQty",
             key: "jobBookingQty",
-            width: "15%",
+            width: "18%",
           },
         {
             title: "Wallet",
             dataIndex: "wallet",
             key: "wallet",
-            width: "8%",
+            width: "10%",
             render: (text) => {
               return <span>{text + "$"}</span>;
             },
@@ -96,4 +80,4 @@ const Topuser = () => {
     );
 }
 
-export default Topuser;
+export default TopBuyer;

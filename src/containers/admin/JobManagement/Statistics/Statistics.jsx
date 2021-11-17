@@ -8,10 +8,23 @@ import BoxLayout from "layouts/BoxLayout";
 const Statistics = () => {
   const dispatch = useDispatch();
   const [data,setData] = useState([]);
+  const [reRender, setRerender] = useState({
+    legend:{
+    top: "center",
+    right: "0",
+    textAlign: "center",
+    orient: 'vertical',
+    itemGap: 10,
+    itemWidth: 20,
+  },
+  center: ["30%", "50%"],
+});
   const { dataSatictis } = useSelector((state) => state.JobManagementReducer);
   useEffect(() => {
     dispatch(actGetMainJobList());
     dispatch(actGetAllJob());
+    const pipeChartBox = document.querySelector('.percentJobQty');
+    new ResizeObserver(()=>changeSizeElement(pipeChartBox)).observe(pipeChartBox);
   },[]);
   useEffect(() =>{
     const dataChart = dataSatictis.map(job=>{
@@ -31,8 +44,8 @@ const Statistics = () => {
     },
     grid: {
       right: "center",
-      top: "15%",
-      bottom: "6%",
+      top: "10%",
+      bottom: "5%",
       containLabel: true,
       width: "90%",
     },
@@ -73,18 +86,13 @@ const Statistics = () => {
       containLabel: true,
       width: "100%",
     },
-    legend: {
-      top: "center",
-      left: "right",
-      textAlign: "center",
-      orient: "vertical",
-    },
+    legend: reRender.legend,
     series: [
       {
         name: "Percent of Total Quality",
         type: "pie",
         radius: ["20%", "70%"],
-        center: ['35%', '50%'],
+        center: reRender.center,
         avoidLabelOverlap: false,
         itemStyle: {
           borderRadius: 10,
@@ -109,15 +117,58 @@ const Statistics = () => {
       },
     ],
   };
+  const changeSizeElement = (pipeChartBox) => {
+    console.log(pipeChartBox.offsetWidth);
+    if(pipeChartBox.offsetWidth<=490){
+      setRerender({
+        legend:{
+        bottom: "0",
+        left: "0",
+        width: "100%",
+        itemGap: 5,
+        itemWidth: 15,
+        textAlign: "center",
+        orient: 'horizontal',
+      },
+      center: ["50%", "40%"],
+    });
+    }
+    else if(pipeChartBox.offsetWidth>650){
+      setRerender({
+        legend:{
+        top: "center",
+        right: "10%",
+        textAlign: "center",
+        orient: 'vertical',
+        itemGap: 10,
+        itemWidth: 20,
+      },
+      center: ["40%", "50%"],
+    });
+    }
+    else{
+      setRerender({
+        legend:{
+        top: "center",
+        right: "0",
+        textAlign: "center",
+        orient: 'vertical',
+        itemGap: 10,
+        itemWidth: 20,
+      },
+      center: ["30%", "50%"],
+    });
+    }
+  }
   return (
     <div className="statistic-content">
       <div className="statistic__chart row">
-        <div className="chart__jobQuality col-12 col-lg-6">
+        <div className="chart__jobQuality col-12 col-md-6">
           <div className="statistic-item">
             <ReactECharts option={optionsBarChart} />
           </div>
         </div>
-        <div className="chart__jobQuality col-12 col-lg-6">
+        <div className="chart__jobQuality percentJobQty col-12 col-md-6">
           <div className="statistic-item">
             <ReactECharts option={optionPieChart} />
           </div>
