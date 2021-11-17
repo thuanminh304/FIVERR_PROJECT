@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import jobApi from "apis/jobApi";
 import { useDispatch } from "react-redux";
 import { actGetAllJobsByUser } from "./createNewJobByUser/StepsCreateNewGig/modules/action";
+import configName from "setting/configNameTypeJob";
 export default function ProfileHasJobs(props) {
   const listJobsCreatedByUser = props.listJobsCreatedByUser;
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export default function ProfileHasJobs(props) {
       <div className="row jobs-content">
         {listJobNotBookedYet?.map((job, idx) => {
           return (
-            <div key={job._id} className="col-4">
+            <div key={job._id} className="col-12 col-xl-4">
               <div className="card">
                 <img
                   className="card-img-top"
@@ -39,7 +40,7 @@ export default function ProfileHasJobs(props) {
                         </Link>
                       </div>
                       <div>
-                        <Link to={`/by-user/${currentUser?.name}/${job._id}`}>
+                        <Link to={`/by-user/${configName(currentUser?.name)}/${job._id}`}>
                           <i className="fa fa-eye"></i>
                           Preview
                         </Link>
@@ -73,7 +74,7 @@ export default function ProfileHasJobs(props) {
             </div>
           );
         })}
-        <div className="col-4">
+        <div className="col-12  col-xl-4">
           <div className="card create-new-gig">
             <Link to="/by-user/create-new-job">
               <span>+</span>

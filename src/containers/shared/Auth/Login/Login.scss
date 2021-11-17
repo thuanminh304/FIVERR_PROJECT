@@ -172,6 +172,11 @@
 @import "helpers/mixin.scss";
 @import "helpers/variables.scss";
 
+@include maxResponsive(extra-small) {
+  #signInt {
+    padding-top: 90px;
+  }
+}
 @include minResponsive(small) {
   #signInt {
     .signIn__content {

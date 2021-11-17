@@ -198,10 +198,8 @@
         font-weight: 700;
         font-size: 16px;
       }
-      .description,
-      .languages,
+
       .skill,
-      .education,
       .certification {
         display: flex;
         justify-content: space-between;
@@ -477,13 +475,13 @@
           }
         }
       }
-      .render-job-booked,
+      .render-job-rent,
       .render-job-finished {
         background-color: white;
         padding: 20px;
         border: 1px solid #ddd;
       }
-      .render-job-booked {
+      .render-job-rent {
         .action-table-gigs {
           display: flex;
           justify-content: space-evenly;
@@ -520,5 +518,264 @@
     animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-timing-function: cubic-bezier(0.01, 0.35, 1, 1.38);
+  }
+}
+@media only screen and (max-width: 768px) {
+  .profile-user {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    .profile-left {
+      .info-basic {
+        .info-top {
+          .avatar-edit {
+            width: unset;
+            .avatar-user {
+              width: 50px;
+              height: 50px;
+            }
+            .custom-input-file {
+              label {
+                width: 50px;
+                height: 50px;
+                i {
+                  top: 0;
+                  font-size: 30px;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+      .info-others {
+        .skill,
+        .certification {
+          gap: 0;
+        }
+      }
+    }
+    .profile-right {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      .tab-profile-right-content {
+        .profile-right-content {
+          .create-gig {
+            gap: 20px;
+            button {
+              width: 140px;
+            }
+          }
+        }
+        .profile-right-content-jobs {
+          .jobs-content {
+            .create-new-gig {
+              a {
+                margin: 0;
+                span {
+                  padding: 0px 10px 5px;
+                  font-size: 35px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 414px) {
+  .profile-user {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    .profile-left {
+      .info-basic {
+        .info-top {
+          .avatar-edit {
+            width: unset;
+            margin-top: 30px;
+            .avatar-user {
+              width: 50px;
+              height: 50px;
+            }
+            .custom-input-file {
+              label {
+                width: 50px;
+                height: 50px;
+                i {
+                  top: 0;
+                  font-size: 30px;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+            }
+          }
+          p {
+            transform: translateX(-35px);
+            font-size: 10px;
+            width: 150px;
+          }
+          .icon-edit {
+            display: none;
+          }
+          .span-online {
+            top: 10px;
+            right: 7px;
+            font-size: 10px;
+            padding: 0 2px;
+            .dot {
+              display: inline-block;
+              transform: translateY(4px);
+
+              padding: 2px;
+            }
+          }
+          button {
+            display: none;
+          }
+        }
+        .info-bottom {
+          display: none;
+        }
+      }
+      .info-others {
+        padding: 0 10px;
+        .skill,
+        .certification {
+          gap: 0;
+          p {
+            font-size: 12px;
+          }
+          input[type="text"] {
+            font-size: 9px;
+            margin-bottom: 0;
+          }
+          button {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+    .profile-right {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      .tab-profile-right-content {
+        .profile-right-content {
+          .buying-services {
+            display: none;
+          }
+          .create-gig {
+            gap: 20px;
+            p {
+              display: none;
+            }
+            button {
+              width: 140px;
+            }
+          }
+        }
+        .ant-tabs-nav {
+          margin-bottom: 10px;
+          padding: 0 10px;
+          .ant-tabs-nav-list {
+            .ant-tabs-tab {
+              font-size: 12px;
+              padding: 0;
+              border-width: 2px;
+            }
+          }
+        }
+
+        .ant-tabs-content-holder {
+          color: #000;
+          .ant-tabs-content {
+            .ant-tabs-tabpane {
+              .render-job-booked,
+              .render-job-book-finished,
+              .render-job-rent,
+              .render-job-finished {
+                .ant-table-content {
+                  .ant-table-thead {
+                    .ant-table-cell {
+                      font-size: 7px;
+                    }
+                  }
+                  .ant-table-tbody {
+                    .ant-table-cell {
+                      font-size: 7px;
+                      img {
+                        width: 24px !important;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .info-bars {
+        padding-top: 10px;
+        p {
+          border-width: 1px;
+          font-size: 10px;
+          padding: 0;
+          display: inline;
+          margin-right: 20px;
+          margin-left: 10px;
+          span {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .profile-user {
+    .profile-left {
+      .info-basic {
+        .info-top {
+          p {
+            transform: translateX(-43px);
+          }
+        }
+      }
+      .info-others {
+        .skill,
+        .certification {
+          button {
+            transform: translateX(-17px);
+          }
+        }
+      }
+    }
+    .profile-right {
+      .tab-profile-right-content {
+        .ant-tabs-nav {
+          .ant-tabs-nav-list{
+            .ant-tabs-tab {
+              margin-left: 14px;
+            }
+          }
+        } 
+        .render-job-rent {
+          padding: 10px;
+        }
+        .render-job-finished {
+          padding: 5px;
+        }
+      }
+      .info-bars {
+        padding: 10px 5px 0 5px;
+        p {
+          margin-right: 10px;
+        }
+      }
+    }
   }
 }

@@ -95,3 +95,48 @@
     right: 33%;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .popular-gigs {
+    .popular-gigs-slider {
+      .slick-list {
+        .slick-track {
+          display: flex;
+          flex-direction: column;
+          width: 100% !important;
+          .slick-slide {
+            width: 100% !important;
+            img{
+              height: 100px;
+              width: 150px;
+            }
+            .gigs-item {
+              margin-bottom: 14px;
+              width: 100% !important;
+              display: flex !important;
+              flex-direction: row;
+              .card-body{
+                padding: 0 0 0 10px;
+                .text-active{
+                  font-size: 14px;
+                }
+              }
+              .card-footer{
+                border-top: none;
+                .icon-footer{
+                  display: none;
+                }
+                p{
+                  font-size: 9px;
+                  span{
+                    font-size: 14px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

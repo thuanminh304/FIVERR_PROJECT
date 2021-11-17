@@ -118,3 +118,35 @@
     }
   }
 }
+
+@media only screen and (max-width: 414px) {
+  .detail-list-subtype {
+    .render-list-subtype {
+      .result-sort {
+        flex-direction: column;
+        .search-by-switch {
+          flex-direction: column;
+          .switch-icon {
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+      }
+      .main-content {
+        .job-item {
+          height: 300px;
+          .card-footer {
+            gap: 55px;
+          }
+        }
+      }
+      .pagination {
+        height: 30px;
+        button {
+          font-size: 10px;
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+}

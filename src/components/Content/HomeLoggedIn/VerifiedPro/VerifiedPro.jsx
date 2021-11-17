@@ -38,12 +38,6 @@ export default function VerifiedPro() {
                 <img className="card-img-top" src={job.image} alt="" />
               </Link>
               <div className="card-body">
-                <div className="card-avatar">
-                  <span>
-                    <img src={job.image} alt="" />
-                    uplancemedia
-                  </span>
-                </div>
                 <p className="card-text text-active">
                   <Link to={`/digital-marketing/detail/${job._id}`}>
                     {job.name.length < 20

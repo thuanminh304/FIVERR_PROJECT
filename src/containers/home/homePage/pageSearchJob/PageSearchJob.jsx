@@ -86,14 +86,14 @@ export default function PageSearchJob() {
           <div className="search-by-switch">
             <p>Sort by:</p>
 
-            <div>
+            <div className="switch-icon">
               <label htmlFor="proServices">Pro Services</label>
               <Switch
                 name="proServices"
                 onChange={handleChangeSwitch("proServices", setSwitchPro)}
               />
             </div>
-            <div>
+            <div className="switch-icon">
               <label htmlFor="localSellers">Local Sellers</label>
               <Switch
                 name="localSellers"
@@ -101,7 +101,7 @@ export default function PageSearchJob() {
               />
             </div>
 
-            <div>
+            <div className="switch-icon">
               <label htmlFor="onlineSellers">Online Sellers</label>
               <Switch
                 name="onlineSellers"
@@ -114,20 +114,13 @@ export default function PageSearchJob() {
           {listFilter?.map((job, idx) => {
             let name = configName(job.type.name);
             return (
-              <div className="col-3">
+              <div className="col-6 col-md-4 col-lg-3 col-xl-3">
                 <div className="card job-item">
                   <Link to={`/${name}/detail/${job._id}`}>
                     <img className="card-img-top" src={job.image} alt="" />
                   </Link>
 
                   <div className="card-body">
-                    <div className="card-avatar">
-                      <Avatar size="medium" icon={<UserOutlined />} />
-                      <span className="ml-2">
-                        uplancemedia
-                        <p>Level 1 Seller</p>
-                      </span>
-                    </div>
                     <Link to={`/${name}/detail/${job._id}`}>
                       <p className="card-text text-active">
                         {job.name.length < 35

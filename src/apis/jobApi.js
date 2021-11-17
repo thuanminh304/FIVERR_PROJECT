@@ -51,7 +51,7 @@ const jobApi = {
     return callApi("api/jobs", "POST", formData);
   },
 
-  getListJobBookedByUser() {
+  getListJobRentedByUser() {
     return callApi("api/jobs/by-user");
   },
 

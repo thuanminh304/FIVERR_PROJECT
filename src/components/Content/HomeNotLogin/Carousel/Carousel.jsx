@@ -20,7 +20,7 @@ export default function Carousel() {
     pauseOnHover: false,
     responsive: [
       {
-        breakpoint: 376,
+        breakpoint: 769,
         settings: {
           autoplay: false,
           slidesToShow: 1,
