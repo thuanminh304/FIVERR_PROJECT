@@ -35,7 +35,7 @@
       &:hover {
         box-shadow: 0px 5px 25px 0px rgb(0 0 0 / 20%);
       }
-      span.anticon{
+      span.anticon {
         vertical-align: 0;
       }
     }
@@ -44,6 +44,18 @@
     }
     .form__canceltBtn {
       background-color: #ff7070;
+    }
+  }
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+// responsive
+@include maxResponsive("small-down") {
+  .JobInfo {
+    .jobInfo__nameUser {
+      margin-bottom: 20px;
     }
   }
 }

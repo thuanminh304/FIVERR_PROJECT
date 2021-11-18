@@ -51,7 +51,6 @@ export const showNote = (dispatch, getState, typeNote, contentNote) => {
       dispatch(actTurnOffNote());
     }
     const note = {type: typeNote, content: contentNote};
-    console.log()
     dispatch(actShowNote(note));
 }
 
@@ -448,7 +447,6 @@ export const actGetAllJob = () => {
       const dataSort = RevertData(jobRes.data);
       userApi.getAllUser().then(userRes=>{
         const userSatictis = RevertUser(userRes.data,jobRes.data);
-        console.log(userSatictis);
         dispatch(actGetUserSatictis(userSatictis))
         dispatch(actGetAllJobSucc(dataSort));
       })
