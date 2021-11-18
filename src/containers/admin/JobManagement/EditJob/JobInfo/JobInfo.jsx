@@ -58,11 +58,11 @@ const Jobinfo = (props) => {
       placeHolderText: "Online Sellers",
       type: "switch",
     },
-    {
-      name: "deliveryTime",
-      placeHolderText: "Delivery Time",
-      type: "switch",
-    },
+    // {
+    //   name: "deliveryTime",
+    //   placeHolderText: "Delivery Time",
+    //   type: "switch",
+    // },
   ];
   const { mainJob, jobDetail, loadingAction } = useSelector(
     (state) => state.JobManagementReducer
@@ -177,43 +177,43 @@ const Jobinfo = (props) => {
             <div className="jobInfo__formContentItem col-12">
               <div className="jobInfo__jobName jobInfo__formItem">
                 <div className="jobInfo__title">
-                  <p>Project Name</p>
+                  <p>Job Name</p>
                 </div>
                 <JobFormLayout formData={jobField[0]} />
               </div>
             </div>
             <div className="jobInfo__formContentItem col-12 col-md-6">
               <div className="jobInfo__title">
-                <p>Project Type</p>
+                <p>Job Type</p>
               </div>
               <JobFormLayout formData={jobField[1]} />
             </div>
             <div className="jobInfo__formContentItem col-12 col-md-6">
               <div className="jobInfo__title">
-                <p>Project Sub Type</p>
+                <p>Job Sub Type</p>
               </div>
               <JobFormLayout formData={jobField[2]} jobTypes={indexType} />
             </div>
             <div className="jobInfo__formContentItem col-12 col-md-6">
               <div className="jobInfo__title">
-                <p>Project Rating</p>
+                <p>Job Rating</p>
               </div>
               <JobFormLayout formData={jobField[3]} />
             </div>
             <div className="jobInfo__formContentItem col-12 col-md-6">
               <div className="jobInfo__title">
-                <p>Project Price</p>
+                <p>Job Price</p>
               </div>
               <JobFormLayout formData={jobField[4]} />
             </div>
-            <div className="jobInfo__formContentItem col-12 col-md-7">
+            <div className="jobInfo__formContentItem col-12 col-sm-7">
               <div className="jobInfo__switch row">
                 {jobField.map((feild, idx) => {
                   if (feild.type === "switch") {
                     return (
                       <div
                         key={idx}
-                        className="jobInfo__switchItem col-6 col-md-3"
+                        className="jobInfo__switchItem col-6 col-sm-4"
                       >
                         <div className="jobInfo__title">
                           <p>{feild.placeHolderText}</p>
@@ -228,7 +228,7 @@ const Jobinfo = (props) => {
             <div className="jobInfo__formContentItem col-12 col-md-5"></div>
             <div className="jobInfo__formContentItem col-12 col-md-3">
               <div className="jobInfo__title">
-                <p>Project Manager</p>
+                <p>Seller</p>
               </div>
               <div className="jobInfo__nameUser">
                 {initialValue?.userCreatedName}
@@ -236,7 +236,7 @@ const Jobinfo = (props) => {
             </div>
             <div className="jobInfo__formContentItem col-12 col-md-9">
               <div className="jobInfo__title">
-                <p>Project Image</p>
+                <p>Job Image</p>
               </div>
               <div className="jobInfo__uploadFile">
                 <Uploadimage
@@ -258,7 +258,6 @@ const Jobinfo = (props) => {
             </button>
           </div>
         </Form>
-        {jobId}
       </div>
     </div>
   );

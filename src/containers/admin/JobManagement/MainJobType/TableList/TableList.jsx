@@ -127,6 +127,7 @@ const Tablelist = (props) => {
     },
   ];
   useEffect(()=>{
+    dispatch(actCurrentPage(1));
     if(window.innerWidth<740){
       setFix('none');
     };

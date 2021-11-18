@@ -1,0 +1,34 @@
+.addNewStaff {
+  .ant-picker {
+    width: 100%;
+  }
+  .field_item {
+    label {
+      font-size: 15px;
+      color: #73bfdd;
+      font-weight: 600;
+    }
+  }
+  .field_itemBtn{
+      text-align: center;
+      button{
+        padding: 8px 15px;
+        border: none;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 15px;
+        color: #fff;
+        margin: 0 10px;
+        height: auto;
+      }
+      .addUser{
+        background-color: #73bfdd;
+        span{
+            vertical-align: 1px;
+        }
+      }
+      .cancle{
+        background-color: #ff7070;
+      }
+  }
+}

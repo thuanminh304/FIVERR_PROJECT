@@ -1,62 +1,171 @@
-.styleErrors {
-  color: red;
-}
-//quan ly nguoi dung
+// .styleErrors {
+//   color: red;
+// }
+// //quan ly nguoi dung
 
-.main-manage-user {
-  .input-search {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-    & > span {
-      width: 300px;
-    }
-  }
-  .search-button-add-new {
+// .main-manage-user {
+//   .input-search {
+//     display: flex;
+//     justify-content: flex-end;
+//     margin-bottom: 10px;
+//     & > span {
+//       width: 300px;
+//     }
+//   }
+//   .search-button-add-new {
+//     display: flex;
+//     justify-content: space-between;
+//     margin-bottom: 10px;
+//     & > span {
+//       width: 300px;
+//     }
+//   }
+//   .btn-delete-user {
+//     color: red;
+//     cursor: pointer;
+//   }
+// }
+
+// //them moi
+
+// .ant-form {
+//   .form-add-new {
+//     .ant-form-item {
+//       justify-content: center;
+//     }
+//   }
+//   .btn-add-new {
+//     margin-left: 400px;
+//   }
+// }
+
+// //cap nhat
+
+// .ant-form {
+//   .form-update {
+//     .ant-form-item {
+//       justify-content: center;
+//     }
+//   }
+
+//   .btn-update {
+//     margin-left: 400px;
+//   }
+// }
+
+// //popover
+// .ant-popover {
+//   .ant-popover-content {
+//     width: 200px;
+//     margin-right: 42px;
+//   }
+// }
+.userList {
+  .userList__feature {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
-    & > span {
-      width: 300px;
+    margin-bottom: 20px;
+    a {
+      padding: 5px 15px;
+      background-color: #73bfdd;
+      border-radius: 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 15px;
+      color: #fff;
+      &:hover {
+        box-shadow: 0 8px 14px 0 #ccc;
+      }
+    }
+    .ant-input-search {
+      max-width: 350px;
+      .ant-input-affix-wrapper {
+        &:hover,
+        &:focus,
+        &:focus-within {
+          border-color: #ff7070;
+        }
+      }
+
+      button {
+        background-color: #ff7070;
+        font-weight: 600;
+        color: #fff;
+        border: none;
+      }
     }
   }
-  .btn-delete-user {
-    color: red;
-    cursor: pointer;
-  }
-}
-
-//them moi
-
-.ant-form {
-  .form-add-new {
-    .ant-form-item {
-      justify-content: center;
+  .staffList__content {
+    table {
+      .ant-table-thead {
+        th {
+          padding: 10px 5px;
+          text-align: center;
+        }
+      }
+      .ant-table-tbody {
+        td {
+          padding: 10px 15px;
+          &:nth-of-type(1),
+          &:nth-of-type(3),
+          &:nth-of-type(5),
+          &:nth-of-type(6),
+          &:last-of-type {
+            text-align: center;
+          }
+          &:nth-of-type(4) {
+            white-space: nowrap;
+          }
+          .user-avatar{
+            display: inline-block;
+          }
+          .anticon {
+            vertical-align: 1px;
+            font-weight: 700;
+          }
+          .anticon-man {
+            color: #73bfdd;
+          }
+          .anticon-woman,
+          .anticon-delete {
+            color: #ff7070;
+          }
+          .anticon-setting {
+            color: #888;
+            cursor: pointer;
+            &:hover {
+              animation: turnArround 2s linear infinite;
+            }
+          }
+          .anticon-delete {
+            cursor: pointer;
+            &:hover {
+              animation: wave 0.6s ease-out infinite;
+            }
+          }
+          .ant-tag-green{
+            margin-bottom: 5px;
+          }
+        }
+      }
     }
   }
-  .btn-add-new {
-    margin-left: 400px;
-  }
 }
-
-//cap nhat
-
-.ant-form {
-  .form-update {
-    .ant-form-item {
-      justify-content: center;
+.ant-popover-inner-content{
+  padding: 10px 12px!important;
+  border-radius: 25px!important;
+  .ant-popover-buttons{
+    text-align: center;
+    button{
+      border-radius: 5px;
+      border: none;
     }
-  }
-
-  .btn-update {
-    margin-left: 400px;
-  }
-}
-
-//popover
-.ant-popover {
-  .ant-popover-content {
-    width: 200px;
-    margin-right: 42px;
+    .ant-btn-sm{
+      background-color: #ff7070;
+      color: #fff;
+    }
+    .ant-btn-primary{
+      background-color: #73bfdd;
+    }
   }
 }

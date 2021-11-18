@@ -1,15 +1,23 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import { Form, Input, Button, Select, DatePicker } from "antd";
 import { useFormik } from "formik";
 import userApi from "apis/userApi";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import moment from "moment";
-import "./user.scss";
+import "../user.scss";
+import "./AddNewStaff.scss";
+import {LoadingOutlined} from '@ant-design/icons';
 import messageConfig from "components/Message/message";
 import errorForm from "components/showErrors/showError";
+import { actShowNote } from "containers/admin/Header/modules/actions";
+
 export default function ThemNguoiDung() {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const {isNote} = useSelector(state=>state.AdminDashBoardSettingReducer);
+  const [isAdd, setIsAdd] = useState(false);
   //tạo form để lưu trừ thông tin nhập từ input
   const formik = useFormik({
     initialValues: {
@@ -49,25 +57,25 @@ export default function ThemNguoiDung() {
       birthday: yup.string().required("- Not selected yet !"),
     }),
     onSubmit: (values) => {
+      setIsAdd(true);
       userApi
         .addNewUser(values)
         .then(() => {
-          messageConfig.loading();
-          setTimeout(() => {
-            messageConfig.success();
-          }, 1000);
-          setTimeout(() => {
-            history.push("/admin/staff/staff-user");
-          }, 2000);
+          const note = { type: 'complete', content: 'Add New Staff Completed' };
+          dispatch(actShowNote(note));
         })
         .catch(() => {
-          messageConfig.loading();
-          setTimeout(() => {
-            messageConfig.error();
-          }, 1000);
+          const note = { type: 'error', content: 'Add New Staff Fail' };
+          dispatch(actShowNote(note));          
         });
     },
   });
+  useEffect(() => {
+    if (!isNote && !!isAdd) {
+      history.replace('/admin/staff/staff-user');
+      setIsAdd(false);
+    }
+  }, [isNote]);
   const handleChangeGender = (value) => {
     formik.setFieldValue("gender", value);
   };
@@ -86,53 +94,52 @@ export default function ThemNguoiDung() {
   const touched = formik.touched;
   const values = formik.values;
   return (
-    <>
+    <div className="addNewStaff">
       <Form
         className="text-left"
         onSubmitCapture={formik.handleSubmit}
         name="basic"
-        labelCol={{
-          span: 8,
-        }}
-        wrapperCol={{
-          span: 10,
-        }}
       >
         <div className="row form-add-new">
-          <div className="col-6">
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
               <label>Name</label>
               <Input
                 name="name"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                placeholder="Enter name"
+                placeholder="User Name"
               />
 
               {errorForm.showErrors(
                 errors.name,
                 touched.name,
                 values.name,
-                "- Not yet entered",
-                "- Do not use punctuation, numberic and special characters"
+                "Not yet entered",
+                "Do not use punctuation, numberic and special characters"
               )}
             </Form.Item>
+          </div>
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
               <label htmlFor="">Password</label>
               <Input
                 name="password"
+                type="password"
                 onChange={formik.handleChange}
-                placeholder="Enter password"
+                placeholder="User Password"
               />
 
               {errorForm.showErrors(
                 errors.password,
                 touched.password,
                 values.password.length < 6 || values.password.length > 10,
-                "- At least 1 lowercase, uppercase and numeric character. Do not use special characters and punctuation",
-                "- Character length from 6 to 10"
+                "At least 1 lowercase, uppercase and numeric character. Do not use special characters and punctuation",
+                "Character length from 6 to 10"
               )}
             </Form.Item>
+          </div>
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
               <label htmlFor="">Email</label>
               <Input
@@ -144,15 +151,17 @@ export default function ThemNguoiDung() {
                 errors.email,
                 touched.email,
                 values.email,
-                "- Not yet entered",
-                "- Email is the incorrect format !"
+                "Not yet entered",
+                "Email is the incorrect format !"
               )}
             </Form.Item>
+          </div>
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
               <label htmlFor="">Phone</label>
               <Input
                 name="phone"
-                placeholder="Enter phone"
+                placeholder="User Phone"
                 onChange={formik.handleChange}
               />
 
@@ -160,27 +169,29 @@ export default function ThemNguoiDung() {
                 errors.phone,
                 touched.phone,
                 values.phone,
-                "- Not yet entered",
-                "- Must be 10 number characters!"
+                "Not yet entered",
+                "Must be 10 number characters!"
               )}
             </Form.Item>
+          </div>
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
               <label htmlFor="">Birthday</label> <br />
               <DatePicker
                 name="birthday"
                 format="YYYY-MM-DD"
-                placeholder="Pick date"
+                placeholder="User Birthday"
                 onChange={handleChangeDate}
               />
               {errorForm.showErrorsDefault(errors.birthday, touched.birthday)}
             </Form.Item>
           </div>
-          <div className="col-6">
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
               <label htmlFor="">Gender</label>
               <Select
                 name="gender"
-                placeholder="-----------Option-----------"
+                placeholder="User Gender"
                 options={[
                   { label: "Male", value: true },
                   { label: "Female", value: false },
@@ -189,15 +200,8 @@ export default function ThemNguoiDung() {
               />
               {errorForm.showErrorsDefault(errors.gender, touched.gender)}
             </Form.Item>
-            <Form.Item>
-              <label htmlFor="">Role</label>
-              <Input
-                name="role"
-                value="ADMIN"
-                onChange={formik.handleChange}
-                disabled
-              />
-            </Form.Item>
+          </div>
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
               <label htmlFor="">Skill</label>
               <Input
@@ -206,35 +210,33 @@ export default function ThemNguoiDung() {
                 placeholder="React, angular,..."
               />
             </Form.Item>
+          </div>
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
               <label htmlFor="">Certification</label>
               <Input
                 name="certification"
                 onChange={handleChangeCert}
-                placeholder="Cybersoft, NEU,..."
+                placeholder="DIB, PYTHO,..."
               />
             </Form.Item>
           </div>
+          <div className="field_itemBtn col-12">
+            <Button type="primary" htmlType="submit" className="addUser">
+              {!!isAdd?(<LoadingOutlined />):"Add"}
+            </Button>
+            <Button
+              onClick={() => {
+                history.goBack();
+              }}
+              type="primary"
+              className="cancle"
+            >
+              Back
+            </Button>
+          </div>
         </div>
-        <Form.Item className="btn-add-new">
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button "
-          >
-            Add
-          </Button>
-          <Button
-            onClick={() => {
-              history.push("/admin/staff/staff-user");
-            }}
-            type="primary"
-            className="login-form-button  ml-5"
-          >
-            Back
-          </Button>
-        </Form.Item>
       </Form>
-    </>
+    </div>
   );
 }
