@@ -9,7 +9,7 @@ export default function GigsInWordPress() {
   const [listLogo, setListLogo] = useState([]);
   useEffect(async () => {
     try {
-      const res = await jobApi.getSubJobList("618c910f95d99f001c0c047c");
+      const res = await jobApi.getSubJobList("61951593aef344001cec451e");
       setListLogo(res.data);
     } catch (err) {
       console.log(err?.response);

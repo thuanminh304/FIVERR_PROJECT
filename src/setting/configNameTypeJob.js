@@ -1,10 +1,9 @@
 const configName = (name) => {
-  if (name.search("&") !== -1) {
-    return name.replace(" & ", "-").toLowerCase();
+  if (name?.search("&") !== -1) {
+    return name?.replace(" & ", "-").toLowerCase();
   } else {
-    return name.replace(" ", "-").toLowerCase();
+    return name?.replace(" ", "-").toLowerCase();
   }
 };
 
-
-export default configName
+export default configName;

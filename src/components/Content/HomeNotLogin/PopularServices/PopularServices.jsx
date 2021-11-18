@@ -11,6 +11,14 @@ export default function PopularServices() {
     slidesToScroll: 5,
     responsive: [
       {
+        breakpoint: 1025,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          initialSlide: 4,
+        },
+      },
+      {
         breakpoint: 769,
         settings: {
           slidesToShow: 2,

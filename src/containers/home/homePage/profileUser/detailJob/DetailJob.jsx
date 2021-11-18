@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import configName from "setting/configNameTypeJob";
 import { actGetDetailJobCreatedByUser } from "../createNewJobByUser/StepsCreateNewGig/modules/action";
 import "./detailJob.scss";
 export default function DetailJob() {
@@ -42,13 +43,7 @@ export default function DetailJob() {
     document.querySelector(".seller").style.borderBottom = "4px solid #1dbf73";
     document.querySelector(".over").style.borderBottom = "none";
   }
-  const configName = (name) => {
-    if (name?.search("&") !== -1) {
-      return name.replace(" & ", "-").toLowerCase();
-    } else {
-      return name.replace(" ", "-").toLowerCase();
-    }
-  };
+  
   return (
     <div className="detail-job">
       <div className="detail-job-content">
@@ -92,16 +87,20 @@ export default function DetailJob() {
             <div className="overview" id="overview">
               <div className="info-type-subtype pt-2">
                 <span>
-                  <Link to={`/categories/${configName("graphics & design")}`}>
+                  <Link
+                    to={`/categories/${configName(
+                      detailJobCreatedByUser?.type.name
+                    )}`}
+                  >
                     {detailJobCreatedByUser?.type.name}
                   </Link>
                 </span>
                 {">"}
                 <span>
                   <Link
-                    to={`/categories/${configName("graphics & design")}/${
-                      detailJobCreatedByUser?.subType._id
-                    }`}
+                    to={`/categories/${configName(
+                      detailJobCreatedByUser?.type.name
+                    )}/${detailJobCreatedByUser?.subType._id}`}
                   >
                     {detailJobCreatedByUser?.subType.name}
                   </Link>

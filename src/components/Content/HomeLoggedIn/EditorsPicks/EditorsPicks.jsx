@@ -32,7 +32,7 @@ export default function EditorsPicks(props) {
       <h3>Editors' picks</h3>
       <div className="editors-row">
         {listFilter?.map((job, idx) => {
-          let name = configName(job.type.name);
+          let name = configName(job?.type.name);
           return (
             <div key={job._id} className="card  editor-item">
               <Link to={`/${name}/detail/${job._id}`}>
