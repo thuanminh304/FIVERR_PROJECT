@@ -80,7 +80,17 @@
 .slick-dots li.slick-active button:before {
   color: white !important;
 }
-
+@media only screen and (max-width: 1024px) {
+  .carousel-start {
+    .carousel-start-text {
+      max-width: 20%;
+      button {
+        padding: 5px 20px;
+        margin-top: 0;
+      }
+    }
+  }
+}
 @media only screen and (max-width: 768px) {
   .carousel-start {
     .carousel-start-text {
@@ -95,6 +105,27 @@
     }
   }
 }
+@media only screen and (max-width: 736px) {
+  .carousel-start {
+    .carousel-start-text {
+      height: 170px;
+      p {
+        font-size: 14px;
+      }
+      button {
+        margin-top: -5px;
+        font-size: 10px;
+      }
+    }
+    .carousel-start-img {
+      .img-item {
+        img {
+          height: 170px;
+        }
+      }
+    }
+  }
+}
 @media only screen and (max-width: 414px) {
   .carousel-start {
     margin-top: 70px !important;
@@ -104,13 +135,12 @@
     }
     .carousel-start-img {
       max-width: 100%;
-      .img-item{
+      .img-item {
         img {
-            height: 180px;
-            object-fit: cover;
-          }
+          height: 180px;
+          object-fit: cover;
+        }
       }
-     
     }
     .slick-dots {
       left: -30%;

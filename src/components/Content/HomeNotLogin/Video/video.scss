@@ -59,6 +59,11 @@
 }
 
 //
+@media only screen and (max-width: 1024px) {
+  .video__vd img:last-child {
+    top: 20%;
+  }
+}
 @media only screen and (max-width: 768px) {
   .video {
     padding: 50px 0;

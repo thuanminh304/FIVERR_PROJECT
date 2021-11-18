@@ -158,12 +158,6 @@ export default function HeaderLoggedIn() {
                   <Menu.Item key="7">Podcost</Menu.Item>
                   <Menu.Item key="8">Blog</Menu.Item>
                 </SubMenu>
-                <Menu.Item className="fiverr-pro" key="9">
-                  Fiverr Pro
-                </Menu.Item>
-                <Menu.Item className="fiverr-business" key="10">
-                  Fiverr Business
-                </Menu.Item>
               </Menu>
             </Drawer>
           </div>
