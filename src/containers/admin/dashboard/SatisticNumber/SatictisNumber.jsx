@@ -35,10 +35,9 @@ const Satictisnumber = () => {
   }, [userSatictis, dataSatictis]);
   useEffect(()=>{
     const adminContent = document.querySelector('.adminContent__main');
-    new ResizeObserver(changeSizeElement).observe(adminContent);
+    new ResizeObserver(()=>changeSizeElement(adminContent)).observe(adminContent);
   },[]);
-  const changeSizeElement = () => {
-    const adminContent = document.querySelector('.adminContent__main');
+  const changeSizeElement = (adminContent) => {
     if(window.innerWidth>=768 && adminContent.offsetWidth<990){
       setDisplayIcon('dontShow');
     }
