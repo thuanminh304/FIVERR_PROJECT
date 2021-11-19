@@ -1,4 +1,4 @@
-.addNewStaff {
+.addNewStaff, .updateUser {
   .ant-picker {
     width: 100%;
   }
@@ -21,7 +21,7 @@
         margin: 0 10px;
         height: auto;
       }
-      .addUser{
+      .addUser, .updateUser{
         background-color: #73bfdd;
         span{
             vertical-align: 1px;

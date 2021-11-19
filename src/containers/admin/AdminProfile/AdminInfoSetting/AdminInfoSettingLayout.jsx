@@ -3,6 +3,7 @@ import { Form } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import {useHistory} from 'react-router-dom';
 import FormLayout from "layouts/FormLayout";
+import {CloseCircleOutlined} from '@ant-design/icons';
 import "./Admininfosetting.scss";
 import moment from "moment";
 import { actUpdateProfile } from "containers/shared/Auth/module/actions";
@@ -83,7 +84,7 @@ const Admininfosetting = () => {
         );
       }
       return (
-        <div key={idx} className="formSetting-item col-6">
+        <div key={idx} className="formSetting-item col-12 col-lg-6">
           <div className="itemInput">
             <div className="item-label">{input.placeHolderText}</div>
             <Layout key={idx} formData={input} />
@@ -173,10 +174,6 @@ const Admininfosetting = () => {
         .replaceAll(",", "");
     }
   };
-  const backHistory = (e) => {
-    e.preventDefault();
-    history.push('/admin');
-  }
   useEffect(() => {
     formRef.current.setFieldsValue(initialValue);
     let result = renderItem(certification);
@@ -191,7 +188,7 @@ const Admininfosetting = () => {
   return (
     <div className="adminInfo-setting">
       <div className="adminInfo-settingContent">
-        <div className="adminInfo-settingTitle">Setting</div>
+        <div className="adminInfo-settingTitle">Setting <CloseCircleOutlined /></div>
         <div className="adminInfo-settingMain">
           <Form
             onFinish={onFinish}
@@ -207,7 +204,6 @@ const Admininfosetting = () => {
             </div>
             <div className="formSetting__button">
               <button id="infoSettingUpdate">Update</button>
-              <button id="infoSettingGoBack" onClick={backHistory}>Back</button>
             </div>
           </Form>
         </div>

@@ -15,6 +15,10 @@
     color: #fff;
     font-size: 15px;
     margin-bottom: 20px;
+    span{
+      vertical-align: 0.5px;
+      display: none;
+    }
   }
   button{
     padding: 8px 15px;
@@ -64,6 +68,26 @@
       right: -5px;
       color: #ff7070;
       transition: transform .2s;
+    }
+  }
+}
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+//responsive
+@include maxResponsive("small-down"){
+  .adminInfo-setting {
+    margin-top: 15px;
+    display: none;
+    .adminInfo-settingTitle{
+      span{
+        display: inline-block;
+      }
+    }
+  }
+  .admin__content.show{
+    .adminInfo-setting {
+      display: block;
     }
   }
 }

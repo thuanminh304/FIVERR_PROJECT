@@ -14,6 +14,11 @@
     color: #73bfdd;
     padding-bottom: 10px;
     border-bottom: 2px dotted #eee;
+    .anticon-setting{
+      vertical-align: 1px;
+      margin-left: 5px;
+      display: none;
+    }
   }
   .adminBox-list {
     padding-top: 10px;
@@ -28,10 +33,6 @@
       font-weight: 500;
       width: 100px;
     }
-    // .infoValue{
-    //     font-size: 15px;
-    //     text-align: center;
-    // }
   }
   .infoField-List {
     color: #888;
@@ -58,6 +59,25 @@
         border-radius: 20px;
         color: #fff;
       }
+    }
+  }
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+//responsive
+@include maxResponsive("small-down"){
+  .adminBox-container {
+    .adminBox-title {
+      .anticon-setting{
+        display: inline-block;
+      }
+    }
+  }
+  .admin__box.hide{
+    .adminBox-container {
+      display: none;
     }
   }
 }

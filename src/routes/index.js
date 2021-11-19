@@ -1,10 +1,8 @@
 import Dashboard from "containers/admin/dashboard/Dashboard";
 import Home from "containers/home/homePage/Home";
 import Login from "containers/shared/Auth/Login/Login";
-import UpdateUser from "containers/admin/user/UpdateUser";
 import Statistics from "containers/admin/JobManagement/Statistics/Statistics";
 import Mainjobtype from "containers/admin/JobManagement/MainJobType/MainJobType";
-import ClientUser from "containers/admin/user/ClientList/ClientUser";
 import ProfileUser from "containers/home/homePage/profileUser/ProfileUser";
 import Editjob from "containers/admin/JobManagement/EditJob/EditJob";
 import CreateNewJobByUser from "containers/home/homePage/profileUser/createNewJobByUser/CreateNewJobByUser";
@@ -18,6 +16,7 @@ import Jobdetail from "containers/home/JobDetail/JobDetail";
 import AddNewStaffLayout from "containers/admin/user/AddNewStaff/AddNewStaffLayout";
 import Stafflist from "containers/admin/user/StaffManagement/StaffList";
 import Clientlistlayout from "containers/admin/user/ClientList/ClientListLayout";
+import Updateuserlayout from "containers/admin/user/UpdateUser/UpdateUserLayout";
 
 export const clientRoutes = [
   {
@@ -122,7 +121,7 @@ export const adminRoutes = [
   },
   {
     path: "/admin/update-user/:idUser",
-    component: UpdateUser,
+    component: Updateuserlayout,
     exact: true,
     isPrivate: true,
     name: "Update User",
