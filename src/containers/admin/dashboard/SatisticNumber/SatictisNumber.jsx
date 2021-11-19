@@ -35,7 +35,9 @@ const Satictisnumber = () => {
   }, [userSatictis, dataSatictis]);
   useEffect(()=>{
     const adminContent = document.querySelector('.adminContent__main');
-    new ResizeObserver(()=>changeSizeElement(adminContent)).observe(adminContent);
+    const resizeElement = new ResizeObserver(()=>changeSizeElement(adminContent));
+    resizeElement.observe(adminContent);
+    return () => resizeElement.disconnect();
   },[]);
   const changeSizeElement = (adminContent) => {
     if(window.innerWidth>=768 && adminContent.offsetWidth<990){

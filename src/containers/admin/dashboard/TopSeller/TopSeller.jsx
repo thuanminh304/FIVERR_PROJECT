@@ -54,10 +54,10 @@ const TopSeller = () => {
       },
     },
     {
-        title: "Job Created Qty",
-        dataIndex: "jobBookingQty",
-        key: "jobBookingQty",
-        width: "18%",
+      title: "Job Created Qty",
+      dataIndex: "jobBookingQty",
+      key: "jobBookingQty",
+      width: "18%",
     },
     {
       title: "Job Booked Qty",
@@ -85,6 +85,8 @@ const TopSeller = () => {
     <div className="topUser">
       <div className="topUser__content">
         <Table
+          rowKey={(record) => record._id}
+          key={(record) => record._id}
           columns={columns}
           dataSource={data}
           scroll={{ x: 768 }}

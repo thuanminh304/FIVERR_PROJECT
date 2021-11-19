@@ -24,7 +24,9 @@ const Statistics = () => {
     dispatch(actGetMainJobList());
     dispatch(actGetAllJob());
     const pipeChartBox = document.querySelector('.percentJobQty');
-    new ResizeObserver(()=>changeSizeElement(pipeChartBox)).observe(pipeChartBox);
+    const resizeElement = new ResizeObserver(()=>changeSizeElement(pipeChartBox));
+    resizeElement.observe(pipeChartBox);
+    return () => resizeElement.disconnect();
   },[]);
   useEffect(() =>{
     const dataChart = dataSatictis.map(job=>{

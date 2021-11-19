@@ -1,54 +1,41 @@
+import Loader from "components/Loader/Loader";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actGetAllUser } from "../module/action";
-import { Table, Tag, Space, Popconfirm, Input } from "antd";
+import { Table, Tag, Space, Popconfirm, Input, Avatar } from "antd";
 import {
   SettingOutlined,
   DeleteOutlined,
+  UserOutlined,
   ManOutlined,
   WomanOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import userApi from "apis/userApi";
-import Loader from "components/Loader/Loader";
 import messageConfig from "components/Message/message";
 import {
   actCurrentPage,
   actSetPageSize,
 } from "containers/admin/JobManagement/MainJobType/Modules/action";
+import "../user.scss";
 import { actShowNote } from "containers/admin/Header/modules/actions";
 //
-export default function AdminUser() {
+export default function ClientUser() {
   const dispatch = useDispatch();
   const [searchUser, setSearchUser] = useState(null);
-  const { currentPageSize, currentPage } = useSelector(
-    (state) => state.FilterJobListReducer
-  );
   let { loading, listAllUser } = useSelector(
     (state) => state.managementUserReducer
   );
-  const {currentUser} = useSelector(state=>state.AuthReducer);
-  const listStaffUser = (searchUser ? searchUser : listAllUser)?.filter(
+  const { currentPageSize, currentPage } = useSelector(
+    (state) => state.FilterJobListReducer
+  );
+  //lọc user client đưa ra table
+  const listClientUser = (searchUser ? searchUser : listAllUser)?.filter(
     (item) => {
-      return item.role === "ADMIN"&& item._id !== currentUser._id;
+      return item.role === "CLIENT";
     }
   );
-  const handleDeleteUser = (id) => {
-    userApi
-      .deleteUser(id)
-      .then(() => {
-        const note = { type: 'complete', content: 'Delete Staff Completed' };
-        dispatch(actShowNote(note));
-        dispatch(actGetAllUser());
-      })
-      .catch((err) => {
-        const note = { type: 'error', content: 'Delete Client Fail' };
-        dispatch(actShowNote(note));
-        dispatch(actGetAllUser());
-      });
-  };
   useEffect(() => {
-    dispatch(actCurrentPage(1));
     dispatch(actGetAllUser());
   }, []);
   const columns = [
@@ -208,7 +195,7 @@ export default function AdminUser() {
       ),
     },
   ];
-  let data = listStaffUser;
+  let data = listClientUser;
   const { Search } = Input;
   const onChange = (e) => {
     if (e.target.value === "") {
@@ -230,6 +217,20 @@ export default function AdminUser() {
       })
       .catch((err) => console.log(err?.response.data));
   };
+  const handleDeleteUser = (id) => {
+    userApi
+      .deleteUser(id)
+      .then(() => {
+        const note = { type: 'complete', content: 'Delete Client Completed' };
+        dispatch(actShowNote(note));
+        dispatch(actGetAllUser());
+      })
+      .catch((err) => {
+        const note = { type: 'error', content: 'Delete Client Fail' };
+        dispatch(actShowNote(note));
+        dispatch(actGetAllUser());
+      });
+  };
   const paginationPage = (page, pageSize) => {
     if (pageSize !== currentPageSize) {
       dispatch(actSetPageSize(pageSize));
@@ -241,8 +242,7 @@ export default function AdminUser() {
   if (loading) return <Loader />;
   return (
     <div className="userList">
-      <div className="userList__feature">
-        <Link to="/admin/staff/add-staff">Add New Staff</Link>
+      <div className="userList__feature clientList">
         <Search
           placeholder="Enter name ..."
           allowClear
@@ -265,7 +265,7 @@ export default function AdminUser() {
           }}
           columns={columns}
           dataSource={data}
-          scroll={{ x: 1024 }}
+          scroll={{ x: 1300 }}
         />
       </div>
     </div>

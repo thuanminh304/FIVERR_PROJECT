@@ -4,7 +4,7 @@ import Login from "containers/shared/Auth/Login/Login";
 import UpdateUser from "containers/admin/user/UpdateUser";
 import Statistics from "containers/admin/JobManagement/Statistics/Statistics";
 import Mainjobtype from "containers/admin/JobManagement/MainJobType/MainJobType";
-import ClientUser from "containers/admin/user/ClientUser";
+import ClientUser from "containers/admin/user/ClientList/ClientUser";
 import ProfileUser from "containers/home/homePage/profileUser/ProfileUser";
 import Editjob from "containers/admin/JobManagement/EditJob/EditJob";
 import CreateNewJobByUser from "containers/home/homePage/profileUser/createNewJobByUser/CreateNewJobByUser";
@@ -17,6 +17,7 @@ import PageSearchJob from "containers/home/homePage/pageSearchJob/PageSearchJob"
 import Jobdetail from "containers/home/JobDetail/JobDetail";
 import AddNewStaffLayout from "containers/admin/user/AddNewStaff/AddNewStaffLayout";
 import Stafflist from "containers/admin/user/StaffManagement/StaffList";
+import Clientlistlayout from "containers/admin/user/ClientList/ClientListLayout";
 
 export const clientRoutes = [
   {
@@ -97,7 +98,7 @@ export const adminRoutes = [
   },
   {
     path: "/admin/client-user",
-    component: ClientUser,
+    component: Clientlistlayout,
     exact: true,
     isPrivate: true,
     name: "Client Users",

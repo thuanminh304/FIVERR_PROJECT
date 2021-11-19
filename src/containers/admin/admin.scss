@@ -59,6 +59,7 @@
 
 // theme setting
 @import "helpers/variables.scss";
+@import "helpers/mixin.scss";
 .adminContainer-content{
 .adminContent__sidebar.lightTheme {
   background-color: transparent!important;
@@ -80,8 +81,7 @@
 }
 }
 
-@import "helpers/variables.scss";
-@import "helpers/mixin.scss";
+
 
 // responsive
 @include maxResponsive("large-down"){
