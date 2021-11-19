@@ -1,65 +1,3 @@
-// .styleErrors {
-//   color: red;
-// }
-// //quan ly nguoi dung
-
-// .main-manage-user {
-//   .input-search {
-//     display: flex;
-//     justify-content: flex-end;
-//     margin-bottom: 10px;
-//     & > span {
-//       width: 300px;
-//     }
-//   }
-//   .search-button-add-new {
-//     display: flex;
-//     justify-content: space-between;
-//     margin-bottom: 10px;
-//     & > span {
-//       width: 300px;
-//     }
-//   }
-//   .btn-delete-user {
-//     color: red;
-//     cursor: pointer;
-//   }
-// }
-
-// //them moi
-
-// .ant-form {
-//   .form-add-new {
-//     .ant-form-item {
-//       justify-content: center;
-//     }
-//   }
-//   .btn-add-new {
-//     margin-left: 400px;
-//   }
-// }
-
-// //cap nhat
-
-// .ant-form {
-//   .form-update {
-//     .ant-form-item {
-//       justify-content: center;
-//     }
-//   }
-
-//   .btn-update {
-//     margin-left: 400px;
-//   }
-// }
-
-// //popover
-// .ant-popover {
-//   .ant-popover-content {
-//     width: 200px;
-//     margin-right: 42px;
-//   }
-// }
 .userList {
   .userList__feature {
     display: flex;
@@ -84,6 +22,7 @@
         &:focus,
         &:focus-within {
           border-color: #ff7070;
+          box-shadow: none;
         }
       }
 
@@ -94,6 +33,9 @@
         border: none;
       }
     }
+  }
+  .clientList{
+    justify-content: flex-end;
   }
   .staffList__content {
     table {
@@ -166,6 +108,36 @@
     }
     .ant-btn-primary{
       background-color: #73bfdd;
+    }
+  }
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+// responsive
+@include maxResponsive("small-down"){
+  .userList{
+    .userList__feature{
+      a {
+        white-space: nowrap;
+        padding: 5px 10px;
+        font-size: 14px;
+      }
+      .ant-input-search {
+        max-width: 220px;
+      }
+    }
+    .clientList{
+      .ant-input-search {
+        max-width: 100%;
+      }
+    }
+  }
+  .ant-popover{
+    left: 260px!important;
+    .ant-popover-arrow{
+      left: 68%!important;
     }
   }
 }
