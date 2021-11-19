@@ -9,7 +9,6 @@ import moment from "moment";
 import "../user.scss";
 import "./AddNewStaff.scss";
 import {LoadingOutlined} from '@ant-design/icons';
-import messageConfig from "components/Message/message";
 import errorForm from "components/showErrors/showError";
 import { actShowNote } from "containers/admin/Header/modules/actions";
 
@@ -217,7 +216,7 @@ export default function ThemNguoiDung() {
               <Input
                 name="certification"
                 onChange={handleChangeCert}
-                placeholder="DIB, PYTHO,..."
+                placeholder="DIB, PYNOW,..."
               />
             </Form.Item>
           </div>

@@ -1,28 +1,35 @@
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { Form, Input, Button, Select, DatePicker } from "antd";
 import { useFormik } from "formik";
 import userApi from "apis/userApi";
 import { useHistory, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import * as yup from "yup";
 import moment from "moment";
 import Loader from "components/Loader/Loader";
-import "./user.scss";
-import messageConfig from "components/Message/message";
+import "../AddNewStaff/AddNewStaff.scss";
+import {LoadingOutlined} from '@ant-design/icons';
 import errorForm from "components/showErrors/showError";
-import { useDispatch } from "react-redux";
 import { actGetDetailUser } from "containers/shared/Auth/module/actions";
-
+import { actShowNote } from "containers/admin/Header/modules/actions";
 //CONTENT
 export default function UpdateUser() {
   const params = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
+  const [isUpdate, setIsUpdate] = useState(false);
+  const {isNote} = useSelector(state=>state.AdminDashBoardSettingReducer);
   const { detailUser } = useSelector((state) => state.AuthReducer);
   const { loading } = useSelector((state) => state.managementUserReducer);
   useEffect(() => {
     dispatch(actGetDetailUser(params.idUser));
   }, []);
+  useEffect(() => {
+    if (!isNote && !!isUpdate) {
+      history.goBack();
+      setIsUpdate(false);
+    }
+  }, [isNote]);
   //tạo form để lưu trừ thông tin nhập từ input
   const formik = useFormik({
     enableReinitialize: true,
@@ -54,23 +61,16 @@ export default function UpdateUser() {
       birthday: yup.string().required("- Not selected yet !"),
     }),
     onSubmit: (values) => {
+      setIsUpdate(true);
       userApi
         .editUser(params.idUser, values)
         .then(() => {
-          messageConfig.loading();
-          setTimeout(() => {
-            messageConfig.success();
-          }, 1000);
-          setTimeout(() => {
-            history.goBack();
-          }, 2000);
+          const note = { type: 'complete', content: 'Update User Info Completed' };
+          dispatch(actShowNote(note));
         })
         .catch((err) => {
-          messageConfig.loading();
-          setTimeout(() => {
-            messageConfig.error();
-          }, 1000);
-          console.log(err);
+          const note = { type: 'error', content: 'Add New Staff Fail' };
+          dispatch(actShowNote(note)); 
         });
     },
   });
@@ -94,22 +94,16 @@ export default function UpdateUser() {
 
   if (loading) return <Loader />;
   return (
-    <>
+    <div className="updateUser">
       <Form
         className="text-left"
         onSubmitCapture={formik.handleSubmit}
         name="basic"
-        labelCol={{
-          span: 8,
-        }}
-        wrapperCol={{
-          span: 10,
-        }}
       >
         <div className="row form-update">
-          <div className="col-6">
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
-              <label>Name</label>
+              <label>Client Name</label>
               <Input
                 name="name"
                 onChange={formik.handleChange}
@@ -120,28 +114,30 @@ export default function UpdateUser() {
                 errors.name,
                 touched.name,
                 values.name,
-                "- Not yet entered",
-                "- Do not use punctuation, numberic and special characters"
+                "Not yet entered",
+                "Do not use punctuation, numberic and special characters"
               )}
             </Form.Item>
-
+          </div>
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
-              <label htmlFor="">Email</label>
+              <label htmlFor="">Client Email</label>
               <Input
                 name="email"
                 onChange={formik.handleChange}
                 placeholder="abc@example.com"
                 value={values.email}
-                disabled
               />
               {errorForm.showErrors(
                 errors.email,
                 touched.email,
                 values.email,
-                "- Not yet entered",
-                "- Email is the incorrect format !"
+                "Not yet entered",
+                "Email is the incorrect format!"
               )}
             </Form.Item>
+          </div>
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
               <label htmlFor="">Phone</label>
               <Input
@@ -154,10 +150,12 @@ export default function UpdateUser() {
                 errors.phone,
                 touched.phone,
                 values.phone,
-                "- Not yet entered",
-                "- Must be 10 number characters!"
+                "Not yet entered",
+                "Must be 10 number characters!"
               )}
             </Form.Item>
+          </div>
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
               <label htmlFor="">Birthday</label> <br />
               <DatePicker
@@ -170,12 +168,12 @@ export default function UpdateUser() {
               {errorForm.showErrorsDefault(errors.birthday, touched.birthday)}
             </Form.Item>
           </div>
-          <div className="col-6">
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
               <label htmlFor="">Gender</label>
               <Select
                 name="gender"
-                placeholder="-----Option-----"
+                placeholder="User Gender"
                 options={[
                   { label: "Male", value: true },
                   { label: "Female", value: false },
@@ -185,15 +183,8 @@ export default function UpdateUser() {
               />
               {errorForm.showErrorsDefault(errors.gender, touched.gender)}
             </Form.Item>
-            <Form.Item>
-              <label htmlFor="">Role</label>
-              <Input
-                name="role"
-                onChange={formik.handleChange}
-                value={values.role}
-                disabled
-              />
-            </Form.Item>
+          </div>
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
               <label htmlFor="">Skill</label>
               <Input
@@ -203,24 +194,26 @@ export default function UpdateUser() {
                 value={values.skill}
               />
             </Form.Item>
+          </div>
+          <div className="field_item col-12 col-sm-6">
             <Form.Item>
               <label htmlFor="">Certification</label>
               <Input
                 name="certification"
-                placeholder="Cybersoft, NEU,..."
+                placeholder="DIB, PYNOW,..."
                 onChange={handleChangeCert}
                 value={values.certification}
               />
             </Form.Item>
           </div>
         </div>
-        <Form.Item className="btn-update">
-          <Button
+        <div className="field_itemBtn col-12">
+        <Button
             type="primary"
             htmlType="submit"
-            className="login-form-button "
+            className="updateUser"
           >
-            Update
+            {!!isUpdate?(<LoadingOutlined />):"Update"}
           </Button>
 
           <Button
@@ -228,12 +221,13 @@ export default function UpdateUser() {
               history.goBack();
             }}
             type="primary"
-            className="login-form-button  ml-5"
+            className="cancle"
           >
             Back
           </Button>
-        </Form.Item>
+        </div>
+          
       </Form>
-    </>
+    </div>
   );
 }
