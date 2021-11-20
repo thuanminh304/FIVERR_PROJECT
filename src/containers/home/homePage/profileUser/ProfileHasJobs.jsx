@@ -29,7 +29,11 @@ export default function ProfileHasJobs(props) {
                   alt=""
                 />
                 <div className="card-body">
-                  <h4 className="card-title">{job.name}</h4>
+                  <h4 className="card-title">
+                    {job.name.length < 30
+                      ? job.name
+                      : `${job.name.substr(0, 30)}...`}
+                  </h4>
                   <div className="hover-overlay">
                     <strong>...</strong>
                     <div className="overlay">
