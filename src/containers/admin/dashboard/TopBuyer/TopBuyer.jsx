@@ -37,6 +37,7 @@ const TopBuyer = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      width: "20%",
     },
     {
       title: "Skill",
@@ -44,9 +45,11 @@ const TopBuyer = () => {
       key: "skill",
       width: "25%",
       render: (skill) => {
+        let skillList = skill;
+        if(skill?.length>2){skillList = skill.slice(0,2).concat('...')}
         return (
           <div className="topUser__skillList">
-            {skill?.map((skill) => {
+            {skillList?.map((skill) => {
               return <div className="topUser__skillItem">{skill}</div>;
             })}
           </div>
@@ -60,9 +63,9 @@ const TopBuyer = () => {
       width: "18%",
     },
     {
-      title: "Wallet",
-      dataIndex: "wallet",
-      key: "wallet",
+      title: "PayFee",
+      dataIndex: "payfee",
+      key: "payfee",
       width: "10%",
       render: (text) => {
         return <span>{text + "$"}</span>;
@@ -72,7 +75,10 @@ const TopBuyer = () => {
   const { userSatictis } = useSelector((state) => state.managementUserReducer);
   const [data, setData] = useState(null);
   useEffect(() => {
-    const dataFilter = userSatictis.filter((user) => user.jobBookingQty > 0);
+    const data = userSatictis.filter((user) => user.payfee > 0);
+    const dataFilter = data.sort((user1, user2) => {
+      return user2.payfee - user1.payfee;
+    });
     setData(dataFilter.slice(0, 10));
   }, [userSatictis]);
   return (

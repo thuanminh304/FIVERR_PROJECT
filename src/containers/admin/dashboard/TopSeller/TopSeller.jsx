@@ -27,7 +27,7 @@ const TopSeller = () => {
         } else {
           return (
             <div className="topUser__avatar">
-              <p>{record.email.slice(0, 1).toUpperCase()}</p>
+              <p>{record?.name?.slice(0, 1).toUpperCase()}</p>
             </div>
           );
         }
@@ -37,6 +37,7 @@ const TopSeller = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      width: "20%",
     },
     {
       title: "Skill",
@@ -44,10 +45,12 @@ const TopSeller = () => {
       key: "skill",
       width: "25%",
       render: (skill) => {
+        let skillList = skill;
+        if(skill?.length>2){skillList = skill.slice(0,2).concat('...')}
         return (
           <div className="topUser__skillList">
-            {skill?.map((skill) => {
-              return <div className="topUser__skillItem">{skill}</div>;
+            {skillList?.map((skill) => {
+              return <div className="topUser__skillItem">{skill.length>5?skill.substr(0, 5) + "..." : skill}</div>;
             })}
           </div>
         );
@@ -55,14 +58,14 @@ const TopSeller = () => {
     },
     {
       title: "Job Created Qty",
-      dataIndex: "jobBookingQty",
-      key: "jobBookingQty",
+      dataIndex: "jobCreatedQty",
+      key: "jobCreatedQty",
       width: "18%",
     },
     {
       title: "Job Booked Qty",
-      dataIndex: "jobBookingQty",
-      key: "jobBookingQty",
+      dataIndex: "jobBooked",
+      key: "jobBooked",
       width: "18%",
     },
     {
@@ -78,7 +81,18 @@ const TopSeller = () => {
   const { userSatictis } = useSelector((state) => state.managementUserReducer);
   const [data, setData] = useState(null);
   useEffect(() => {
-    const dataFilter = userSatictis.filter((user) => user.jobBookingQty > 0);
+    const data = userSatictis.filter(user=>{
+      return user.jobBooked > 0;
+    });
+
+    const dataFilter = data.sort((user1, user2)=>{
+      const userSort = user2.jobBooked - user1.jobBooked;
+      if(userSort !== 0){
+        return userSort;
+      };
+      return user2.jobCreatedQty - user1.jobCreatedQty;
+    })
+
     setData(dataFilter.slice(0, 10));
   }, [userSatictis]);
   return (
