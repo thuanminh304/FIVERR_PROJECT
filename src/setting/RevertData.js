@@ -5,7 +5,6 @@ function TypeJob(
   proServiceQty,
   LocalSellerQty,
   onlineSellerQty,
-  deliveryTimeQty,
   price
 ) {
   this.typeId = typeId;
@@ -14,10 +13,9 @@ function TypeJob(
   this.proServiceQty = proServiceQty;
   this.localSellerQty = LocalSellerQty;
   this.onlineSellerQty = onlineSellerQty;
-  this.deliveryTimeQty = deliveryTimeQty;
   this.price = price;
 }
-export const RevertData = (data) => {
+export const RevertData = (data,jobBookList) => {
   const Arr = [];
     for (let i = 0; i < data.length; i++) {
       if (!!data[i].type) {
@@ -40,18 +38,20 @@ export const RevertData = (data) => {
           const onlineSeller = jobList.filter((job) => {
             return job.onlineSellers === true;
           });
-          const deliveryTime = jobList.filter((job) => {
-            return job.deliveryTime === true;
-          });
-          const totalPrice = deliveryTime.reduce((accu, current) => {
-              return accu + (current.price*0.2);
-          },0);
+          let totalPrice = 0;
+          for(let key in jobList){
+            const jobBook = jobBookList.filter(job=>{
+              return job === jobList[key]._id;
+            });
+            if(jobBook.length > 0){
+              totalPrice += jobList[key].price*0.2*jobBook.length;
+            };
+          }
           const type = data[i].type?.name;
           const jobQty = jobList.length;
           const proServicesQty = proServiceJob.length;
           const localSellerQty = localSeller.length;
           const onlineSellerQty = onlineSeller.length;
-          const deliveryTimeQtu = deliveryTime.length;
           const typeJob = new TypeJob(
             jobTypeId,
             type,
@@ -59,13 +59,18 @@ export const RevertData = (data) => {
             proServicesQty,
             localSellerQty,
             onlineSellerQty,
-            deliveryTimeQtu,
             !totalPrice ? 0 : totalPrice
           );
           Arr.push(typeJob);
         }
       }
   }
-  Arr.sort((job1,job2)=>job2.price-job1.price);
+  Arr.sort((job1,job2)=>{
+    const arr = job2.price-job1.price;
+    if(arr !== 0){
+      return arr;
+    };
+    return job2.jobQty-job1.jobQty;
+  });
   return Arr;
 };

@@ -444,9 +444,13 @@ export const actGetAllJob = () => {
   return (dispatch,getState)=>{
     dispatch(actGetAllJobReq());
     jobApi.getAllJob().then(jobRes=>{
-      const dataSort = RevertData(jobRes.data);
       userApi.getAllUser().then(userRes=>{
-        const userSatictis = RevertUser(userRes.data,jobRes.data);
+        let jobBookQty = [];
+        for(let key in userRes.data){
+          jobBookQty = jobBookQty.concat(userRes.data[key].bookingJob);
+        };
+        const userSatictis = RevertUser(userRes.data,jobRes.data,jobBookQty);
+        const dataSort = RevertData(jobRes.data,jobBookQty);
         dispatch(actGetUserSatictis(userSatictis))
         dispatch(actGetAllJobSucc(dataSort));
       })
