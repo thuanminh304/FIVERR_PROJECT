@@ -131,6 +131,7 @@
   font-weight: bolder;
   ul {
     margin-bottom: 5px;
+    width: 101%;
   }
   li {
     display: inline;
@@ -162,6 +163,7 @@
       width: 100%;
       .category__hover {
         display: block;
+        width: 1000px;
       }
     }
     h6 {
@@ -183,6 +185,13 @@
       .category__hover {
         left: unset;
         right: 0;
+      }
+    }
+    &:nth-child(5),
+    &:nth-child(4) {
+      .category__hover {
+        column-gap: 0;
+        left: -435px;
       }
     }
   }
@@ -369,7 +378,7 @@
   }
 }
 @media only screen and (max-width: 667px) {
-  #header-fixed-loggedin{
+  #header-fixed-loggedin {
     margin-left: 10px;
   }
   #category__content-loggedin {

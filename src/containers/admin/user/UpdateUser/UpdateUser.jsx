@@ -1,14 +1,14 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Select, DatePicker } from "antd";
 import { useFormik } from "formik";
 import userApi from "apis/userApi";
 import { useHistory, useParams } from "react-router-dom";
-import { useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as yup from "yup";
 import moment from "moment";
 import Loader from "components/Loader/Loader";
 import "../AddNewStaff/AddNewStaff.scss";
-import {LoadingOutlined} from '@ant-design/icons';
+import { LoadingOutlined } from "@ant-design/icons";
 import errorForm from "components/showErrors/showError";
 import { actGetDetailUser } from "containers/shared/Auth/module/actions";
 import { actShowNote } from "containers/admin/Header/modules/actions";
@@ -18,7 +18,7 @@ export default function UpdateUser() {
   const history = useHistory();
   const dispatch = useDispatch();
   const [isUpdate, setIsUpdate] = useState(false);
-  const {isNote} = useSelector(state=>state.AdminDashBoardSettingReducer);
+  const { isNote } = useSelector((state) => state.AdminDashBoardSettingReducer);
   const { detailUser } = useSelector((state) => state.AuthReducer);
   const { loading } = useSelector((state) => state.managementUserReducer);
   useEffect(() => {
@@ -54,9 +54,7 @@ export default function UpdateUser() {
       gender: yup.string().required("- Not selected yet !"),
       name: yup
         .string()
-        .matches(
-          /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ ]+$/
-        )
+        
         .required(),
       birthday: yup.string().required("- Not selected yet !"),
     }),
@@ -65,12 +63,15 @@ export default function UpdateUser() {
       userApi
         .editUser(params.idUser, values)
         .then(() => {
-          const note = { type: 'complete', content: 'Update User Info Completed' };
+          const note = {
+            type: "complete",
+            content: "Update User Info Completed",
+          };
           dispatch(actShowNote(note));
         })
         .catch((err) => {
-          const note = { type: 'error', content: 'Add New Staff Fail' };
-          dispatch(actShowNote(note)); 
+          const note = { type: "error", content: "Add New Staff Fail" };
+          dispatch(actShowNote(note));
         });
     },
   });
@@ -208,12 +209,8 @@ export default function UpdateUser() {
           </div>
         </div>
         <div className="field_itemBtn col-12">
-        <Button
-            type="primary"
-            htmlType="submit"
-            className="updateUser"
-          >
-            {!!isUpdate?(<LoadingOutlined />):"Update"}
+          <Button type="primary" htmlType="submit" className="updateUser">
+            {!!isUpdate ? <LoadingOutlined /> : "Update"}
           </Button>
 
           <Button
@@ -226,7 +223,6 @@ export default function UpdateUser() {
             Back
           </Button>
         </div>
-          
       </Form>
     </div>
   );

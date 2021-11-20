@@ -22,7 +22,8 @@ export default function EditorsPicks(props) {
     (job) => job.usersBooking === undefined
   );
   const totalPage = Math.ceil(listJobNotBookedYet?.length / pagination.limit);
-  const listFilter = listJobNotBookedYet?.slice(
+  let listFilter = [];
+  listFilter = listJobNotBookedYet?.slice(
     pagination.page * pagination.limit,
     pagination.page * pagination.limit + 12
   );
