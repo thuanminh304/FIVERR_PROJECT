@@ -83,11 +83,15 @@ export default function DetailListSupType() {
     <div className="detail-list-subtype">
       <div className="info-type-subtype">
         <Breadcrumb separator=">">
-          <Breadcrumb.Item href="/">
-            <strong>FIVERR</strong>
+          <Breadcrumb.Item>
+            <Link to="/">
+              <strong>FIVERR</strong>
+            </Link>
           </Breadcrumb.Item>
-          <Breadcrumb.Item href={`/categories/${params?.nameTypeJob}`}>
-            <strong>{params?.nameTypeJob.toUpperCase()}</strong>
+          <Breadcrumb.Item>
+            <Link to={`/categories/${params?.nameTypeJob}`}>
+              <strong>{params?.nameTypeJob.toUpperCase()}</strong>
+            </Link>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             {detailSubTypeJob?.name.toUpperCase()}{" "}

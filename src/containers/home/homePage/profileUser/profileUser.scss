@@ -456,6 +456,7 @@
           .create-new-gig {
             position: relative;
             text-align: center;
+            height: 100%;
             a {
               margin: 42.5px 30px;
               span {
@@ -498,6 +499,7 @@
     }
   }
 }
+
 @keyframes example {
   from {
     opacity: 0.5;
@@ -594,7 +596,7 @@
         .info-top {
           .avatar-edit {
             width: unset;
-            margin-top: 30px;
+            margin-top: 35px;
             .avatar-user {
               width: 50px;
               height: 50px;
@@ -733,6 +735,14 @@
       }
     }
   }
+  .profile-user .profile-left .info-basic .info-top .avatar-edit label {
+    width: 60px;
+    height: 60px;
+    span {
+      font-size: 26px;
+      top: 20%;
+    }
+  }
 }
 
 @media only screen and (max-width: 375px) {
@@ -757,12 +767,12 @@
     .profile-right {
       .tab-profile-right-content {
         .ant-tabs-nav {
-          .ant-tabs-nav-list{
+          .ant-tabs-nav-list {
             .ant-tabs-tab {
               margin-left: 14px;
             }
           }
-        } 
+        }
         .render-job-rent {
           padding: 10px;
         }

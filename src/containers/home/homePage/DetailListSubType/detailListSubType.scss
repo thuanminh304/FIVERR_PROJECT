@@ -97,28 +97,7 @@
     }
   }
 }
-.pagination {
-  position: absolute;
-  bottom: 15px;
-  right: 0;
-  button {
-    border: none;
-    padding: 10px 20px;
-    background-color: #1dbf73;
-    margin-left: 20px;
-    border-radius: 5px;
-    color: white;
-    font-weight: 600;
-    opacity: 0.9;
-    &:hover {
-      opacity: 1;
-    }
-    &:disabled {
-      background-color: #b5b6ba;
-      color: #404145;
-    }
-  }
-}
+
 
 @media only screen and (max-width: 414px) {
   .detail-list-subtype {

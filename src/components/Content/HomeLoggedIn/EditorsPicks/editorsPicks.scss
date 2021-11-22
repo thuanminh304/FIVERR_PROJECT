@@ -79,24 +79,22 @@
   }
 }
 
-.pagination {
+.pagination-app {
   position: absolute;
   bottom: 15px;
-  right: 0;
+  right: 50%;
+  transform: translate(50%, -50%);
   button {
+    background-color: transparent;
     border: none;
-    padding: 10px 20px;
-    background-color: #1dbf73;
-    margin-left: 20px;
-    border-radius: 5px;
-    color: white;
+    color: #404145;
     font-weight: 600;
     opacity: 0.9;
+    margin-left: 10px;
     &:hover {
       opacity: 1;
     }
     &:disabled {
-      background-color: #b5b6ba;
       color: #404145;
     }
   }
@@ -115,9 +113,9 @@
     .editors-row {
       grid-template-columns: repeat(2, 1fr);
     }
-    .pagination{
+    .pagination {
       height: 30px;
-      button{
+      button {
         font-size: 10px;
         padding: 0 10px;
       }

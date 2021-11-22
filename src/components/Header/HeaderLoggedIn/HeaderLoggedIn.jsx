@@ -33,9 +33,11 @@ export default function HeaderLoggedIn() {
 
   const menu = (
     <Menu>
-      <Menu.Item key="1">
-        <Link to={`/user/${currentUser?.email}`}>Profile</Link>
-      </Menu.Item>
+      {currentUser?.role === "CLIENT" ? (
+        <Menu.Item key="1">
+          <Link to={`/user/${currentUser?.email}`}>Profile</Link>
+        </Menu.Item>
+      ) : null}
       {currentUser?.role === "ADMIN" ? (
         <Menu.Item key="2">
           <Link to="/admin">Trang Admin</Link>
@@ -125,12 +127,19 @@ export default function HeaderLoggedIn() {
                 style={{ width: 256 }}
                 mode="inline"
               >
-                <Menu.Item key="1">
+                <Menu.Item key="100">
                   <Link to="/">Home</Link>
                 </Menu.Item>
-                <Menu.Item key="28">
-                  <Link to={`/user/${currentUser?.email}`}>Profile</Link>
-                </Menu.Item>
+                {currentUser?.role === "CLIENT" ? (
+                  <Menu.Item key="1">
+                    <Link to={`/user/${currentUser?.email}`}>Profile</Link>
+                  </Menu.Item>
+                ) : null}
+                {currentUser?.role === "ADMIN" ? (
+                  <Menu.Item key="28">
+                    <Link to="/admin">Trang Admin</Link>
+                  </Menu.Item>
+                ) : null}
                 <SubMenu key="sub2" title="Browser Categories">
                   {mainJob?.map((maintype, idx) => {
                     const name = configName(maintype.name);
