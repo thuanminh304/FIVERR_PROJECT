@@ -1,3 +1,4 @@
+@import "helpers/mixin.scss";
 @import "helpers/variables.scss";
 
 .carousel-start {
@@ -8,7 +9,7 @@
     border: 1px solid rgba($color: gray, $alpha: 0.3);
     border-radius: 5px;
     text-align: center;
-    padding: 10px 20px;
+    padding: 10px;
     max-width: 20%;
     height: 200px;
     p {
@@ -24,8 +25,13 @@
       margin-top: 20px;
       border-radius: 5px;
       font-weight: bold;
+      a {
+        color: #1dbf73;
+      }
       &:hover {
-        color: $color-white;
+        a {
+          color: #fff;
+        }
         background-color: $color-green-all;
       }
     }
@@ -85,14 +91,15 @@
     .carousel-start-text {
       max-width: 20%;
       button {
-        padding: 5px 20px;
+        padding: 5px 10px;
         margin-top: 0;
       }
     }
   }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 992px) {
   .carousel-start {
+    margin: 0 !important;
     .carousel-start-text {
       max-width: 35%;
       button {
@@ -102,6 +109,16 @@
     }
     .carousel-start-img {
       max-width: 70%;
+      .img-item {
+        span {
+          font-size: 28px;
+          margin-top: 15px;
+        }
+      }
+      
+    }
+    .slick-dots {
+      left: -35%;
     }
   }
 }
@@ -122,13 +139,35 @@
         img {
           height: 170px;
         }
+        span {
+          margin-top: 30px;
+          font-size: 20px;
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    .slick-dots {
+      left: -34%;
+      li {
+        button {
+          display: inline-block!important;
+          width: 10px !important;
+          height: 10px !important;
+          &:before {
+            font-size: 10px;
+          }
+        }
       }
     }
   }
 }
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 575.98px) {
   .carousel-start {
-    margin-top: 70px !important;
+    margin-top: 30px !important;
+    margin-left: -16px!important;
+    margin-right: -16px!important;
     .carousel-start-text {
       display: none;
       max-width: 0%;

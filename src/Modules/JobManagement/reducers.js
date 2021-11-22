@@ -36,6 +36,9 @@ import {
   GET_ALL_JOB_REQ,
   GET_ALL_JOB_SUCC,
   GET_ALL_JOB_FAIL,
+  GET_JOB_USER_REQ,
+  GET_JOB_USER_SUCC,
+  GET_JOB_USER_FAIL,
 } from "./types";
 const initialState = {
   mainJob: [],
@@ -47,6 +50,7 @@ const initialState = {
   dataSatictis: [],
   jobDetail: null,
   typeNote: "",
+  jobHagTagUser: null,
 };
 
 const JobManagementReducer = (state = initialState, { type, payload }) => {
@@ -269,6 +273,12 @@ const JobManagementReducer = (state = initialState, { type, payload }) => {
     case GET_ALL_JOB_FAIL: {
       return { ...state, loadding: false, isError: true };
     }
+    case GET_JOB_USER_REQ: 
+      return {...state, loading: true, isError: false};
+    case GET_JOB_USER_SUCC:
+      return {...state, loading: false, isError: false, jobHagTagUser: payload};
+    case GET_JOB_USER_FAIL:
+      return {...state, loadding: false, isError: true}
     default:
       return state;
   }

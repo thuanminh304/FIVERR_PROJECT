@@ -275,6 +275,10 @@
 }
 @include maxResponsive("small-down") {
   .jobdetail {
+    width: 100%;
+    .jobdetail__content {
+      padding: 32px 16px 32px;
+    }
     .jobDetail__infoMain {
       .info__title {
         h1 {
