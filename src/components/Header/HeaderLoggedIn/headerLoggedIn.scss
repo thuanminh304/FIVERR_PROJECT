@@ -26,8 +26,11 @@
     border-radius: 50%;
   }
 
-  .header__icon-fixed img {
-    width: 90px;
+  .header__icon-fixed {
+    margin-left: 6px;
+    img {
+      width: 90px;
+    }
   }
   .header__nav-fixed {
     display: flex;
@@ -131,7 +134,7 @@
   font-weight: bolder;
   ul {
     margin-bottom: 5px;
-    width: 101%;
+    width: 108%;
   }
   li {
     display: inline;
@@ -247,6 +250,17 @@
 }
 .relativeDot {
   position: relative;
+  .name-avatar {
+    background-color: #1dbf73 !important;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    color: white !important;
+    transition: all 0.5s;
+    width: 40px;
+    height: 40px;
+  }
   .dot {
     top: 0;
     position: absolute;
@@ -269,7 +283,7 @@
     overflow-x: scroll;
     font-weight: 600;
     ul {
-      width: 114%;
+      width: 122%;
       .li-cate {
         margin: 0 10px;
         &:hover {
@@ -296,7 +310,7 @@
       align-items: stretch;
       .menu-hidden-left {
         color: #7a7d85;
-        transform: translateX(-36px);
+        transform: translateX(-33px);
         i {
           margin-top: 4px;
           font-size: 26px;
@@ -344,7 +358,7 @@
     overflow-x: scroll;
     font-weight: 600;
     ul {
-      width: 149%;
+      width: 160%;
       .li-cate {
         margin: 0 10px;
         &:hover {
@@ -373,7 +387,7 @@
 @media only screen and (max-width: 736px) {
   #category__content-loggedin {
     ul {
-      width: 155%;
+      width: 166%;
     }
   }
 }
@@ -383,7 +397,7 @@
   }
   #category__content-loggedin {
     ul {
-      width: 171%;
+      width: 184%;
     }
   }
 }

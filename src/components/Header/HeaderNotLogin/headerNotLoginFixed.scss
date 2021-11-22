@@ -99,7 +99,7 @@ header {
   position: relative;
   top: 0px;
   z-index: 1;
-  
+
   background-color: white;
   padding-top: 5px;
   border-top: 1px solid #ddd;
@@ -141,11 +141,11 @@ header {
 }
 #category__content ul {
   margin-bottom: 5px;
-  width: 101%;
+  width: 99%;
 }
 #category__content li {
   display: inline;
-  margin: 0 19px;
+  margin: 0 13px;
 }
 #category__content a {
   color: #7a7d85;
@@ -213,7 +213,7 @@ header {
     overflow-x: scroll;
     font-weight: 600;
     ul {
-      width: 114%;
+      width: 120%;
       .li-cate {
         margin: 0 10px;
         a {
@@ -248,6 +248,7 @@ header {
         align-items: stretch;
         .menu-hidden-left {
           color: #7a7d85;
+          transform: translateX(-15px);
           i {
             margin-top: 4px;
             font-size: 26px;
@@ -307,7 +308,7 @@ header {
       overflow-x: scroll;
       font-weight: 600;
       ul {
-        width: 155%;
+        width: 160%;
         .li-cate {
           margin: 0 10px;
           a {
@@ -393,7 +394,7 @@ header {
       overflow-x: scroll;
       font-weight: 600;
       ul {
-        width: 158%;
+        width: 167%;
         .li-cate {
           margin: 0 10px;
           a {
