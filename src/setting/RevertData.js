@@ -59,7 +59,7 @@ export const RevertData = (data,jobBookList) => {
             proServicesQty,
             localSellerQty,
             onlineSellerQty,
-            !totalPrice ? 0 : totalPrice
+            !totalPrice ? 0 : Math.round(totalPrice*Math.pow(10,1))/Math.pow(10,1),
           );
           Arr.push(typeJob);
         }

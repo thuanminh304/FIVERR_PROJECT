@@ -37,6 +37,9 @@ import {
   GET_ALL_JOB_REQ,
   GET_ALL_JOB_SUCC,
   GET_ALL_JOB_FAIL,
+  GET_JOB_USER_REQ,
+  GET_JOB_USER_FAIL,
+  GET_JOB_USER_SUCC,
 } from "./types";
 import jobApi from "apis/jobApi";
 import { actShowNote, actTurnOffNote } from "containers/admin/Header/modules/actions";
@@ -44,6 +47,7 @@ import { RevertData } from 'setting/RevertData';
 import { RevertUser } from "setting/RevertDataUser";
 import userApi from "apis/userApi";
 import { actGetUserSatictis } from "containers/admin/user/module/action";
+import HagtagFunc from "setting/HagTag";
 
 export const showNote = (dispatch, getState, typeNote, contentNote) => {
     const {isNote} = getState().AdminDashBoardSettingReducer;
@@ -447,7 +451,9 @@ export const actGetAllJob = () => {
       userApi.getAllUser().then(userRes=>{
         let jobBookQty = [];
         for(let key in userRes.data){
-          jobBookQty = jobBookQty.concat(userRes.data[key].bookingJob);
+          if(userRes.data[key].role === 'CLIENT'){
+            jobBookQty = jobBookQty.concat(userRes.data[key].bookingJob);
+          }
         };
         const userSatictis = RevertUser(userRes.data,jobRes.data,jobBookQty);
         const dataSort = RevertData(jobRes.data,jobBookQty);
@@ -463,3 +469,30 @@ export const actGetAllJob = () => {
     });
   };
 };
+
+// get job hagtag user
+const actGetHagtagJobReq = () => ({
+  type: GET_JOB_USER_REQ,
+});
+const actGetHagtagJobSucc = (data) => ({
+  type: GET_JOB_USER_SUCC,
+  payload: data,
+});
+const actGetHagtagJobFail = (error) => ({
+  type: GET_JOB_USER_FAIL,
+  payload: error,
+});
+export const actGetHagtagJob = () => {
+  return (dispatch, getState) => {
+    dispatch(actGetHagtagJobReq());
+    jobApi.getAllJob().then(jobRes=>{
+      const {currentUser} = getState().AuthReducer;
+      const joblist = jobRes.data;
+      const data = HagtagFunc(currentUser,joblist);
+      dispatch(actGetHagtagJobSucc(data));
+    })
+    .catch(error=> {
+      dispatch(actGetHagtagJobFail(error));
+    })
+  }
+}
