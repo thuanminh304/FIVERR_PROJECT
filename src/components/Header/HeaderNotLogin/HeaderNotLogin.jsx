@@ -35,10 +35,12 @@ export default function HeaderNotLogin() {
     console.log("click ", e);
   };
   return (
-    <header style={{
-      maxWidth:1400,
-      margin:"0 auto"
-    }}>
+    <header
+      style={{
+        maxWidth: 1400,
+        margin: "0 auto",
+      }}
+    >
       <div id="header-fixed">
         <div id="header__content-fixed">
           <div className="header__icon-fixed">
@@ -59,81 +61,7 @@ export default function HeaderNotLogin() {
             <a className="btn-dis" href="#explore">
               Explore
             </a>
-            <div className="dropdown">
-              <a
-                href="# "
-                className="button-fixed"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <i className="fa fa-globe"></i>
-                <span>English</span>
-              </a>
-              <div
-                className="dropdown-menu"
-                aria-labelledby="dropdownMenuButton"
-              >
-                <a href="# ">English</a>
-                <a href="# ">Deutsch</a>
-                <a href="# ">Espanol</a>
-                <a href="# ">Francais</a>
-                <a href="# ">Portugues</a>
-                <a href="# ">Italiano</a>
-                <a href="# ">Nederlands</a>
-              </div>
-            </div>
-            <div className="dropdown">
-              <a
-                href="# "
-                className="button-fixed"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span>$ USD</span>
-              </a>
-              <div
-                style={{ transform: "translate3d(0px, 25px, 0px)" }}
-                className="dropdown-menu dropdown-menu-lastchild"
-                aria-labelledby="dropdownMenuButton"
-              >
-                <ul>
-                  <li>
-                    <a href="# ">United States Dollar(USD) - $</a>
-                  </li>
-                  <li>
-                    <a href="# ">Euro(EUR) - €</a>
-                  </li>
-                  <li>
-                    <a href="# ">British Pound (GBP) - £</a>
-                  </li>
-                  <li>
-                    <a href="# ">Australian Dollar (AUD) - A$</a>
-                  </li>
-                  <li>
-                    <a href="# ">Canadian Dollar (CAD) - C$</a>
-                  </li>
-                  <li>
-                    <a href="# ">Israeli Shekel (ILS) - ₪</a>
-                  </li>
-                  <li>
-                    <a href="# ">Brazilian Real (BRL) - R$</a>
-                  </li>
-                  <li>
-                    <a href="# ">Hong Kong Dollar (HKD) - HK$</a>
-                  </li>
-                  <li>
-                    <a href="# ">Swedish Krona (SEK) - kr</a>
-                  </li>
-                  <li>
-                    <a href="# ">New Zealand Dollar (NZD) - NZ$</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+
             <a className="btn-dis" href="#seller ">
               Become a Seller
             </a>

@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import { useSelector } from "react-redux";
 import "./carouselLoggedIn.scss";
+import { Link } from "react-router-dom";
 export default function CarouselLoggedIn() {
   const settings = {
     infinite: true,
@@ -22,50 +23,53 @@ export default function CarouselLoggedIn() {
     <div className="carousel-start row">
       <div className="carousel-start-text col-3">
         <p>
-          {" "}
           <strong> Hi {name.concat(...nameCarousel)},</strong>
         </p>
         <p>Get offers from sellers for your project</p>
-        <button>Post a Request</button>
+        <button><Link to={`/user/${currentUser.email}`}>Go to Profile</Link></button>
       </div>
       <Slider className="carousel-start-img col-9" {...settings}>
         <div className="img-item">
           <span>
-            Learn how to lunch a postcard{" "}
-            <p>Now's time to lunch your postcard, we got the knowhow.</p>{" "}
+            Start your dropshipping business
+            <p>Create, launch & grow your dropshipping business today.</p>
           </span>
           <img
-            src="images/imagesHomeLoggedIn/Find_The_Right_Freelancer_Desktop.jpg"
+            style={{ objectFit: "cover" }}
+            src="images/imagesHomeLoggedIn/carousel4.jpg"
             alt=""
           />
         </div>
         <div className="img-item">
           <span>
-            Learn how to lunch a postcard{" "}
-            <p>Now's time to lunch your postcard, we got the knowhow.</p>{" "}
+            Your first project awaits
+            <p>Get started with these recommended sellers.</p>{" "}
           </span>
           <img
+            style={{ objectFit: "cover" }}
             src="/images/imagesHomeLoggedIn/In_Session_Recommendations_desktop.jpg"
             alt=""
           />
         </div>
         <div className="img-item">
           <span>
-            Learn how to lunch a postcard{" "}
-            <p>Now's time to lunch your postcard, we got the knowhow.</p>{" "}
+            Holiday success starts here
+            <p>Head to our Holiday Hub for a head start this season.</p>{" "}
           </span>
           <img
-            src="/images/imagesHomeLoggedIn/Dropshipping_LIHP_Banner-desktop-988x233.jpg"
+            style={{ objectFit: "cover" }}
+            src="/images/imagesHomeLoggedIn/carousel3.jpg"
             alt=""
           />
         </div>
         <div className="img-item">
           <span>
-            Learn how to lunch a postcard{" "}
-            <p>Now's time to lunch your postcard, we got the knowhow.</p>{" "}
+            Landing pages that convert
+            <p>Learn the principles for designing great landing pages.</p>{" "}
           </span>
           <img
-            src="/images/imagesHomeLoggedIn/Export Desktop V4 (1).jpg"
+            style={{ objectFit: "cover" }}
+            src="/images/imagesHomeLoggedIn/carousel5.jpg"
             alt=""
           />
         </div>

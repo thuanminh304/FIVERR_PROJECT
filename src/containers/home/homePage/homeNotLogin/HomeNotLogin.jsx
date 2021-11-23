@@ -19,14 +19,14 @@ export default function HomeNotLogin() {
       }}
     >
       <Carousel />
-      <PopularServices />
-      <Video />
+      {/* <PopularServices /> */}
+      {/* <Video /> */}
       <Explore />
       <Business />
-      <Review />
-      <LogoMaker />
+      {/* <Review /> */}
+      {/* <LogoMaker /> */}
       <Projects />
-      <Guides />
+      {/* <Guides /> */}
       <GetStarted />
     </div>
   );

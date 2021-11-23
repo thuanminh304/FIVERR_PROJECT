@@ -1,11 +1,11 @@
 @import "helpers/variables.scss";
 
-.editors-picks {
+.editors-picks, .popular-gigs {
   margin-top: 50px;
   & > h3 {
     color: $color-sm-title;
   }
-  .editors-row {
+  .editors-row, .popular-gigsRow {
     margin: 20px 0 0 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -101,16 +101,16 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .editors-picks {
-    .editors-row {
+  .editors-picks, .popular-gigs {
+    .editors-row, .popular-gigsRow {
       grid-template-columns: repeat(3, 1fr);
     }
   }
 }
 
 @media only screen and (max-width: 414px) {
-  .editors-picks {
-    .editors-row {
+  .editors-picks, .popular-gigs {
+    .editors-row, .popular-gigsRow {
       grid-template-columns: repeat(2, 1fr);
     }
     .pagination {

@@ -80,19 +80,6 @@ export default function HeaderLoggedIn() {
             enterButton="Search"
           />
           <div className="header__nav-fixed">
-            <a className="btn-dis-fixed btn-dis-fixed-pro" href="# ">
-              Fiverr Pro
-            </a>
-            <a className="btn-dis-fixed" href="# ">
-              Explore
-            </a>
-
-            <a className="btn-dis-fixed" href="# ">
-              Message
-            </a>
-            <a href="# ">Lists</a>
-            <a href="# ">Orders</a>
-
             <div className="relativeDot">
               <Dropdown
                 overlay={menu}

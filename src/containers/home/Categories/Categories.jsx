@@ -29,7 +29,6 @@ const Categories = () => {
               return !!job.image;
             });
             setLoading(false);
-            console.log(imageJob);
             setDataImg(imageJob);
           })
           .catch((error) => {

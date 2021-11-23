@@ -1,0 +1,16 @@
+.home-loggedin{
+    max-width: 1400px;
+    padding: 32px;
+    margin: auto;
+}
+
+// responsive
+@import "helpers/mixin.scss";
+@import "helpers/variables.scss";
+@include maxResponsive("medium-down") {
+    .home-loggedin{
+        max-width: 100%;
+        padding: 24px 16px 32px;
+        margin: auto;
+    }
+}

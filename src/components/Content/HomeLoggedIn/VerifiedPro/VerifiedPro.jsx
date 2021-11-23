@@ -1,4 +1,5 @@
 import jobApi from "apis/jobApi";
+import Jobrender from "containers/shared/JobRender/JobRender";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -33,39 +34,40 @@ export default function VerifiedPro() {
       <div className="verified-pro-list">
         {listSocial?.slice(0, 5).map((job, idx) => {
           return (
-            <div key={job._id} className="card list-pro-item">
-              <Link to={`/digital-marketing/detail/${job._id}`}>
-                <img className="card-img-top" src={job.image} alt="" />
-              </Link>
-              <div className="card-body">
-                <p className="card-text text-active">
-                  <Link to={`/digital-marketing/detail/${job._id}`}>
-                    {job.name.length < 20
-                      ? job.name
-                      : `${job.name.substr(0, 20)}...`}
-                  </Link>
-                </p>
-                <p className="card-text">
-                  <>
-                    <i className="fa fa-star"></i>
-                    {job.rating} <span>(183)</span>
-                  </>
-                  <img
-                    src="images/imagesHomeLoggedIn/pro-badge-outline-2.0.f84c499 (1).svg"
-                    alt=""
-                  />
-                </p>
-              </div>
-              <div className="card-footer">
-                <span>
-                  <i className="fa fa-bars"></i>
-                  <i className="fa fa-heart"></i>
-                </span>
-                <p className="card-text">
-                  STARTING AT <span>${job.price}</span>{" "}
-                </p>
-              </div>
-            </div>
+            // <div key={job._id} className="card list-pro-item">
+            //   <Link to={`/digital-marketing/detail/${job._id}`}>
+            //     <img className="card-img-top" src={job.image} alt="" />
+            //   </Link>
+            //   <div className="card-body">
+            //     <p className="card-text text-active">
+            //       <Link to={`/digital-marketing/detail/${job._id}`}>
+            //         {job.name.length < 20
+            //           ? job.name
+            //           : `${job.name.substr(0, 20)}...`}
+            //       </Link>
+            //     </p>
+            //     <p className="card-text">
+            //       <>
+            //         <i className="fa fa-star"></i>
+            //         {job.rating} <span>(183)</span>
+            //       </>
+            //       <img
+            //         src="images/imagesHomeLoggedIn/pro-badge-outline-2.0.f84c499 (1).svg"
+            //         alt=""
+            //       />
+            //     </p>
+            //   </div>
+            //   <div className="card-footer">
+            //     <span>
+            //       <i className="fa fa-bars"></i>
+            //       <i className="fa fa-heart"></i>
+            //     </span>
+            //     <p className="card-text">
+            //       STARTING AT <span>${job.price}</span>{" "}
+            //     </p>
+            //   </div>
+            // </div>
+            <Jobrender job={job}/>
           );
         })}
       </div>
