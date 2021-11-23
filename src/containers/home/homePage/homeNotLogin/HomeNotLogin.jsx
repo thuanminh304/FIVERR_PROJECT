@@ -11,17 +11,23 @@ import Guides from "components/Content/HomeNotLogin/Guides/Guides";
 import GetStarted from "components/Content/HomeNotLogin/GetStarted/GetStarted";
 export default function HomeNotLogin() {
   return (
-    <div className="home-not-login">
+    <div
+      className="home-not-login"
+      style={{
+        maxWidth: 1400,
+        margin: "0 auto",
+      }}
+    >
       <Carousel />
-      <PopularServices />
-      <Video />
-      <Explore/>
-      <Business/>
-      <Review/>
-      <LogoMaker/>
-      <Projects/>
-      <Guides/>
-      <GetStarted/>
+      {/* <PopularServices /> */}
+      {/* <Video /> */}
+      <Explore />
+      <Business />
+      {/* <Review /> */}
+      {/* <LogoMaker /> */}
+      <Projects />
+      {/* <Guides /> */}
+      <GetStarted />
     </div>
   );
 }

@@ -21,7 +21,16 @@ export default function HomeLoggedIn() {
   },[]);
   if(!!loading) return <Loader />;
   return (
-    <div className="home-loggedin">
+    <div
+      style={{
+        maxWidth:"1400px",
+        width: "95%",
+        margin: "auto",
+        paddingBottom: 80,
+        position: "relative",
+      }}
+      className="home-loggedin"
+    >
       <Suspense fallback={<Loader />}>
       <CarouselLoggedIn />
         {jobHagTagUser?.typeRelate.length>0?<PopularGigs gigs={jobHagTagUser.typeRelate} currentUserId = {currentPage?._id}/>:""}

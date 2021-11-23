@@ -1,6 +1,8 @@
 @import "helpers/variables.scss";
 
 .profile-user {
+  max-width: 1400px;
+  margin: 0 auto !important;
   justify-content: space-around;
   background-color: #f7f7f7;
   color: $color-nav-title;

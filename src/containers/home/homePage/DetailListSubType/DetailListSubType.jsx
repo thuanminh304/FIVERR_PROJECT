@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { actGetSubJob } from "Modules/JobManagement/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { Breadcrumb, Avatar, Switch } from "antd";
+import { Breadcrumb, Switch } from "antd";
 import { actGetDetailSubTypeJob } from "containers/home/homePage/profileUser/createNewJobByUser/StepsCreateNewGig/modules/action";
-import { UserOutlined } from "@ant-design/icons";
 import "./detailListSubType.scss";
 import { Link } from "react-router-dom";
 import {
@@ -164,7 +163,7 @@ export default function DetailListSupType() {
             );
           })}
         </div>
-        {renderPagination(setPagination, pagination, totalPage)}
+        {renderPagination(setPagination, pagination, totalPage,listFilter)}
       </div>
     </div>
   );
