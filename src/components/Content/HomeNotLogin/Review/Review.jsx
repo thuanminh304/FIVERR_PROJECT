@@ -43,7 +43,7 @@ export default function Review() {
               <div className="fiverrReview__img ">
                 <img
                   className="img-fluid"
-                  src="images/testimonial-video-still-rooted.jpg"
+                  src="images/imagesHomeNoLogin/review/testimonial-video-still-rooted.jpg"
                   alt=""
                 />
               </div>
@@ -59,7 +59,7 @@ export default function Review() {
                   url="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/yja2ld5fnolhsixj3xxw"
                 />
               </Modal>
-              <a href="# " onClick={onOpenModal1}>
+              <a onClick={onOpenModal1}>
                 <div className="fiverrReview__btnPlay">
                   <i className="fa fa-play" />
                 </div>
@@ -69,7 +69,7 @@ export default function Review() {
               <h5>
                 Kay Kim, Co-Founder
                 <span>
-                  <img src="images/rooted-logo-x2.321d79d.png" alt="" />
+                  <img src="images/imagesHomeNoLogin/review/rooted-logo-x2.321d79d.png" alt="" />
                 </span>
               </h5>
               <p>
@@ -87,7 +87,7 @@ export default function Review() {
               <div className="fiverrReview__img ">
                 <img
                   className="img-fluid"
-                  src="images/testimonial-video-still-naadam.jpg"
+                  src="images/imagesHomeNoLogin/review/testimonial-video-still-naadam.jpg"
                   alt=""
                 />
               </div>
@@ -103,7 +103,7 @@ export default function Review() {
                   url="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/plfa6gdjihpdvr10rchl"
                 />
               </Modal>
-              <a href="# " onClick={onOpenModal2}>
+              <a onClick={onOpenModal2}>
                 <div className="fiverrReview__btnPlay">
                   <i className="fa fa-play" />
                 </div>
@@ -113,7 +113,7 @@ export default function Review() {
               <h5>
                 Caitlin Tormey, Chief Commercial Officer
                 <span>
-                  <img src="./images/naadam-logo-x2.0a3b198.png" alt="" />
+                  <img src="./images/imagesHomeNoLogin/review/naadam-logo-x2.0a3b198.png" alt="" />
                 </span>
               </h5>
               <p>
@@ -130,7 +130,7 @@ export default function Review() {
               <div className="fiverrReview__img ">
                 <img
                   className="img-fluid"
-                  src="./images/testimonial-video-still-lavender.jpg"
+                  src="./images/imagesHomeNoLogin/review/testimonial-video-still-lavender.jpg"
                   alt=""
                 />
               </div>
@@ -146,7 +146,7 @@ export default function Review() {
                   url="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/rb8jtakrisiz0xtsffwi"
                 />
               </Modal>
-              <a href="# " onClick={onOpenModal3}>
+              <a onClick={onOpenModal3}>
                 <div className="fiverrReview__btnPlay">
                   <i className="fa fa-play" />
                 </div>
@@ -156,7 +156,7 @@ export default function Review() {
               <h5>
                 Brighid Gannon (DNP, PMHNP-BC), Co-Founder
                 <span>
-                  <img src="./images/lavender-logo-x2.89c5e2e.png" alt="" />
+                  <img src="./images/imagesHomeNoLogin/review/lavender-logo-x2.89c5e2e.png" alt="" />
                 </span>
               </h5>
               <p>
@@ -173,7 +173,7 @@ export default function Review() {
               <div className="fiverrReview__img ">
                 <img
                   className="img-fluid"
-                  src="./images/testimonial-video-still-haerfest.jpg"
+                  src="./images/imagesHomeNoLogin/review/testimonial-video-still-haerfest.jpg"
                   alt=""
                 />
               </div>
@@ -189,7 +189,7 @@ export default function Review() {
                   url="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/bsncmkwya3nectkensun"
                 />
               </Modal>
-              <a href="# " onClick={onOpenModal4}>
+              <a onClick={onOpenModal4}>
                 <div className="fiverrReview__btnPlay">
                   <i className="fa fa-play" />
                 </div>
@@ -199,7 +199,7 @@ export default function Review() {
               <h5>
                 Tim and Dan Joo, Co-Founders
                 <span>
-                  <img src="./images/haerfest-logo-x2.03fa5c5.png" alt="" />
+                  <img src="./images/imagesHomeNoLogin/review/haerfest-logo-x2.03fa5c5.png" alt="" />
                 </span>
               </h5>
               <p>

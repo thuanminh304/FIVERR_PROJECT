@@ -53,9 +53,9 @@ export default function Video() {
           </ul>
         </div>
         <div className="video__vd">
-          <img src="images/selling-proposition-still-1400-x1.png" alt="" />
+          <img src="images/imagesHomeNoLogin/video/selling-proposition-still-1400-x1.png" alt="" />
 
-          <a href="# " onClick={onOpenModal}>
+          <a onClick={onOpenModal}>
             <img
               type="button"
               id="btn-video-fixed"

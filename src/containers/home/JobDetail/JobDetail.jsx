@@ -11,6 +11,7 @@ import { Link, useHistory } from "react-router-dom";
 import commentApi from "apis/commentApi";
 import jobApi from 'apis/jobApi';
 import Loader from "components/Loader/Loader";
+import { actGetAllUser } from "containers/admin/user/module/action";
 const Jobdetail = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -22,10 +23,12 @@ const Jobdetail = () => {
   const [isBooked, setBooked] = useState('');
   const [isSendCommnet, setIsSendComment] = useState(false);
   const { jobDetail } = useSelector((state) => state.JobManagementReducer);
+  const {listAllUser} = useSelector(state => state.managementUserReducer);
   const {currentUser} = useSelector((state) => state.AuthReducer);
   useEffect(() => {
     window.scrollTo(0,0);
     setLoading(true);
+    dispatch(actGetAllUser());
     dispatch(actGetJobDetail(jobId));
     window.addEventListener("scroll", handleScroll);
     window.addEventListener('resize',handleResize);
@@ -35,13 +38,14 @@ const Jobdetail = () => {
     };
   }, []);
   useEffect(() => {
-    if (jobDetail?._id === jobId) {
+    if (jobDetail?._id === jobId && listAllUser.length > 0) {
       commentApi
         .getComment(jobId)
         .then((res) => {
           setLoading(false);
           const data = res.data.map(comment => {
-            const userCmt = {avatar: null, name: 'Guest'};
+            const {user} = comment;
+            const userCmt = {avatar: user.avatar, name: user.name};
             return {...comment, user: userCmt};
           });
           setCommentList(data.reverse());
@@ -51,7 +55,7 @@ const Jobdetail = () => {
           setLoading(false);
         });
     }
-  }, [jobDetail]);
+  }, [jobDetail,listAllUser]);
   const handleScroll = () => {
     const content = document.querySelector(".jobdetail");
     const footer = document.querySelector("footer");
@@ -65,7 +69,6 @@ const Jobdetail = () => {
       ) {
         setStatusPos("fix");
         bookingBox.style.transform = `translate3d(-50%, -200px, 0)`;
-        // bookingBox.style.width = `${bookingBox.clientWidth}px`;
       } else if (windowY >= footer.offsetTop - 590) {
         setStatusPos("notFix");
         bookingBox.style.transform = `translate3d(-50%, ${
@@ -95,7 +98,7 @@ const Jobdetail = () => {
         .createComment(data)
         .then((res) => {
           const listCmt = [...commentList];
-          const userCmt = {avatar: null, name: 'Guest'};
+          const userCmt = {avatar: currentUser.avatar, name: currentUser.name};
           const newComment = {...res.data, user: userCmt};
           listCmt.unshift(newComment);
           setCommentList(listCmt);

@@ -13,11 +13,7 @@ export default function GetStarted() {
               needed to get your business <i>growing</i>.
             </span>
           </h2>
-          <button className="fiverrJoin__btn  ">
-            <Link to="/login" style={{ color: "white" }}>
-              Get started
-            </Link>
-          </button>
+          <Link to='/login' className="fiverrJoin__btn  ">Get started</Link>
         </div>
       </div>
     </section>
