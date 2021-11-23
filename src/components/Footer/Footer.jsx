@@ -21,7 +21,10 @@ const Footer = () => {
     setIsModalVisible(false);
   };
   return (
-    <footer className=" border-top">
+    <footer className=" border-top" style={{
+      maxWidth:"1400px",
+      margin:"0 auto"
+    }}>
       <div className="footer__container ">
         <div className="footer__content row row-cols-3 row-cols-sm-3 row-cols-md-3 row-cols-lg-5">
           <div className="footer__box col ">

@@ -148,10 +148,17 @@ export const renderCategoriesHeader = (mainJob, currentUser) => {
   );
 };
 
-export const renderPagination = (setPagination, pagination, totalPage) => {
+export const renderPagination = (
+  setPagination,
+  pagination,
+  totalPage,
+  list
+) => {
   return (
     <div className="pagination-app">
       <button
+        disabled={pagination.page === 0}
+
         onClick={() => {
           setPagination({
             ...pagination,
@@ -183,7 +190,7 @@ export const renderPagination = (setPagination, pagination, totalPage) => {
       </button>
 
       <button
-        disabled={pagination.page === totalPage - 1}
+        disabled={pagination.page === totalPage - 1 || list?.length === 0}
         onClick={() => {
           setPagination({
             ...pagination,

@@ -35,7 +35,10 @@ export default function HeaderNotLogin() {
     console.log("click ", e);
   };
   return (
-    <header>
+    <header style={{
+      maxWidth:1400,
+      margin:"0 auto"
+    }}>
       <div id="header-fixed">
         <div id="header__content-fixed">
           <div className="header__icon-fixed">

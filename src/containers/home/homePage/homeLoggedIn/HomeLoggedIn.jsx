@@ -18,6 +18,7 @@ export default function HomeLoggedIn() {
   return (
     <div
       style={{
+        maxWidth:"1400px",
         width: "95%",
         margin: "auto",
         paddingBottom: 80,

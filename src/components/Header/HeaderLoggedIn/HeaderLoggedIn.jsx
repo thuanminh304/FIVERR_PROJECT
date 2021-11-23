@@ -7,7 +7,6 @@ import "./headerLoggedIn.scss";
 import { renderAvatar, renderCategoriesHeader } from "components/render/render";
 import { actGetMainJobList } from "Modules/JobManagement/actions";
 import { useHistory } from "react-router";
-import { DribbbleOutlined, DollarOutlined } from "@ant-design/icons";
 import configName from "setting/configNameTypeJob";
 import { useState } from "react";
 
@@ -40,7 +39,7 @@ export default function HeaderLoggedIn() {
       ) : null}
       {currentUser?.role === "ADMIN" ? (
         <Menu.Item key="2">
-          <Link to="/admin">Trang Admin</Link>
+          <Link to="/admin">Admin</Link>
         </Menu.Item>
       ) : null}
 
@@ -60,7 +59,13 @@ export default function HeaderLoggedIn() {
     setVisible(false);
   };
   return (
-    <div>
+    <div
+      id="header-loggedin"
+      style={{
+        maxWidth: "1400px",
+        margin: "0 auto",
+      }}
+    >
       <div id="header-fixed-loggedin">
         <div id="header__content-loggedin">
           <div className="header__icon-fixed">
@@ -137,7 +142,7 @@ export default function HeaderLoggedIn() {
                 ) : null}
                 {currentUser?.role === "ADMIN" ? (
                   <Menu.Item key="28">
-                    <Link to="/admin">Trang Admin</Link>
+                    <Link to="/admin">Admin</Link>
                   </Menu.Item>
                 ) : null}
                 <SubMenu key="sub2" title="Browser Categories">
@@ -167,6 +172,11 @@ export default function HeaderLoggedIn() {
                   <Menu.Item key="7">Podcost</Menu.Item>
                   <Menu.Item key="8">Blog</Menu.Item>
                 </SubMenu>
+                <Menu.Item key="300">
+                  <p style={{ color: "green" }} onClick={logOut}>
+                    Logout
+                  </p>
+                </Menu.Item>
               </Menu>
             </Drawer>
           </div>
