@@ -372,7 +372,6 @@ export const actGetJobDetail = (id) => {
     jobApi.getJobDetail(id).then(res=>{
       const {listAllUser} = getState().managementUserReducer;
       const {currentUser} = getState().AuthReducer;
-      if(currentUser?.role === 'ADMIN'){
         const userCreated = listAllUser.find(user=>{
           return user._id === res.data.userCreated;
         });
@@ -388,10 +387,6 @@ export const actGetJobDetail = (id) => {
         };
         const data = {...res.data, userCreatedName: userName, userBookingName: userBookingName, userAvatar: userAvatar, userEmail: userEmail};
         dispatch(actGetJobDetailSucc(data));
-      }
-      else{
-        dispatch(actGetJobDetailSucc(res.data));
-      }
     })
     .catch(error=>{
       dispatch(actGetJobDetailFail(error));

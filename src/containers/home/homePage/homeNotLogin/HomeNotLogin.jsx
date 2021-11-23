@@ -6,7 +6,6 @@ import Explore from "components/Content/HomeNotLogin/Explore/Explore";
 import Business from "components/Content/HomeNotLogin/Business/Business";
 import Review from "components/Content/HomeNotLogin/Review/Review";
 import LogoMaker from "components/Content/HomeNotLogin/LogoMaker/LogoMaker";
-import Projects from "components/Content/HomeNotLogin/Projects/Projects";
 import Guides from "components/Content/HomeNotLogin/Guides/Guides";
 import GetStarted from "components/Content/HomeNotLogin/GetStarted/GetStarted";
 export default function HomeNotLogin() {
@@ -19,15 +18,14 @@ export default function HomeNotLogin() {
       }}
     >
       <Carousel />
-      {/* <PopularServices /> */}
-      {/* <Video /> */}
-      <Explore />
-      <Business />
-      {/* <Review /> */}
-      {/* <LogoMaker /> */}
-      <Projects />
-      {/* <Guides /> */}
-      <GetStarted />
+      <PopularServices />
+      <Video />
+      <Explore/>
+      <Business/>
+      <Review/>
+      <LogoMaker/>
+      <Guides/>
+      <GetStarted/>
     </div>
   );
 }

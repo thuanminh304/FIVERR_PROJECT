@@ -3,7 +3,6 @@ import "./carousel.scss";
 import Slider from "react-slick";
 import { useHistory } from "react-router";
 import { Input } from "antd";
-import { Link } from "react-router-dom";
 
 export default function Carousel() {
   const { Search } = Input;
@@ -37,77 +36,67 @@ export default function Carousel() {
   };
   return (
     <div className="carousel">
-      <div className="carousel-text">
-        <p>
-          Find the perfect <i> freelance </i>services for your business
-        </p>
-        <Search
-          className="search-input-antd-carousel"
-          placeholder="Try 'building mobile app'"
-          onSearch={onSearch}
-          enterButton="Search"
-        />
-
+        <div className="carousel-text">
+          <p>
+            Find the perfect <i> freelance </i>services for your business
+          </p>
+          <Search
+            className="search-input-antd-carousel"
+            placeholder="Try 'building mobile app'"
+            onSearch={onSearch}
+            enterButton="Search"
+          />
+          {/* 
         <div className="carousel-popular">
           <span>Popular : </span>
           <ul>
             <li>
-              {" "}
               <Link to="/categories/graphics-design/618d245d95d99f001c0c0ace ">
                 Illustration
               </Link>
             </li>
             <li>
-              {" "}
               <Link to="/categories/graphics-design/618d243b95d99f001c0c0ac2 ">
                 Game Art
               </Link>
             </li>
             <li>
-              {" "}
               <Link to="/categories/graphics-design/618c910f95d99f001c0c047c ">
                 Logo Design
               </Link>
             </li>
             <li>
-              {" "}
               <Link to="/categories/graphics-design/618d252295d99f001c0c0b0e">
                 UX Design
               </Link>
             </li>
           </ul>
+        </div> */}
         </div>
-      </div>
-
       <Slider {...settings}>
         <div className="carousel-hero1">
           <p className="carousel-name-hero">
-            {" "}
-            Andrea, <strong>Fashion Designer </strong>{" "}
+            Andrea, <strong>Fashion Designer </strong>
           </p>
         </div>
         <div className="carousel-hero2">
           <p className="carousel-name-hero">
-            {" "}
-            Moon, <strong>Marketing Expert </strong>{" "}
+            Moon, <strong>Marketing Expert </strong>
           </p>
         </div>
         <div className="carousel-hero3">
           <p className="carousel-name-hero">
-            {" "}
-            Ritika, <strong>Showmaker and Designer </strong>{" "}
+            Ritika, <strong>Showmaker and Designer </strong>
           </p>
         </div>
         <div className="carousel-hero4">
           <p className="carousel-name-hero">
-            {" "}
-            Zach, <strong>Bar Owner </strong>{" "}
+            Zach, <strong>Bar Owner </strong>
           </p>
         </div>
         <div className="carousel-hero5">
           <p className="carousel-name-hero">
-            {" "}
-            Gabrielle, <strong>Video Editor </strong>{" "}
+            Gabrielle, <strong>Video Editor </strong>
           </p>
         </div>
       </Slider>

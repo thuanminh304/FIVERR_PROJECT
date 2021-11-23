@@ -3,7 +3,7 @@ import defaultJobRender from "assets/images/defaultTypeJob/defaultJobRender.jpg"
 import configNameTypeJob from "setting/configNameTypeJob";
 import { Link } from "react-router-dom";
 import { StarFilled } from "@ant-design/icons";
-import "./JobRender.scss";
+import "./renderJob.scss";
 const Jobrender = (props) => {
   const { job } = props;
   return (

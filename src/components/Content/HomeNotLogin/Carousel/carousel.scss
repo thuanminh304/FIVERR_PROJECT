@@ -5,9 +5,11 @@
   color: white;
   line-height: 0;
   .carousel-text {
+    max-width: 1400px;
+    margin: auto;
     position: absolute;
     z-index: 1;
-    top: 30%;
+    top: 25%;
     left: 30px;
     color: white;
     width: 56%;
@@ -100,19 +102,19 @@
   }
 
   .carousel-hero1 {
-    @include herobackground("../assets/images/bg-hero-1-1792-x1.jpg");
+    @include herobackground("../assets/images/homeNotLogin/carousel/bg-hero-1-1792-x1.jpg");
   }
   .carousel-hero2 {
-    @include herobackground("../assets/images/bg-hero-2-1792-x1.jpg");
+    @include herobackground("../assets/images/homeNotLogin/carousel/bg-hero-2-1792-x1.jpg");
   }
   .carousel-hero3 {
-    @include herobackground("../assets/images/bg-hero-3-1792-x1.jpg");
+    @include herobackground("../assets/images/homeNotLogin/carousel/bg-hero-3-1792-x1.jpg");
   }
   .carousel-hero4 {
-    @include herobackground("../assets/images/bg-hero-4-1792-x1.jpg");
+    @include herobackground("../assets/images/homeNotLogin/carousel/bg-hero-4-1792-x1.jpg");
   }
   .carousel-hero5 {
-    @include herobackground("../assets/images/bg-hero-5-1792-x1.jpg");
+    @include herobackground("../assets/images/homeNotLogin/carousel/bg-hero-5-1792-x1.jpg");
   }
   .carousel-name-hero {
     position: absolute;
@@ -139,11 +141,11 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 992px) {
   .carousel {
     .carousel-text {
+      top: 20%;
       width: 93%;
-      top: 25%;
       p {
         font-size: 40px;
         line-height: 48px;
@@ -195,11 +197,31 @@
     }
   }
 }
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 575.99px) {
   .carousel {
     .carousel-text {
       width: 86%;
       top: 18%;
+      p {
+        font-size: 35px;
+      }
+      .search-input-antd-carousel {
+        width: 100%;
+        .ant-input-group {
+          display: flex;
+          flex-direction: column;
+          .ant-input {
+            padding: 10px;
+          font-size: 15px;
+          }
+          .ant-input-group-addon {
+            padding: 8px;
+            width: 100%;
+            margin-top: 14px;
+            border-radius: 5px;
+          }
+        }
+      }
     }
   }
 }

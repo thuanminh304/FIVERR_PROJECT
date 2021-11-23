@@ -54,7 +54,7 @@ export default function PopularServices() {
             <h2>Logo Design</h2>
           </div>
           <div className="services__image">
-            <img src="images/logo-design-2x.jpg" alt="" />
+            <img src="images/imagesHomeNoLogin/popularService/logo-design-2x.jpg" alt="" />
           </div>
           <div className="services-overlay"></div>
         </div>
@@ -64,7 +64,7 @@ export default function PopularServices() {
             <h2>WordPress</h2>
           </div>
           <div className="services__image">
-            <img src="images/wordpress-2x.jpg" alt="" />
+            <img src="images/imagesHomeNoLogin/popularService/wordpress-2x.jpg" alt="" />
           </div>
           <div className="services-overlay"></div>
         </div>
@@ -74,7 +74,7 @@ export default function PopularServices() {
             <h2>Voice Over</h2>
           </div>
           <div className="services__image">
-            <img src="images/voiceover-2x.jpg" alt="" />
+            <img src="images/imagesHomeNoLogin/popularService/voiceover-2x.jpg" alt="" />
           </div>
           <div className="services-overlay"></div>
         </div>
@@ -84,7 +84,7 @@ export default function PopularServices() {
             <h2>Video Explainer</h2>
           </div>
           <div className="services__image">
-            <img src="images/animated-explainer-2x.jpg" alt="" />
+            <img src="images/imagesHomeNoLogin/popularService/animated-explainer-2x.jpg" alt="" />
           </div>
           <div className="services-overlay"></div>
         </div>
@@ -94,7 +94,7 @@ export default function PopularServices() {
             <h2>Social Media</h2>
           </div>
           <div className="services__image">
-            <img src="images/social-2x.jpg" alt="" />
+            <img src="images/imagesHomeNoLogin/popularService/social-2x.jpg" alt="" />
           </div>
           <div className="services-overlay"></div>
         </div>
@@ -104,7 +104,7 @@ export default function PopularServices() {
             <h2>SEO</h2>
           </div>
           <div className="services__image">
-            <img src="images/seo-2x.jpg" alt="" />
+            <img src="images/imagesHomeNoLogin/popularService/seo-2x.jpg" alt="" />
           </div>
           <div className="services-overlay"></div>
         </div>
@@ -114,7 +114,7 @@ export default function PopularServices() {
             <h2>Illustration</h2>
           </div>
           <div className="services__image">
-            <img src="images/illustration-2x.jpg" alt="" />
+            <img src="images/imagesHomeNoLogin/popularService/illustration-2x.jpg" alt="" />
           </div>
           <div className="services-overlay"></div>
         </div>
@@ -124,7 +124,7 @@ export default function PopularServices() {
             <h2>Translation</h2>
           </div>
           <div className="services__image">
-            <img src="images/translation-2x.jpg" alt="" />
+            <img src="images/imagesHomeNoLogin/popularService/translation-2x.jpg" alt="" />
           </div>
           <div className="services-overlay"></div>
         </div>
@@ -134,7 +134,7 @@ export default function PopularServices() {
             <h2>Data Entry</h2>
           </div>
           <div className="services__image">
-            <img src="images/data-entry-2x.jpg" alt="" />
+            <img src="images/imagesHomeNoLogin/popularService/data-entry-2x.jpg" alt="" />
           </div>
           <div className="services-overlay"></div>
         </div>
@@ -144,7 +144,7 @@ export default function PopularServices() {
             <h2>Book Covers</h2>
           </div>
           <div className="services__image">
-            <img src="images/book-covers-2x.jpg" alt="" />
+            <img src="images/imagesHomeNoLogin/popularService/book-covers-2x.jpg" alt="" />
           </div>
           <div className="services-overlay"></div>
         </div>
