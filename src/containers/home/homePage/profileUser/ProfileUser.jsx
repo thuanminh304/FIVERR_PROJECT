@@ -111,7 +111,7 @@ export default function ProfileUser() {
 
   const columns = [
     {
-      title: "#",
+      title: "No.",
       key: "index",
       render: (text, record, index) => {
         return <span key={index + 1}>{index + 1}</span>;
@@ -203,7 +203,7 @@ export default function ProfileUser() {
   const dataJobBookFinished = listJobBookFinished;
   return (
     <div className="profile-user row">
-      <div className="col-4 col-md-4 col-xl-3 profile-left">
+      <div className="col-10 col-md-4 col-xl-3 profile-left">
         <div className="info-basic">
           <div className="info-top">
             <div className="avatar-edit">
@@ -298,7 +298,7 @@ export default function ProfileUser() {
           </form>
         </div>
       </div>
-      <div className="col-7 col-md-7 col-xl-7 profile-right">
+      <div className="col-10 col-md-7 col-xl-7 profile-right">
         <div className="info-bars">
           <p>
             FEE: <span>{FEE} $</span>{" "}

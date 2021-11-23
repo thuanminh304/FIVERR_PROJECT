@@ -100,19 +100,19 @@
   }
 
   .carousel-hero1 {
-    @include herobackground("../assets/images/bg-hero-1-1792-x1.jpg");
+    @include herobackground("../assets/images/shared-img/bg-hero-1-1792-x1.jpg");
   }
   .carousel-hero2 {
-    @include herobackground("../assets/images/bg-hero-2-1792-x1.jpg");
+    @include herobackground("../assets/images/shared-img/bg-hero-2-1792-x1.jpg");
   }
   .carousel-hero3 {
-    @include herobackground("../assets/images/bg-hero-3-1792-x1.jpg");
+    @include herobackground("../assets/images/shared-img/bg-hero-3-1792-x1.jpg");
   }
   .carousel-hero4 {
-    @include herobackground("../assets/images/bg-hero-4-1792-x1.jpg");
+    @include herobackground("../assets/images/shared-img/bg-hero-4-1792-x1.jpg");
   }
   .carousel-hero5 {
-    @include herobackground("../assets/images/bg-hero-5-1792-x1.jpg");
+    @include herobackground("../assets/images/shared-img/bg-hero-5-1792-x1.jpg");
   }
   .carousel-name-hero {
     position: absolute;

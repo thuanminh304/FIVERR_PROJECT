@@ -47,7 +47,7 @@ export default function Business() {
         <div className="solution__right ">
           <img
             className="img-fuild"
-            src="images/business-desktop-870-x1.png"
+            src="images/shared-img/business-desktop-870-x1.png"
             alt=""
           />
         </div>

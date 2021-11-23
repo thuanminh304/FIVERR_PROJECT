@@ -27,6 +27,9 @@ export default function ProfileHasJobs(props) {
                       : "https://th.bing.com/th/id/OIP.q4OBZWwNg4UKkKl9PG_ouwHaEK?w=256&h=180&c=7&r=0&o=5&pid=1.7"
                   }
                   alt=""
+                  style={{
+                    height:140
+                  }}
                 />
                 <div className="card-body">
                   <h4 className="card-title">

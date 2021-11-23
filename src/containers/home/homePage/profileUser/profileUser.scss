@@ -253,16 +253,16 @@
       background-color: $color-white;
       width: 100%;
       border-radius: 2px;
-      padding: 0 25px;
+      padding: 0 10px;
       margin-bottom: 40px;
       position: relative;
       p {
+        width: fit-content;
         padding: 23px 0;
         margin-right: 35px;
         font-size: 14px;
         line-height: 130%;
         font-weight: 600;
-        display: inline-block;
         cursor: pointer;
         color: #303030;
         position: relative;
@@ -294,7 +294,6 @@
           .ant-tabs-tab-active {
             padding: 23px 0;
             font-size: 15px;
-            line-height: 130%;
             font-weight: 600;
             border-bottom: 4px solid $color-green-all;
             z-index: 2;
@@ -459,6 +458,7 @@
             position: relative;
             text-align: center;
             height: 100%;
+            justify-content: center;
             a {
               margin: 42.5px 30px;
               span {
@@ -481,7 +481,7 @@
       .render-job-rent,
       .render-job-finished {
         background-color: white;
-        padding: 20px;
+        padding: 5px;
         border: 1px solid #ddd;
       }
       .render-job-rent {
@@ -618,9 +618,7 @@
             }
           }
           p {
-            transform: translateX(-35px);
             font-size: 10px;
-            width: 150px;
           }
           .icon-edit {
             display: none;
@@ -727,7 +725,6 @@
           border-width: 1px;
           font-size: 10px;
           padding: 0;
-          display: inline;
           margin-right: 20px;
           margin-left: 10px;
           span {
@@ -750,13 +747,6 @@
 @media only screen and (max-width: 375px) {
   .profile-user {
     .profile-left {
-      .info-basic {
-        .info-top {
-          p {
-            transform: translateX(-43px);
-          }
-        }
-      }
       .info-others {
         .skill,
         .certification {
@@ -768,13 +758,7 @@
     }
     .profile-right {
       .tab-profile-right-content {
-        .ant-tabs-nav {
-          .ant-tabs-nav-list {
-            .ant-tabs-tab {
-              margin-left: 14px;
-            }
-          }
-        }
+        
         .render-job-rent {
           padding: 10px;
         }

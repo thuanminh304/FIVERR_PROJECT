@@ -70,7 +70,10 @@ export default function HeaderLoggedIn() {
         <div id="header__content-loggedin">
           <div className="header__icon-fixed">
             <Link to="/">
-              <img src="/images/Fiverr_Logo_09.2020-fixed.svg" alt="Fiverr" />
+              <img
+                src="/images/shared-img/Fiverr_Logo_09.2020-fixed.svg"
+                alt="Fiverr"
+              />
             </Link>
           </div>
           <Search
@@ -126,12 +129,12 @@ export default function HeaderLoggedIn() {
                   <Menu.Item key="1">
                     <Link to={`/user/${currentUser?.email}`}>Profile</Link>
                   </Menu.Item>
-                ) : null}
-                {currentUser?.role === "ADMIN" ? (
+                ) : (
                   <Menu.Item key="28">
                     <Link to="/admin">Admin</Link>
                   </Menu.Item>
-                ) : null}
+                )}
+
                 <SubMenu key="sub2" title="Browser Categories">
                   {mainJob?.map((maintype, idx) => {
                     const name = configName(maintype.name);
@@ -150,26 +153,21 @@ export default function HeaderLoggedIn() {
                     );
                   })}
                 </SubMenu>
-                <SubMenu key="sub3" title="Explore">
-                  <Menu.Item key="2">Discover</Menu.Item>
-                  <Menu.Item key="3">Guides</Menu.Item>
-                  <Menu.Item key="4">Learn</Menu.Item>
-                  <Menu.Item key="5">Logo Maker</Menu.Item>
-                  <Menu.Item key="6">Community</Menu.Item>
-                  <Menu.Item key="7">Podcost</Menu.Item>
-                  <Menu.Item key="8">Blog</Menu.Item>
-                </SubMenu>
+
                 <Menu.Item key="300">
-                  <p style={{ color: "green" }} onClick={logOut}>
+                  <span style={{ color: "green" }} onClick={logOut}>
                     Logout
-                  </p>
+                  </span>
                 </Menu.Item>
               </Menu>
             </Drawer>
           </div>
           <div className="header-fixed-logo">
             <Link to="/">
-              <img src="/images/Fiverr_Logo_09.2020-fixed.svg" alt="Fiverr" />
+              <img
+                src="/images/shared-img/Fiverr_Logo_09.2020-fixed.svg"
+                alt="Fiverr"
+              />
             </Link>
           </div>{" "}
           <Search

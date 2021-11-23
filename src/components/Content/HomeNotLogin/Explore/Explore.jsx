@@ -16,7 +16,7 @@ export default function Explore() {
               return (
                 <div key={maintype._id} className="explore__item">
                   <Link to={`/categories/${name}`}>
-                    <img src={`images/${name}.svg`} alt="" />
+                    <img src={`images/shared-img/${name}.svg`} alt="" />
                     <div className="border-explore" />
                     <p>{maintype.name}</p>
                   </Link>
