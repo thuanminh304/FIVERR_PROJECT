@@ -181,7 +181,7 @@
     .cate-special {
       color: rgb(57, 57, 236);
     }
-    &:last-child,
+    &:nth-child(9),
     &:nth-child(8),
     &:nth-child(7),
     &:nth-child(6) {
@@ -392,7 +392,6 @@
   }
 }
 @media only screen and (max-width: 667px) {
-  
   #category__content-loggedin {
     ul {
       width: 184%;
@@ -412,7 +411,7 @@
         width: 85%;
         position: absolute;
         bottom: 9px;
-        transform: translateX(-1%);
+        transform: translateX(1%);
       }
       .hidden-responsive {
         display: none;
@@ -424,5 +423,17 @@
   }
   #category__content-loggedin {
     display: none;
+  }
+}
+@media only screen and (max-width: 375px) {
+  #header-fixed-loggedin {
+    .header-fixed-reponsive {
+      height: 100px;
+      position: relative;
+      border-bottom: 1px solid #ddd;
+      .menu-hidden-left {
+        transform: translateX(-35px);
+      }
+    }
   }
 }

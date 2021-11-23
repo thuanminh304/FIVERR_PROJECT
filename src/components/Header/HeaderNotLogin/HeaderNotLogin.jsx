@@ -45,7 +45,10 @@ export default function HeaderNotLogin() {
         <div id="header__content-fixed">
           <div className="header__icon-fixed">
             <Link to="/">
-              <img src="/images/Fiverr_Logo_09.2020-fixed.svg" alt="Fiverr" />
+              <img
+                src="/images/shared-img/Fiverr_Logo_09.2020-fixed.svg"
+                alt="Fiverr"
+              />
             </Link>
           </div>
           <Search
@@ -116,47 +119,12 @@ export default function HeaderNotLogin() {
                     );
                   })}
                 </SubMenu>
-                <SubMenu key="sub3" title="Explore">
-                  <Menu.Item key="2">Discover</Menu.Item>
-                  <Menu.Item key="3">Guides</Menu.Item>
-                  <Menu.Item key="4">Learn</Menu.Item>
-                  <Menu.Item key="5">Logo Maker</Menu.Item>
-                  <Menu.Item key="6">Community</Menu.Item>
-                  <Menu.Item key="7">Podcost</Menu.Item>
-                  <Menu.Item key="8">Blog</Menu.Item>
-                </SubMenu>
-
-                <Menu.Item key="11">
-                  <Space direction="vertical"> </Space>
-                </Menu.Item>
-                <Menu.Item className="general" key="12">
-                  General
-                </Menu.Item>
-                <SubMenu key="sub4" title="English" icon={<DribbbleOutlined />}>
-                  <Menu.Item key="13">English</Menu.Item>
-                  <Menu.Item key="14">Deutsch</Menu.Item>
-                  <Menu.Item key="15">Espanol</Menu.Item>
-                  <Menu.Item key="16">Francais</Menu.Item>
-                  <Menu.Item key="17">Portugues</Menu.Item>
-                  <Menu.Item key="18">Italiano</Menu.Item>
-                  <Menu.Item key="19">Nederlands</Menu.Item>
-                </SubMenu>
-                <SubMenu key="sub5" title="US$ USD" icon={<DollarOutlined />}>
-                  <Menu.Item key="20">USD - US$</Menu.Item>
-                  <Menu.Item key="21">EUR</Menu.Item>
-                  <Menu.Item key="22">GBP</Menu.Item>
-                  <Menu.Item key="23">AUD - A$</Menu.Item>
-                  <Menu.Item key="24">CAD - CA$</Menu.Item>
-                  <Menu.Item key="25">HKD - HK$</Menu.Item>
-                  <Menu.Item key="26">SEK - SEK</Menu.Item>
-                </SubMenu>
-                <Menu.Item key="27">Open in App</Menu.Item>
               </Menu>
             </Drawer>
           </div>
           <div className="header-fixed-logo">
             <Link to="/">
-              <img src="/images/Fiverr_Logo_09.2020-fixed.svg" alt="Fiverr" />
+              <img src="/images/shared-img/Fiverr_Logo_09.2020-fixed.svg" alt="Fiverr" />
             </Link>
           </div>{" "}
           <Search
