@@ -28,6 +28,9 @@
   border-radius: 4px;
   padding: 12px 24px;
   font-size: $fs-3;
+  &:hover {
+    color: #fff;
+  }
 }
 .fiverrJoin__btn:hover {
   background: #19a463;

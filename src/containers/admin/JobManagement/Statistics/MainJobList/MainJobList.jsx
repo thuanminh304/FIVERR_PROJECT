@@ -13,14 +13,14 @@ const Mainjoblist = (props) => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 9,
+    slidesToShow: 7,
     slidesToScroll: 5,
     initialSlide: 0,
     responsive: [
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 8,
+          slidesToShow: 7,
           slidesToScroll: 4,
           infinite: false,
         },

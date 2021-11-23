@@ -26,12 +26,12 @@ const Comment = (props) => {
                 )}
               />
             ) : (
-              <h4>{comment.user.name.slice(0, 1).toUpperCase()}</h4>
+              <h4>{!!comment.name?comment.user.name.slice(0, 1).toUpperCase():"G"}</h4>
             )}
           </div>
           <div className="userComment">
             <div className="userName">
-              <h4>{comment.user.name}</h4>
+              <h4>{!!comment.user.name?comment.user.name:"Guest"}</h4>
             </div>
             <div className="commentContent">{comment.content}</div>
           </div>

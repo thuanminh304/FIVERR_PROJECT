@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./logoMaker.scss";
 export default function LogoMaker() {
   return (
@@ -37,9 +38,9 @@ export default function LogoMaker() {
           <p className="my-3 font-weight-bolder">
             Pre-designed by top talent. Just add your touch.
           </p>
-          <button className="px-4 py-2 rounded-lg">
+          <Link to="/login" className="px-4 py-2 rounded-lg ">
             Try Fiverr Logo Maker
-          </button>
+          </Link>
         </div>
         <div className="fiverrLogomk__img"></div>
       </div>

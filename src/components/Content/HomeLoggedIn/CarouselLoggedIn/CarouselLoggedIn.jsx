@@ -47,7 +47,7 @@ export default function CarouselLoggedIn() {
           </span>
           <img
             style={{ objectFit: "cover" }}
-            src="/images/imagesHomeLoggedIn/In_Session_Recommendations_desktop.jpg"
+            src="/images/imagesHomeLoggedIn/carousel2.jpg"
             alt=""
           />
         </div>
