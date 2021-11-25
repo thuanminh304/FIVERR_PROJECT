@@ -1,0 +1,61 @@
+.calendarTask {
+  .ant-picker-calendar {
+    .ant-picker-calendar-header {
+      .ant-radio-button-wrapper {
+        display: none !important;
+      }
+      .ant-select {
+        .ant-select-selector {
+          background-color: #73bfdd;
+          border-radius: 10px;
+          border: none;
+          color: #fff;
+          box-shadow: 0 8px 14px 0 #ccc;
+        }
+        .ant-select-arrow {
+          color: #fff;
+        }
+      }
+    }
+  }
+  .ant-picker-content {
+    text-align: center;
+    color: #73bfdd !important;
+    th {
+      padding: 0 !important;
+      padding-bottom: 10px !important;
+    }
+    tbody {
+      .ant-picker-calendar-date-value {
+        height: 40px !important;
+      }
+      .ant-picker-calendar-date-content {
+        height: auto !important;
+        position: absolute;
+        top: 20%;
+        left: 55%;
+        transform: translateX(-50%);
+        text-align: center;
+        .task {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+        }
+        .task.completed {
+          background-color: #49d075;
+        }
+        .task.nonComplete {
+          background-color: #ff7070;
+        }
+      }
+      .ant-picker-calendar-date-today {
+        background-color: #ff7070b2 !important;
+        border-color: #ff7070b2;
+
+        .ant-picker-calendar-date-value {
+          color: #fff !important;
+        }
+      }
+    }
+  }
+}
