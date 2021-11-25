@@ -17,6 +17,7 @@ import AddNewStaffLayout from "containers/admin/user/AddNewStaff/AddNewStaffLayo
 import Stafflist from "containers/admin/user/StaffManagement/StaffList";
 import Clientlistlayout from "containers/admin/user/ClientList/ClientListLayout";
 import Updateuserlayout from "containers/admin/user/UpdateUser/UpdateUserLayout";
+import TodoLayout from "containers/admin/Todo/TodoLayout";
 
 export const clientRoutes = [
   {
@@ -166,5 +167,13 @@ export const adminRoutes = [
     isPrivate: true,
     name: "Admin Profile",
     href: ["Admin Profile"],
+  },
+  {
+    path: "/admin/todo-list",
+    component: TodoLayout,
+    exact: false,
+    isPrivate: true,
+    name: "Todo List",
+    href: ["Todo List"],
   },
 ];
