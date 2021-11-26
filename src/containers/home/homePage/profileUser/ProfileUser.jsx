@@ -112,12 +112,14 @@ export default function ProfileUser() {
   const columns = [
     {
       title: "No.",
+      align: "center",
       key: "index",
       render: (text, record, index) => {
         return <span key={index + 1}>{index + 1}</span>;
       },
     },
     {
+      align: "center",
       title: "Name of Gig",
       dataIndex: "name",
       key: "name",
@@ -125,6 +127,7 @@ export default function ProfileUser() {
     {
       title: "Image",
       dataIndex: "image",
+      align: "center",
       key: "image",
       render: (text, record) => {
         return record.image ? (
@@ -145,62 +148,138 @@ export default function ProfileUser() {
     {
       title: "Price $",
       dataIndex: "price",
+      align: "center",
       key: "price",
     },
     {
       title: "Rate ",
       dataIndex: "rating",
+      align: "center",
       key: "rating",
     },
-    listJobRent
-      ? {
-          title: "Action ",
-          key: "action",
-          render: (text, record) => {
-            return (
-              <div className="action-table-gigs">
-                {record.userCreated === currentUser?._id ? (
-                  <span className="filedoneoutlined">
-                    <Popconfirm
-                      title="Would you like to hand over this assignment?"
-                      onConfirm={() => {
-                        messageConfig.loading();
-                        jobApi
-                          .doneJobBooked(record._id)
-                          .then((res) => {
-                            setTimeout(() => {
-                              messageConfig.success();
-                            }, 500);
-                            // setTimeout(() => {
-                            //   dispatch(actGetListJobRentedByUser());
-                            // }, 1000);
-                          })
-                          .catch((err) => {
-                            console.log(err?.response.data);
-                          });
-                      }}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <FileDoneOutlined />
-                    </Popconfirm>
-                  </span>
-                ) : null}
-                <span className="eyeoutlined">
-                  <Link to={`/${record.type}/detail/${record._id}`}>
-                    <EyeOutlined />
-                  </Link>
-                </span>
-              </div>
-            );
-          },
-        }
-      : null,
+    {
+      title: "Action ",
+      align: "center",
+      key: "action",
+      render: (text, record) => {
+        return (
+          <div className="action-table-gigs">
+            {record.userCreated === currentUser?._id &&
+            record.usersBooking !== null ? (
+              <span className="filedoneoutlined">
+                <Popconfirm
+                  title="Would you like to hand over this assignment?"
+                  onConfirm={() => {
+                    messageConfig.loading();
+                    jobApi
+                      .doneJobBooked(record._id)
+                      .then((res) => {
+                        setTimeout(() => {
+                          messageConfig.success();
+                        }, 500);
+                        // setTimeout(() => {
+                        //   dispatch(actGetListJobRentedByUser());
+                        // }, 1000);
+                      })
+                      .catch((err) => {
+                        console.log(err?.response.data);
+                      });
+                  }}
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  <FileDoneOutlined />
+                </Popconfirm>
+              </span>
+            ) : null}
+            <span className="eyeoutlined">
+              <Link to={`/${record.type}/detail/${record._id}`}>
+                <EyeOutlined />
+              </Link>
+            </span>
+          </div>
+        );
+      },
+    },
+  ];
+  const columnsBooked = [
+    {
+      title: "No.",
+      align: "center",
+      key: "index",
+      render: (text, record, index) => {
+        return <span key={index + 1}>{index + 1}</span>;
+      },
+    },
+    {
+      title: "Name of Gig",
+      dataIndex: "name",
+      align: "center",
+      key: "name",
+    },
+
+    {
+      title: "Price $",
+      dataIndex: "price",
+      align: "center",
+      key: "price",
+    },
+    {
+      title: "Rate ",
+      dataIndex: "rating",
+      align: "center",
+      key: "rating",
+    },
+    {
+      title: "Action ",
+      key: "action",
+      align: "center",
+      render: (text, record) => {
+        return (
+          <div className="action-table-gigs">
+            {record.userCreated === currentUser?._id &&
+            record.usersBooking !== null ? (
+              <span className="filedoneoutlined">
+                <Popconfirm
+                  title="Would you like to hand over this assignment?"
+                  onConfirm={() => {
+                    messageConfig.loading();
+                    jobApi
+                      .doneJobBooked(record._id)
+                      .then((res) => {
+                        setTimeout(() => {
+                          messageConfig.success();
+                        }, 500);
+                        // setTimeout(() => {
+                        //   dispatch(actGetListJobRentedByUser());
+                        // }, 1000);
+                      })
+                      .catch((err) => {
+                        console.log(err?.response.data);
+                      });
+                  }}
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  <FileDoneOutlined />
+                </Popconfirm>
+              </span>
+            ) : null}
+            <span className="eyeoutlined">
+              <Link to={`/${record.type}/detail/${record._id}`}>
+                <EyeOutlined />
+              </Link>
+            </span>
+          </div>
+        );
+      },
+    },
   ];
   const dataJobRentFinised = listJobRentFinished;
   const dataJobRented = listJobRent;
   const dataJobBooked = listJobBooked;
   const dataJobBookFinished = listJobBookFinished;
+
   return (
     <div className="profile-user row">
       <div className="col-10 col-md-4 col-xl-3 profile-left">
@@ -252,8 +331,6 @@ export default function ProfileUser() {
 
         <div className="info-others">
           <form onSubmitCapture={formik.handleSubmit}>
-            
-
             <div className="skill">
               <div>
                 <p>Skill</p>
@@ -311,7 +388,7 @@ export default function ProfileUser() {
               <div className="render-job-booked">
                 <Table
                   key="tableBooked"
-                  columns={columns}
+                  columns={columnsBooked}
                   size="small"
                   dataSource={dataJobBooked}
                 />
@@ -321,7 +398,7 @@ export default function ProfileUser() {
               <div className="render-job-book-finished">
                 <Table
                   key="tableBookFinished"
-                  columns={columns}
+                  columns={columnsBooked}
                   size="small"
                   dataSource={dataJobBookFinished}
                 />
