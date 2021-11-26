@@ -59,7 +59,7 @@ export default function Video() {
             <img
               type="button"
               id="btn-video-fixed"
-              src="images/desktop-play-button.c1196d6.png"
+              src="images/shared-img/desktop-play-button.c1196d6.png"
               alt="#"
             />
           </a>

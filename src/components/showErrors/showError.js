@@ -1,3 +1,5 @@
+import "./showError.scss"
+
 const errorForm = {
   showErrors(errors, touched, values="" , mess1 = "", mess2 = "") {
     return (

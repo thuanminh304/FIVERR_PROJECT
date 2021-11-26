@@ -120,3 +120,23 @@
     }
   }
 }
+.pagination-app {
+  position: absolute;
+  bottom: 15px;
+  right: 50%;
+  transform: translate(50%, -50%);
+  button {
+    background-color: transparent;
+    border: none;
+    color: #404145;
+    font-weight: 600;
+    opacity: 0.9;
+    margin-left: 10px;
+    &:hover {
+      opacity: 1;
+    }
+    &:disabled {
+      color: #404145;
+    }
+  }
+}

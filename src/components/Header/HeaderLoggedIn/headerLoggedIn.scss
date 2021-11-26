@@ -93,7 +93,7 @@
 #header-fixed-loggedin {
   .search-input-antd-loggedin {
     width: 25%;
-    margin-right: 250px;
+    margin-right: 55%;
     .ant-input-group {
       .ant-input {
         font-weight: 600;
@@ -134,11 +134,10 @@
   font-weight: bolder;
   ul {
     margin-bottom: 5px;
-    width: 108%;
   }
   li {
     display: inline;
-    margin: 0 19px;
+    margin: 0 17px;
   }
   a {
     color: #7a7d85;
@@ -166,7 +165,7 @@
       width: 100%;
       .category__hover {
         display: block;
-        width: 1000px;
+        width: 800px;
       }
     }
     h6 {
@@ -224,7 +223,7 @@
     z-index: 1000;
   }
   .cate-active {
-    column-count: 4;
+    column-count: 3;
   }
   .cate-three {
     column-count: 3;

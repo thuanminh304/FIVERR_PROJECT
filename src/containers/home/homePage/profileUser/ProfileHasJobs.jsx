@@ -17,7 +17,7 @@ export default function ProfileHasJobs(props) {
       <div className="row jobs-content">
         {listJobNotBookedYet?.map((job, idx) => {
           return (
-            <div key={job._id} className="col-12 col-md-6 col-lg-4 col-xl-4">
+            <div key={job._id} className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
               <div className="card">
                 <img
                   className="card-img-top"
