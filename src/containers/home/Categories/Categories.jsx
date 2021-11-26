@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { Link, useParams, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import defaultJobType from 'assets/images/defaultTypeJob/defaultTypeJob.jpg';
 import "./Categories.scss";
 import {RightOutlined} from '@ant-design/icons';
@@ -13,7 +13,6 @@ const Categories = () => {
   const [loading, setLoading] = useState(false);
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
   const { typeJob } = useParams();
-  useEffect(() => {});
   useEffect(() => {
     const type = mainJob.find((job) => {
       return configNameTypeJob(job.name) === typeJob;
@@ -37,7 +36,7 @@ const Categories = () => {
           });
       }
     }
-  }, [mainJob,typeJob]);
+  }, [typeJob]);
   const findImage = (id) => {
     if (dataImg.length > 0) {
       const imageUrl = dataImg.find((img) => {
@@ -68,13 +67,13 @@ const Categories = () => {
               </li>
               {mainType?.subTypeJobs.map((job, idx) => {
                 return (
-                  <li key={idx} className="sideLeft__listItem">
+                  <li key={job._id} className="sideLeft__listItem">
                     <Link
                       to={
                         "/categories/" +
-                        configNameTypeJob(mainType.name) +
-                        "/" +
-                        job._id
+                      configNameTypeJob(mainType.name) +
+                      "/" +
+                      job._id
                       }
                     >
                       {job.name}
@@ -88,7 +87,7 @@ const Categories = () => {
           <div className="content__sideRight col-xl-9 row">
             {mainType?.subTypeJobs.map((job, idx) => {
               return (
-                <div key={idx} className="sideRight__contentItem col-4">
+                <div key={job._id} className="sideRight__contentItem col-4">
                   <Link
                     to={
                       "/categories/" +
