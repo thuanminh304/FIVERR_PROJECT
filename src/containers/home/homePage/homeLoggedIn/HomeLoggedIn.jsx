@@ -14,18 +14,18 @@ const CarouselLoggedIn = lazy(() =>
 );
 export default function HomeLoggedIn() {
   const dispatch = useDispatch();
-  const {currentUser} = useSelector((state) => state.AuthReducer);
+  const {currentPage} = useSelector((state) => state.AuthReducer);
   const {jobHagTagUser, loading} = useSelector((state) => state.JobManagementReducer);
   useEffect(()=>{
-    if(!jobHagTagUser){
-      dispatch(actGetHagtagJob());
-    }
+    dispatch(actGetHagtagJob());
   },[]);
   if(!!loading) return <Loader />;
   return (
     <div
       style={{
         maxWidth:"1400px",
+        width: "95%",
+        margin: "auto",
         paddingBottom: 80,
         position: "relative",
       }}
@@ -33,8 +33,8 @@ export default function HomeLoggedIn() {
     >
       <Suspense fallback={<Loader />}>
       <CarouselLoggedIn />
-        {jobHagTagUser?.typeRelate.length>0?<PopularGigs gigs={jobHagTagUser.typeRelate} currentUserId = {currentUser?._id}/>:""}
-        <EditorsPicks skillRelateGig = {jobHagTagUser?.jobRelateList} currentUserId = {currentUser?._id}/>
+        {jobHagTagUser?.typeRelate.length>0?<PopularGigs gigs={jobHagTagUser.typeRelate} currentUserId = {currentPage?._id}/>:""}
+        <EditorsPicks skillRelateGig = {jobHagTagUser?.jobRelateList} currentUserId = {currentPage?._id}/>
       </Suspense>
     </div>
   );

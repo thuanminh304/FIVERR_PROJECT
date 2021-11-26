@@ -63,7 +63,7 @@ export const clientRoutes = [
     isPrivate: true,
   },
   {
-    path: "/categories/:typeJob",
+    path: ["/categories/:typeJob"],
     component: Categories,
     exact: true,
     isPrivate: true,

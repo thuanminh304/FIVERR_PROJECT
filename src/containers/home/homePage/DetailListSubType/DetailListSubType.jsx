@@ -6,18 +6,15 @@ import { Breadcrumb, Switch } from "antd";
 import { actGetDetailSubTypeJob } from "containers/home/homePage/profileUser/createNewJobByUser/StepsCreateNewGig/modules/action";
 import "./detailListSubType.scss";
 import { Link } from "react-router-dom";
-import { StarFilled } from "@ant-design/icons";
-import defaultJobRender from "assets/images/defaultTypeJob/defaultJobRender.jpg";
 import {
   dataSwitch,
   filterSwitch,
 } from "containers/shared/FilterJobBySwitch/filterJobBySwitch";
 import { renderPagination } from "components/render/render";
+
 export default function DetailListSupType() {
   const dispatch = useDispatch();
   const params = useParams();
-  const { nameTypeJob } = params;
-  const [isSortShow, setSortShow] = useState(false);
   const [pagination, setPagination] = useState({
     page: 0,
     limit: 12,
@@ -81,19 +78,8 @@ export default function DetailListSupType() {
     pagination.page * pagination.limit,
     pagination.page * pagination.limit + 12
   );
-  const showSortList = (e) => {
-    const sortBtn = e.target.closest("#sortBtn");
-    const switchList = e.target.closest(".switch-sortBtn");
-    if (!!sortBtn) {
-      setSortShow(!isSortShow);
-    } else if (!!switchList) {
-      e.preventDefault();
-    } else {
-      setSortShow(false);
-    }
-  };
   return (
-    <div className="detail-list-subtype" onClick={showSortList}>
+    <div className="detail-list-subtype">
       <div className="info-type-subtype">
         <Breadcrumb separator=">">
           <Breadcrumb.Item>
@@ -111,72 +97,73 @@ export default function DetailListSupType() {
           </Breadcrumb.Item>
         </Breadcrumb>
         <h4>{detailSubTypeJob?.name}</h4>
+        <p>
+          Stand out from the crowd with a logo that fits your brand personality.
+        </p>
       </div>
       <div className="render-list-subtype">
         <div className="result-sort">
           <p>{listJobNotBookedYet?.length} services available</p>
           <div className="search-by-switch">
-            <p id="sortBtn">Sort by</p>
-            <div className={"switch-sortBtn " + (!!isSortShow ? "show" : "")}>
-              <div className="switch-icon">
-                <label htmlFor="proServices">Pro Services</label>
-                <Switch
-                  size="small"
-                  name="proServices"
-                  onChange={handleChangeSwitch("proServices", setSwitchPro)}
-                />
-              </div>
-              <div className="switch-icon">
-                <label htmlFor="localSellers">Local Sellers</label>
-                <Switch
-                  size="small"
-                  name="localSellers"
-                  onChange={handleChangeSwitch("localSellers", setSwitchLocal)}
-                />
-              </div>
-              <div className="switch-icon">
-                <label htmlFor="onlineSellers">Online Sellers</label>
-                <Switch
-                  size="small"
-                  name="onlineSellers"
-                  onChange={handleChangeSwitch("onlineSellers", setSwitchOnl)}
-                />
-              </div>
+            <p>Sort by:</p>
+            <div className="switch-icon">
+              <label htmlFor="proServices">Pro Services</label>
+              <Switch
+                name="proServices"
+                onChange={handleChangeSwitch("proServices", setSwitchPro)}
+              />
+            </div>
+            <div className="switch-icon">
+              <label htmlFor="localSellers">Local Sellers</label>
+              <Switch
+                name="localSellers"
+                onChange={handleChangeSwitch("localSellers", setSwitchLocal)}
+              />
+            </div>
+
+            <div className="switch-icon">
+              <label htmlFor="onlineSellers">Online Sellers</label>
+              <Switch
+                name="onlineSellers"
+                onChange={handleChangeSwitch("onlineSellers", setSwitchOnl)}
+              />
             </div>
           </div>
         </div>
-        <div className="main-content">
+        <div className="main-content row">
           {listFilter?.map((job, idx) => {
             return (
-              <div key={job._id} className="jobR col-6 col-md-4 col-xl-3">
-                <div className="card jobRender-item">
-                  <Link to={`/${nameTypeJob}/detail/${job._id}`}>
-                    <img
-                      className="card-img-top"
-                      src={job.image ? job.image : defaultJobRender}
-                      alt=""
-                    />
+              <div key={job._id} className="col-6 col-md-4 col-xl-3">
+                <div className="card job-item">
+                  <Link to={`/${params?.nameTypeJob}/detail/${job._id}`}>
+                    <img className="card-img-top" src={job.image} alt="" />
                   </Link>
-                  <div className="card-body jobRender-content">
-                    <Link to={`/${nameTypeJob}/detail/${job._id}`}>
-                      {job.name}
+
+                  <div className="card-body">
+                    <Link to={`/${params?.nameTypeJob}/detail/${job._id}`}>
+                      <p className="card-text text-active">{job.name}</p>
                     </Link>
-                    <div className="jobRender-detail">
-                      <h4 className="detail-item detail-rating">
-                        {job.rating}
-                        <StarFilled />
-                      </h4>
-                      <h4 className="detail-item detail-price">
-                        <span>US${job.price}</span>
-                      </h4>
-                    </div>
+                    <p className="card-text text-star">
+                      <>
+                        <i className="fa fa-star"></i>
+                        {job.rating} <span>(183)</span>
+                      </>
+                    </p>
+                  </div>
+                  <div className="card-footer">
+                    <span>
+                      <i className="fa fa-heart"></i>
+                    </span>
+                    <p className="card-text">
+                      STARTING AT <span>US${job.price}</span>{" "}
+                    </p>
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
-        {renderPagination(setPagination, pagination, totalPage, listFilter)}
+        {renderPagination(setPagination, pagination, totalPage,listFilter)}
       </div>
     </div>
   );
