@@ -248,6 +248,7 @@
   }
   .profile-right {
     margin-top: 50px;
+    padding: 0;
     .info-bars {
       border: 1px solid #ddd;
       background-color: $color-white;
@@ -258,7 +259,7 @@
       position: relative;
       p {
         width: fit-content;
-        padding: 23px 0;
+        padding: 10px 0;
         margin-right: 35px;
         font-size: 14px;
         line-height: 130%;
@@ -722,6 +723,7 @@
       .info-bars {
         padding-top: 10px;
         p {
+          margin-bottom: 10px;
           border-width: 1px;
           font-size: 10px;
           padding: 0;
@@ -769,6 +771,7 @@
       .info-bars {
         padding: 10px 5px 0 5px;
         p {
+          
           margin-right: 10px;
         }
       }
