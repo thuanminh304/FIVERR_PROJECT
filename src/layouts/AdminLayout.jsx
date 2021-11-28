@@ -9,6 +9,7 @@ import Admintitle from "containers/admin/AdminTitle/AdminTitle";
 import { actGetMainJobList } from "Modules/JobManagement/actions";
 import { actGetAllUser } from "containers/admin/user/module/action";
 import { FIX_SIDE_BAR } from "containers/admin/Header/modules/types";
+import { Redirect } from "react-router";
 
 //
 function AdminLayout(props) {
@@ -16,6 +17,7 @@ function AdminLayout(props) {
   const {isFixSideBar, themeColor} = useSelector(state=>state.AdminDashBoardSettingReducer);
   const {mainJob} = useSelector(state=>state.JobManagementReducer)
   const {listAllUser} = useSelector(state=>state.managementUserReducer);
+  const {currentUser} = useSelector(state=>state.AuthReducer);
   const {path} = props.children.props.match;
   useEffect(()=>{
     if(window.innerWidth <= 992 && !!isFixSideBar){
@@ -31,6 +33,7 @@ function AdminLayout(props) {
       dispatch({type: FIX_SIDE_BAR, payload: false})
     };
   };
+  if(!currentUser || currentUser.role !== 'ADMIN') return (<Redirect to={'/'}/>);
   return (
     <div className="adminContainer">
       <Adminheader />

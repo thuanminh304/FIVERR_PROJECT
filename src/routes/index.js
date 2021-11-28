@@ -94,7 +94,7 @@ export const adminRoutes = [
     exact: true,
     isPrivate: true,
     name: "Dashboard",
-    href: ["Dashbord"],
+    href: ["Dashboard"],
   },
   {
     path: "/admin/client-user",
@@ -134,7 +134,7 @@ export const adminRoutes = [
     exact: true,
     isPrivate: true,
     name: "Statistics",
-    href: ["Products", "Statistics"],
+    href: ["Projects", "Statistics"],
   },
   {
     path: "/admin/job-management/list/:mainJobId",
@@ -142,7 +142,7 @@ export const adminRoutes = [
     exact: false,
     isPrivate: true,
     name: "",
-    href: ["Products"],
+    href: ["Projects"],
   },
   {
     path: "/admin/job-management/edit/:jobId",
@@ -150,7 +150,7 @@ export const adminRoutes = [
     exact: false,
     isPrivate: true,
     name: "Job Edit",
-    href: ["Products", "Job Edit"],
+    href: ["Projects", "Job Edit"],
   },
   {
     path: "/admin/adminProfile",
@@ -165,8 +165,8 @@ export const adminRoutes = [
     component: Adminprofile,
     exact: false,
     isPrivate: true,
-    name: "Admin Profile",
-    href: ["Admin Profile"],
+    name: "Admin Message",
+    href: ["Admin Message"],
   },
   {
     path: "/admin/todo-list",

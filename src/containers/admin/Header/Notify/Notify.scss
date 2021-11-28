@@ -90,8 +90,9 @@
       color: #5b9bd1;
       padding: 10px;
       background-color: #eff0f4;
-      p {
+      a, p {
         margin-bottom: 0;
+        color: #49cdd0;
         cursor: pointer;
         transition: color 0.2s;
         &:hover {

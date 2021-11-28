@@ -24,7 +24,6 @@ const Satictisnumber = () => {
     const earningMoney = dataSatictis.reduce((qty, job) => {
         return qty + job.price;
       }, 0);
-    console.log(jobQty,clientQty,jobBookingQty, earningMoney);
     const dataNum = {
         jobQty: jobQty,
         clientQty: clientQty,

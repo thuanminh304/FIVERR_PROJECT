@@ -278,9 +278,14 @@
 @import "helpers/mixin.scss";
 
 @media only screen and (max-width: 1024px) {
+  .cagetories__menu::-webkit-scrollbar {
+    display: none;
+  }
   #category__content-loggedin {
     overflow-x: scroll;
     font-weight: 600;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     ul {
       width: 122%;
       .li-cate {

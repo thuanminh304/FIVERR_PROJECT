@@ -1,0 +1,113 @@
+.box-message {
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0px 5px 25px 0px rgb(0 0 0 / 20%);
+  .box-message__content {
+    padding: 20px;
+  }
+  .box-message__contenttitle {
+    color: #73bfdd;
+    font-weight: 600;
+    font-size: 15px;
+    padding-bottom: 12px;
+    border-bottom: 2px dotted #eee;
+  }
+  .chatBot {
+    background-color: #eee;
+    height: 500px;
+    overflow: auto;
+    border-radius: 0 0 10px 10px;
+    position: relative;
+    .chatBot__content {
+      height: 100%;
+      padding: 5px;
+      p{
+          margin-bottom: 5px;
+          padding: 5px 10px;
+          color: #fff;
+          border-radius: 5px;
+      }
+      .content__text {
+        width: 100%;
+        position: relative;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: flex-end;
+        p {
+            background-color: #91b5c4;
+        }
+    }
+    .userAvatar{
+        color: #73bfdd;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        font-weight: 700;
+        border: 1px solid #73bfdd;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+      .otherUser {
+        display: flex;
+        justify-content: flex-start;
+        p {
+            background-color: #73bfdd;
+        }
+      }
+    }
+    .chatBot__toolChat {
+      width: 95%;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      align-items: flex-end;
+    }
+    .toolChat__input {
+      padding: 5px 10px;
+      border-radius: 10px;
+      background-color: #fff;
+      width: 90%;
+      textarea {
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        &:focus {
+          border-color: #d9d9d9;
+          border-right-width: 1px !important;
+          outline: 0;
+          box-shadow: none;
+        }
+      }
+    }
+    .toolChat__button {
+      background-color: #fff;
+      padding: 5px 20px;
+      text-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+      height: 41px;
+      span {
+        vertical-align: -2px;
+        font-size: 20px;
+        color: #73bfdd;
+        svg {
+          transform-origin: center;
+          transform: rotate(-20deg);
+          transition: transform 0.3s;
+        }
+      }
+      &:hover {
+        svg {
+          transform-origin: center;
+          transform: rotate(0);
+        }
+      }
+    }
+  }
+}

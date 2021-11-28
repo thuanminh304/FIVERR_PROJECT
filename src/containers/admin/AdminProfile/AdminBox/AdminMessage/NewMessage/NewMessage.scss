@@ -1,0 +1,30 @@
+.message__createNew {
+  margin-top: 15px;
+  .message__title {
+    color: #73bfdd;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .message__findUser {
+    form {
+      display: flex;
+      justify-content: space-between;
+    }
+    .ant-form-item{
+        width: 80%;
+        margin-bottom: 0;
+        .ant-select{
+            width: 100%!important;
+        }
+        .ant-select-arrow{
+            display: none;
+        }
+    }
+    button{
+        width: 20%;
+        border: none;
+        color: #fff;
+        background-color: #ff7070;
+    }
+  }
+}

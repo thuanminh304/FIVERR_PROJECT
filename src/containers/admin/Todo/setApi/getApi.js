@@ -20,6 +20,13 @@ const getApiTodo = {
             method: 'PUT',
             data: data,
         });
+    },
+    postNewTaskList(data){
+        return axios({
+            url: `${url}/FiverrTodoApp`,
+            method: 'POST',
+            data: data,
+        });
     }
 }
 export default getApiTodo;

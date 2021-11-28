@@ -57,8 +57,7 @@ const JobSatictis = () => {
     <div className="topJob">
       <div className="topJob__content">
         <Table
-          rowKey={(record) => record._id}
-          key={(record) => record._id}
+          key="job"
           columns={columns}
           dataSource={data}
           scroll={{ x: 768 }}

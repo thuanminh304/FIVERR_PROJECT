@@ -15,7 +15,6 @@ const Uploadimage = (props) => {
     listType: "picture-card",
     maxCount: 1,
     onDrop(e) {
-      //   console.log("Dropped files", e.dataTransfer.files);
     },
     onChange: (e) => {
       if (e.file.status === "removed") {
@@ -46,7 +45,6 @@ const Uploadimage = (props) => {
     setPreviewTitle(jobTitle);
     setPreviewVisible(true);
   };
-  console.log(fileUpload);
   const renderImageJob = () => {
     if (!fileUpload) {
       if (!!imageJob) {

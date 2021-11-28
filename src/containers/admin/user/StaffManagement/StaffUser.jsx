@@ -218,7 +218,7 @@ export default function AdminUser() {
           .then((res) => {
             setSearchUser(res.data);
           })
-          .catch((err) => console.log(err?.response.data));
+          .catch((err) => {});
       }, 200);
     }
   };
@@ -228,7 +228,7 @@ export default function AdminUser() {
       .then((res) => {
         setSearchUser(res.data);
       })
-      .catch((err) => console.log(err?.response.data));
+      .catch((err) => {});
   };
   const paginationPage = (page, pageSize) => {
     if (pageSize !== currentPageSize) {

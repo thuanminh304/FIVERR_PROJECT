@@ -62,7 +62,26 @@
     }
   }
 }
-
+.adminMessage{
+  position: relative;
+  overflow: hidden;
+  .messageNote{
+    display: none;
+    background-color: #ffffffd5;
+    position: absolute;
+    left: 0;
+    top: 20px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    .note{
+      margin-top: 80px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #ff7070;
+    }
+  }
+}
 @import "helpers/variables.scss";
 @import "helpers/mixin.scss";
 
@@ -78,6 +97,14 @@
   .admin__box.hide{
     .adminBox-container {
       display: none;
+    }
+  }
+  .box-message{
+    display: none;
+  }
+  .adminMessage{
+    .messageNote{
+      display: block;
     }
   }
 }

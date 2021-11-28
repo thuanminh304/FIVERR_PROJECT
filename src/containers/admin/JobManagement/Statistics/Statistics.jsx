@@ -120,7 +120,6 @@ const Statistics = () => {
     ],
   };
   const changeSizeElement = (pipeChartBox) => {
-    console.log(pipeChartBox.offsetWidth);
     if(pipeChartBox.offsetWidth<=490){
       setRerender({
         legend:{

@@ -14,7 +14,6 @@ const Todolist = () => {
     return () => resizeElement.disconnect();
   }, []);
   const changeSizeElement = (taskListContent) => {
-    console.log(taskListContent.offsetWidth);
     const iconCheck = document.querySelector(
       ".allFunc__item .anticon-check-circle"
     );
