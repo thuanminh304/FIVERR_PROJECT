@@ -184,6 +184,8 @@ const Tablelist = (props) => {
     <div className="tableJobList">
       <div className="tableJobList__content">
         <Table
+        key="job"
+        rowKey="jobList"
           columns={columns}
           dataSource={data}
           scroll={{ x: 768 }}

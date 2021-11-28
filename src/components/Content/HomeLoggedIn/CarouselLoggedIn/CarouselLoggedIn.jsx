@@ -21,14 +21,14 @@ export default function CarouselLoggedIn() {
   let name = "";
   return (
     <div className="carousel-start row">
-      <div className="carousel-start-text col-3">
+      <div className="carousel-start-text col-3" style = {{display: currentUser.role === 'ADMIN'?"none":""}}>
         <p>
           <strong> Hi {name.concat(...nameCarousel)},</strong>
         </p>
         <p>Get offers from sellers for your project</p>
         <button><Link to={`/user/${currentUser.email}`}>Go to Profile</Link></button>
       </div>
-      <Slider className="carousel-start-img col-9" {...settings}>
+      <Slider className={"carousel-start-img " + (currentUser.role === 'ADMIN'?"col-12":"col-9")} {...settings}>
         <div className="img-item">
           <span>
             Start your dropshipping business

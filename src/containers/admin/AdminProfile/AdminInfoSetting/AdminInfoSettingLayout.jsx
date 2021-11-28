@@ -66,7 +66,6 @@ const Admininfosetting = () => {
     },
   ];
   const onFinish = (values) => {
-    console.log(values);
     const birthday = moment(values.birthday).format('YYYY-MM-DD');
     const data = {...values, certification: certification, skill: skill, birthday:birthday};
     dispatch(actUpdateProfile(currentUser._id,data));
@@ -95,7 +94,6 @@ const Admininfosetting = () => {
   };
   const onFielsChange = (fielsChange) => {
     const field = fielsChange[0].name[0];
-    console.log(field);
     if (field === "certification") {
       const value = fielsChange[0].value;
       const findIndex = value.search(",");

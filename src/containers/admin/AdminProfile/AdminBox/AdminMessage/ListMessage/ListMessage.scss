@@ -1,0 +1,88 @@
+.listMessage {
+  margin-top: 10px;
+  border-top: 2px dotted #eee;
+  padding-top: 10px;
+  .listMessage__title {
+    color: #73bfdd;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .listMessage__content {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    max-height: 350px;
+    overflow: auto;
+    .listMessage__item {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background-color: #fff;
+      &:hover {
+        background-color: #b8b8b849;
+      }
+    }
+    .list__item {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      padding: 5px 20px;
+      width: 100%;
+      flex-shrink: 0;
+      transform-origin: right center;
+    }
+    .anticon-global {
+      vertical-align: 1px;
+      font-size: 30px;
+      color: #73bfdd;
+    }
+    .content__item {
+      justify-content: space-between;
+      transform: translateX(0);
+      .item__name {
+        margin-left: -120px;
+        font-weight: 600;
+      }
+      .setting {
+        cursor: pointer;
+        text-align: center;
+        line-height: 30px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        span {
+          vertical-align: 1px;
+        }
+        &:hover {
+          background-color: #888;
+        }
+      }
+    }
+    .listMessage__item.active {
+      background-color: #b8b8b849;
+    }
+    .content__setting {
+      justify-content: center;
+      transform: translateX(0);
+    }
+  }
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+//responsive
+@include maxResponsive("large-down") {
+  .listMessage {
+    .listMessage__content {
+      .content__item {
+        justify-content: space-between;
+        transform: translateX(0);
+        .item__name {
+          margin-left: -30px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

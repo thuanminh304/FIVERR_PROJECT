@@ -1,24 +1,26 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
-import "./pageSearchJob.scss";
 import { actGetListJobsByName } from "containers/home/homePage/profileUser/createNewJobByUser/StepsCreateNewGig/modules/action";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Switch, Avatar } from "antd";
 import { Link } from "react-router-dom";
-import { UserOutlined } from "@ant-design/icons";
+import { StarFilled } from "@ant-design/icons";
 import configName from "setting/configNameTypeJob";
+import defaultJobRender from "assets/images/defaultTypeJob/defaultJobRender.jpg";
 import { useState } from "react";
 import {
   dataSwitch,
   filterSwitch,
 } from "containers/shared/FilterJobBySwitch/filterJobBySwitch";
 import { renderPagination } from "components/render/render";
+import "../DetailListSubType/detailListSubType.scss";
 
 export default function PageSearchJob() {
   const params = useParams();
   const dispatch = useDispatch();
+  const [isSortShow, setSortShow] = useState(false);
   const [pagination, setPagination] = useState({
     page: 0,
     limit: 12,
@@ -77,13 +79,24 @@ export default function PageSearchJob() {
     pagination.page * pagination.limit,
     pagination.page * pagination.limit + 12
   );
+  const showSortList = (e) => {
+    const sortBtn = e.target.closest("#sortBtn");
+    const switchList = e.target.closest(".switch-sortBtn");
+    if (!!sortBtn) {
+      setSortShow(!isSortShow);
+    } else if (!!switchList) {
+      e.preventDefault();
+    } else {
+      setSortShow(false);
+    }
+  };
   return (
-    <div className="page-search-job">
+    <div className="page-search-job" onClick={showSortList}>
       <h3>Search for "{params?.name}"</h3>
       <div className="render-list-jobs">
         <div className="result-sort">
           <p>{listJobNotBookedYet?.length} services available</p>
-          <div className="search-by-switch">
+          {/* <div className="search-by-switch">
             <p>Sort by:</p>
 
             <div className="switch-icon">
@@ -108,10 +121,39 @@ export default function PageSearchJob() {
                 onChange={handleChangeSwitch("onlineSellers", setSwitchOnl)}
               />
             </div>
+          </div> */}
+          <div className="search-by-switch">
+            <p id="sortBtn">Sort by</p>
+            <div className={"switch-sortBtn " + (!!isSortShow ? "show" : "")}>
+              <div className="switch-icon">
+                <label htmlFor="proServices">Pro Services</label>
+                <Switch
+                  size="small"
+                  name="proServices"
+                  onChange={handleChangeSwitch("proServices", setSwitchPro)}
+                />
+              </div>
+              <div className="switch-icon">
+                <label htmlFor="localSellers">Local Sellers</label>
+                <Switch
+                  size="small"
+                  name="localSellers"
+                  onChange={handleChangeSwitch("localSellers", setSwitchLocal)}
+                />
+              </div>
+              <div className="switch-icon">
+                <label htmlFor="onlineSellers">Online Sellers</label>
+                <Switch
+                  size="small"
+                  name="onlineSellers"
+                  onChange={handleChangeSwitch("onlineSellers", setSwitchOnl)}
+                />
+              </div>
+            </div>
           </div>
         </div>
-        <div className="main-content row">
-          {listFilter?.map((job, idx) => {
+        <div className="main-content">
+          {/* {listFilter?.map((job, idx) => {
             let name = configName(job.type.name);
             return (
               <div className="col-6 col-md-4 col-lg-3 col-xl-3">
@@ -142,6 +184,36 @@ export default function PageSearchJob() {
                     <p className="card-text">
                       STARTING AT <span>US${job.price}</span>{" "}
                     </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })} */}
+          {listFilter?.map((job, idx) => {
+            const name = configName(job.type.name);
+            return (
+              <div key={job._id} className="jobR col-6 col-md-4 col-xl-3">
+                <div className="card jobRender-item">
+                  <Link to={`/${name}/detail/${job._id}`}>
+                    <img
+                      className="card-img-top"
+                      src={job.image ? job.image : defaultJobRender}
+                      alt=""
+                    />
+                  </Link>
+                  <div className="card-body jobRender-content">
+                    <Link to={`/${name}/detail/${job._id}`}>
+                      {job.name}
+                    </Link>
+                    <div className="jobRender-detail">
+                      <h4 className="detail-item detail-rating">
+                        {job.rating}
+                        <StarFilled />
+                      </h4>
+                      <h4 className="detail-item detail-price">
+                        <span>US${job.price}</span>
+                      </h4>
+                    </div>
                   </div>
                 </div>
               </div>

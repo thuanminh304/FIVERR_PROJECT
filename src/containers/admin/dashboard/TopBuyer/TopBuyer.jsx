@@ -49,8 +49,8 @@ const TopBuyer = () => {
         if(skill?.length>2){skillList = skill.slice(0,2).concat('...')}
         return (
           <div className="topUser__skillList">
-            {skillList?.map((skill) => {
-              return <div className="topUser__skillItem">{skill}</div>;
+            {skillList?.map((skill,idx) => {
+              return <div key={idx} className="topUser__skillItem">{skill}</div>;
             })}
           </div>
         );
@@ -85,8 +85,7 @@ const TopBuyer = () => {
     <div className="topUser">
       <div className="topUser__content">
         <Table
-          rowKey={(record) => record._id}
-          key={(record) => record._id}
+          key="buyer"
           columns={columns}
           dataSource={data}
           scroll={{ x: 768 }}

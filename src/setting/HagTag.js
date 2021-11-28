@@ -1,18 +1,22 @@
 const HagtagFunc = (user, jobData) => {
   let typeRelate = [];
   if (user.bookingJob.length > 0) {
-    const typeJob = jobData.find((job) => {
-      return job._id === user.bookingJob[0];
-    });
-    if (!!typeJob?._id) {
-      const typeJobRelate = jobData.filter((job) => {
-        return job.type?._id === typeJob.type._id;
+    for(let key of user.bookingJob){
+      const typeJob = jobData.find((job) => {
+        return job._id === key;
       });
-      if (typeJobRelate?.length > 0) {
-        typeRelate = [...typeJobRelate];
+      if (!!typeJob?._id) {
+        const typeJobRelate = jobData.filter((job) => {
+          return job.type?._id === typeJob.type._id;
+        });
+        if (typeJobRelate?.length > 0) {
+          typeRelate = [...typeJobRelate];
+          break;
+        }
       }
     }
-  } else {
+  };
+  if(typeRelate.length === 0){
     const typeJob = jobData.find((job) => {
       return job.userCreated === user._id;
     });
@@ -24,7 +28,7 @@ const HagtagFunc = (user, jobData) => {
         typeRelate = [...typeJobRelate];
       }
     }
-  };
+  }
   const {skill} = user;
   let jobRelateList = [];
   for(let val of skill){
@@ -43,7 +47,14 @@ const HagtagFunc = (user, jobData) => {
     jobRelateList = [...new Set(jobRelateList)];
   }
   else if(jobRelateList.length === 0 || typeRelate.length === 0){
-    jobRelateList = jobRelateList.concat(jobData.slice(firstNum,lastNum));
+    jobData.slice(firstNum,lastNum).forEach((data)=>{
+      const idx = jobRelateList.findIndex(job=>{
+        return data._id === job._id;
+      });
+      if(idx === -1){
+        jobRelateList.push(data);
+      }
+    });
   }
   return {typeRelate: typeRelate,jobRelateList: jobRelateList};
 };

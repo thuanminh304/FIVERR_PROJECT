@@ -26,7 +26,6 @@ const Jobdetail = () => {
   const {listAllUser} = useSelector(state => state.managementUserReducer);
   const {currentUser} = useSelector((state) => state.AuthReducer);
   useEffect(() => {
-    window.scrollTo(0,0);
     setLoading(true);
     dispatch(actGetAllUser());
     dispatch(actGetJobDetail(jobId));
@@ -62,7 +61,6 @@ const Jobdetail = () => {
     const bookingBox = document.querySelector(".jobDetail__jobPrice");
     const windowY = window.scrollY;
     if(!!content && !!footer && !!bookingBox){
-      console.log(bookingBox.clientWidth,windowY, content.offsetTop, footer.offsetTop);
       if (
         windowY >= content.offsetTop + 50 &&
         windowY <= footer.offsetTop - 590
@@ -210,9 +208,10 @@ const Jobdetail = () => {
                 </a>
               </button>
             </div>
-            <div className={"jobBook__note " + ((!!isBooked||!currentUser?._id)?'show':"")}>
+            <div className={"jobBook__note " + ((!!isBooked||!currentUser?._id||currentUser?.role ==="ADMIN")?'show':"")}>
               {isBooked === 'success'?(<h4 className="noteSuccess note">Success</h4>):""}
               {isBooked === 'fail'?(<h4 className="noteFail note">Fail</h4>):""}
+              {currentUser?.role ==="ADMIN"?(<h4 className="noteFail note">You are not client</h4>):""}
               {!currentUser?._id?(<button className="noteLogin"><Link to="/login">Login Now</Link></button>):""}
             </div>
           </div>

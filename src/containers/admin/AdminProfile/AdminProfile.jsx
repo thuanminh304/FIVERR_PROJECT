@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { Route } from "react-router";
 import Admininfo from "./AdminBox/AdminInfo";
 import Adminmessage from "./AdminBox/AdminMessage";
+import Boxmessage from "./AdminBox/AdminMessage/BoxMessage/BoxMessage";
 import AdminInfoSettingLayout from "./AdminInfoSetting/AdminInfoSettingLayout";
 import Adminmain from './Adminmain/AdminMain';
 const Adminprofile = () => {
@@ -34,6 +35,7 @@ const Adminprofile = () => {
         </div>
         <div className={"admin__content col-12 col-sm-7 col-lg-8 " + (!!showSetting?"show":"")}>
         <Route path="/admin/adminProfile" component={AdminInfoSettingLayout}/>
+        <Route path="/admin/adminMessage" component={Boxmessage}/>
         </div>
       </div>
     </div>

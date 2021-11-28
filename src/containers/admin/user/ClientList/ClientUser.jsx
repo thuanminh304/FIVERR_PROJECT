@@ -205,7 +205,7 @@ export default function ClientUser() {
           .then((res) => {
             setSearchUser(res.data);
           })
-          .catch((err) => console.log(err?.response.data));
+          .catch((err) => {});
       }, 200);
     }
   };
@@ -215,7 +215,7 @@ export default function ClientUser() {
       .then((res) => {
         setSearchUser(res.data);
       })
-      .catch((err) => console.log(err?.response.data));
+      .catch((err) =>{});
   };
   const handleDeleteUser = (id) => {
     userApi

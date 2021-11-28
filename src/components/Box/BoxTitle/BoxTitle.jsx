@@ -1,13 +1,12 @@
 import React from 'react';
 import './BoxTitle.scss';
-import {ReloadOutlined, RightOutlined, FullscreenOutlined, FullscreenExitOutlined} from '@ant-design/icons';
+import {RightOutlined, FullscreenOutlined, FullscreenExitOutlined} from '@ant-design/icons';
 const Boxtitle = (props) => {
     const {title, isHiden, isFullScreen} = props;
     return (
         <div className="boxTitle-content">
             <h4 className="boxTitle-name">{title}</h4>
             <div className={"boxTitle-icon " + (!isHiden?"hiden ":"")}>
-                <ReloadOutlined />
                 <RightOutlined />
                 {!isFullScreen?<FullscreenOutlined />:<FullscreenExitOutlined />}
             </div>
