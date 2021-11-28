@@ -58,4 +58,33 @@
       }
     }
   }
+  .descriptSchedule{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .scheduleItem1{
+      margin: 0 15px;
+    }
+    .scheduleItem1{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .noteItem{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+    .noteItem.nonComplete{
+      background-color: #ff7070;
+    }
+    .noteItem.complete{
+      background-color: #49d075;
+    }
+    .noteContent{
+      color: #73bfdd;
+      font-weight: 600;
+    }
+  }
 }

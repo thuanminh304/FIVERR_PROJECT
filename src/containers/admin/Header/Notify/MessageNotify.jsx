@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Notify.scss';
 const Messagenotify = (props) => {
     const {message} = props;
@@ -90,7 +91,7 @@ const Messagenotify = (props) => {
                     </li> */}
                 </ul>
                 <div className="messageNotify__viewAllBtn">
-                    <p>View all message</p>
+                    <Link to={'/admin/adminMessage'}>View all message</Link>
                 </div>
             </div>
         </div>

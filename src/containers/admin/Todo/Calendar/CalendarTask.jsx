@@ -10,7 +10,6 @@ const CalendarTask = () => {
   const currentMonth = moment().month();
   const currentYear = moment().year();
   const currentDay = moment().date();
-  console.log(moment().day());
   const { taskLists,selectedDate } = useSelector((state) => state.TodoListReducer);
   function getListData(value) {
     let listData;
@@ -80,7 +79,6 @@ const CalendarTask = () => {
         return;
       })
       .catch((error) => {
-        console.log(error);
       });
   };
   function dateCellRender(value) {
@@ -95,9 +93,7 @@ const CalendarTask = () => {
       </ul>
     );
   }
-  // const calendarChange = (value) => {
-  //   getData(value.month(),value.year());
-  // };
+
   const setDate = (day, month, year) => {
     const date = {
       d: day,
@@ -120,10 +116,19 @@ const CalendarTask = () => {
   return (
     <div className="calendarTask">
       <Calendar
-        // onPanelChange={calendarChange}
         dateCellRender={dateCellRender}
         onSelect = {dateSelect}
       />
+      <div className="descriptSchedule">
+        <div className="scheduleItem1">
+          <div className="noteItem nonComplete"></div>
+          <div className="noteContent">non-Complete</div>
+        </div>
+        <div className="scheduleItem1">
+          <div className="noteItem complete"></div>
+          <div className="noteContent">Completed</div>
+        </div>
+      </div>
     </div>
   );
 };

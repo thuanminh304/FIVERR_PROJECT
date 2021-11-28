@@ -34,14 +34,6 @@ const Filter = (props) => {
       dispatch(actOnlineSellers(checked));
     }
   };
-  const onBlur = () => {
-  };
-
-  const onFocus = () => {
-  };
-
-  const onSearch = (val) => {
-  };
   useEffect(()=>{
     const adminContainer = document.querySelector('.adminContainer');
     const filterTitle = document.querySelector('.jobList-filter__itemTitle p');
@@ -53,7 +45,6 @@ const Filter = (props) => {
     formRef.current.setFieldsValue({ subJobs: subJob });
   }, [subJob]);
   const elementChangeSize = (mainJob,filterTitle) => {
-    console.log(mainJob.offsetWidth);
     if(mainJob.offsetWidth<730){
       filterTitle.style.display = 'none';
     }
@@ -86,9 +77,6 @@ const Filter = (props) => {
                   placeholder="Select Sub Jobs"
                   optionFilterProp="children"
                   onChange={onChangeSelect}
-                  onFocus={onFocus}
-                  onBlur={onBlur}
-                  onSearch={onSearch}
                   filterOption={(input, option) =>
                     option.children
                       .toLowerCase()

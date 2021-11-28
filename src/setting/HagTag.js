@@ -47,7 +47,14 @@ const HagtagFunc = (user, jobData) => {
     jobRelateList = [...new Set(jobRelateList)];
   }
   else if(jobRelateList.length === 0 || typeRelate.length === 0){
-    jobRelateList = jobRelateList.concat(jobData.slice(firstNum,lastNum));
+    jobData.slice(firstNum,lastNum).forEach((data)=>{
+      const idx = jobRelateList.findIndex(job=>{
+        return data._id === job._id;
+      });
+      if(idx === -1){
+        jobRelateList.push(data);
+      }
+    });
   }
   return {typeRelate: typeRelate,jobRelateList: jobRelateList};
 };

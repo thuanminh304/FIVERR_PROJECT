@@ -30,7 +30,6 @@ export default function UpdateUser() {
       setIsUpdate(false);
     }
   }, [isNote]);
-  //tạo form để lưu trừ thông tin nhập từ input
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -88,7 +87,6 @@ export default function UpdateUser() {
   const handleChangeDate = (value) => {
     formik.setFieldValue("birthday", moment(value).format("YYYY-MM-DD"));
   };
-  // tạo biến riêng để tránh sử dụng lại nhiều ảnh hưởng performance
   const errors = formik.errors;
   const touched = formik.touched;
   const values = formik.values;
@@ -104,7 +102,7 @@ export default function UpdateUser() {
         <div className="row form-update">
           <div className="field_item col-12 col-sm-6">
             <Form.Item>
-              <label>Client Name</label>
+              <label>User Name</label>
               <Input
                 name="name"
                 onChange={formik.handleChange}
@@ -122,7 +120,7 @@ export default function UpdateUser() {
           </div>
           <div className="field_item col-12 col-sm-6">
             <Form.Item>
-              <label htmlFor="">Client Email</label>
+              <label htmlFor="">User Email</label>
               <Input
                 name="email"
                 onChange={formik.handleChange}
@@ -140,7 +138,7 @@ export default function UpdateUser() {
           </div>
           <div className="field_item col-12 col-sm-6">
             <Form.Item>
-              <label htmlFor="">Phone</label>
+              <label htmlFor="">User Phone</label>
               <Input
                 name="phone"
                 placeholder="Enter phone"
@@ -158,7 +156,7 @@ export default function UpdateUser() {
           </div>
           <div className="field_item col-12 col-sm-6">
             <Form.Item>
-              <label htmlFor="">Birthday</label> <br />
+              <label htmlFor="">User Birthday</label> <br />
               <DatePicker
                 name="birthday"
                 format="YYYY-MM-DD"
@@ -171,7 +169,7 @@ export default function UpdateUser() {
           </div>
           <div className="field_item col-12 col-sm-6">
             <Form.Item>
-              <label htmlFor="">Gender</label>
+              <label htmlFor="">User Gender</label>
               <Select
                 name="gender"
                 placeholder="User Gender"
@@ -187,7 +185,7 @@ export default function UpdateUser() {
           </div>
           <div className="field_item col-12 col-sm-6">
             <Form.Item>
-              <label htmlFor="">Skill</label>
+              <label htmlFor="">User Skill</label>
               <Input
                 name="skill"
                 onChange={handleChangeSkill}
@@ -198,7 +196,7 @@ export default function UpdateUser() {
           </div>
           <div className="field_item col-12 col-sm-6">
             <Form.Item>
-              <label htmlFor="">Certification</label>
+              <label htmlFor="">User Certification</label>
               <Input
                 name="certification"
                 placeholder="DIB, PYNOW,..."

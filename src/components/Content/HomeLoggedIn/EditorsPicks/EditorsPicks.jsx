@@ -10,7 +10,7 @@ export default function EditorsPicks(props) {
         {skillRelateGig?.map((job, idx) => {
           if(job.userCreated !== currentUserId){
             return (
-              <Jobrender key={job._id} job={job}/>
+              <Jobrender key={idx} job={job}/>
             );
           }
         })}

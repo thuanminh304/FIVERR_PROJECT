@@ -114,7 +114,7 @@ export const renderAvatar = (imageUrl, currentUser) => {
 
 export const renderCategoriesHeader = (mainJob, currentUser) => {
   return (
-    <div id={currentUser ? "category__content-loggedin" : "category__content"}>
+    <div className = "cagetories__menu" id={currentUser ? "category__content-loggedin" : "category__content"}>
       <ul>
         {mainJob?.map((mainjob, idx) => {
           const name = configName(mainjob.name);

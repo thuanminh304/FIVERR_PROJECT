@@ -49,8 +49,8 @@ const TopSeller = () => {
         if(skill?.length>2){skillList = skill.slice(0,2).concat('...')}
         return (
           <div className="topUser__skillList">
-            {skillList?.map((skill) => {
-              return <div className="topUser__skillItem">{skill.length>5?skill.substr(0, 5) + "..." : skill}</div>;
+            {skillList?.map((skill,idx) => {
+              return <div key={idx} className="topUser__skillItem">{skill.length>5?skill.substr(0, 5) + "..." : skill}</div>;
             })}
           </div>
         );
@@ -99,8 +99,7 @@ const TopSeller = () => {
     <div className="topUser">
       <div className="topUser__content">
         <Table
-          rowKey={(record) => record._id}
-          key={(record) => record._id}
+          key="seller"
           columns={columns}
           dataSource={data}
           scroll={{ x: 768 }}

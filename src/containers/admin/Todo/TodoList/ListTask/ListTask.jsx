@@ -7,6 +7,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import getApiTodo from "../../setApi/getApi";
 import { actUpdateListTask } from "../../Modules/action";
+import { actShowNote } from "containers/admin/Header/modules/actions";
 const Listtask = () => {
   const dispatch = useDispatch();
   const [taskTab, setTaskTab] = useState(false);
@@ -34,21 +35,25 @@ const Listtask = () => {
     }
     if(!!deleteBtn){
       const taskIdx = deleteBtn.dataset.idx;
-      debugger;
       data.Task[currentIdx].thing.splice(taskIdx,1);
       const isFinishAll = data.Task[currentIdx].thing.every(task=>{
         return task.status === true;
       });
       data.Task[currentIdx].status = isFinishAll;
+      if(data.Task[currentIdx].thing.length === 0){
+        data.Task.splice(currentIdx,1);
+      }
       updateService(data.id,data);
     }
   };
   const updateService = (id, data) => {
     getApiTodo.changeStatusTask(id,data).then(res=>{
-      console.log(res.data);
       dispatch(actUpdateListTask(res.data));
+      const note = { type: 'complete', content: 'Update Task List Completed' };
+      dispatch(actShowNote(note));
     }).catch(error=>{
-      console.log(error);
+      const note = { type: 'error', content: 'Update Task List Fail' };
+      dispatch(actShowNote(note));
     });
   }
   const allFunc = (e) => {
@@ -63,13 +68,20 @@ const Listtask = () => {
       updateService(data.id,data);
     };
     if(!!deleteAllBtn) {
-      data.Task.splice(currentIdx,1);
+        data.Task[currentIdx].thing.forEach((thing, idx)=>{
+          if(thing.status === taskTab){
+            data.Task[currentIdx].thing.splice(idx, 1);
+          };
+        });
+        if(data.Task[currentIdx].thing.length === 0){
+          data.Task.splice(currentIdx,1);
+        }
       updateService(data.id,data);
     }
   }
   const renderTask = () => {
     if (!!dayTask) {
-      if (dayTask.thing.length > 0) {
+      if (dayTask.thing?.length > 0) {
         const listRender = dayTask.thing.map((thing, idx) => {
           if(thing.status === taskTab){
             return (
@@ -83,11 +95,12 @@ const Listtask = () => {
             );
           }
         });
-        if(!!listRender[0]) {
+        const checkUndef = listRender.findIndex(list=>{return !!list?.type});
+        if(checkUndef !== -1) {
           return listRender;
         }
         else{
-          return (<div className="listTask__title nothing">Nothing to do</div>);
+          return (<div className="listTask__title nothing">Nothing</div>);
         }
       } else {
         return (<div className="listTask__title nothing">Nothing to do</div>);
