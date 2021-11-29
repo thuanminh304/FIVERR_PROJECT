@@ -21,28 +21,28 @@ export default function UpdateUploadAvatar(props) {
       if (value.job !== null) {
         formData.append("job", value.job, value.job.name);
         jobApi
-        .updateJobImage(detailJobCreatedByUser?._id, formData)
-        .then((res) => {
-          setTimeout(() => {
-            setCurrent(current + 1);
-          }, 1500);
-          setTimeout(() => {
-            messageConfig.success();
-          }, 1000);
-        })
-        .catch((err) => {
-          console.log(err?.response);
-        });
+          .updateJobImage(detailJobCreatedByUser?._id, formData)
+          .then((res) => {
+            setTimeout(() => {
+              setCurrent(current + 1);
+            }, 0);
+            setTimeout(() => {
+              messageConfig.success();
+            }, 0);
+          })
+          .catch((err) => {
+            messageConfig.error();
+            console.log(err?.response);
+          });
+      } else {
+        messageConfig.loading();
+        setTimeout(() => {
+          setCurrent(current + 1);
+        }, 1500);
+        setTimeout(() => {
+          messageConfig.success();
+        }, 1000);
       }
-
-      messageConfig.loading();
-      setTimeout(() => {
-        setCurrent(current + 1);
-      }, 1500);
-      setTimeout(() => {
-        messageConfig.success();
-      }, 1000);
-     
     },
   });
 
@@ -50,7 +50,7 @@ export default function UpdateUploadAvatar(props) {
     name: "job",
     multiple: false,
     maxCount: 1,
-    accept: "image/*",
+    accept: "image/*,image/jfif,.png,.jpg,.jpeg,.jfif,.tmp",
     listType: "picture-card",
     onChange(info) {
       getBase64(info.file.originFileObj, setImageUrl);

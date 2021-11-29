@@ -43,7 +43,7 @@ export default function RenderUploadAvatar(props) {
     name: "job",
     multiple: false,
     maxCount: 1,
-    accept: "image/*",
+    accept: "image/*,image/jfif,.png,.jpg,.jpeg,.jfif,.tmp",
     listType: "picture-card",
     onChange(info) {
       getBase64(info.file.originFileObj, setImageUrl);
