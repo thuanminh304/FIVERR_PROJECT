@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { actGetListJobsByName } from "containers/home/homePage/profileUser/createNewJobByUser/StepsCreateNewGig/modules/action";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { Switch, Avatar } from "antd";
+import { Switch } from "antd";
 import { Link } from "react-router-dom";
 import { StarFilled } from "@ant-design/icons";
 import configName from "setting/configNameTypeJob";

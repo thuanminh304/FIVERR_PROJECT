@@ -49,8 +49,8 @@ export default function ProfileUser() {
       certification: currentUser?.certification,
       _id: currentUser?._id,
     },
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: () => {
+      
     },
   });
   const handleChangeAvatar = (event) => {

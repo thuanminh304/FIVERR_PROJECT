@@ -34,10 +34,10 @@ const UpdateOverview = (props) => {
           messageConfig.loading();
           setTimeout(() => {
             setCurrent(current + 1);
-          }, 0);
+          }, 1500);
           setTimeout(() => {
             messageConfig.success();
-          }, 0);
+          }, 1000);
         })
         .catch((err) => {
           console.log(err?.response);

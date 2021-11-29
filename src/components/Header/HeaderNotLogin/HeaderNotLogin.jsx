@@ -9,6 +9,7 @@ import { Button, Drawer, Input, Menu, Space } from "antd";
 import { useState } from "react";
 import configName from "setting/configNameTypeJob";
 import { DribbbleOutlined, DollarOutlined } from "@ant-design/icons";
+import messageConfig from "components/Message/message";
 export default function HeaderNotLogin() {
   const { Search } = Input;
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
@@ -18,9 +19,13 @@ export default function HeaderNotLogin() {
     dispatch(actGetMainJobList());
   }, []);
   const onSearch = (value) => {
-    setTimeout(() => {
-      history.push(`/search/gigs/${value}`);
-    }, 0);
+    if (value !== "") {
+      setTimeout(() => {
+        messageConfig.success();
+
+        history.push(`/search/gigs/${value}`);
+      }, 0);
+    }
   };
   const [visible, setVisible] = useState(false);
   const showDrawer = () => {
@@ -31,9 +36,7 @@ export default function HeaderNotLogin() {
   };
   const { SubMenu } = Menu;
 
-  const handleClick = (e) => {
-    console.log("click ", e);
-  };
+  
   return (
     <header
       style={{
@@ -93,7 +96,7 @@ export default function HeaderNotLogin() {
             >
               <Menu
                 className="menu-visible"
-                onClick={handleClick}
+                
                 style={{ width: 256 }}
                 mode="inline"
               >

@@ -9,6 +9,7 @@ import { actGetMainJobList } from "Modules/JobManagement/actions";
 import { useHistory } from "react-router";
 import configName from "setting/configNameTypeJob";
 import { useState } from "react";
+import messageConfig from "components/Message/message";
 
 export default function HeaderLoggedIn() {
   const history = useHistory();
@@ -24,9 +25,13 @@ export default function HeaderLoggedIn() {
     dispatch(actGetMainJobList());
   }, []);
   const onSearch = (value) => {
-    setTimeout(() => {
-      history.push(`/search/gigs/${value}`);
-    }, 0);
+    if (value !== "") {
+      setTimeout(() => {
+        messageConfig.success();
+
+        history.push(`/search/gigs/${value}`);
+      }, 0);
+    }
   };
   const { SubMenu } = Menu;
 
