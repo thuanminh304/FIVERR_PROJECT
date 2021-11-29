@@ -3,6 +3,7 @@ import "./carousel.scss";
 import Slider from "react-slick";
 import { useHistory } from "react-router";
 import { Input } from "antd";
+import messageConfig from "components/Message/message";
 
 export default function Carousel() {
   const { Search } = Input;
@@ -30,23 +31,27 @@ export default function Carousel() {
   };
 
   const onSearch = (value) => {
-    setTimeout(() => {
-      history.push(`/search/gigs/${value}`);
-    }, 0);
+    if (value !== "") {
+      setTimeout(() => {
+        messageConfig.success();
+
+        history.push(`/search/gigs/${value}`);
+      }, 0);
+    }
   };
   return (
     <div className="carousel">
-        <div className="carousel-text">
-          <p>
-            Find the perfect <i> freelance </i>services for your business
-          </p>
-          <Search
-            className="search-input-antd-carousel"
-            placeholder="Try 'building mobile app'"
-            onSearch={onSearch}
-            enterButton="Search"
-          />
-          {/* 
+      <div className="carousel-text">
+        <p>
+          Find the perfect <i> freelance </i>services for your business
+        </p>
+        <Search
+          className="search-input-antd-carousel"
+          placeholder="Try 'building mobile app'"
+          onSearch={onSearch}
+          enterButton="Search"
+        />
+        {/* 
         <div className="carousel-popular">
           <span>Popular : </span>
           <ul>
@@ -72,7 +77,7 @@ export default function Carousel() {
             </li>
           </ul>
         </div> */}
-        </div>
+      </div>
       <Slider {...settings}>
         <div className="carousel-hero1">
           <p className="carousel-name-hero">

@@ -43,7 +43,7 @@ export default function RenderUploadAvatar(props) {
     name: "job",
     multiple: false,
     maxCount: 1,
-    accept: "image/*,image/jfif,.png,.jpg,.jpeg,.jfif,.tmp",
+    accept: "image/*,image/jfif,.png,.jpg,.jpeg,.jfif,video/*",
     listType: "picture-card",
     onChange(info) {
       getBase64(info.file.originFileObj, setImageUrl);
@@ -70,8 +70,7 @@ export default function RenderUploadAvatar(props) {
               Click or drag file to this area to upload
             </p>
             <p className="ant-upload-hint">
-              Support for a single or bulk upload. Strictly prohibit from
-              uploading company data or other band files
+              Only .PNG, .JPG file
             </p>
           </Dragger>
           <div className="ant-show-upload-image">

@@ -26,7 +26,7 @@ export default function ProfileHasJobs(props) {
   return (
     <div className="profile-right-content-jobs">
       <div className="row jobs-content">
-        {listFilter?.map((job, idx) => {
+        {listJobNotBookedYet?.map((job, idx) => {
           return (
             <div
               key={job._id}

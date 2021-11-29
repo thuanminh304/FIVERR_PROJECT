@@ -25,8 +25,8 @@ const messageConfig = {
     });
   },
   loadingToSuccess() {
-    return message.loading("Redirecting to profile..", 1).then(() => {
-      message.success("Success !", 1)
+    return message.loading("Redirecting to profile..", 2).then(() => {
+      message.success("Success !", 2)
       window.history.back();
     });
   },
