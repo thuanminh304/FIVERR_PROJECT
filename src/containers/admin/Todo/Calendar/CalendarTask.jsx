@@ -44,16 +44,6 @@ const CalendarTask = () => {
   useEffect(() => {
     getData(currentMonth, currentYear, currentDay);
   }, []);
-  // useEffect(() => {
-  //   if(!!taskLists?.id && selectedDate.month === currentMonth ){
-  //     const date = {
-  //       d: currentDay,
-  //       month: currentMonth,
-  //       year: currentYear,
-  //     };
-  //     setSelectedDate(date);
-  //   }
-  // },[taskLists])
   const setSelectedDate = (date) => {
     dispatch(actSelectDate(date));
   }
@@ -108,7 +98,7 @@ const CalendarTask = () => {
       month: value.month(),
       year: value.year(),
     };
-    if(selectedDate?.month !== value.month()){
+    if(selectedDate?.month !== value.month() || selectedDate?.year !== value.year()){
       getData(value.month(),value.year(),value.date());
     }
     setSelectedDate(date);
