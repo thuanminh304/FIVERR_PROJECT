@@ -5,19 +5,33 @@ import jobApi from "apis/jobApi";
 import { useDispatch } from "react-redux";
 import { actGetAllJobsByUser } from "./createNewJobByUser/StepsCreateNewGig/modules/action";
 import configName from "setting/configNameTypeJob";
+import { renderPagination } from "components/render/render";
+import { useState } from "react";
 export default function ProfileHasJobs(props) {
+  const [pagination, setPagination] = useState({
+    page: 0,
+    limit: 12,
+  });
   const listJobsCreatedByUser = props.listJobsCreatedByUser;
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.AuthReducer);
   const listJobNotBookedYet = listJobsCreatedByUser?.filter(
     (job) => job.usersBooking === undefined
   );
+  const totalPage = Math.ceil(listJobNotBookedYet?.length / pagination.limit);
+  const listFilter = listJobNotBookedYet?.slice(
+    pagination.page * pagination.limit,
+    pagination.page * pagination.limit + 12
+  );
   return (
     <div className="profile-right-content-jobs">
       <div className="row jobs-content">
-        {listJobNotBookedYet?.map((job, idx) => {
+        {listFilter?.map((job, idx) => {
           return (
-            <div key={job._id} className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+            <div
+              key={job._id}
+              className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4"
+            >
               <div className="card">
                 <img
                   className="card-img-top"
@@ -28,7 +42,7 @@ export default function ProfileHasJobs(props) {
                   }
                   alt=""
                   style={{
-                    height:140
+                    height: 140,
                   }}
                 />
                 <div className="card-body">
@@ -93,7 +107,11 @@ export default function ProfileHasJobs(props) {
             </Link>
           </div>
         </div>
+      
       </div>
+      <div >
+        {renderPagination(setPagination, pagination, totalPage, listFilter)}
+        </div>
     </div>
   );
 }

@@ -34,10 +34,10 @@ const UpdateOverview = (props) => {
           messageConfig.loading();
           setTimeout(() => {
             setCurrent(current + 1);
-          }, 1500);
+          }, 0);
           setTimeout(() => {
             messageConfig.success();
-          }, 1000);
+          }, 0);
         })
         .catch((err) => {
           console.log(err?.response);
@@ -46,12 +46,9 @@ const UpdateOverview = (props) => {
     validationSchema: yup.object({
       name: yup
         .string()
-        .matches(
-          /^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ ]+$/
-        )
+        
         .required(),
       type: yup.string().required("Please select !"),
-      subType: yup.object().required("Please select !"),
       price: yup
         .string()
 
