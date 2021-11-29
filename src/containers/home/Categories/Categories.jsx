@@ -13,6 +13,9 @@ const Categories = () => {
   const [loading, setLoading] = useState(false);
   const { mainJob } = useSelector((state) => state.JobManagementReducer);
   const { typeJob } = useParams();
+  useEffect((
+    
+  ) => {},[]);
   useEffect(() => {
     const type = mainJob.find((job) => {
       return configNameTypeJob(job.name) === typeJob;
@@ -36,7 +39,7 @@ const Categories = () => {
           });
       }
     }
-  }, [typeJob]);
+  }, [typeJob,mainJob]);
   const findImage = (id) => {
     if (dataImg.length > 0) {
       const imageUrl = dataImg.find((img) => {

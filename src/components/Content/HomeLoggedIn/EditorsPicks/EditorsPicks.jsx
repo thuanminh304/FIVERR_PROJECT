@@ -17,13 +17,16 @@ export default function EditorsPicks(props) {
     <div className="editors-picks">
       <h3>Editors' picks</h3>
       <div className="editors-row">
-        {listFilter?.map((job, idx) => {
-          if (job.userCreated !== currentUserId) {
-            return <Jobrender key={idx} job={job} />;
+        {skillRelateGig?.map((job, idx) => {
+          if(job.userCreated !== currentUserId){
+            if(!!job.type && !!job.subType && !!job.name && !!job.rating && !!job.price){
+              return (
+                <Jobrender key={idx} job={job}/>
+              );
+            }
           }
         })}
       </div>
-      {renderPagination(setPagination, pagination, totalPage, listFilter)}
     </div>
   );
 }

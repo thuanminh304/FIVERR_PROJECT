@@ -36,7 +36,18 @@ export default function DetailListSupType() {
     value: false,
     name: "",
   });
-
+  useEffect(() => {
+    const pagination = document.querySelector('.pagination-app');
+    pagination.addEventListener('click',handlePagination);
+  },[]);
+  const handlePagination = (e) => {
+    const firstBtn = e.target.closest('.firstPage');
+    const prevPage = e.target.closest('.prevPage');
+    const nextPage = e.target.closest('.nextPage');
+    if(!!firstBtn || !!prevPage || !!nextPage) {
+      window.scrollTo(0,0);
+    }
+  }
   useEffect(() => {
     dispatch(actGetDetailSubTypeJob(params?.idSubTypeJob));
   }, [params?.idSubTypeJob, pagination.page]);

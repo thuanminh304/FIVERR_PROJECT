@@ -158,7 +158,7 @@ export const renderPagination = (
     <div className="pagination-app">
       <button
         disabled={pagination.page === 0}
-
+        className="firstPage"
         onClick={() => {
           setPagination({
             ...pagination,
@@ -170,6 +170,7 @@ export const renderPagination = (
       </button>
       <button
         disabled={pagination.page === 0}
+        className="prevPage"
         onClick={() => {
           setPagination({
             ...pagination,
@@ -191,6 +192,7 @@ export const renderPagination = (
 
       <button
         disabled={pagination.page === totalPage - 1 || list?.length === 0}
+        className="nextPage"
         onClick={() => {
           setPagination({
             ...pagination,
