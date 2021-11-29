@@ -4,6 +4,9 @@
   position: relative;
   color: white;
   line-height: 0;
+  .slick-arrow{
+    display: none!important;
+  }
   .carousel-text {
     max-width: 1400px;
     margin: auto;

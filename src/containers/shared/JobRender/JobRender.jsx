@@ -9,7 +9,7 @@ const Jobrender = (props) => {
   return (
     <div key={job._id} className="jobRender col-6 col-md-4 col-xl-3">
       <div className="card jobRender-item">
-        <Link to={`${configNameTypeJob(job.type.name)}/detail/${job._id}`}>
+        <Link to={`${configNameTypeJob(job.type?.name)}/detail/${job._id}`}>
           <img
             className="card-img-top"
             src={job.image ? job.image : defaultJobRender}
@@ -17,7 +17,7 @@ const Jobrender = (props) => {
           />
         </Link>
         <div className="card-body jobRender-content">
-          <Link to={`${configNameTypeJob(job.type.name)}/detail/${job._id}`}>
+          <Link to={`${configNameTypeJob(job.type?.name)}/detail/${job._id}`}>
             {job.name}
           </Link>
           <div className="jobRender-detail">
