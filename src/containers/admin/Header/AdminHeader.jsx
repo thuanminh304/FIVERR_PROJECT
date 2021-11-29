@@ -41,18 +41,27 @@ const Adminheader = () => {
         type = "";
         document.querySelector(".adminContainer").classList.remove("fix");
       }
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setContent(type);
       }, 200);
+      return () => {
+        clearTimeout(timer);
+      }
     } else {
       setContent("");
       document.querySelector(".adminContainer").classList.remove("fix");
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setShowSideRight(false);
       }, 100);
+      return () => {
+        clearTimeout(timer);
+      }
     }
   };
   const fixSideBar = () => {
+    if(!isFixSideBar){
+      window.scrollTo(0,0);
+    }
     const fixSideBar = !isFixSideBar;
     dispatch({ type: FIX_SIDE_BAR, payload: fixSideBar });
   };
